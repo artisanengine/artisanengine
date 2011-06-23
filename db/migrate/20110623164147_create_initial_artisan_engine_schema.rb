@@ -13,14 +13,19 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     
     add_index :frames, :domain, unique: true
     
-    #create_table :pages do |t|
-    #  t.integer :frame_id,  null: false
+    # ------------------------------------------------------------------
+    # Pages
+    
+    create_table :pages do |t|
+      t.integer :frame_id,  null: false
       
-    #  t.string  :title,     null: false
-    #  t.text    :content,   null: false
+      t.string  :title,     null: false
+      t.text    :content,   null: false
 
-    #  t.timestamps
-    #end
+      t.timestamps
+    end
+    
+    add_index :pages, :frame_id
   end
 
   def down

@@ -4,4 +4,10 @@ ArtisanEngine::Application.routes.draw do
       resources :frames
     end
   end
+  
+  scope module: 'manage' do
+    scope path: 'manage' do
+      resources :pages
+    end
+  end
 end
