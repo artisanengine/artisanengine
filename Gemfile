@@ -33,15 +33,15 @@ group :test do
 	gem 'capybara-webkit',      '1.0.0.beta4' # Headless JS driver.
 	gem 'watchr',							  '0.7'
 	gem 'spork',							  '0.9.0rc8'
-
-	# Sample data generation.
-	gem 'fabrication',				  '1.0.0'
-	gem 'faker',							  '0.9.5'
 end
 
 group :development, :test do
   gem 'rspec-rails',				  '2.6.1'       # Unit testing and generators.
   gem 'sqlite3',              '1.3.3'       # Use SQLite DB in testing and development.
+
+  # Sample data generation.
+	gem 'fabrication',				  '1.0.0'
+	gem 'faker',							  '0.9.5'
 end
 
 group :production do
