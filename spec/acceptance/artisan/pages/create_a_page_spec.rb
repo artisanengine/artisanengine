@@ -6,7 +6,7 @@ feature 'Create a Page', %q{
   I want to create a page.
 } do
   
-  scenario "An artisan can create a page with valid attributes", focus: true do
+  scenario "An artisan can create a page with valid attributes" do
     # When I create a page with valid attributes,
     create_page
     

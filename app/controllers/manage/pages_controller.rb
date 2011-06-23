@@ -9,10 +9,13 @@ module Manage
   
     def create
       page.save ? 
-        flash[ :notice ] = "Page: #{ page.name } was successfully created." :
+        flash[ :notice ] = "Page: #{ page.title } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
       
       respond_with page
+    end
+    
+    def show
     end
   end
 end
