@@ -4,7 +4,9 @@ require 'spork'
 # Run before Spork forks.
 
 Spork.prefork do
+  # ------------------------------------------------------------------
   # Load Rails environment.
+  
   ENV[ "RAILS_ENV" ] ||= 'test'
   
   require File.expand_path( "../../config/environment", __FILE__ )
@@ -21,7 +23,7 @@ Spork.prefork do
     config.use_transactional_fixtures = true      # Run specs in transactions.
     
     # Only run :focus specs (if there are any).
-    config.filter_run( focus: true )
+    config.filter_run focus: true
     config.run_all_when_everything_filtered = true
   end
 end
