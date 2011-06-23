@@ -19,4 +19,6 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "frames", ["domain"], :name => "index_frames_on_domain", :unique => true
+
 end
