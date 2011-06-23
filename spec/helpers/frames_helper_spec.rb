@@ -23,5 +23,15 @@ describe FramesHelper do
         }.to raise_error ActionController::RoutingError
       end
     end
+    
+    it "prioritizes a forced frame over a normally requested frame" do
+      ENV[ "FORCE_FRAME" ] = 'hausleather.com'
+      
+      Frame.should_receive( :find_by_domain )
+           .with( 'hausleather.com' )
+           .and_return( stub 'Frame' )
+      
+      helper.current_frame
+    end
   end
 end

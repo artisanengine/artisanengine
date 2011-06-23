@@ -22,6 +22,10 @@ def create_frame( options = {} )
   click_button 'Create Frame'
 end
 
+def create_test_frame
+  create_frame name: 'Test Frame', domain: 'example.com'
+end
+
 def create_example_theme_layout_with_content( content )
   # Create the theme directory.
   example_theme_dir = "#{ Rails.root }/app/themes/example/views/layouts"

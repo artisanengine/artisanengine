@@ -6,6 +6,11 @@ feature 'Create a Page', %q{
   I want to create a page.
 } do
   
+  background do
+    # Given a frame exists,
+    create_test_frame
+  end
+  
   scenario "An artisan can create a page with valid attributes" do
     # When I create a page with valid attributes,
     create_page
