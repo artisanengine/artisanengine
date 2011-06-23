@@ -2,4 +2,4 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  form_alert: "Some fields contain invalid data. Please correct the highlighted fields and try your submission again."

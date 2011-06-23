@@ -23,15 +23,13 @@ feature 'Create a Frame', %q{
   end
   
   scenario "An engineer cannot create a frame with invalid attributes" do
-    pending
-    
     # When I create a frame with invalid attributes,
     create_frame name: 'Haus Leather', domain: ''
     
-    # Then I should see an error,
-    page.should have_selector '.error'
+    # Then I should see an alert,
+    page.should have_selector '.alert'
     
-    # And there should be no new frames.
-    Frame.count.should == 1
+    # And I should not see my new frame.
+    page.should have_no_content 'Haus Leather'
   end
 end

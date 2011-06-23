@@ -28,9 +28,6 @@ gem 'jquery-rails',           '1.0.11'      # Serve JQuery through the asset pip
 # Environment-Specific Gems
 
 group :test do
-  # Unit testing.
-  gem 'rspec-rails',				  '2.6.1'       
-
 	# Integration testing.
 	gem 'capybara',						  '1.0.0'
 	gem 'capybara-webkit',      '1.0.0.beta4' # Headless JS driver.
@@ -43,6 +40,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'rspec-rails',				  '2.6.1'       # Unit testing and generators.
   gem 'sqlite3',              '1.3.3'       # Use SQLite DB in testing and development.
 end
 
