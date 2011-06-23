@@ -1,4 +1,8 @@
 ArtisanEngine::Application.routes.draw do
+  scope module: 'front' do
+    resources :pages, :only => [ :show ]
+  end
+  
   scope module: 'engine_room' do
     scope path: 'engineer' do
       resources :frames
