@@ -32,6 +32,9 @@ GEM
     activesupport (3.1.0.rc4)
       multi_json (~> 1.0)
     arel (2.1.1)
+    authlogic (3.0.3)
+      activerecord (>= 3.0.7)
+      activerecord (>= 3.0.7)
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
     cancan (1.6.5)
@@ -163,6 +166,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic (= 3.0.3)
   cancan (= 1.6.5)
   capybara (= 1.0.0)
   capybara-webkit (= 1.0.0.beta4)

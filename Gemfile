@@ -9,7 +9,8 @@ gem 'thin',                   '1.2.11'      # Run Thin to match Heroku.
 # Utilities.
 gem 'rake',                   '0.8.7'       # Lock rake at 0.8.7 for Heroku.
 
-# Authorization and authentication.
+# Authentication and authorization.
+gem 'authlogic',              '3.0.3'
 gem 'cancan',                 '1.6.5'
 
 # Controller-layer enhancements.
@@ -17,8 +18,6 @@ gem 'decent_exposure', 			  '1.0.1'
 
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'
-
-# View template enhancements.
 gem 'haml',									  '3.1.2'
 
 # Asset pipeline enhancements.
