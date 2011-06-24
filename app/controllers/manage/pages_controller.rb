@@ -12,7 +12,7 @@ module Manage
         flash[ :notice ] = "Page: #{ page.title } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
       
-      respond_with page
+      respond_with( page )
     end
     
     def show

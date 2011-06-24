@@ -7,8 +7,8 @@ feature 'Create a Page', %q{
 } do
   
   background do
-    # Given a frame exists,
-    create_test_frame
+    # Given I am browsing the Example.com frame,
+    browse_frame 'example.com'
   end
   
   scenario "An artisan can create a page with valid attributes" do

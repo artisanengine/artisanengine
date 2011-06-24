@@ -11,10 +11,10 @@ namespace :db do
     # Frames
     
     hausleather = Fabricate :frame, name:   'Haus Leather',
-                                    domain: 'hausleather'
+                                    domain: 'hausleather.com'
     
     peggyskemp  = Fabricate :frame, name:   'Peggy Skemp Jewelry',
-                                    domain: 'peggyskemp'
+                                    domain: 'peggyskemp.com'
   
     # ------------------------------------------------------------------
     # Pages

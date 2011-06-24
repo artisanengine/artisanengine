@@ -14,6 +14,8 @@ end
 # Actions
 
 def create_page( options = {} )
+  can_force_frame( options )
+  
   # Options
   title   = options[ :title ]   || 'About Me'
   content = options[ :content ] || 'Some things about me.'

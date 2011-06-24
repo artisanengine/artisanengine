@@ -5,9 +5,9 @@ module Front
     expose        :page
     
     private
-      # Determine if the page is in the current frame.
+      # Only show the page if it is in the current frame.
       def can_show_page?
-        render 'public/404.html', status: 404 if page.frame != current_frame
+        render_404 unless page.frame == current_frame
       end
   end
 end

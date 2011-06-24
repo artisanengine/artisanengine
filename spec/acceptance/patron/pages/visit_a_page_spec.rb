@@ -7,57 +7,30 @@ feature 'Visit a Page', %q{
 } do
   
   background do
-    # Given a frame exists,
-    create_test_frame
+    # Given an Example artisan has created a page,
+    create_page title: 'Example Page', in_frame: 'example.com'
     
-    # And the example artisan has created a page,
-    create_page title: 'Magical Page'
-  end
-
-  scenario "A patron can visit a page" do
-    # When I visit the example artisan's page,
-    visit "/pages/#{ Page.first.id }"
+    # And a Haus Leather artisan has created a page,
+    create_page title: 'Haus Leather Page', in_frame: 'hausleather.com'
     
-    # Then I should see the page title.
-    page.should have_content 'Magical Page'
+    # And I am browsing the Example frame,
+    browse_frame 'example.com'
   end
   
-  scenario "A patron can only visit pages in her current frame" do
-    # Given there is a hausleather frame,
-    create_frame domain: 'hausleather.com'
+  scenario "A patron can visit a page in her current frame" do        
+    # When I visit the Example page,
+    visit_page 'Example Page'
     
-    # And I am browsing the hausleather frame,
-    ENV[ "FORCE_FRAME" ] = 'hausleather.com'
-    
-    # And hausleather has created a page,
-    create_page title: 'Haus Leather Page'
-        
-    # When I visit the haus leather page,
+    # Then I should see the Example page.
+    page.should have_content 'Example Page'
+  end
+  
+  scenario "A patron cannot visit a page in a different frame" do
+    # When I visit the Haus Leather page,
     visit_page 'Haus Leather Page'
     
-    # Then I should see the page,
-    page.should have_content 'Haus Leather Page'
-
-    # And when I visit the example page,
-    visit_page 'Magical Page'
-    
-    # Then I should not see the page.
-    page.should have_no_content 'Magical Page'
-    
-    # And when I am browsing the example frame,
-    ENV[ "FORCE_FRAME" ] = 'example.com'
-    
-    # And I visit the haus leather page,
-    visit_page 'Haus Leather Page'
-    
-    # Then I should not see the page.
+    # Then I should not see the page,
     page.should have_no_content 'Haus Leather Page'
-    
-    # And when I visit the example page,
-    visit_page 'Magical Page'
-    
-    # Then I should see the example page.
-    page.should have_content 'Magical Page'
   end
     
 end
