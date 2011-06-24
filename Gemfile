@@ -19,6 +19,7 @@ gem 'decent_exposure', 			  '1.0.1'
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'
 gem 'haml',									  '3.1.2'
+gem 'compass',                git: 'https://github.com/chriseppstein/compass.git', branch: 'rails31'
 
 # Asset pipeline enhancements.
 gem 'sass-rails',             '3.1.0.rc.2'  # Enable SASS templates.

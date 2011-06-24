@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/chriseppstein/compass.git
+  revision: 696d84562d63a3e799efa73a06ba9f24b8d5b73a
+  branch: rails31
+  specs:
+    compass (0.11.3.rails.0.696d845)
+      chunky_png (~> 1.1)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -49,6 +59,7 @@ GEM
       capybara (~> 1.0.0)
     childprocess (0.1.9)
       ffi (~> 1.0.6)
+    chunky_png (1.2.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -69,6 +80,7 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    fssm (0.2.7)
     haml (3.1.2)
     hike (1.1.0)
     i18n (0.6.0)
@@ -171,6 +183,7 @@ DEPENDENCIES
   capybara (= 1.0.0)
   capybara-webkit (= 1.0.0.beta4)
   coffee-script (= 2.2.0)
+  compass!
   decent_exposure (= 1.0.1)
   fabrication (= 1.0.0)
   faker (= 0.9.5)
