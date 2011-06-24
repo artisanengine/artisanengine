@@ -3,7 +3,7 @@ require 'spec_helper'
 describe FramesHelper do  
   describe "#current_frame" do 
     context "if a frame matching the requested domain is found" do
-      let( :requested_frame ) { stub 'Frame' }
+      let( :requested_frame ) { stub Frame }
       
       it "returns the frame matching the request domain" do
         Frame.should_receive( :find_by_domain )
@@ -29,7 +29,7 @@ describe FramesHelper do
       
       Frame.should_receive( :find_by_domain )
            .with( 'hausleather.com' )
-           .and_return( stub 'Frame' )
+           .and_return( stub Frame )
       
       helper.current_frame
     end

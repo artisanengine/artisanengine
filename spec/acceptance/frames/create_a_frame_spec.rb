@@ -1,7 +1,7 @@
 require 'acceptance/acceptance_helper'
 
 feature 'Create a Frame', %q{
-  In order to set up a new artisan's home on ArtisanEngine
+  In order to set up a new artisan
   As an engineer
   I want to create a frame.
 } do

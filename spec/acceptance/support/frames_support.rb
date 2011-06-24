@@ -2,7 +2,7 @@
 # Paths
 
 def new_frame_page
-  '/engineer/frames/new'
+  '/frames/new'
 end
 
 # ------------------------------------------------------------------

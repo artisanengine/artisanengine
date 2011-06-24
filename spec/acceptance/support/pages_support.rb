@@ -2,7 +2,7 @@
 # Paths
 
 def new_page_page
-  '/manage/pages/new'
+  '/pages/new'
 end
 
 def visit_page( title )
