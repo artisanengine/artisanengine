@@ -26,6 +26,22 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     end
     
     add_index :pages, :frame_id
+    
+    # ------------------------------------------------------------------
+    # Users & Roles
+    
+    #create_table :users do |t|
+    #  t.integer :frame_id
+    #  t.integer :role_id
+
+    #  t.timestamps
+    #end
+    
+    #create_table :roles do |t|
+    #  t.string  :name
+      
+    #  t.timestamps
+    #end
   end
 
   def down

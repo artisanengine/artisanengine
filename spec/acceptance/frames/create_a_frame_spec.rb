@@ -1,6 +1,6 @@
 require 'acceptance/acceptance_helper'
 
-feature 'Create a Frame', %q{
+feature "Create a Frame", %q{
   In order to set up a new artisan
   As an engineer
   I want to create a frame.

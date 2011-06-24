@@ -1,10 +1,8 @@
 class FramesController < ApplicationController
   respond_to :html
-  expose     :frame
   
-  def new
-  end
-  
+  expose( :frame )
+
   def create
     frame.save ? 
       flash[ :notice ] = "Frame: #{ frame.name } was successfully created." :

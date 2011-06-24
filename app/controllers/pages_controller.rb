@@ -1,11 +1,9 @@
 class PagesController < ApplicationController
-  respond_to    :html
-  expose        :page
-
-  def new
-    page.frame = current_frame
-  end
+  respond_to :html
   
+  expose( :pages ) { current_frame.pages }
+  expose( :page )
+
   def create
     page.save ? 
       flash[ :notice ] = "Page: #{ page.title } was successfully created." :

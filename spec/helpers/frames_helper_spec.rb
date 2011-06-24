@@ -1,16 +1,27 @@
 require 'spec_helper'
 
 describe FramesHelper do  
-  describe "#current_frame" do 
+  describe "#current_frame" do
     context "if a frame matching the requested domain is found" do
       let( :requested_frame ) { stub Frame }
+      let( :forced_frame )    { stub Frame }
       
-      it "returns the frame matching the request domain" do
+      it "returns the frame matching the requested domain" do
         Frame.should_receive( :find_by_domain )
              .with( 'test.host' )
              .and_return( requested_frame )
         
         helper.current_frame.should == requested_frame
+      end
+      
+      it "prioritizes a forced frame over a normally requested frame" do
+        ENV[ "FORCE_FRAME" ] = 'hausleather.com'
+
+        Frame.should_receive( :find_by_domain )
+             .with( 'hausleather.com' )
+             .and_return( forced_frame )
+
+        helper.current_frame.should == forced_frame
       end
     end
 
@@ -22,16 +33,6 @@ describe FramesHelper do
           helper.current_frame
         }.to raise_error ActionController::RoutingError
       end
-    end
-    
-    it "prioritizes a forced frame over a normally requested frame" do
-      ENV[ "FORCE_FRAME" ] = 'hausleather.com'
-      
-      Frame.should_receive( :find_by_domain )
-           .with( 'hausleather.com' )
-           .and_return( stub Frame )
-      
-      helper.current_frame
     end
   end
 end

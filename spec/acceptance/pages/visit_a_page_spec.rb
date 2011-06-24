@@ -17,7 +17,7 @@ feature 'Visit a Page', %q{
     browse_frame 'example.com'
   end
   
-  scenario "A visitor can visit a page in her current frame" do        
+  scenario "A visitor can visit a page in the current frame" do        
     # When I visit the Example page,
     visit_page 'Example Page'
     
