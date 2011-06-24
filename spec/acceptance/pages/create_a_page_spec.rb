@@ -29,7 +29,7 @@ feature 'Create a Page', %q{
     # Then I should see an error,
     page.should have_selector '.error'
     
-    # And there should be no pages.
-    Page.count.should == 0
+    # And I should not see my page.
+    page.should have_no_content 'About Me'
   end
 end
