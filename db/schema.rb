@@ -31,4 +31,17 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "pages", ["frame_id"], :name => "index_pages_on_frame_id"
 
+  create_table "users", :force => true do |t|
+    t.integer  "frame_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "role"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end

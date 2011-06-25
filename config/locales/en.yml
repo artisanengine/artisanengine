@@ -3,3 +3,11 @@
 
 en:
   form_alert: "Some fields contain invalid data. Please correct the highlighted fields and try your submission again."
+
+  formtastic:
+    labels:
+      user:
+        first_name: "First Name"
+        last_name: "Last Name"
+        email: "E-Mail"
+        password_confirmation: "Password Confirmation"

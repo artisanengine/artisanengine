@@ -28,20 +28,23 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     add_index :pages, :frame_id
     
     # ------------------------------------------------------------------
-    # Users & Roles
+    # Users
     
-    #create_table :users do |t|
-    #  t.integer :frame_id
-    #  t.integer :role_id
-
-    #  t.timestamps
-    #end
-    
-    #create_table :roles do |t|
-    #  t.string  :name
+    create_table :users do |t|
+      t.integer :frame_id
       
-    #  t.timestamps
-    #end
+      t.string  :first_name
+      t.string  :last_name
+      t.string  :email
+      t.string  :role
+      
+      # Authlogic
+      t.string  :crypted_password
+      t.string  :password_salt
+      t.string  :persistence_token
+      
+      t.timestamps
+    end
   end
 
   def down

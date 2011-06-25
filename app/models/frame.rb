@@ -3,6 +3,7 @@ class Frame < ActiveRecord::Base
   # Associations
   
   has_many :pages
+  has_many :users
   
   # ------------------------------------------------------------------
   # Validations
