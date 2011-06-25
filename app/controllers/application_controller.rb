@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   # Application-Wide Helpers
   
   include FramesHelper        # Helpers for managing the current frame.
-  include UserSessionsHelper  # Helpers for persisting sessions.  
 
   # ------------------------------------------------------------------
   # Application-Wide Controller Methods

@@ -35,11 +35,9 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.integer  "frame_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
+    t.string   "email",                             :default => "", :null => false
     t.string   "role"
-    t.string   "crypted_password"
-    t.string   "password_salt"
-    t.string   "persistence_token"
+    t.string   "encrypted_password", :limit => 128, :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

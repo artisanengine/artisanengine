@@ -6,5 +6,6 @@
 		= f.input :email
 		= f.input :password
 		= f.input :password_confirmation
-		= f.input :role, :as => :select, :collection => User::ROLES
-	= f.submit
+		= f.input :role, as: :select, collection: User::ROLES, include_blank: false
+	
+	= f.submit 'Sign Up'

@@ -10,7 +10,7 @@ gem 'thin',                   '1.2.11'      # Run Thin to match Heroku.
 gem 'rake',                   '0.8.7'       # Lock rake at 0.8.7 for Heroku.
 
 # Authentication and authorization.
-gem 'authlogic',              '3.0.3'
+gem 'devise',                 '1.4.0'
 gem 'cancan',                 '1.6.5'
 
 # Controller-layer enhancements.
@@ -31,6 +31,10 @@ gem 'jquery-rails',           '1.0.11'      # Serve JQuery through the asset pip
 # Environment-Specific Gems
 
 group :test do
+  # Unit testing.
+  gem 'rspec-rails',				  '2.6.1'       # Unit testing and generators.
+  gem 'valid_attribute',      '1.0.0'       # Useful BDD matchers.
+  
 	# Integration testing.
 	gem 'capybara',						  '1.0.0'
 	gem 'capybara-webkit',      '1.0.0.beta4' # Headless JS driver.
@@ -40,7 +44,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails',				  '2.6.1'       # Unit testing and generators.
   gem 'sqlite3',              '1.3.3'       # Use SQLite DB in testing and development.
 
   # Sample data generation.

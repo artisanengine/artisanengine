@@ -38,10 +38,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.string  :email
       t.string  :role
       
-      # Authlogic
-      t.string  :crypted_password
-      t.string  :password_salt
-      t.string  :persistence_token
+      # Devise
+      t.database_authenticatable
       
       t.timestamps
     end

@@ -1,4 +1,5 @@
 require 'spork'
+require 'valid_attribute'
 
 # ------------------------------------------------------------------
 # Run before Spork forks.

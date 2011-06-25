@@ -5,12 +5,9 @@ class User < ActiveRecord::Base
   belongs_to :frame
   
   # ------------------------------------------------------------------
-  # Authlogic
+  # Devise
   
-  acts_as_authentic do |config|
-    # E-Mail only needs to validate as unique within the frame.
-    config.merge_validates_uniqueness_of_email_field_options :scope => :frame_id
-  end
+  devise :database_authenticatable
   
   # ------------------------------------------------------------------
   # Validations
