@@ -39,4 +39,18 @@ feature 'Sign In', %q{
     # And I should not be signed in.
     page.should have_no_content 'Welcome back'
   end
+  
+  scenario "A registered user cannot sign in to his account from another frame" do
+    # Given I am on the Haus Leather frame,
+    browse_frame 'hausleather.com'
+    
+    # When I sign in as the user from the Example frame,
+    sign_in_as 'test@example.com', 'testuser'
+
+    # Then I should see an alert,
+    page.should have_selector '.alert'
+    
+    # And I should not be signed in.
+    page.should have_no_content 'Welcome back'    
+  end
 end

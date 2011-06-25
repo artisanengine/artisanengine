@@ -1,5 +1,4 @@
 module FramesHelper
-  
   # Retrieve the cached frame or set a new one.
   def current_frame
     @current_frame ||= set_frame

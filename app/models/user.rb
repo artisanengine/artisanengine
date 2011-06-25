@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Devise
   
-  devise :database_authenticatable
+  devise :database_authenticatable, authentication_keys: [ :email, :frame_id ]
   
   # ------------------------------------------------------------------
   # Validations

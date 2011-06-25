@@ -1,3 +1,5 @@
+Dir[ "#{ Rails.root }/spec/support/factories/**/*.rb" ].each { |f| require f }
+
 namespace :db do
   desc "Fill database with demo data."
   
