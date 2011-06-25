@@ -1,13 +1,7 @@
-class FramesController < ApplicationController
-  respond_to :html
+class FramesController < InheritedResources::Base
   
-  expose( :frame )
-
-  def create
-    frame.save ? 
-      flash[ :notice ] = "Frame: #{ frame.name } was successfully created." :
-      flash[ :alert ]  = t( :form_alert )
-    
-    respond_with( frame )
+  create! do |success, failure|
+    failure.html { flash[ :alert ] = t( :form_alert ) and render :new }
   end
+  
 end

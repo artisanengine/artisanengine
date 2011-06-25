@@ -9,27 +9,36 @@ feature 'Create a Page', %q{
   background do
     # Given I am browsing the Example.com frame,
     browse_frame 'example.com'
+    
+    # And I am on the new page page,
+    visit new_page_page
   end
   
   scenario "An artisan can create a page with valid attributes" do
-    # When I create a page with valid attributes,
-    create_page
+    # When I fill in valid information for the page,
+    fill_in_information_for_page title: 'About Me'
+    
+    # And I click Create Page,
+    click_button 'Create Page'
     
     # Then I should see a notice,
-    page.should have_selector '.notice'
+    page_should_have_notice
     
-    # And I should see my page.
+    # And I should see my page's title.
     page.should have_content 'About Me'
   end
   
   scenario "An artisan cannot create a page with invalid attributes" do
-    # When I create a page with invalid attributes,
-    create_page title: ''
+    # When I fill in invalid information for the page,
+    fill_in_information_for_page title: 'About Me', content: ''
     
-    # Then I should see an error,
-    page.should have_selector '.error'
+    # And I click Create Page,
+    click_button 'Create Page'
     
-    # And I should not see my page.
+    # Then I should see an alert,
+    page_should_have_alert
+    
+    # And I should not see my page's title.
     page.should have_no_content 'About Me'
   end
 end

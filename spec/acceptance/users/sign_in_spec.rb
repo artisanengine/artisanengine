@@ -12,10 +12,7 @@ feature 'Sign In', %q{
     
     # And there is a user,
     create_user email: 'test@example.com', password: 'testuser'
-    
-    # And I am signed out,
-    Capybara.reset_sessions!
-    
+
     # And I am on the sign in page,
     visit sign_in_page
   end
@@ -29,7 +26,6 @@ feature 'Sign In', %q{
     # Then I should be signed in.
     page.should have_content 'Welcome back'
   end
-  
   
   scenario "A registered user user cannot sign in to his account with invalid credentials" do
     # When I fill in invalid credentials and click Sign In,

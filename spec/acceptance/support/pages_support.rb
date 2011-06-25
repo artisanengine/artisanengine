@@ -13,18 +13,20 @@ end
 # ------------------------------------------------------------------
 # Actions
 
-def create_page( options = {} )
-  can_force_frame( options )
-  
+def fill_in_information_for_page( options = {} )
   # Options
   title   = options[ :title ]   || 'About Me'
   content = options[ :content ] || 'Some things about me.'
   
   # Action
-  visit new_page_page
-  
   fill_in 'Title',   with: title
   fill_in 'Content', with: content
+end
 
+def create_page( options = {} )
+  can_force_frame( options )
+  
+  visit new_page_page
+  fill_in_information_for_page( options )
   click_button 'Create Page'
 end

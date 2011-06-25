@@ -8,17 +8,19 @@ end
 # ------------------------------------------------------------------
 # Actions
 
-def create_frame( options = {} )
+def fill_in_frame_information( options = {} )
   # Options:
   name   = options[ :name ]   ||= 'Example Frame'
   domain = options[ :domain ] ||= 'example.com'
   
   # Action:
-  visit new_frame_page
-  
   fill_in 'Name',   with: name
   fill_in 'Domain', with: domain
+end
 
+def create_frame( options = {} )
+  visit new_frame_page
+  fill_in_frame_information( options )
   click_button 'Create Frame'
 end
 
@@ -30,16 +32,15 @@ def browse_frame( domain, options = {} )
   name = options[ :name ] || 'Example Frame'
   
   # Find or create a frame matching the given domain.
-  frame = Frame.find_by_domain( domain ) || Fabricate( :frame, name: name,
-                                                               domain: domain )
+  frame = Frame.find_by_domain( domain ) || create_frame( name: name, domain: domain )
   
   # Force the frame.                  
-  ENV[ "FORCE_FRAME" ] = frame.domain
+  ENV[ "FORCE_FRAME" ] = domain
 end
 
 # Helper method to allow other integration methods to force the frame.
-def can_force_frame( options )
-  browse_frame options[ :in_frame ] if options[ :in_frame ]
+def can_force_frame( options = {} )
+  browse_frame( options[ :in_frame ] ) if options[ :in_frame ]
 end
 
 # ------------------------------------------------------------------

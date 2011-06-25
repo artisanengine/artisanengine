@@ -14,7 +14,7 @@ gem 'devise',                 '1.4.0'
 gem 'cancan',                 '1.6.5'
 
 # Controller-layer enhancements.
-gem 'decent_exposure', 			  '1.0.1'
+gem 'inherited_resources', 		'1.2.2'
 
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'

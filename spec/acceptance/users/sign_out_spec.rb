@@ -11,15 +11,15 @@ feature 'Sign Out', %q{
     browse_frame 'example.com'
     
     # And there is a user,
-    create_user
+    create_user email: 'test@test.com', password: 'testuser'
+    
+    # And I am signed in as that user,
+    sign_in_as 'test@test.com', 'testuser'
   end
   
   scenario "A user can sign out of his account" do
-    # Given I am signed in,
-    page.should have_content 'Welcome back'
-    
     # When I visit the sign out page,
-    visit '/sign_out'
+    visit sign_out_page
     
     # Then I should be signed out.
     page.should have_no_content 'Welcome back'

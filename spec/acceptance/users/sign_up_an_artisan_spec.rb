@@ -25,7 +25,7 @@ feature 'Sign Up an Artisan', %q{
     
     # And I click Sign Up,
     click_button 'Sign Up'
-    
+
     # Then I should see a notice,
     page_should_have_notice
     

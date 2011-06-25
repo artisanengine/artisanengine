@@ -24,24 +24,9 @@ def fill_in_account_information( options = {} )
   fill_in 'Password Confirmation', with: password
 end
 
-
-def create_user( options = {} )  
-  # Options:
-  frame      = options[ :frame ]      || 'Example Frame'
-  
-  role       = options[ :role ]       || 'Artisan'
-  email      = options[ :email ]      || Faker::Internet.email
-  
+def create_user( options = {} ) 
   # Action:
   visit new_user_page
-  
-  select  frame,                   from: 'Frame'
-  fill_in 'First Name',            with: first_name
-  fill_in 'Last Name',             with: last_name
-  fill_in 'E-Mail',                with: email
-  fill_in 'Password',              with: password
-  fill_in 'Password Confirmation', with: password
-  select  role,                    from: 'Role'
-  
-  click_button 'Create User'
+  fill_in_account_information( options )
+  click_button 'Sign Up'
 end

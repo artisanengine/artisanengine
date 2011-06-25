@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
   # ------------------------------------------------------------------
   # Application-Wide Helpers
   
-  include FramesHelper        # Helpers for managing the current frame.
-
+  include FramesHelper              # Helpers for managing the current frame.
+  include InheritedResources::DSL   # Include the InheritedResources DSL in children.
+  
   # ------------------------------------------------------------------
   # Application-Wide Controller Methods
   
