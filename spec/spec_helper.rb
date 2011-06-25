@@ -1,5 +1,6 @@
 require 'spork'
-require 'valid_attribute'
+
+ENV[ "RAILS_ENV" ] ||= 'test'
 
 # ------------------------------------------------------------------
 # Run before Spork forks.
@@ -8,7 +9,8 @@ Spork.prefork do
   # ------------------------------------------------------------------
   # Load Rails environment.
   
-  ENV[ "RAILS_ENV" ] ||= 'test'
+  require 'rails/application'
+  Spork.trap_method( Rails::Application, :reload_routes! )
   
   require File.expand_path( "../../config/environment", __FILE__ )
   require 'rspec/rails'
@@ -34,8 +36,5 @@ end
 
 Spork.each_run do
   # Reload routes.
-  require "#{ Rails.root }/config/routes"        
-  
-  # Reload fabricators.
-  Dir[ "#{ Rails.root }/spec/support/fabricators/*.rb" ].each { |f| require f }
+  require "#{ Rails.root }/config/routes"
 end

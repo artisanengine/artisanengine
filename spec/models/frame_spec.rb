@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Frame do
-  let( :new_frame ) { Fabricate.build :frame }
+  let( :new_frame ) { Factory.build :frame }
   
   context "validations: " do
     it "is valid with valid attributes" do
@@ -19,8 +19,8 @@ describe Frame do
     end
     
     it "is not valid without a unique domain" do
-      existing_frame = Fabricate :frame, domain: 'hausleather'
-      new_frame      = Fabricate.build :frame, domain: 'hausleather'
+      existing_frame = Factory :frame, domain: 'hausleather'
+      new_frame      = Factory.build :frame, domain: 'hausleather'
       
       new_frame.should_not be_valid
     end

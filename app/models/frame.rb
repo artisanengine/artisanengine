@@ -1,4 +1,6 @@
 class Frame < ActiveRecord::Base
+  attr_accessible :name, :domain
+  
   # ------------------------------------------------------------------
   # Associations
   

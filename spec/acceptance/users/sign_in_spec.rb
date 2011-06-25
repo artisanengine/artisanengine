@@ -27,7 +27,7 @@ feature 'Sign In', %q{
     page.should have_content 'Welcome back'
   end
   
-  scenario "A registered user user cannot sign in to his account with invalid credentials" do
+  scenario "A registered user cannot sign in to his account with invalid credentials" do
     # When I fill in invalid credentials and click Sign In,
     fill_in 'E-Mail',   with: 'test@example.com'
     fill_in 'Password', with: 'wrong'

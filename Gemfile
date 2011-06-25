@@ -47,7 +47,7 @@ group :development, :test do
   gem 'sqlite3',              '1.3.3'       # Use SQLite DB in testing and development.
 
   # Sample data generation.
-	gem 'fabrication',				  '1.0.0'
+	gem 'factory_girl_rails',		'1.0.1'
 	gem 'faker',							  '0.9.5'
 end
 

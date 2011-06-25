@@ -10,20 +10,20 @@ namespace :db do
     # ------------------------------------------------------------------
     # Frames
     
-    hausleather = Fabricate :frame, name:   'Haus Leather',
+    hausleather = Factory :frame, name:   'Haus Leather',
                                     domain: 'hausleather.dev'
     
-    peggyskemp  = Fabricate :frame, name:   'Peggy Skemp Jewelry',
+    peggyskemp  = Factory :frame, name:   'Peggy Skemp Jewelry',
                                     domain: 'peggyskemp.dev'
   
     # ------------------------------------------------------------------
     # Pages
     
     # Create an About page for Haus Leather.
-    Fabricate :page, frame: hausleather, title: 'About', content: 'About Haus.'
+    Factory :page, frame: hausleather, title: 'About', content: 'About Haus.'
     
     # Create a Bio page for Peggy Skemp.
-    Fabricate :page, frame: peggyskemp, title: 'Bio', content: 'Peggy Skemp Bio.'
+    Factory :page, frame: peggyskemp, title: 'Bio', content: 'Peggy Skemp Bio.'
   
     puts "Demo database filled!"
   end

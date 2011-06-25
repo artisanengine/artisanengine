@@ -43,6 +43,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    add_index :users, [ :email, :frame_id ], unique: true
   end
 
   def down

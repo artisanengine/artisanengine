@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
+  
   # ------------------------------------------------------------------
   # Associations
   
@@ -12,11 +14,12 @@ class User < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Validations
   
-  # Authlogic already validates E-Mail and Password fields.
-  validates_presence_of :first_name, :last_name, :frame
+  validates_presence_of   :first_name, :last_name, :email, :frame
+  validates_uniqueness_of :email, :scope => :frame_id
+  validates_format_of     :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   # ------------------------------------------------------------------
   # Roles
   
-  ROLES = %w( Engineer Artisan Patron )
+  ROLES = %w( Artisan )
 end

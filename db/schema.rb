@@ -42,4 +42,6 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["email", "frame_id"], :name => "index_users_on_email_and_frame_id", :unique => true
+
 end
