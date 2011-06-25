@@ -5,5 +5,5 @@ Fabricator :user do
   last_name             { Faker::Name.last_name }
   email                 { Faker::Internet.email }
   password              'password'
-  password_confirmation 'password'
+  password_confirmation { |user| user.password }
 end
