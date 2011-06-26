@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Page do
-  let( :new_page ) { Factory.build :page }
+  let( :new_page ) { Page.spawn }
   
   context "validations: " do
     it "is valid with valid attributes" do

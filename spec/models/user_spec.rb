@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  let( :new_user ) { Factory.build :user }
+  let( :new_user ) { User.spawn }
   
   context "validations: " do
     it "is not valid without a first name" do
@@ -20,7 +20,7 @@ describe User do
     end
     
     it "is not valid without a unique E-Mail (scoped to frame)" do
-      existing_user  = Factory :user
+      existing_user = User.generate( frame: Frame.generate )
       
       # Valid with E-Mail in different frame.
       new_user.email = existing_user.email

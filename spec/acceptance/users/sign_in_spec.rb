@@ -8,9 +8,7 @@ feature 'Sign In', %q{
   
   background do
     # Given there is a user,
-    Factory :user, email:    'test@test.com',
-                   password: 'testuser', 
-                   frame:    find_or_create_frame( 'example.com' )
+    User.generate email: 'test@test.com', password: 'testuser'
 
     # And I am browsing the Example frame,
     browse_frame 'example.com'

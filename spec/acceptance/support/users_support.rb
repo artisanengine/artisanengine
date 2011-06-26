@@ -44,7 +44,7 @@ def assume_role( role, options = {} )
     # Directly create a user with assumed role in the frame matching the given domain.
     # Create the frame if it doesn't exist.
     user = Factory :user, role:  role.to_s.capitalize,
-                          frame: find_or_create_frame( domain )
+                          frame: use_frame( domain )
   end
   
   # Browse the found or created frame.

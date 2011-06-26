@@ -8,12 +8,10 @@ feature 'Visit a Page', %q{
   
   background do
     # Given an Example.com artisan has created a page,
-    Factory :page, title: 'Example Page', 
-                   frame: find_or_create_frame( 'example.com' )
+    Page.generate title: 'Example Page'
 
     # And a Haus Leather artisan has created a page,
-    Factory :page, title: 'Haus Leather Page', 
-                   frame: find_or_create_frame( 'hausleather.com' )
+    Page.generate title: 'Haus Leather Page', frame: use_frame( 'hausleather.com' )
     
     # And I am a visitor browsing Example's frame,
     assume_role :visitor, in_frame: 'example.com'

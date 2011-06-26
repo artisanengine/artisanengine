@@ -21,13 +21,15 @@ end
 # ------------------------------------------------------------------
 # Test Frame Management
 
-def find_or_create_frame( domain )
-  Frame.find_or_create_by_domain( domain, name: 'Example Frame' )
+def use_frame( domain, options = {} )
+  name = options[ :name ] || 'Example Frame'
+  
+  Frame.find_or_create_by_domain( domain, name: name )
 end
 
 def browse_frame( domain )  
   # Find or create a frame matching the given domain.
-  find_or_create_frame( domain )
+  use_frame( domain )
   
   # Force the frame.
   ENV[ "FORCE_FRAME" ] = domain

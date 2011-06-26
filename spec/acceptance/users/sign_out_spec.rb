@@ -10,11 +10,8 @@ feature 'Sign Out', %q{
     # Given I am browsing the Example frame,
     browse_frame 'example.com'
     
-    # And there is a user,
-    Factory :user, email:                 'test@test.com',
-                   password:              'testuser', 
-                   password_confirmation: 'testuser',
-                   frame:                 Frame.find_by_domain( 'example.com' )
+    # And there is a user in the Example frame,
+    User.generate email: 'test@test.com', password: 'testuser'
     
     # And I am signed in as that user,
     sign_in_as 'test@test.com', 'testuser'
