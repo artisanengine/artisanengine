@@ -23,4 +23,12 @@ describe Page do
       new_page.should_not be_valid
     end
   end
+  
+  context "before saving: " do
+    it "converts its content from Textile to HTML" do
+      page = Page.spawn content: 'A *bold* man.'
+      page.save
+      page.content.should == '<p>A <strong>bold</strong> man.</p>'
+    end
+  end
 end
