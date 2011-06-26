@@ -30,3 +30,12 @@ def create_user( options = {} )
   fill_in_account_information( options )
   click_button 'Sign Up'
 end
+
+def assume_role( role, domain )
+  
+end
+
+# Helper method to allow other integration methods to force the user.
+def can_force_user( options = {} )
+  become_user( options[ :as ] ) if options[ :as ]
+end

@@ -1,8 +1,15 @@
 class UsersController < InheritedResources::Base
+  load_and_authorize_resource
   
-  create! do |success, failure|
-    success.html { redirect_to users_path, notice: "User was successfully created." }
-    failure.html { flash[ :alert ] = t( :form_alert ) and render :new }
+  def create    
+    @user            = current_frame.users.new
+    @user.accessible = :all if can? :manage, User
+    @user.attributes = params[ :user ]
+ 
+    create! do |success, failure|
+      success.html { redirect_to users_path, notice: "User was successfully created." }
+      failure.html { flash[ :alert ] = t( :form_alert ) and render :new }
+    end
   end
   
   protected

@@ -7,8 +7,8 @@ feature 'Sign Up an Artisan', %q{
 } do
   
   background do
-    # Given I am browsing the example.com frame,
-    browse_frame 'example.com'
+    # Given I am signed in as an engineer,
+    sign_in_as_role :engineer, in_frame: 'example.com'
     
     # And I am on the new user page,
     visit new_user_page

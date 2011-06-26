@@ -7,8 +7,8 @@ feature 'Create a Page', %q{
 } do
   
   background do
-    # Given I am browsing the Example.com frame,
-    browse_frame 'example.com'
+    # Given I am signed in as an artisan,
+    sign_in_as_role :artisan, in_frame: 'example.com'
     
     # And I am on the new page page,
     visit new_page_page

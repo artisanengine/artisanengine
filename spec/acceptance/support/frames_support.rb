@@ -27,20 +27,13 @@ end
 # ------------------------------------------------------------------
 # Test Frame Management
 
-def browse_frame( domain, options = {} )
-  # Options
-  name = options[ :name ] || 'Example Frame'
-  
+def browse_frame( domain )  
   # Find or create a frame matching the given domain.
-  frame = Frame.find_by_domain( domain ) || create_frame( name: name, domain: domain )
+  frame = Frame.find_by_domain( domain ) || create_frame( name:   'Test Frame', 
+                                                          domain: domain )
   
   # Force the frame.                  
   ENV[ "FORCE_FRAME" ] = domain
-end
-
-# Helper method to allow other integration methods to force the frame.
-def can_force_frame( options = {} )
-  browse_frame( options[ :in_frame ] ) if options[ :in_frame ]
 end
 
 # ------------------------------------------------------------------

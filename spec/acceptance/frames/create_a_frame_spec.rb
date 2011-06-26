@@ -7,17 +7,20 @@ feature "Create a Frame", %q{
 } do
   
   background do
-    # Given I am on the new frame page,
+    # Given I am signed in as an engineer,
+    sign_in_as_engineer
+
+    # And I am on the new frame page,
     visit new_frame_page
   end
 
   scenario "An engineer can create a frame with valid attributes" do
     # When I fill in valid information for the frame,
-    fill_in_frame_information name: 'Haus Leather'
+    fill_in_frame_information name: 'Haus Leather', domain: 'hausleather.dev'
     
     # And I click the Create Frame button,
     click_button 'Create Frame'
-    
+
     # Then I should see a notice,
     page_should_have_notice
     

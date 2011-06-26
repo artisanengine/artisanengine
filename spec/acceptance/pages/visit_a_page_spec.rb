@@ -8,10 +8,10 @@ feature 'Visit a Page', %q{
   
   background do
     # Given an Example artisan has created a page,
-    create_page title: 'Example Page', in_frame: 'example.com'
+    create_page title: 'Example Page', in_frame: 'example.com', as: 'Artisan'
     
     # And a Haus Leather artisan has created a page,
-    create_page title: 'Haus Leather Page', in_frame: 'hausleather.com'
+    create_page title: 'Haus Leather Page', in_frame: 'hausleather.com', as: 'Artisan'
     
     # And I am browsing Example's frame,
     browse_frame 'example.com'

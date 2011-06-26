@@ -1,4 +1,5 @@
 class PagesController < InheritedResources::Base
+  load_and_authorize_resource
   
   create! do |success, failure|
     success.html { redirect_to @page, notice: "Page was successfully created." }

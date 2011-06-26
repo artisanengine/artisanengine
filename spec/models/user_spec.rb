@@ -44,5 +44,11 @@ describe User do
       new_user.frame = nil
       new_user.should_not be_valid
     end
+    
+    it "exception: is valid without a frame if role is engineer" do
+      new_user.frame = nil
+      new_user.role = 'Engineer'
+      new_user.should be_valid
+    end
   end
 end
