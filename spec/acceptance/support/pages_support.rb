@@ -22,9 +22,3 @@ def fill_in_information_for_page( options = {} )
   fill_in 'Title',   with: title
   fill_in 'Content', with: content
 end
-
-def create_page( options = {} )
-  visit new_page_page
-  fill_in_information_for_page( options )
-  click_button 'Create Page'
-end

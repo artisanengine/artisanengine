@@ -13,11 +13,29 @@ namespace :db do
     # Frames
     
     hausleather = Factory :frame, name:   'Haus Leather',
-                                    domain: 'hausleather.dev'
+                                  domain: 'hausleather.dev'
     
     peggyskemp  = Factory :frame, name:   'Peggy Skemp Jewelry',
-                                    domain: 'peggyskemp.dev'
+                                  domain: 'peggyskemp.dev'
   
+    # ------------------------------------------------------------------
+    # Users
+    
+    Factory :engineer, email:                 'reade@artisanengine.dev',
+                       password:              'micagrl',
+                       password_confirmation: 'micagrl',
+                       frame:                 hausleather
+ 
+    Factory :artisan, email:                 'haus@hausleather.dev',
+                      password:              'password',
+                      password_confirmation: 'password',
+                      frame:                 hausleather
+    
+    Factory :artisan, email:                 'peggy@peggyskemp.dev',
+                      password:              'password',
+                      password_confirmation: 'password',
+                      frame:                 peggyskemp
+
     # ------------------------------------------------------------------
     # Pages
     

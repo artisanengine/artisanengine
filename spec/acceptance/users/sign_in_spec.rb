@@ -7,11 +7,13 @@ feature 'Sign In', %q{
 } do
   
   background do
-    # Given I am browsing the Example frame,
+    # Given there is a user,
+    Factory :user, email:    'test@test.com',
+                   password: 'testuser', 
+                   frame:    find_or_create_frame( 'example.com' )
+
+    # And I am browsing the Example frame,
     browse_frame 'example.com'
-    
-    # And there is a user,
-    create_user email: 'test@example.com', password: 'testuser'
 
     # And I am on the sign in page,
     visit sign_in_page
@@ -19,7 +21,7 @@ feature 'Sign In', %q{
 
   scenario "A registered user can sign in to his account with valid credentials" do
     # When I fill in valid credentials and click Sign In,
-    fill_in 'E-Mail',   with: 'test@example.com'
+    fill_in 'E-Mail',   with: 'test@test.com'
     fill_in 'Password', with: 'testuser'
     click_button 'Sign In'
     
@@ -29,7 +31,7 @@ feature 'Sign In', %q{
   
   scenario "A registered user cannot sign in to his account with invalid credentials" do
     # When I fill in invalid credentials and click Sign In,
-    fill_in 'E-Mail',   with: 'test@example.com'
+    fill_in 'E-Mail',   with: 'test@test.com'
     fill_in 'Password', with: 'wrong'
     click_button 'Sign In'
     

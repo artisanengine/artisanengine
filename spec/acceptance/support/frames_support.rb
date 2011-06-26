@@ -18,21 +18,23 @@ def fill_in_frame_information( options = {} )
   fill_in 'Domain', with: domain
 end
 
-def create_frame( options = {} )
-  visit new_frame_page
-  fill_in_frame_information( options )
-  click_button 'Create Frame'
-end
-
 # ------------------------------------------------------------------
 # Test Frame Management
 
+def find_or_create_frame( domain )
+  Frame.find_or_create_by_domain( domain, name: 'Example Frame' )
+end
+
 def browse_frame( domain )  
   # Find or create a frame matching the given domain.
-  frame = Frame.find_by_domain( domain ) || Factory( :frame, domain: domain )
+  find_or_create_frame( domain )
   
-  # Force the frame.                  
+  # Force the frame.
   ENV[ "FORCE_FRAME" ] = domain
+  
+  # Since we're simulating visiting a different domain, also simulate clearing
+  # the session since the browser would do that automatically.
+  Capybara.reset_sessions!
 end
 
 # ------------------------------------------------------------------

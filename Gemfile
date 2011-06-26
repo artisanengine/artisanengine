@@ -13,9 +13,6 @@ gem 'rake',                   '0.8.7'       # Lock rake at 0.8.7 for Heroku.
 gem 'devise',                 '1.4.0'
 gem 'cancan',                 '1.6.5'
 
-# Controller-layer enhancements.
-gem 'inherited_resources', 		'1.2.2'
-
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'
 gem 'haml',									  '3.1.2'

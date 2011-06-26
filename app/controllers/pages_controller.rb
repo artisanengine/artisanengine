@@ -1,14 +1,13 @@
-class PagesController < InheritedResources::Base
-  skip_authorization_check
+class PagesController < ApplicationController
+  respond_to :html
+  load_and_authorize_resource :through => :current_frame
   
-  create! do |success, failure|
-    success.html { redirect_to @page, notice: "Page was successfully created." }
-    failure.html { flash[ :alert ] = t( :form_alert ) and render :new }
+  def create
+    @page.save ?
+      flash[ :notice ] = "Page: #{ @page.title } was successfully created." :
+      flash[ :alert ]  = t( :form_alert )
+      
+    respond_with @page
   end
-  
-  protected
-    # Scope all pages to the current frame by default.
-    def begin_of_association_chain
-      current_frame
-    end
+
 end
