@@ -9,14 +9,14 @@ Spork.prefork do
   # ------------------------------------------------------------------
   # Load Rails environment.
   
-  require 'rails/application'
-  Spork.trap_method( Rails::Application, :reload_routes! )
-  
   require File.expand_path( "../../config/environment", __FILE__ )
   require 'rspec/rails'
 
   # Require spec/support files.
   Dir[ "#{ Rails.root }/spec/support/**/*.rb" ].each { |f| require f }
+  
+  # Alternate FactoryGirl syntax:
+  require 'factory_girl/syntax/generate'
   
   # ------------------------------------------------------------------
   # Configure RSpec
