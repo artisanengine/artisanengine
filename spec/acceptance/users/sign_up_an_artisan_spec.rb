@@ -8,7 +8,7 @@ feature 'Sign Up an Artisan', %q{
   
   background do
     # Given I am signed in as an engineer,
-    sign_in_as_role :engineer, in_frame: 'example.com'
+    assume_role :engineer, in_frame: 'example.com'
     
     # And I am on the new user page,
     visit new_user_page

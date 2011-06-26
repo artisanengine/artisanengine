@@ -8,13 +8,15 @@ feature 'Visit a Page', %q{
   
   background do
     # Given an Example artisan has created a page,
-    create_page title: 'Example Page', in_frame: 'example.com', as: 'Artisan'
+    assume_role :artisan, in_frame: 'example.com'
+    create_page title: 'Example Page'
     
     # And a Haus Leather artisan has created a page,
-    create_page title: 'Haus Leather Page', in_frame: 'hausleather.com', as: 'Artisan'
+    assume_role :artisan, in_frame: 'hausleather.com'
+    create_page title: 'Haus Leather Page'
     
-    # And I am browsing Example's frame,
-    browse_frame 'example.com'
+    # And I am a visitor browsing Example's frame,
+    assume_role :visitor, in_frame: 'example.com'
   end
   
   scenario "A visitor can visit a page in the current frame" do        

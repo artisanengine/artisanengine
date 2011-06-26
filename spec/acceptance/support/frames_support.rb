@@ -29,8 +29,7 @@ end
 
 def browse_frame( domain )  
   # Find or create a frame matching the given domain.
-  frame = Frame.find_by_domain( domain ) || create_frame( name:   'Test Frame', 
-                                                          domain: domain )
+  frame = Frame.find_by_domain( domain ) || Factory( :frame, domain: domain )
   
   # Force the frame.                  
   ENV[ "FORCE_FRAME" ] = domain

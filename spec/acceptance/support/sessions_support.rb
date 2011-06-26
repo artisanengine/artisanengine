@@ -19,20 +19,27 @@ def sign_in_as( email, password )
   click_button 'Sign In'
 end
 
-def sign_in_as_engineer
-  # Sign in as the example engineer in the example frame.
-  browse_frame 'example.com'
-  sign_in_as   'reade@artisanengine.com', 'micagrl'
+def sign_out
+  visit sign_out_page
 end
 
-def sign_in_as_role( role, options )
-  can_force_frame( options )
+def assume_role( role, options = {} )
+  # Use the in_frame option for the domain, if there is one.
+  domain = options[ :in_frame ] || 'example.com'
   
-  # Create a user directly, since it's preferable to seeding with an engineer.
-  # Assign it to the example frame by default, but allow overrides with the in_frame option.
-  user = Factory :user, role: role.to_s.capitalize, 
-                        frame: Frame.find_by_domain( options[ :in_frame ] || 'example.com' )
+  if role == :visitor
+    # Visitors are just anonymous users, so to assume their role just sign out.
+    sign_out
+  else
+    # Directly create a user with assumed role in the frame matching the given domain.
+    # Create the frame if it doesn't exist.
+    user = Factory :user, role:  role.to_s.capitalize,
+                          frame: Frame.find_by_domain( domain ) || Factory( :frame, domain: domain )
+  end
   
-  # Sign in as the directly created user.
-  sign_in_as user.email, user.password
+  # Browse the found or created frame.
+  browse_frame domain
+  
+  # Sign in as the user.
+  sign_in_as user.email, user.password unless role == :visitor
 end

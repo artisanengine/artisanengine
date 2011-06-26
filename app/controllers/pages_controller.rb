@@ -1,5 +1,5 @@
 class PagesController < InheritedResources::Base
-  load_and_authorize_resource
+  skip_authorization_check
   
   create! do |success, failure|
     success.html { redirect_to @page, notice: "Page was successfully created." }

@@ -24,8 +24,6 @@ def fill_in_information_for_page( options = {} )
 end
 
 def create_page( options = {} )
-  assume_role( options[ :as ], options[ :in_frame ] )
-  
   visit new_page_page
   fill_in_information_for_page( options )
   click_button 'Create Page'

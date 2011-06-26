@@ -1,7 +1,7 @@
 class UsersController < InheritedResources::Base
-  load_and_authorize_resource
+  skip_authorization_check
   
-  def create    
+  def create
     @user            = current_frame.users.new
     @user.accessible = :all if can? :manage, User
     @user.attributes = params[ :user ]

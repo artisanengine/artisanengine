@@ -7,3 +7,7 @@ Factory.define :user do |u|
   u.password              'password'
   u.password_confirmation 'password'
 end
+
+Factory.define :artisan, :parent => :user do |a|
+  a.role                  'Artisan'
+end
