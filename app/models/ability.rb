@@ -8,9 +8,9 @@ class Ability
     when "Engineer"
       can :manage, :all
     when "Artisan"
-      can [ :read, :create ], Page, frame_id: user.frame.id
+      can [ :read, :create ], [ Page, Image ], frame_id: user.frame.id
     else
-      can :read, Page, frame_id: current_frame.id
+      can :read, [ Page, Image ], frame_id: current_frame.id
     end
   end
 end

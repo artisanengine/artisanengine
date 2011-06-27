@@ -1,7 +1,6 @@
 class ImagesController < ApplicationController
   respond_to :html
-  skip_authorization_check
-  load_resource
+  load_and_authorize_resource :through => :current_frame
   
   def create
     @image.save ?

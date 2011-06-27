@@ -1,3 +1,10 @@
 class Image < ActiveRecord::Base
-  image_accessor :image
+  attr_accessible :image
+  image_accessor  :image
+  
+  # ------------------------------------------------------------------
+  # Associations
+  
+  belongs_to :frame
+  
 end

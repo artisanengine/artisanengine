@@ -6,6 +6,7 @@ class Frame < ActiveRecord::Base
   
   has_many :pages
   has_many :users
+  has_many :images
   
   # ------------------------------------------------------------------
   # Validations

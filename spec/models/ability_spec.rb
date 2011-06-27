@@ -29,6 +29,16 @@ describe "Abilities:" do
       ability.should be_able_to :read,     Page.generate( frame: my_frame )
       ability.should_not be_able_to :read, Page.generate( frame: other_frame )
     end
+    
+    it "can only create images in their own frame" do
+      ability.should be_able_to :create,     Image.spawn( frame: my_frame )
+      ability.should_not be_able_to :create, Image.spawn( frame: other_frame )
+    end
+    
+    it "can only read images in their own frame" do
+      ability.should be_able_to :read,     Image.spawn( frame: my_frame )
+      ability.should_not be_able_to :read, Image.spawn( frame: other_frame )
+    end
   end
 
   context "Visitor Abilities:" do
@@ -37,6 +47,11 @@ describe "Abilities:" do
     it "can only read pages in the current frame" do
       ability.should be_able_to :read,     Page.generate( frame: current_frame )
       ability.should_not be_able_to :read, Page.generate( frame: other_frame )
+    end
+    
+    it "can only read images in the current frame" do
+      ability.should be_able_to :read,     Image.spawn( frame: current_frame )
+      ability.should_not be_able_to :read, Image.spawn( frame: other_frame )
     end
   end
 end
