@@ -33,8 +33,7 @@ gem 'jquery-rails',           '1.0.11'      # Serve JQuery through the asset pip
 group :test do
   # Unit testing.
   gem 'rspec-rails',				  '2.6.1'       # Unit testing and generators.
-  gem 'valid_attribute',      '1.0.0'       # Useful BDD matchers.
-  
+
 	# Integration testing.
 	gem 'capybara',						  '1.0.0'
 	gem 'capybara-webkit',      '1.0.0.beta4' # Headless JS driver.
