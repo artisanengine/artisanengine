@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   include PagesHelper
   
   respond_to :html
-  respond_to :js, only: [ :preview ]
+  respond_to :json, only: [ :preview ]
   
   load_and_authorize_resource :through => :current_frame
   
@@ -14,8 +14,11 @@ class PagesController < ApplicationController
     respond_with @page
   end
   
+  # POST /preview
   def preview
-    @page_content = textile( params[ :page_content] )
+    textile_content   = params[ :textile_content ]  # Receive the Textile-formatted content via JSON.
+    converted_content = textile( textile_content )  # Convert the content to Textile.
+    render json: { content: converted_content }     # Render a JSON object with the converted content.
   end
 
 end
