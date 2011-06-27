@@ -8,7 +8,8 @@ gem 'thin',                   '1.2.11'      # Run Thin to match Heroku.
 
 # Utilities.
 gem 'rake',                   '0.8.7'       # Lock rake at 0.8.7 for Heroku.
-gem 'RedCloth',               '4.2.7'
+gem 'RedCloth',               '4.2.7'       # Text handling.
+gem 'dragonfly',              '0.9.4'       # Image handling.
 
 # Authentication and authorization.
 gem 'devise',                 '1.4.0'

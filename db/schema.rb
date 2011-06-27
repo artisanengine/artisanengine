@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "frames", ["domain"], :name => "index_frames_on_domain", :unique => true
 
+  create_table "images", :force => true do |t|
+    t.integer "frame_id"
+    t.string  "image_uid"
+    t.string  "image_name"
+  end
+
   create_table "pages", :force => true do |t|
     t.integer  "frame_id",   :null => false
     t.string   "title",      :null => false

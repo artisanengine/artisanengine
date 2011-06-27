@@ -69,6 +69,8 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     diff-lcs (1.1.2)
+    dragonfly (0.9.4)
+      rack
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (1.2.0)
@@ -193,6 +195,7 @@ DEPENDENCIES
   coffee-script (= 2.2.0)
   compass!
   devise (= 1.4.0)
+  dragonfly (= 0.9.4)
   factory_girl_rails (= 1.0.1)
   faker (= 0.9.5)
   formtastic (= 1.2.4)

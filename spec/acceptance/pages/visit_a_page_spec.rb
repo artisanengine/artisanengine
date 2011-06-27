@@ -20,6 +20,7 @@ feature 'Visit a Page', %q{
   scenario "A visitor can visit a page in the current frame" do        
     # When I visit the Example page,
     visit_page 'Example Page'
+    save_and_open_page
     
     # Then I should see the Example page.
     page.should have_content 'Example Page'

@@ -45,6 +45,16 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     end
     
     add_index :users, [ :email, :frame_id ], unique: true
+    
+    # ------------------------------------------------------------------
+    # Images
+    
+    create_table :images do |t|
+      t.integer :frame_id
+      
+      t.string  :image_uid
+      t.string  :image_name
+    end
   end
 
   def down

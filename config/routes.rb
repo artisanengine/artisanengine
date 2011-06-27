@@ -2,6 +2,7 @@ ArtisanEngine::Application.routes.draw do
   resources :frames
   resources :pages
   resources :users
+  resources :images
   
   # Recreate Devise routes from scratch and override Sessions Controller.
   devise_for :users, controllers: { sessions: 'sessions' }, skip: [ :sessions ] do
