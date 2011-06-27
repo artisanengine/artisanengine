@@ -20,24 +20,14 @@ describe "Abilities:" do
   context "Artisan Abilities:" do
     let( :user ) { Factory :artisan, frame: my_frame }
   
-    it "can only create pages in their own frame" do
-      ability.should be_able_to :create,     Page.spawn( frame: my_frame )
-      ability.should_not be_able_to :create, Page.spawn( frame: other_frame )
+    it "can manage pages in their own frame" do
+      ability.should be_able_to :manage,     Page.spawn( frame: my_frame )
+      ability.should_not be_able_to :manage, Page.spawn( frame: other_frame )
     end
   
-    it "can only read pages in their own frame" do
-      ability.should be_able_to :read,     Page.generate( frame: my_frame )
-      ability.should_not be_able_to :read, Page.generate( frame: other_frame )
-    end
-    
-    it "can only create images in their own frame" do
-      ability.should be_able_to :create,     Image.spawn( frame: my_frame )
-      ability.should_not be_able_to :create, Image.spawn( frame: other_frame )
-    end
-    
-    it "can only read images in their own frame" do
-      ability.should be_able_to :read,     Image.spawn( frame: my_frame )
-      ability.should_not be_able_to :read, Image.spawn( frame: other_frame )
+    it "can manage images in their own frame" do
+      ability.should be_able_to :manage,     Image.spawn( frame: my_frame )
+      ability.should_not be_able_to :manage, Image.spawn( frame: other_frame )
     end
   end
 
