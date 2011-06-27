@@ -7,4 +7,10 @@ class Image < ActiveRecord::Base
   
   belongs_to :frame
   
+  # ------------------------------------------------------------------
+  # Validations
+  
+  validates_presence_of :image, :frame
+  validates_property    :format, :of => :image, :in => [ :jpg, :jpeg, :png, :gif ]
+  
 end

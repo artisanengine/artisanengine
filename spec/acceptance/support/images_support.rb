@@ -5,12 +5,9 @@ def new_image_page
   '/images/new'
 end
 
+def images_page
+  '/images'
+end
+
 # ------------------------------------------------------------------
 # Actions
-
-# ------------------------------------------------------------------
-# Test Image Helpers
-
-def test_image
-  File.expand_path( '../images/anaura_bay.jpg', __FILE__ )
-end

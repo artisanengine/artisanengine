@@ -16,7 +16,7 @@ feature 'Upload an Image', %q{
   
   scenario "An artisan can upload a valid image" do
     # When I add an image to the Image field,
-    attach_file 'Image', test_image
+    attach_file 'Image', test_image_path
     
     # And I click Upload,
     click_button 'Upload'
@@ -26,5 +26,19 @@ feature 'Upload an Image', %q{
     
     # And I should see my image.
     page.should have_content 'anaura_bay.jpg'
+  end
+  
+  scenario "An artisan cannot upload an invalid image" do
+    # When I attach an invalid image to the Image field,
+    attach_file 'Image', "#{ Rails.root }/app/models/image.rb"
+    
+    # And I click Upload,
+    click_button 'Upload'
+    
+    # Then I should see an alert,
+    page_should_have_alert
+    
+    # And I should not see my image.
+    page.should have_no_content 'image.rb'
   end
 end

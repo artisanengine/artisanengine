@@ -9,6 +9,9 @@ namespace :db do
     puts "Dropping schema ..."
     File.delete( "#{ Rails.root }/db/schema.rb" )
     
+    puts "Cleaning up image files ..."
+    FileUtils.rm_r( "#{ Rails.root }/public/system/dragonfly/development" )
+    
     # Generate the new schema and prepare the test database.
     puts "Regenerating databases ..."
     Rake::Task[ 'db:migrate' ].invoke
