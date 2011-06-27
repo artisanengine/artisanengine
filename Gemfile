@@ -13,8 +13,8 @@ gem 'dragonfly',              '0.9.4'       # Image handling.
 gem 'fog',                    '0.9.0'       # S3 support for Dragonfly.
 
 # Authentication and authorization.
-gem 'devise',                 '1.4.0'
-gem 'cancan',                 '1.6.5'
+gem 'devise',                 '1.4.0'       # Authentication.
+gem 'cancan',                 '1.6.5'       # Authorization.
 
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'
@@ -45,10 +45,8 @@ end
 
 group :development, :test do
   gem 'sqlite3',              '1.3.3'       # Use SQLite DB in testing and development.
-
-  # Sample data generation.
-	gem 'factory_girl_rails',		'1.0.1'
-	gem 'faker',							  '0.9.5'
+	gem 'factory_girl_rails',		'1.0.1'       # Fixture replacement.
+	gem 'faker',							  '0.9.5'       # Sample data generation.
 end
 
 group :production do
