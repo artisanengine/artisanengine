@@ -38,5 +38,8 @@ module ArtisanEngine
 
     # Enable the asset pipeline.
     config.assets.enabled = true
+    
+    # Insert Dragonfly middleware.
+    config.middleware.insert 0, 'Dragonfly::Middleware', :images
   end
 end
