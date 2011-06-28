@@ -8,5 +8,10 @@
 @import blueprint/typography
 
 body
-	+container
 	+blueprint-typography( true )
+	
+	#wrapper
+		+container
+		
+		#main
+			+column( 24, true )

@@ -7,6 +7,8 @@
 		= csrf_meta_tags
 
 	%body
-		= render 'session_info'
-		= render 'notifications'
-		= yield
+		#wrapper
+			#main
+				= render 'session_info'
+				= render 'notifications'
+				= yield
