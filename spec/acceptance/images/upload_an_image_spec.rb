@@ -16,7 +16,7 @@ feature 'Upload an Image', %q{
   
   scenario "An artisan can upload a valid image" do
     # When I add an image to the Image field,
-    attach_file 'Image', test_image_path
+    attach_file 'Image', anaura_bay_image_path
     
     # And I click Upload,
     click_button 'Upload'

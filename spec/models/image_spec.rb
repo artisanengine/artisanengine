@@ -22,5 +22,10 @@ describe Image do
       new_image.image = File.new( "#{ Rails.root }/app/models/image.rb" )
       new_image.should_not be_valid
     end
+    
+    it "is not valid with an improperly formatted image name" do
+      new_image.image = File.new( "#{ Rails.root }/spec/support/images/m yst.jpeg" )
+      new_image.should_not be_valid
+    end
   end
 end

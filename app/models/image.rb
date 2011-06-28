@@ -13,6 +13,7 @@ class Image < ActiveRecord::Base
   # Validations
   
   validates_presence_of :image,  :frame
+  validates_format_of   :image_name, with:  /^[\w-]+\.[a-zA-Z]{3,4}$/
   validates_property    :format, :of => :image, :in => [ :jpg, :jpeg, :png, :gif ]
   
   private
