@@ -25,7 +25,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :pages, :frame_id
+    add_index :pages, [ :id, :frame_id ]
     
     # ------------------------------------------------------------------
     # Users
@@ -55,6 +55,9 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.string  :image_uid
       t.string  :image_name
     end
+    
+    add_index :images, [ :id, :frame_id ]
+    
   end
 
   def down
