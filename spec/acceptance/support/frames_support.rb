@@ -37,18 +37,21 @@ end
 # ------------------------------------------------------------------
 # Test Theme Management
 
-def create_example_theme_layout_with_content( content )
+def create_test_theme_layout_with_content( content )
   # Create the theme directory.
-  example_theme_dir = "#{ Rails.root }/app/themes/example.com/views/layouts"
-  FileUtils.mkdir_p( example_theme_dir )
+  FileUtils.mkdir_p( theme_dir + '/layouts' )
   
   # Create the layout and fill it with content.
-  f = File.open( example_theme_dir + "/application.html.haml", 'w' ) 
+  f = File.open( theme_dir + "/layouts/application.html.haml", 'w' ) 
   f.write content
   f.close
 end
 
 def destroy_test_layout
   # Destroy the theme directory.
-  FileUtils.rm_r( "#{ Rails.root }/app/themes/example.com" )
+  FileUtils.rm_r( theme_dir ) if File.exists?( theme_dir )
+end
+
+def theme_dir
+  "#{ Rails.root }/app/themes/ae.test"
 end
