@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :frame
   
   # ------------------------------------------------------------------
-  # Devise
+  # Authentication
   
   devise :database_authenticatable, authentication_keys: [ :email, :frame_id ]
   

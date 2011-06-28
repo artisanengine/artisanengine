@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  check_authorization
   
   # ------------------------------------------------------------------
   # Application-Wide Rescues
@@ -10,7 +9,8 @@ class ApplicationController < ActionController::Base
   # ------------------------------------------------------------------
   # Application-Wide Helpers
   
-  include FramesHelper      # Helpers for managing the current frame.
+  include ArtisanEngine::Authorization  # Helpers for authorizing resources.
+  include FramesHelper                  # Helpers for managing the current frame.
   
   # ------------------------------------------------------------------
   # Application-Wide Controller Methods
@@ -19,10 +19,4 @@ class ApplicationController < ActionController::Base
   def render_404
     render 'public/404.html', status: 404
   end
-  
-  private
-    # Always pass the current frame to CanCan so it can initialize a user if it needs to.
-    def current_ability
-      @current_ability ||= Ability.new( current_user, current_frame )
-    end
 end

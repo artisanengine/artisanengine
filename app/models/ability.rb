@@ -1,3 +1,4 @@
+# Authorization model which determines role-based permissions.
 class Ability
   include CanCan::Ability
   

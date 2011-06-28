@@ -1,4 +1,8 @@
 module ArtisanEngine
+  
+  # Include this module in models where multiple roles have access to one form,
+  # and you want to control which attributes they can mass-assign dynamically
+  # from the controller.
   module DynamicAttributePermissions
     extend ActiveSupport::Concern
   

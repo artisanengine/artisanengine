@@ -11,7 +11,7 @@ $ ->
 		
 		$.ajax({
 			type: 		"POST"
-			url: 			'/preview'
+			url: 			'/page/preview'
 			data: 		{ textile_content: textile_content }
 			dataType: 'json'
 			success:  (converted) -> preview_in_colorbox( converted.content )

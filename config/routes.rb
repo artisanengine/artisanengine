@@ -2,7 +2,7 @@ ArtisanEngine::Application.routes.draw do
   resources :frames
   
   resources :pages
-  post '/preview' => 'pages#preview'
+  post '/page/preview' => 'pages#preview'
   
   resources :users
   resources :images
