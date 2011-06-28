@@ -14,7 +14,7 @@ feature 'Page Previews', %q{
     visit new_page_page
   end
   
-  scenario "Preview a page", js: true do
+  scenario "An artisan can preview a page she is editing", js: true do
     # When I fill in the content text area with some content,
     fill_in 'Content', with: 'A *bold* man.'
     

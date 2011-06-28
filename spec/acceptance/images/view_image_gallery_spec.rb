@@ -14,10 +14,9 @@ feature 'Image Gallery', %q{
     assume_role :artisan
   end
   
-  scenario "An artisan can see all their uploaded images" do
+  scenario "An artisan can see all her uploaded images" do
     # When I visit the images page,
     visit images_page
-    #save_and_open_page
     
     # Then I should see five images.
     page.should have_selector 'img', count: 5
