@@ -27,6 +27,10 @@ gem 'coffee-script',          '2.2.0'       # Enable CoffeeScript.
 gem 'uglifier',               '1.0.0'       # Default asset compressor.
 gem 'jquery-rails',           '1.0.11'      # Serve JQuery through the asset pipeline.
 
+# Sample data generation.
+gem 'factory_girl_rails',		'1.0.1'       # Fixture replacement.
+gem 'faker',							  '0.9.5'       # Sample data generation.
+
 # ------------------------------------------------------------------
 # Environment-Specific Gems
 
@@ -45,8 +49,6 @@ end
 
 group :development, :test do
   gem 'sqlite3',              '1.3.3'       # Use SQLite DB in testing and development.
-	gem 'factory_girl_rails',		'1.0.1'       # Fixture replacement.
-	gem 'faker',							  '0.9.5'       # Sample data generation.
 end
 
 group :production do
