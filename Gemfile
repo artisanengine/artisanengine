@@ -27,8 +27,8 @@ gem 'coffee-script',          '2.2.0'       # Enable CoffeeScript.
 gem 'uglifier',               '1.0.0'       # Default asset compressor.
 gem 'jquery-rails',           '1.0.11'      # Serve JQuery through the asset pipeline.
 
-# Sample data generation.
-gem 'factory_girl_rails',		'1.0.1'       # Fixture replacement.
+# Demo data.
+gem 'factory_girl_rails',		'1.0.1'       # Sample model generation.
 gem 'faker',							  '0.9.5'       # Sample data generation.
 
 # ------------------------------------------------------------------
