@@ -7,14 +7,14 @@ feature 'Page Previews', %q{
 } do
   
   background do
-    # Given I am signed in as an artisan,
+    # Given I am logged in as an artisan,
     assume_role :artisan
-    
+
     # And I am on the new page page,
     visit new_page_page
   end
   
-  scenario "Preview a page" do
+  scenario "Preview a page", js: true do
     # When I fill in the content text area with some content,
     fill_in 'Content', with: 'A *bold* man.'
     

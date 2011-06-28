@@ -7,10 +7,10 @@ feature 'Sign Out', %q{
 } do
   
   background do
-    # Given I am browsing the Example frame,
-    browse_frame 'example.com'
+    # Given I am browsing the default frame,
+    browse_frame 'ae.test'
     
-    # And there is a user in the Example frame,
+    # And there is a user in the default frame,
     User.generate email: 'test@test.com', password: 'testuser'
     
     # And I am signed in as that user,

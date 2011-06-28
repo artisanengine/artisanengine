@@ -7,14 +7,14 @@ feature 'Visit a Page', %q{
 } do
   
   background do
-    # Given an Example.com artisan has created a page,
-    Page.generate title: 'Example Page'
+    # Given a default artisan has created a page,
+    Page.generate title: 'Example Page', frame: use_frame( 'ae.test' )
 
     # And a Haus Leather artisan has created a page,
-    Page.generate title: 'Haus Leather Page', frame: use_frame( 'hausleather.com' )
+    Page.generate title: 'Haus Leather Page', frame: use_frame( 'hausleather.test' )
     
     # And I am a visitor browsing Example's frame,
-    assume_role :visitor, in_frame: 'example.com'
+    assume_role :visitor, in_frame: 'ae.test'
   end
   
   scenario "A visitor can visit a page in the current frame" do        

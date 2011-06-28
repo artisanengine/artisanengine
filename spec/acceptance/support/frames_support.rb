@@ -1,4 +1,20 @@
 # ------------------------------------------------------------------
+# Test Frame Management
+
+def browse_frame( domain )  
+  # Find or create a frame matching the given domain.
+  use_frame( domain )
+  
+  # Tell Capybara to direct requests to the new domain.
+  Capybara.app_host = "http://#{ domain }:7357"
+end
+
+# Find or create a frame matching the given domain.
+def use_frame( domain )
+  Frame.find_or_create_by_domain( domain, name: 'Test Frame' )
+end
+
+# ------------------------------------------------------------------
 # Paths
 
 def new_frame_page
@@ -16,27 +32,6 @@ def fill_in_frame_information( options = {} )
   # Action:
   fill_in 'Name',   with: name
   fill_in 'Domain', with: domain
-end
-
-# ------------------------------------------------------------------
-# Test Frame Management
-
-def use_frame( domain, options = {} )
-  name = options[ :name ] || 'Example Frame'
-  
-  Frame.find_or_create_by_domain( domain, name: name )
-end
-
-def browse_frame( domain )  
-  # Find or create a frame matching the given domain.
-  use_frame( domain )
-  
-  # Force the frame.
-  ENV[ "FORCE_FRAME" ] = domain
-  
-  # Since we're simulating visiting a different domain, also simulate clearing
-  # the session since the browser would do that automatically.
-  Capybara.reset_sessions!
 end
 
 # ------------------------------------------------------------------

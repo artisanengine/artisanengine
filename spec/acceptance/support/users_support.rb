@@ -34,8 +34,8 @@ end
 # User/Role/Domain Integration Helpers
 
 def assume_role( role, options = {} )
-  # Use the in_frame option for the domain, if there is one.
-  domain = options[ :in_frame ] || 'example.com'
+  # Use the in_frame option for the domain, or use the default test domain.
+  domain = options[ :in_frame ] || 'ae.test'
   
   if role == :visitor
     # Visitors are just anonymous users, so to assume their role just sign out.
@@ -43,13 +43,12 @@ def assume_role( role, options = {} )
   else
     # Directly create a user with assumed role in the frame matching the given domain.
     # Create the frame if it doesn't exist.
-    user = Factory :user, role:  role.to_s.capitalize,
-                          frame: use_frame( domain )
+    user = Factory role, frame: use_frame( domain )
   end
   
   # Browse the found or created frame.
-  browse_frame domain
+  browse_frame( domain )
   
   # Sign in as the user (unless we're simulating an anonymous user).
-  sign_in_as user.email, user.password unless role == :visitor
+  sign_in_as( user.email, user.password ) unless role == :visitor
 end

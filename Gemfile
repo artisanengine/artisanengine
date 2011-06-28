@@ -37,6 +37,7 @@ group :test do
 	# Integration testing.
 	gem 'capybara',						  '1.0.0'
 	gem 'capybara-webkit',      '1.0.0.beta4' # Headless JS driver.
+	gem 'database_cleaner',     '0.6.7'       # For Selenium.
 	gem 'launchy',              '0.4.0'
 	gem 'watchr',							  '0.7'
 	gem 'spork',							  '0.9.0rc8'

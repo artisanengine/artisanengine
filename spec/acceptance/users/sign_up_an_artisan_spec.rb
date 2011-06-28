@@ -8,7 +8,7 @@ feature 'Sign Up an Artisan', %q{
   
   background do
     # Given I am signed in as an engineer,
-    assume_role :engineer, in_frame: 'example.com'
+    assume_role :engineer
     
     # And I am on the new user page,
     visit new_user_page
@@ -40,8 +40,7 @@ feature 'Sign Up an Artisan', %q{
     select 'Artisan', from: 'Role'
     
     # And I fill in invalid account information for the artisan,
-    fill_in_account_information first_name: '',
-                                email:      'not.valid.email'
+    fill_in_account_information first_name: ''
     
     # And I click Sign Up,
     click_button 'Sign Up'
