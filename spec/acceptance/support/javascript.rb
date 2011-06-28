@@ -1,23 +1,23 @@
 require 'database_cleaner'
 
 RSpec.configure do |config|
-  config.before :suite do                                 # Before entire suite,
-    DatabaseCleaner.strategy = :transaction               # Set Transaction strategy.
-    DatabaseCleaner.clean_with :truncation                # Clear the test DB.
+  config.before :suite do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with :truncation
   end
 
-  config.before :each do                                  # Before each test,
-    if example.metadata[ :js ]                            # If JS ...
-      Capybara.current_driver  = :selenium                  # Use Capybara-Webkit.
-      DatabaseCleaner.strategy = :truncation              # Set Truncation strategy.
-    else                                                  # Otherwise...
-      DatabaseCleaner.strategy = :transaction             # Set Transaction strategy.
-      DatabaseCleaner.start                               # Start the transaction.
+  config.before :each do                                  
+    if example.metadata[ :js ]                           
+      Capybara.current_driver  = :selenium                
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.start
     end
   end
 
-  config.after :each do                                    # After each test,
-    Capybara.use_default_driver if example.metadata[ :js ] # Revert to default driver.
-    DatabaseCleaner.clean                                  # Clean up.
+  config.after :each do
+    Capybara.use_default_driver if example.metadata[ :js ]
+    DatabaseCleaner.clean
   end
 end
