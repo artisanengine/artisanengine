@@ -4,8 +4,8 @@ class PagesController < ApplicationController
   respond_to :html
   respond_to :json, only: [ :preview ]
 
-  load_and_authorize_resource except: :home
-  skip_authorization_check    only:   :home
+  load_and_authorize_resource except: [ :home ]
+  skip_authorization_check    only:   [ :home ]
 
   def create
     @page.save ?
