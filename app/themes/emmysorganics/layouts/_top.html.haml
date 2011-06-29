@@ -1,0 +1,10 @@
+#main-top
+	#logo
+		= image_tag 'emmys_logo.jpg', alt: "Emmy's Organics Logo"
+	#bag
+		#bag-image
+			= image_tag 'shopping_bag.jpg', alt: 'Shopping Bag'
+		%p#bag-text
+			%span.accent View Shopping Bag
+			%br
+			= link_to '(0) Items', '#', id: 'bag-count'
