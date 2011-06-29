@@ -15,7 +15,8 @@ module ArtisanEngine
     # If request domain is hausleather.com, looks for views in
     # app/views/themes/hausleather.com.
     def prepend_current_frame_theme_to_view_paths
-      self.prepend_view_path "#{ Rails.root }/app/themes/#{ current_frame.domain }"
+      theme_folder = current_frame.domain.split( '.' ).first
+      self.prepend_view_path "#{ Rails.root }/app/themes/#{ theme_folder }"
     end
 
     # Render template only (no layout) for AJAX requests, otherwise JavaScripts get

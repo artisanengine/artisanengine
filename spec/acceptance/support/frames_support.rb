@@ -53,5 +53,5 @@ def destroy_test_layout
 end
 
 def theme_dir
-  "#{ Rails.root }/app/themes/ae.test"
+  "#{ Rails.root }/app/themes/ae"
 end
