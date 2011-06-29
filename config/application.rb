@@ -39,6 +39,12 @@ module ArtisanEngine
     # Enable the asset pipeline.
     config.assets.enabled = true
     
+    # Add theme asset paths.
+    config.assets.paths << "#{ Rails.root }/app/themes/emmysorganics/assets/images"
+    config.assets.paths << "#{ Rails.root }/app/themes/emmysorganics/assets/stylesheets"
+    config.assets.paths << "#{ Rails.root }/app/themes/emmysorganics/assets/javascripts"
+    
+    
     # Insert Dragonfly middleware.
     config.middleware.insert 0, 'Dragonfly::Middleware', :images
   end
