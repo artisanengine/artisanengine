@@ -8,7 +8,7 @@ feature "Create a Frame", %q{
   
   background do
     # Given I am signed in as an engineer,
-    assume_role :engineer, in_frame: 'example.com'
+    assume_role :engineer
 
     # And I am on the new frame page,
     visit new_frame_page

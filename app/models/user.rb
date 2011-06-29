@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  include ArtisanEngine::DynamicAttributePermissions
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
+
+  include ArtisanEngine::DynamicAttributePermissions   # Authorization
   
   # ------------------------------------------------------------------
   # Associations
@@ -15,9 +16,10 @@ class User < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Validations
   
-  validates_presence_of   :first_name, :last_name, :email, :frame
-  validates_uniqueness_of :email, :scope => :frame_id
-  validates_format_of     :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates_presence_of     :first_name, :last_name, :email, :password, :frame
+  validates_confirmation_of :password
+  validates_uniqueness_of   :email, :scope => :frame_id
+  validates_format_of       :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   # ------------------------------------------------------------------
   # Roles

@@ -11,7 +11,7 @@ feature 'Attach an Image to a Page', %q{
     assume_role :artisan
     
     # And I have uploaded an image,
-    @image = Image.generate
+    Image.generate
     
     # And I am creating a new page,
     visit new_page_page

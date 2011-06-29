@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------
 # Test Frame Management
 
-def browse_frame( domain )  
+def browse_frame( domain = 'ae.test' )  
   # Find or create a frame matching the given domain.
   use_frame( domain )
   

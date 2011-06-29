@@ -14,6 +14,16 @@ describe User do
       new_user.should_not be_valid
     end
     
+    it "is not valid without a password" do
+      new_user.password = nil
+      new_user.should_not be_valid
+    end
+    
+    it "is not valid without a matching password confirmation" do
+      new_user.password_confirmation = 'nomatch'
+      new_user.should_not be_valid
+    end
+    
     it "is not valid without an E-Mail" do
       new_user.email = nil
       new_user.should_not be_valid

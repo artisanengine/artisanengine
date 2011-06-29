@@ -11,7 +11,7 @@ feature "Frame Themes", %q{
     create_test_theme_layout_with_content( 'Hello world!' )
     
     # And I am browsing the test frame,
-    browse_frame 'ae.test'
+    browse_frame
   end
   
   after do
@@ -19,8 +19,8 @@ feature "Frame Themes", %q{
   end
   
   scenario "A frame with a custom template displays its custom template" do
-    # Given I am a visitor in the frame with the custom theme,
-    assume_role :visitor, in_frame: 'ae.test'
+    # Given I am a visitor in the test frame,
+    assume_role :visitor
     
     # When I visit the home page,
     visit '/'
