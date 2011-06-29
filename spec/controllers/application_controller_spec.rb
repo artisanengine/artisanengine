@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe ApplicationController do
+  before do
+    Frame.generate domain: 'test.host', name: 'Test Frame'
+  end
+  
   controller do
     def index
       render nothing: true

@@ -7,11 +7,11 @@ feature "Frame Themes", %q{
 } do
   
   background do
-    # Given I have created a frame,
-    use_frame 'ae.test'
-    
     # And I have created a custom application layout for the frame,
     create_test_theme_layout_with_content( 'Hello world!' )
+    
+    # And I am browsing the test frame,
+    browse_frame 'ae.test'
   end
   
   after do

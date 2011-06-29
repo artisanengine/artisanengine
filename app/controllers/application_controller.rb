@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :prepend_current_frame_theme_to_view_paths
+  
+  include ArtisanEngine::Theming        # Filters and methods for theming.
+  include ArtisanEngine::Authorization  # Filters and methods for authorization.
   
   # ------------------------------------------------------------------
   # Application-Wide Rescues
@@ -10,7 +12,6 @@ class ApplicationController < ActionController::Base
   # ------------------------------------------------------------------
   # Application-Wide Helpers
   
-  include ArtisanEngine::Authorization  # Helpers for authorizing resources.
   include FramesHelper                  # Helpers for managing the current frame.
   
   # ------------------------------------------------------------------
@@ -21,7 +22,4 @@ class ApplicationController < ActionController::Base
     render 'public/404.html', layout: false, status: 404
   end
   
-  def prepend_current_frame_theme_to_view_paths
-    self.prepend_view_path "#{ Rails.root }/app/themes/#{ current_frame.domain }"
-  end
 end

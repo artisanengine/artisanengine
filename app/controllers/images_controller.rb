@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   respond_to :html
-  load_and_authorize_resource :through => :current_frame
-    
+  load_and_authorize_resource
+
   def create
     @image.save ?
       flash[ :notice ] = "Image: #{ @image.image_name } was successfully created." :

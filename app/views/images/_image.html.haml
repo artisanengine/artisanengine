@@ -1,2 +1,2 @@
 %div[ image ]
-	= image_tag( image.image.thumb( '200x200#' ).url )
+	= image_tag( image.image.thumb( '200x200#' ).url, :'data-original' => image.image.remote_url )
