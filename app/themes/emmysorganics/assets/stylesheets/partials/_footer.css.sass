@@ -1,0 +1,53 @@
+body
+	#wrapper
+		#footer
+			+column( 24, true )
+			background-color: $emmys_purple
+			color: $text_on_purple
+			height: 200px
+			padding: 2em 0
+			+border-bottom-radius( 15px )
+			
+			h4
+				color: $lighter_on_purple
+
+				&#signup
+					color: $text_on_purple
+					+adjust-font-size-to( 18px )
+					+adjust-leading-to( 1 )
+					
+			.footer-links a, a#privacy
+				color: $text_on_purple
+				text-decoration: none
+			
+			a#privacy
+				text-decoration: underline
+			
+			#footer-signup
+				+column( 8 )
+				
+				.inner
+					padding-left: 1em
+				
+				p#enter-email
+					+adjust-leading-to( 1.5 )
+				
+				input
+					border: 0
+				
+				input[type=text]
+					+adjust-font-size-to( 24px )
+					
+				input[type=submit]
+					+adjust-font-size-to( 14px )
+					margin: 0.5em 0.5em 0 0
+					padding: 0.3em
+					background-color: #af7db3
+					color: #e4dae5
+					cursor: pointer
+		
+			#about-us-links, #products-links, #educate-links
+				+column( 4 )
+			
+			#sustainability-links
+				+column( 4, true )

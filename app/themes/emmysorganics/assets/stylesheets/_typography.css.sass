@@ -1,5 +1,27 @@
-$blueprint-font-family: Helvetica, Arial, sans-serif
+@import compass/typography
 
-.accent
-	font-weight: bold
-	color: $emmys_purple
+$base-font-size: 	 12px
+$base-line-height: 16px
+
++establish-baseline
+
+body
+	font-family: "Helvetica", Helvetica, sans-serif
+	
+	#footer
+		font-family: "Arial", Arial, sans-serif
+		
+		.footer-links
+			+adjust-font-size-to( 13px )
+	
+	h4
+		+adjust-font-size-to( 16px )
+		+adjust-leading-to( 1 )
+	
+	.accent
+		font-weight: bold
+		color: $emmys_purple
+
+	ul.nav-list li a
+		color: white
+		text-decoration: none

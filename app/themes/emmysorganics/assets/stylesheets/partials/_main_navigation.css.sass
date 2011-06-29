@@ -1,0 +1,20 @@
+body
+	#wrapper
+		#main-navigation
+			+column( 24, true )
+	
+			ul.nav-list
+				float: right
+	
+				height: 40px
+				padding: 0 20px
+		
+				background-color: $emmys_purple
+				+border-top-radius( 10px )
+		
+				li
+					+adjust-font-size-to( 16px )
+					line-height: 40px
+					margin-right: 3em
+					&:last-child
+						margin-right: 0

@@ -1,7 +1,19 @@
-@import blueprint
+@import blueprint/grid
+@import compass/css3
 
 @import colors
 @import typography
+@import layout
 
 @import partials/header
 @import partials/top
+@import partials/main_navigation
+@import partials/footer
+
+body
+	#wrapper
+		+container
+		
+		#main
+			+column( 24, true )
+			background-color: $emmys_gray

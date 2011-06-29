@@ -2,8 +2,8 @@
 	#header-wrapper
 		#header-left
 			= image_tag 'have_it_all.jpg', alt: 'Have It All', class: 'haveitall'
-		#header-navigation
-			= link_to 'Contact Us', '#'
-			= link_to 'Store Locator', '#'
-			= link_to 'Wholesale', '#'
-			= link_to 'Newsletter', '#'
+		%ul#header-navigation.nav-list
+			%li= link_to 'Contact Us', '#'
+			%li= link_to 'Store Locator', '#'
+			%li= link_to 'Wholesale', '#'
+			%li= link_to 'Newsletter', '#'
