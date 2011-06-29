@@ -9,6 +9,7 @@
 @import partials/top
 @import partials/main_navigation
 @import partials/footer
+@import partials/home
 
 body
 	#wrapper
@@ -17,3 +18,12 @@ body
 		#main
 			+column( 24, true )
 			background-color: $emmys_gray
+		
+		margin-bottom: 1em
+		
+		p.placeholder
+			+adjust-font-size-to( 24px )
+			height: 100%
+			line-height: 380px
+			text-align: center
+			color: rgba( 0, 0, 0, 0.3 )

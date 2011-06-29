@@ -1,0 +1,115 @@
+#home.page
+	width: 910px
+	margin: 20px auto
+	
+	#feature
+		+column( 23, true )
+		background-color: white
+		height: 290px
+		+single-box-shadow
+		
+		img
+			width: 900px
+			height: 280px
+			display: block
+			margin: 5px auto 0
+	
+	#featured-products
+		+column( 23, true )
+		background-color: white
+		height: 380px
+		margin-top: 1em
+	
+	// Blocks
+	
+	.block
+		margin: 1em 0
+		
+		h2
+			background-color: $emmys_purple
+			color: white
+			font-weight: bold
+			font-family: "Helvetica", Helvetica, sans-serif
+			+adjust-font-size-to( 13px )
+			+adjust-leading-to( 1 )
+			padding: 0.3em 0.5em
+		
+		.block-content
+			background-color: white
+	
+	#blocks-1
+		+column( 23/3 )
+		
+		#commitment
+			.block-content
+				height: 325px
+				p.placeholder
+					line-height: 325px
+		
+		#connect
+			.block-content
+				height: 125px
+				
+				#signup-image
+					+column( 23/3*(1/4) )
+					img
+						padding: 10px 10px 0
+				
+				#signup-text
+					+column( 23/3*(3/4), true )
+					color: $soft
+					padding-top: 21px
+					font-weight: bold
+				
+				form
+					+column( 23/3, true )
+					input[type=text]
+						+adjust-font-size-to( 24px )
+						width: 275px
+						margin: 0 10px
+						border: 1px solid gray
+					input[type=submit]
+						text-transform: uppercase
+						border: 1px solid black
+						background: $emmys_red
+						color: white
+						font-weight: bold
+						padding: 0.2em 0.3em
+						margin: 5px 10px
+		
+	#blocks-2
+		+column( 23/3 )
+		
+		#blog
+			.block-content
+				height: 400px
+				p.placeholder
+					line-height: 400px
+		
+		#find-a-store
+			img
+				display: block
+				margin: 0 auto 1em
+		
+	#blocks-3
+		+column( 23/3, true )
+		
+		#press
+			.block-content
+				height: 150px
+				p.placeholder
+					line-height: 150px
+		
+		#product
+			.block-content
+				height: 220px
+				p.placeholder	
+					line-height: 220px
+		
+		#networking
+			height: 75px
+			p.placeholder
+				line-height: 75px
+				
+	
+	
