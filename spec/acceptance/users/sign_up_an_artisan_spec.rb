@@ -15,6 +15,9 @@ feature 'Sign Up an Artisan', %q{
   end
   
   scenario "An engineer can sign up an artisan with valid attributes" do
+    # When I select a frame,
+    select 'Test Frame', from: 'Frame'
+    
     # When I select 'Artisan' as the role,
     select 'Artisan', from: 'Role'
     

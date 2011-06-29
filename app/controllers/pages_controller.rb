@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   respond_to :html
   respond_to :json, only: [ :preview ]
   
-  load_and_authorize_resource :through => :current_frame
+  load_and_authorize_resource
   
   def create
     @page.save ?
