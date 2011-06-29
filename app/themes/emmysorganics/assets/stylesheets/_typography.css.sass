@@ -1,27 +1,39 @@
 @import compass/typography
 
+// ------------------------------------------------------------------
+// Defaults
+
 $base-font-size: 	 12px
 $base-line-height: 16px
+
+$default-font-family: "Helvetica", Helvetica, sans-serif
+$accent-font-family:  "Arial", Arial, sans-serif
+
+// ------------------------------------------------------------------
+// Mixins
+
+@mixin accent
+	font-weight: bold
+	color: $emmys_purple
+
+// ------------------------------------------------------------------
+// Styling
 
 +establish-baseline
 
 body
-	font-family: "Helvetica", Helvetica, sans-serif
-	
-	#footer
-		font-family: "Arial", Arial, sans-serif
-		
-		.footer-links
-			+adjust-font-size-to( 13px )
-	
+	font-family: $default_font_family
+
 	h3
 		+adjust-font-size-to( 16px )
 		+adjust-leading-to( 1 )
 	
-	.accent
-		font-weight: bold
-		color: $emmys_purple
-
 	ul.nav-list li a
-		color: white
+		color: $emmys_white
 		text-decoration: none
+	
+	#footer
+		font-family: $accent_font_family
+		
+		.footer-links
+			+adjust-font-size-to( 13px )
