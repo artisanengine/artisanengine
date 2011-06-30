@@ -1,0 +1,15 @@
+!!!
+
+%html
+	%head
+		%title ArtisanEngine
+		= stylesheet_link_tag		 "application"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+
+	%body
+		#wrapper
+			#main
+				= render 'session_info'
+				= render 'notifications'
+				= yield

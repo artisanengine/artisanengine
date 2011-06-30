@@ -6,7 +6,7 @@ def create_test_theme_layout_with_content( content )
   FileUtils.mkdir_p( theme_dir + '/layouts' )
   
   # Create the layout and fill it with content.
-  f = File.open( theme_dir + "/layouts/application.html.haml", 'w' ) 
+  f = File.open( theme_dir + "/layouts/visit.html.haml", 'w' ) 
   f.write content
   f.close
 end
