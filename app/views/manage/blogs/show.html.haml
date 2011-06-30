@@ -1,1 +1,9 @@
 %h1= @blog.name
+
+%table
+	%thead
+		%tr
+			%th Title
+			%th Published At
+	%tbody
+		= render @blog.posts

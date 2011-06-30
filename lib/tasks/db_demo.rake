@@ -29,11 +29,20 @@ namespace :db do
     
     Page.generate title: 'About', content: 'About Haus',      frame: hausleather
     Page.generate title: 'Bio',   content: 'Peggy Skemp Bio', frame: peggyskemp 
+    Page.generate title: 'About', content: "About Emmy's",    frame: emmysorganics
 
     # ------------------------------------------------------------------
     # Images
     
     5.times { Image.generate frame: hausleather }
     5.times { Image.generate frame: peggyskemp }
+    5.times { Image.generate frame: emmysorganics }
+    
+    # ------------------------------------------------------------------
+    # Posts
+    
+    5.times { Post.generate blog: hausleather.blog }
+    5.times { Post.generate blog: peggyskemp.blog }
+    5.times { Post.generate blog: emmysorganics.blog }
   end
 end

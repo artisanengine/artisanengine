@@ -5,6 +5,7 @@ class Blog < ActiveRecord::Base
   # Associations
   
   belongs_to :frame
+  has_many   :posts
   
   # ------------------------------------------------------------------
   # Validations

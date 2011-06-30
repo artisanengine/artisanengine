@@ -10,7 +10,9 @@ ArtisanEngine::Application.routes.draw do
     resources :images
     resources :pages
     post      'page/preview' => 'pages#preview', as: 'preview_page'
-    resource  :blog
+    resource  :blog do
+      resources :posts
+    end
   end
   
   scope :module => :visit do
