@@ -1,4 +1,4 @@
-- if current_user
-	%p Welcome back, #{ current_user.first_name }
+- if current_engineer or current_artisan
+	%p Welcome back.
 - else
 	%p Not signed in.

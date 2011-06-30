@@ -12,19 +12,34 @@
 
 ActiveRecord::Schema.define(:version => 20110623164147) do
 
+  create_table "artisans", :force => true do |t|
+    t.integer "frame_id"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email",                             :default => "", :null => false
+    t.string  "encrypted_password", :limit => 128, :default => "", :null => false
+  end
+
+  add_index "artisans", ["email"], :name => "index_artisans_on_email", :unique => true
+
+  create_table "engineers", :force => true do |t|
+    t.string "email",                             :default => "", :null => false
+    t.string "encrypted_password", :limit => 128, :default => "", :null => false
+  end
+
   create_table "frames", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "domain",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name",   :null => false
+    t.string "domain", :null => false
   end
 
   add_index "frames", ["domain"], :name => "index_frames_on_domain", :unique => true
 
   create_table "images", :force => true do |t|
-    t.integer "frame_id"
-    t.string  "image_uid"
-    t.string  "image_name"
+    t.integer  "frame_id"
+    t.string   "image_uid"
+    t.string   "image_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "images", ["id", "frame_id"], :name => "index_images_on_id_and_frame_id"
@@ -38,18 +53,5 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   add_index "pages", ["id", "frame_id"], :name => "index_pages_on_id_and_frame_id"
-
-  create_table "users", :force => true do |t|
-    t.integer  "frame_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email",                             :default => "", :null => false
-    t.string   "role"
-    t.string   "encrypted_password", :limit => 128, :default => "", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users", ["email", "frame_id"], :name => "index_users_on_email_and_frame_id", :unique => true
 
 end

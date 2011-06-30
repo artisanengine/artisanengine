@@ -7,8 +7,6 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     create_table :frames do |t|
       t.string :name,   null: false
       t.string :domain, null: false
-
-      t.timestamps
     end
     
     add_index :frames, :domain, unique: true
@@ -30,21 +28,23 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # ------------------------------------------------------------------
     # Users
     
-    create_table :users do |t|
+    create_table :engineers do |t|
+      t.string  :email
+      t.database_authenticatable
+    end
+    
+    create_table :artisans do |t|
       t.integer :frame_id
       
       t.string  :first_name
       t.string  :last_name
       t.string  :email
-      t.string  :role
       
       # Devise
       t.database_authenticatable
-      
-      t.timestamps
     end
     
-    add_index :users, [ :email, :frame_id ], unique: true
+    add_index :artisans, :email, unique: true
     
     # ------------------------------------------------------------------
     # Images
@@ -54,6 +54,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       
       t.string  :image_uid
       t.string  :image_name
+      
+      t.timestamps
     end
     
     add_index :images, [ :id, :frame_id ]

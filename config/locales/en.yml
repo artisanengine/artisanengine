@@ -7,9 +7,7 @@ en:
   formtastic:
     labels:
       email: "E-Mail"
-      
-      user:
-        first_name: "First Name"
-        last_name: "Last Name"
-        password_confirmation: "Password Confirmation"
+      first_name: "First Name"
+      last_name: "Last Name"
+      password_confirmation: "Password Confirmation"
         

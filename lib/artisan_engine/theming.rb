@@ -1,7 +1,5 @@
 module ArtisanEngine
-  
   # Organizing module to hold all theming functionality.
-  # Included in the ApplicationController.
   module Theming
     extend ActiveSupport::Concern
   

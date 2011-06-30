@@ -1,0 +1,5 @@
+%h1 Sign In
+
+= semantic_form_for resource, as: resource_name, url: session_path( resource_name ) do |f|
+	= f.inputs :email, :password
+	= f.submit 'Sign In'

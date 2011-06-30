@@ -7,6 +7,9 @@ namespace :db do
   task :demo => :environment do
     Rake::Task[ 'db:reset' ].invoke
     
+    # Generate the super-user.
+    Engineer.generate email: 'reade@artisanengine.dev', password: 'micagrl'
+    
     # ------------------------------------------------------------------
     # Frames
     
@@ -15,12 +18,11 @@ namespace :db do
     emmysorganics = Frame.generate name: "Emmy's Organics", domain: 'emmysorganics.dev'
   
     # ------------------------------------------------------------------
-    # Users
+    # Artisans
     
-    Factory :engineer, email: 'reade@artisanengine.dev', password: 'micagrl',  frame: hausleather
-    Factory :artisan,  email: 'haus@hausleather.dev',    password: 'password', frame: hausleather
-    Factory :artisan,  email: 'peggy@peggyskemp.dev',    password: 'password', frame: peggyskemp
-    Factory :artisan,  email: 'ian@emmysorganics.dev',   password: 'password', frame: emmysorganics
+    Artisan.generate email: 'haus@hausleather.dev',  password: 'password', frame: hausleather
+    Artisan.generate email: 'peggy@peggyskemp.dev',  password: 'password', frame: peggyskemp
+    Artisan.generate email: 'ian@emmysorganics.dev', password: 'password', frame: emmysorganics
 
     # ------------------------------------------------------------------
     # Pages
@@ -33,6 +35,5 @@ namespace :db do
     
     5.times { Image.generate frame: hausleather }
     5.times { Image.generate frame: peggyskemp }
-    
   end
 end

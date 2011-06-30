@@ -1,19 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
-  include ArtisanEngine::Theming        # Filters and methods for theming.
-  include ArtisanEngine::Authorization  # Filters and methods for authorization.
-  
+
   # ------------------------------------------------------------------
   # Application-Wide Rescues
   
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
-  rescue_from CanCan::AccessDenied,         :with => :render_404
-  
-  # ------------------------------------------------------------------
-  # Application-Wide Helpers
-  
-  include FramesHelper                  # Helpers for managing the current frame.
   
   # ------------------------------------------------------------------
   # Application-Wide Controller Methods
