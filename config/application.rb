@@ -44,8 +44,13 @@ module ArtisanEngine
     config.assets.paths << "#{ Rails.root }/app/themes/emmysorganics/assets/stylesheets"
     config.assets.paths << "#{ Rails.root }/app/themes/emmysorganics/assets/javascripts"
     
-    
     # Insert Dragonfly middleware.
     config.middleware.insert 0, 'Dragonfly::Middleware', :images
+  
+    # Configure generators.
+    config.generators do |g|
+      g.template_engine :haml
+      g.test_framework  :rspec
+    end  
   end
 end
