@@ -22,7 +22,8 @@ def sign_in_as_artisan( options = {} )
   # Create an artisan as a convenience if no parameters are specified.
   # Use the test frame if no frame is specified.
   if options[ :email ].nil? and options[ :password ].nil?
-    artisan  = frame ? Artisan.generate( frame: frame ) : Artisan.generate 
+    artisan  = frame ? Artisan.generate( frame: use_frame( frame ) ) 
+                     : Artisan.generate 
     email    = artisan.email
     password = artisan.password
   else

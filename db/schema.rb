@@ -13,14 +13,21 @@
 ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "artisans", :force => true do |t|
-    t.integer "frame_id"
-    t.string  "first_name"
-    t.string  "last_name"
+    t.integer "frame_id",                                          :null => false
+    t.string  "first_name",                                        :null => false
+    t.string  "last_name",                                         :null => false
     t.string  "email",                             :default => "", :null => false
     t.string  "encrypted_password", :limit => 128, :default => "", :null => false
   end
 
   add_index "artisans", ["email"], :name => "index_artisans_on_email", :unique => true
+
+  create_table "blogs", :force => true do |t|
+    t.integer "frame_id", :null => false
+    t.string  "name"
+  end
+
+  add_index "blogs", ["id", "frame_id"], :name => "index_blogs_on_id_and_frame_id"
 
   create_table "engineers", :force => true do |t|
     t.string "email",                             :default => "", :null => false
@@ -35,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "frames", ["domain"], :name => "index_frames_on_domain", :unique => true
 
   create_table "images", :force => true do |t|
-    t.integer  "frame_id"
+    t.integer  "frame_id",   :null => false
     t.string   "image_uid"
     t.string   "image_name"
     t.datetime "created_at"

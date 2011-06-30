@@ -25,4 +25,13 @@ describe Frame do
       new_frame.should_not be_valid
     end
   end
+
+  context "callbacks: " do
+    context "before saving: " do
+      it "creates a blog using its name" do
+        frame = Frame.generate name: 'Rockadoodle'
+        frame.blog.name.should == "Rockadoodle Blog"
+      end
+    end
+  end
 end

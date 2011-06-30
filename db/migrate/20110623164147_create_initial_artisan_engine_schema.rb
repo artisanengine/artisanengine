@@ -62,6 +62,17 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     
     add_index :images, [ :id, :frame_id ]
     
+    # ------------------------------------------------------------------
+    # Blogs & Posts
+    
+    create_table :blogs do |t|
+      t.integer :frame_id,    null: false
+      
+      t.string  :name
+    end
+    
+    add_index :blogs, [ :id, :frame_id ]
+    
   end
 
   def down
