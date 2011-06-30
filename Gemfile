@@ -39,12 +39,13 @@ group :test do
   gem 'rspec-rails',				  '2.6.1'       # Unit testing and generators.
 
 	# Integration testing.
-	gem 'capybara',						  '1.0.0'
+	gem 'rspec-cells',          '0.0.5'       # Integration testing for Cells.
+	gem 'capybara',						  '1.0.0'       # All-purpose integration testing.
 	gem 'capybara-webkit',      '1.0.0.beta4' # Headless JS driver.
-	gem 'database_cleaner',     '0.6.7'       # For Selenium.
+	gem 'database_cleaner',     '0.6.7'       # For JS testing.
 	gem 'launchy',              '0.4.0'
-	gem 'watchr',							  '0.7'
-	gem 'spork',							  '0.9.0rc8'
+	gem 'watchr',							  '0.7'         # All-purpose automation.
+	gem 'spork',							  '0.9.0rc8'    # Faster tests.
 end
 
 group :development, :test do
