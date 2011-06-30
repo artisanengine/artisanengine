@@ -17,7 +17,7 @@ feature 'Create an Artisan', %q{
     visit new_artisan_page
   end
   
-  scenario "An engineer can sign up an artisan with valid attributes" do
+  scenario "An engineer can create an artisan with valid attributes" do
     # When I select a frame,
     select 'Test Frame', from: 'Frame'
         
@@ -40,7 +40,7 @@ feature 'Create an Artisan', %q{
     end
   end
     
-  scenario "An engineer cannot sign up an artisan with invalid attributes" do
+  scenario "An engineer cannot create an artisan with invalid attributes" do
     # When I fill in invalid information for the artisan,
     fill_in 'First Name',            with: 'Kvothe'
     fill_in 'Last Name',             with: 'the Bloodless'

@@ -14,7 +14,6 @@ gem 'fog',                    '0.9.0'       # S3 support for Dragonfly.
 
 # Authentication and authorization.
 gem 'devise',                 '1.4.0'       # Authentication.
-gem 'cancan',                 '1.6.5'       # Authorization.
 
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'
