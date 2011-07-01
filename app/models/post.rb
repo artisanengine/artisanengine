@@ -37,7 +37,9 @@ class Post < ActiveRecord::Base
     if tag_names
       self.tags = tag_names.split( ',' ).map do |tag_name|
         # Trim any beginning-of-string whitespace and create a Tag from the tag name.
-        Tag.find_or_create_by_name( tag_name.gsub( /\A\s+/, '' ), frame: blog.frame )
+        # Also sub out any (new) text, as this is added by TokenInput if a tag doesn't exist.
+        Tag.find_or_create_by_name( tag_name.gsub( /\A\s+/, '' )
+                                            .gsub( ' (new)', '' ), frame: blog.frame )
       end
     end
   end

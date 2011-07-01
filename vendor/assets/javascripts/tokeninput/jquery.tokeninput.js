@@ -9,6 +9,8 @@
  * 07/01/2011: Added manuelbernhardt's patch for using different token values in the
  *						 original input. https://github.com/manuelbernhardt/jquery-tokeninput.git
  *
+ * 07/01/2011: Added gr2m's very simple patch for allowing creation of new tags.
+ * 						 https://github.com/gr2m/jquery-tokeninput.git
  */
 
 (function ($) {
@@ -34,6 +36,7 @@ var DEFAULT_SETTINGS = {
     onResult: null,
     onAdd: null,
     onDelete: null,
+		allowCreation: false,
     idPrefix: "token-input-"
 };
 
@@ -740,6 +743,11 @@ $.TokenList = function (input, url_or_data, settings) {
                   if($.isFunction(settings.onResult)) {
                       results = settings.onResult.call(hidden_input, results);
                   }
+
+									if(settings.allowCreation) {
+										results.push({name: input_box.val() + ' (new)', id: input_box.val()});
+									}
+									
                   cache.add(query, settings.jsonContainer ? results[settings.jsonContainer] : results);
 
                   // only populate the dropdown if the results are associated with the active search query
@@ -759,6 +767,11 @@ $.TokenList = function (input, url_or_data, settings) {
                 if($.isFunction(settings.onResult)) {
                     results = settings.onResult.call(hidden_input, results);
                 }
+
+								if(settings.allowCreation) {
+									results.push({name: input_box.val() + ' (new)', id: input_box.val()});
+								}
+								
                 cache.add(query, results);
                 populate_dropdown(query, results);
             }
