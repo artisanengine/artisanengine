@@ -1,2 +1,3 @@
 %div[ image ]
 	= image_tag( image.image.thumb( '200x200#' ).url, :'data-original' => image.image.remote_url )
+	= link_to 'Delete', [ :manage, image ], method: :delete, confirm: "Are you sure you want to delete Image: #{ image.image_name }?"
