@@ -7,9 +7,6 @@ feature 'Automatic Blog Setup', %q{
 } do
   
   background do
-    # Given there is a frame (with an auto-created blog)
-    Frame.generate
-    
     # And I am signed in as an artisan,
     sign_in_as_artisan
     
