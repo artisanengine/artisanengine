@@ -39,10 +39,23 @@ namespace :db do
     5.times { Image.generate frame: emmysorganics }
     
     # ------------------------------------------------------------------
+    # Tags
+    
+    5.times { Tag.generate frame: hausleather }
+    5.times { Tag.generate frame: peggyskemp }
+    5.times { Tag.generate frame: emmysorganics }
+    
+    # ------------------------------------------------------------------
     # Posts
     
     5.times { Post.generate blog: hausleather.blog }
     5.times { Post.generate blog: peggyskemp.blog }
     5.times { Post.generate blog: emmysorganics.blog }
+    
+    # Tag each post with a random number of tags.
+    for post in Post.all
+      post.tags = post.blog.frame.tags.sample( rand( 6 ) )
+    end
+    
   end
 end
