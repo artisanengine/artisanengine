@@ -13,7 +13,7 @@ module Manage
         flash[ :notice ] = "Good: #{ @good.name } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
       
-      respond_with( :manage, @good )
+      respond_with :manage, @good
     end
     
     def show

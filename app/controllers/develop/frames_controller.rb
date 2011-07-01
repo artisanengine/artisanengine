@@ -17,7 +17,7 @@ module Develop
         flash[ :notice ] = "Frame: #{ @frame.name } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
     
-      respond_with @frame, location: develop_frames_path
+      respond_with :develop, @frame, location: develop_frames_path
     end
   end
 end

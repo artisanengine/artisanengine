@@ -17,7 +17,7 @@ module Manage
         flash[ :notice ] = "Page: #{ @page.title } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
 
-      respond_with @page, location: manage_pages_path
+      respond_with :manage, @page, location: manage_pages_path
     end
     
     def edit
@@ -31,7 +31,7 @@ module Manage
         flash[ :notice ] = "Page: #{ @page.title } was successfully updated." :
         flash[ :alert ]  = t( :form_alert )
       
-      respond_with @page, location: manage_pages_path
+      respond_with :manage, @page, location: manage_pages_path
     end
     
     # ------------------------------------------------------------------

@@ -1,6 +1,6 @@
 module Develop
   class DevelopController < ApplicationController
     before_filter :authenticate_engineer!
-    layout        'manage'
+    layout 'develop'
   end
 end

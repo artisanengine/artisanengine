@@ -17,7 +17,7 @@ module Manage
         flash[ :notice ] = "Image: #{ @image.image_name } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
 
-      respond_with @image, location: manage_images_path
+      respond_with :manage, @image, location: manage_images_path
     end
     
     def destroy
