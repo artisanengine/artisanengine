@@ -6,6 +6,9 @@
  * Licensed jointly under the GPL and MIT licenses,
  * choose which one suits your project best!
  *
+ * 07/01/2011: Added manuelbernhardt's patch for using different token values in the
+ *						 original input. https://github.com/manuelbernhardt/jquery-tokeninput.git
+ *
  */
 
 (function ($) {
@@ -23,6 +26,7 @@ var DEFAULT_SETTINGS = {
     contentType: "json",
     queryParam: "q",
     tokenDelimiter: ",",
+		tokenValue: "name",
     preventDuplicates: false,
     prePopulate: null,
     processPrePopulate: false,
@@ -435,10 +439,7 @@ $.TokenList = function (input, url_or_data, settings) {
         selected_token_index++;
 
         // Update the hidden input
-        var token_ids = $.map(saved_tokens, function (el) {
-            return el.id;
-        });
-        hidden_input.val(token_ids.join(settings.tokenDelimiter));
+        update_hidden_input(saved_tokens, hidden_input);
 
         token_count += 1;
 
@@ -553,10 +554,7 @@ $.TokenList = function (input, url_or_data, settings) {
         if(index < selected_token_index) selected_token_index--;
 
         // Update the hidden input
-        var token_ids = $.map(saved_tokens, function (el) {
-            return el.id;
-        });
-        hidden_input.val(token_ids.join(settings.tokenDelimiter));
+        update_hidden_input(saved_tokens, hidden_input);
 
         token_count -= 1;
 
@@ -572,6 +570,14 @@ $.TokenList = function (input, url_or_data, settings) {
             callback.call(hidden_input,token_data);
         }
     }
+
+		// Update the hidden input box value
+		function update_hidden_input(saved_tokens, hidden_input) {
+			var token_values = $.map(saved_tokens, function (el) {
+				return el[settings.tokenValue];
+			});
+			hidden_input.val(token_values.join(settings.tokenDelimiter));
+		}
 
     // Hide and clear the results dropdown
     function hide_dropdown () {
