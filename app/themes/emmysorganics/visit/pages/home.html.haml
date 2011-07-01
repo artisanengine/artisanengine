@@ -29,7 +29,7 @@
 		#blog.block
 			%h2 emmy's blog
 			.block-content
-				%p.placeholder Blog
+				= render_cell :recent_posts, :display, frame: current_frame
 	
 		#find-a-store
 			= image_tag 'find_a_store.jpg'
