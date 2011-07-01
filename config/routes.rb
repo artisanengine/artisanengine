@@ -13,6 +13,7 @@ ArtisanEngine::Application.routes.draw do
     resource  :blog do
       resources :posts
     end
+    resources :tags
   end
   
   scope :module => :visit do
