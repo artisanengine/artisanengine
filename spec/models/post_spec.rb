@@ -23,4 +23,13 @@ describe Post do
       new_post.should_not be_valid
     end
   end
+  
+  context "callbacks: " do
+    context "before saving: " do
+      it "converts its content from Textile to HTML and stores it in html_content" do
+        page = Page.generate content: 'A *bold* man.'
+        page.html_content.should == '<p>A <strong>bold</strong> man.</p>'
+      end
+    end
+  end
 end

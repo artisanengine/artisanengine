@@ -63,9 +63,10 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "pages", ["id", "frame_id"], :name => "index_pages_on_id_and_frame_id"
 
   create_table "posts", :force => true do |t|
-    t.integer  "blog_id",    :null => false
-    t.string   "title",      :null => false
-    t.text     "content",    :null => false
+    t.integer  "blog_id",      :null => false
+    t.string   "title",        :null => false
+    t.text     "content",      :null => false
+    t.text     "html_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

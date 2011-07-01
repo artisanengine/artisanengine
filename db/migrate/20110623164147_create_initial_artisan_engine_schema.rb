@@ -79,6 +79,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       
       t.string  :title,       null: false
       t.text    :content,     null: false
+      t.text    :html_content
       
       t.timestamps
     end
