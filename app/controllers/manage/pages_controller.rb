@@ -34,6 +34,9 @@ module Manage
       respond_with @page, location: manage_pages_path
     end
     
+    # ------------------------------------------------------------------
+    # Non-RESTful Actions
+    
     # POST /manage/page/preview
     def preview
       textile_content = params[ :textile_content ]  # Receive the Textile-formatted content via JSON.
@@ -41,7 +44,7 @@ module Manage
       # Convert the content to Textile.
       converted_content = ArtisanEngine::Textiling.textile( textile_content )  
       
-      render json: { content: converted_content }     # Render a JSON object with the converted content.
+      render json: { content: converted_content }   # Render a JSON object with the converted content.
     end
   end
 end
