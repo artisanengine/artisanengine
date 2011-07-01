@@ -102,6 +102,19 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.integer    :tag_id,   null: false
       t.references :taggable, polymorphic: true
     end
+    
+    # ------------------------------------------------------------------
+    # Goods
+    
+    create_table :goods do |t|
+      t.integer :frame_id,         null: false
+      
+      t.string  :name,             null: false
+      t.text    :description
+      t.text    :html_description
+      
+      t.timestamps
+    end
   end
 
   def down

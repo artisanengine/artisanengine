@@ -8,6 +8,7 @@ class Frame < ActiveRecord::Base
   has_many :users
   has_many :images
   has_many :tags
+  has_many :goods
   has_one  :blog
   
   # ------------------------------------------------------------------

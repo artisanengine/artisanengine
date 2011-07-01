@@ -7,6 +7,7 @@ ArtisanEngine::Application.routes.draw do
   end
   
   namespace :manage do
+    resources :goods
     resources :images
     resources :pages
     post      'page/preview' => 'pages#preview', as: 'preview_page'
