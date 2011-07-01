@@ -1,9 +1,7 @@
 module Manage
   class PagesController < Manage::ManageController
     respond_to :html
-    
-    include PagesHelper
-    
+
     def index
       @pages = current_frame.pages
     end
@@ -24,8 +22,11 @@ module Manage
     
     # POST /manage/page/preview
     def preview
-      textile_content   = params[ :textile_content ]  # Receive the Textile-formatted content via JSON.
-      converted_content = textile( textile_content )  # Convert the content to Textile.
+      textile_content = params[ :textile_content ]  # Receive the Textile-formatted content via JSON.
+      
+      # Convert the content to Textile.
+      converted_content = ArtisanEngine::Textiling.textile( textile_content )  
+      
       render json: { content: converted_content }     # Render a JSON object with the converted content.
     end
   end

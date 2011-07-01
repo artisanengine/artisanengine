@@ -19,6 +19,6 @@ class Page < ActiveRecord::Base
   private
   
   def convert_content_to_html
-    self.html_content = RedCloth.new( content, [ :filter_html ] ).to_html.html_safe
+    self.html_content = ArtisanEngine::Textiling.textile( self.content )
   end
 end
