@@ -23,7 +23,8 @@ class Image < ActiveRecord::Base
     "#{ frame.domain }" +
     "/images/" + 
     "#{ image_name }" +
-    "_#{ Time.now.strftime( "%m_%e_%Y" ) }_#{ Time.now.to_i.to_s }"
+    "_#{ Time.now.strftime( "%m_%d_%Y" ) }_#{ Time.now.to_i.to_s }" +
+    ".jpg"
   end
   
 end
