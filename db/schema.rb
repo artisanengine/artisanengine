@@ -52,9 +52,10 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "images", ["id", "frame_id"], :name => "index_images_on_id_and_frame_id"
 
   create_table "pages", :force => true do |t|
-    t.integer  "frame_id",   :null => false
-    t.string   "title",      :null => false
-    t.text     "content",    :null => false
+    t.integer  "frame_id",     :null => false
+    t.string   "title",        :null => false
+    t.text     "content",      :null => false
+    t.text     "html_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
