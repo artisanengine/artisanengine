@@ -1,4 +1,6 @@
 class RecentPostsCell < Cell::Rails
+  include FramesHelper
+  include ArtisanEngine::Theming
 
   def display( state )
     frame = state[ :frame ]

@@ -13,6 +13,7 @@ module ArtisanEngine
     # app/views/themes/hausleather.com.
     def prepend_current_frame_theme_to_view_paths
       theme_folder = current_frame.domain.split( '.' ).first
+      self.prepend_view_path "#{ Rails.root }/app/themes/#{ theme_folder }/cells"
       self.prepend_view_path "#{ Rails.root }/app/themes/#{ theme_folder }"
     end
   end
