@@ -27,8 +27,28 @@ describe Post do
   context "callbacks: " do
     context "before saving: " do
       it "converts its content from Textile to HTML and stores it in html_content" do
-        page = Page.generate content: 'A *bold* man.'
-        page.html_content.should == '<p>A <strong>bold</strong> man.</p>'
+        post = Post.generate content: 'A *bold* man.'
+        post.html_content.should == '<p>A <strong>bold</strong> man.</p>'
+      end
+    end
+    
+    context "after saving: " do
+      it "converts its tag_names to tag associations" do
+        post = Post.generate tag_names: 'cat, man bear pig, dog'        
+        
+        post.tags.count.should     == 3
+        post.tags.last.name.should == "dog"
+      end
+    end
+  end
+
+  context "accessors: " do
+    describe "#tag_names: " do
+      it "returns a comma-separated list of tags" do
+        Post.generate tag_names: "man, bear, pig"
+        
+        post = Post.last
+        post.tag_names.should == "man, bear, pig"
       end
     end
   end

@@ -73,4 +73,19 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "posts", ["id", "blog_id"], :name => "index_posts_on_id_and_blog_id"
 
+  create_table "taggings", :force => true do |t|
+    t.integer "tag_id",        :null => false
+    t.integer "taggable_id"
+    t.string  "taggable_type"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.integer  "frame_id",   :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["id", "frame_id"], :name => "index_tags_on_id_and_frame_id"
+
 end

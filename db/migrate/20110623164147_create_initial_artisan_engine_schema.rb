@@ -85,6 +85,23 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     end
     
     add_index :posts, [ :id, :blog_id ]
+    
+    # ------------------------------------------------------------------
+    # Tags & Taggings
+    
+    create_table :tags do |t|
+      t.integer :frame_id,  null: false
+      t.string  :name,      null: false
+      
+      t.timestamps
+    end
+    
+    add_index :tags, [ :id, :frame_id ]
+    
+    create_table :taggings do |t|
+      t.integer    :tag_id,   null: false
+      t.references :taggable, polymorphic: true
+    end
   end
 
   def down
