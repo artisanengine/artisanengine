@@ -23,7 +23,7 @@ Spork.prefork do
   
   RSpec.configure do |config|
     config.mock_with :rspec                       # Mock Framework
-    config.use_transactional_fixtures = false     # Selenium doesn't play nice.
+    config.use_transactional_fixtures = true
     
     # Only run :focus specs (if there are any).
     config.filter_run focus: true
