@@ -9,8 +9,8 @@ RSpec.configure do |config|
   end
 
   config.before :each do                                  
-    if example.metadata[ :js ]                           
-      Capybara.current_driver  = :webkit               
+    if example.metadata[ :js ]
+      Capybara.current_driver  = example.metadata[ :js_driver ] || :webkit        
       DatabaseCleaner.strategy = :truncation
     else
       DatabaseCleaner.strategy = :transaction
