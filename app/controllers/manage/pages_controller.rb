@@ -20,6 +20,20 @@ module Manage
       respond_with @page, location: manage_pages_path
     end
     
+    def edit
+      @page = current_frame.pages.find( params[ :id ] )
+    end
+    
+    def update
+      @page = current_frame.pages.find( params[ :id ] )
+      
+      @page.update_attributes( params[ :page ] ) ?
+        flash[ :notice ] = "Page: #{ @page.title } was successfully updated." :
+        flash[ :alert ]  = t( :form_alert )
+      
+      respond_with @page, location: manage_pages_path
+    end
+    
     # POST /manage/page/preview
     def preview
       textile_content = params[ :textile_content ]  # Receive the Textile-formatted content via JSON.

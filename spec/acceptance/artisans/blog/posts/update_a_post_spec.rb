@@ -20,7 +20,7 @@ feature 'Update a Post', %q{
     visit edit_post_page_for 'Old Title'
   end
   
-  scenario "An artisan can edit a post with valid attributes" do
+  scenario "An artisan can update a post with valid attributes" do
     # When I fill in new valid information for my post,
     fill_in 'Title', with: 'New Title'
     
@@ -34,7 +34,7 @@ feature 'Update a Post', %q{
     page.should have_content 'New Title'
   end
   
-  scenario "An artisan cannot edit a post with invalid attributes" do
+  scenario "An artisan cannot update a post with invalid attributes" do
     # When I fill in invalid information for my post,
     fill_in 'Title',   with: 'New Title'
     fill_in 'Content', with: ''
