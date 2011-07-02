@@ -16,8 +16,7 @@ feature 'Create a Page', %q{
   
   scenario "An artisan can create a page with valid attributes" do
     # When I fill in valid information for the page,
-    fill_in 'Title',   with: 'About Me'
-    fill_in 'Content', with: 'Some content.'
+    fill_in 'Title', with: 'About Me'
     
     # And I click Create Page,
     click_button 'Create Page'
@@ -25,14 +24,13 @@ feature 'Create a Page', %q{
     # Then I should see a notice,
     page_should_have_notice
     
-    # And I should see my page's title.
-    page.should have_content 'About Me'
+    # And I should see my page and my page's title.
+    page.should have_selector '.page', text: 'About Me'
   end
   
   scenario "An artisan cannot create a page with invalid attributes" do
     # When I fill in invalid information for the page,
-    fill_in 'Title',   with: 'About Me'
-    fill_in 'Content', with: ''
+    fill_in 'Title',   with: ''
     
     # And I click Create Page,
     click_button 'Create Page'
@@ -40,7 +38,7 @@ feature 'Create a Page', %q{
     # Then I should see an alert,
     page_should_have_alert
     
-    # And I should not see my page's title.
-    page.should have_no_content 'About Me'
+    # And there should be no pages.
+    Page.count.should be 0
   end
 end

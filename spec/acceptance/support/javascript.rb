@@ -1,6 +1,8 @@
 require 'database_cleaner'
 
 RSpec.configure do |config|
+  # Selenium doesn't play nice with transactional fixtures, so we have to handle
+  # the database ourselves.
   config.use_transactional_fixtures = false
   
   config.before :suite do

@@ -8,13 +8,13 @@ feature 'Visit a Page', %q{
   
   background do
     # Given a test artisan has created a page,
-    Page.generate title: 'Example Page', frame: use_frame( 'ae.test' )
+    Page.generate title: 'Example Page'
 
     # And a Haus Leather artisan has created a page,
     Page.generate title: 'Haus Leather Page', frame: use_frame( 'hausleather.test' )
     
     # And I am a visitor browsing the test frame,
-    browse_frame 'ae.test'
+    browse_frame
   end
   
   scenario "A visitor can visit a page in the current frame" do        

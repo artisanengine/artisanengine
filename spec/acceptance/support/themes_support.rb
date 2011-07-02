@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------
 # Test Theme Management
 
+# Create a theme directory for the test frame.
 def create_test_theme_layout_with_content( content )
   # Create the theme directory.
   FileUtils.mkdir_p( theme_dir + '/layouts' )
@@ -11,8 +12,8 @@ def create_test_theme_layout_with_content( content )
   f.close
 end
 
+# Destroy the theme directory.
 def destroy_test_layout
-  # Destroy the theme directory.
   FileUtils.rm_r( theme_dir ) if File.exists?( theme_dir )
 end
 

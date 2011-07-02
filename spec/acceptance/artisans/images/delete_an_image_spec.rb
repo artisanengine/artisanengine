@@ -7,7 +7,7 @@ feature 'Delete an Image', %q{
 } do
   
   background do
-    # Given I am logged in as an artisan,
+    # Given I am signed in as an artisan,
     sign_in_as_artisan
     
     # And I have uploaded an image,
@@ -18,7 +18,7 @@ feature 'Delete an Image', %q{
   end
   
   scenario "An artisan can delete an image" do
-    # When I click the Delete link,
+    # When I click my image's Delete link,
     within '.image' do
       click_link 'Delete'
     end

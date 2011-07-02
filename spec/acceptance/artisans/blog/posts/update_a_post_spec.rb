@@ -1,7 +1,7 @@
 require 'acceptance/acceptance_helper'
 
 feature 'Update a Post', %q{
-  In order to sanitize my thoughts, dreams, and idiosyncracies in the morning
+  In order to reconsider my thoughts, dreams, and idiosyncracies in the morning
   As an artisan
   I want to update a blog post.
 } do
@@ -13,7 +13,7 @@ feature 'Update a Post', %q{
     # And there is a blog,
     blog = Blog.find_by_name( 'Test Frame Blog' )
     
-    # And there is a post,
+    # And there is a post in the blog,
     Post.generate title: 'Old Title', blog: blog
     
     # And I am on the edit post page,
@@ -31,13 +31,12 @@ feature 'Update a Post', %q{
     page_should_have_notice
     
     # And I should see my new post.
-    page.should have_content 'New Title'
+    page.should have_selector '.post', text: 'New Title'
   end
   
   scenario "An artisan cannot update a post with invalid attributes" do
     # When I fill in invalid information for my post,
-    fill_in 'Title',   with: 'New Title'
-    fill_in 'Content', with: ''
+    fill_in 'Title', with: ''
     
     # And I click Update Post,
     click_button 'Update Post'
@@ -45,7 +44,7 @@ feature 'Update a Post', %q{
     # Then I should see an alert,
     page_should_have_alert
     
-    # And I should not see my new post.
-    page.should have_no_content 'New Title'
+    # And my post's information should not change.
+    Post.last.title.should == 'Old Title'
   end
 end

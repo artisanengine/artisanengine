@@ -1,6 +1,7 @@
 ArtisanEngine::Application.routes.draw do
   root to: 'visit/pages#home'
   
+  get '/develop' => 'develop/develop#interface'
   namespace :develop do
     resources :frames
     resources :artisans

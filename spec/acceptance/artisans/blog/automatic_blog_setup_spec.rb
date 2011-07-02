@@ -6,17 +6,16 @@ feature 'Automatic Blog Setup', %q{
   I want a blog to be automatically created for me.
 } do
   
+  background do
+    # Given I am signed in as an artisan,
+    sign_in_as_artisan
+  end
+  
   scenario "A blog is automatically created when an artisan's frame is created" do
-    # Given a frame has been created,
-    Frame.generate name: 'Peggy Skemp Jewelry', domain: 'peggyskemp.dev'
-    
-    # And I am signed in as an artisan,
-    sign_in_as_artisan in_frame: 'peggyskemp.dev'
-    
     # When I visit the manage blog page,
     visit manage_blog_page
     
     # Then I should see my blog.
-    page.should have_content 'Peggy Skemp Jewelry Blog'
+    page.should have_content 'Test Frame Blog'
   end
 end

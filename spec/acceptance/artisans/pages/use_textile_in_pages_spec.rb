@@ -29,14 +29,14 @@ feature 'Use Textile in Pages', %q{
     page.should have_selector 'strong', text: 'bold'
   end
   
-  scenario "An artisan can preview the displayed Textile of a page she is editing", js: true do
-    # When I fill in the content text area with some content,
+  scenario "An artisan can preview the Textiled version of a page she is editing", js: true do
+    # When I fill in the content text area with some Textile content,
     fill_in 'Content', with: 'A *bold* man.'
     
     # And I click the Preview link,
     click_link 'Preview'
     
-    # Then I should see my formatted content.
+    # Then I should see my Textiled content.
     page.should have_selector 'strong', text: 'bold'
   end
 end

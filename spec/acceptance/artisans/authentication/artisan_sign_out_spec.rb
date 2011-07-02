@@ -7,7 +7,7 @@ feature 'Artisan Sign Out', %q{
 } do
   
   background do
-    # Given I am signed in as an artisan in the default frame,
+    # Given I am signed in as an artisan,
     sign_in_as_artisan
   end
   

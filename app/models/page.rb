@@ -9,7 +9,7 @@ class Page < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Validations
   
-  validates_presence_of :title, :content, :frame
+  validates_presence_of :title, :frame
   
   # ------------------------------------------------------------------
   # Callbacks

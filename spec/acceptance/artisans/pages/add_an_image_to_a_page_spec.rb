@@ -21,10 +21,11 @@ feature 'Attach an Image to a Page', %q{
     # When I click the Insert Image link,
     click_link 'Insert Image'
     
-    # And I click an Insert link in the pop-up window,
-    find( 'a.insert_link' ).click
+    # And I click a image's Insert link in the pop-up window,
+    find( '.image .insert_link' ).click
     
     # Then my content field should contain a link to my image.
-    page.find_field( 'page_content' ).value.should include 'images'
+    page.find_field( 'page_content' )
+        .value.should include 'images'
   end
 end

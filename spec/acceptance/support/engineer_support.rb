@@ -12,10 +12,7 @@ end
 # ------------------------------------------------------------------
 # Authentication
 
-def sign_in_as_engineer( options = {} )
-  # A frame is required so we have somewhere to land once we've signed in.
-  Frame.generate domain: 'ae.test'
-  
+def sign_in_as_engineer( options = {} )  
   # Create an engineer as a convenience if no parameters are specified.
   if options[ :email ].nil? and options[ :password ].nil?
     engineer = Engineer.generate

@@ -7,7 +7,7 @@ feature "Frame Themes", %q{
 } do
   
   background do
-    # Given I have created a custom application layout for the frame,
+    # Given I have created a custom application layout for the test frame,
     create_test_theme_layout_with_content( 'Hello world!' )
   end
   

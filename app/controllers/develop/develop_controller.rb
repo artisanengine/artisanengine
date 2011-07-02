@@ -1,6 +1,10 @@
 module Develop
   class DevelopController < ApplicationController
-    before_filter :authenticate_engineer!
     layout 'develop'
+    
+    before_filter :authenticate_engineer!
+    
+    def interface
+    end
   end
 end

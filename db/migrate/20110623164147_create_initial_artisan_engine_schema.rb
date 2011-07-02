@@ -5,8 +5,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Frames
     
     create_table :frames do |t|
-      t.string :name,         null: false
-      t.string :domain,       null: false
+      t.string :name,               null: false
+      t.string :domain,             null: false
     end
     
     add_index :frames, :domain, unique: true
@@ -15,10 +15,10 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Pages
     
     create_table :pages do |t|
-      t.integer :frame_id,    null: false
+      t.integer :frame_id,          null: false
       
-      t.string  :title,       null: false
-      t.text    :content,     null: false
+      t.string  :title,             null: false
+      t.text    :content
       t.text    :html_content
 
       t.timestamps
@@ -30,18 +30,18 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Users
     
     create_table :engineers do |t|
-      t.string  :email,       null: false
+      t.string  :email,             null: false
       
       # Devise
       t.database_authenticatable
     end
     
     create_table :artisans do |t|
-      t.integer :frame_id,    null: false
+      t.integer :frame_id,          null: false
       
-      t.string  :first_name,  null: false
-      t.string  :last_name,   null: false
-      t.string  :email,       null: false
+      t.string  :first_name,        null: false
+      t.string  :last_name,         null: false
+      t.string  :email,             null: false
       
       # Devise
       t.database_authenticatable
@@ -53,7 +53,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Images
     
     create_table :images do |t|
-      t.integer :frame_id,    null: false
+      t.integer :frame_id,          null: false
       
       t.string  :image_uid
       t.string  :image_name
@@ -67,18 +67,18 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Blogs & Posts
     
     create_table :blogs do |t|
-      t.integer :frame_id,    null: false
+      t.integer :frame_id,          null: false
       
-      t.string  :name
+      t.string  :name,              null: false
     end
     
     add_index :blogs, [ :id, :frame_id ]
     
     create_table :posts do |t|
-      t.integer :blog_id,     null: false
+      t.integer :blog_id,           null: false
       
-      t.string  :title,       null: false
-      t.text    :content,     null: false
+      t.string  :title,             null: false
+      t.text    :content
       t.text    :html_content
       
       t.timestamps
@@ -90,8 +90,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Tags & Taggings
     
     create_table :tags do |t|
-      t.integer :frame_id,  null: false
-      t.string  :name,      null: false
+      t.integer :frame_id,          null: false
+      t.string  :name,              null: false
       
       t.timestamps
     end
@@ -99,17 +99,17 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     add_index :tags, [ :id, :frame_id ]
     
     create_table :taggings do |t|
-      t.integer    :tag_id,   null: false
-      t.references :taggable, polymorphic: true
+      t.integer    :tag_id,         null: false
+      t.references :taggable,       null: false, polymorphic: true
     end
     
     # ------------------------------------------------------------------
     # Goods
     
     create_table :goods do |t|
-      t.integer :frame_id,         null: false
+      t.integer :frame_id,          null: false
       
-      t.string  :name,             null: false
+      t.string  :name,              null: false
       t.text    :description
       t.text    :html_description
       

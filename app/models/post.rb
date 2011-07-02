@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Validations
   
-  validates_presence_of :title, :content, :blog
+  validates_presence_of :title, :blog
   
   # ------------------------------------------------------------------
   # Callbacks

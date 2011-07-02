@@ -13,11 +13,6 @@ describe Post do
       new_post.should_not be_valid
     end
     
-    it "is not valid without content" do
-      new_post.content = nil
-      new_post.should_not be_valid
-    end
-    
     it "is not valid without a blog" do
       new_post.blog = nil
       new_post.should_not be_valid
@@ -36,8 +31,10 @@ describe Post do
       it "converts its tag_names to tag associations" do
         post = Post.generate tag_names: 'cat, man bear pig, dog'        
         
-        post.tags.count.should     == 3
-        post.tags.last.name.should == "dog"
+        post.tags.count.should   == 3
+        post.tags[0].name.should == "cat"
+        post.tags[1].name.should == "man bear pig"
+        post.tags[2].name.should == "dog"
       end
     end
   end

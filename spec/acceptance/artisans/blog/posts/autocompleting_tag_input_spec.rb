@@ -1,6 +1,6 @@
 require 'acceptance/acceptance_helper'
 
-feature 'Autocompleting Tag Input', %q{
+feature 'Auto-Completing Tag Input', %q{
   In order to expedite my process of adding tags
   As an artisan
   I want tag suggestions as I type.
@@ -17,11 +17,14 @@ feature 'Autocompleting Tag Input', %q{
     
     # And I am on the new post page,
     visit new_post_page
+    
+    # And there is a tags field,
+    @tags_field = 'token-input-post_tag_names'
   end
   
   scenario "Tags are automatically suggested for me when I type into the Tags input field", js: true, js_driver: :selenium do
     # When I fill in the Tags field with "an"
-    fill_in 'token-input-post_tag_names', with: 'an'
+    fill_in @tags_field, with: 'an'
     
     # Then I should see "man"
     page.should have_content    'man'
@@ -29,7 +32,7 @@ feature 'Autocompleting Tag Input', %q{
     page.should have_no_content 'pig'
     
     # When I fill in the Tags field with "a"
-    fill_in 'token-input-post_tag_names', with: 'a'
+    fill_in @tags_field, with: 'a'
     
     # Then I should see "man" and "bear"
     page.should have_content    'man'
@@ -37,7 +40,7 @@ feature 'Autocompleting Tag Input', %q{
     page.should have_no_content 'pig'
     
     # When I fill in the Tags field with "pig"
-    fill_in 'token-input-post_tag_names', with: 'pig'
+    fill_in @tags_field, with: 'pig'
     
     # Then I should see "pig"
     page.should have_no_content 'man'
@@ -45,9 +48,9 @@ feature 'Autocompleting Tag Input', %q{
     page.should have_content    'pig'
   end
   
-  scenario "An artisan can create a new tag in the auto-suggest field", js: true, js_driver: :selenium do
+  scenario "An artisan can create a new tag from the auto-complete field", js: true, js_driver: :selenium do
     # When I fill in the Tags field with "nonexistent",
-    fill_in 'token-input-post_tag_names', with: 'nonexistent'
+    fill_in @tags_field, with: 'nonexistent'
     
     # Then I should see an option to create a new tag.
     page.should have_content 'nonexistent (new)'
@@ -56,8 +59,7 @@ feature 'Autocompleting Tag Input', %q{
     find( 'li', text: 'nonexistent (new)' ).click
     
     # And I fill in valid information for the post,
-    fill_in 'Title',   with: 'New Post'
-    fill_in 'Content', with: 'New post.'
+    fill_in 'Title', with: 'New Post'
     
     # And I click Create Post,
     click_button 'Create Post'

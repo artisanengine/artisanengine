@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature 'Tag Posts', %q{
   In order to organize my thoughts, dreams, and idiosyncracies
   As an artisan
-  I want to tag a blog post.
+  I want to add and remove tags from a blog post.
 } do
   
   background do
@@ -13,7 +13,7 @@ feature 'Tag Posts', %q{
     # And there is a blog,
     blog = Blog.find_by_name( 'Test Frame Blog' )
     
-    # And there is a post,
+    # And there is a post in the blog,
     Post.generate title: 'Tagged Post', blog: blog
     
     # And I am on the edit post page,
@@ -22,7 +22,7 @@ feature 'Tag Posts', %q{
   
   scenario "An artisan can add and remove tags from a post" do
     # When I fill in some tags,
-    fill_in 'Tags', with: 'apple bat cow'
+    fill_in 'Tags', with: 'apple, bat, cow'
     
     # And I Update Post,
     click_button 'Update Post'
@@ -34,7 +34,7 @@ feature 'Tag Posts', %q{
       page.should have_content 'cow'
     end
     
-    # And when I update the post to have only one,
+    # And when I update the post to have only one tag,
     visit edit_post_page_for 'Tagged Post'
     fill_in 'Tags', with: 'apple'
     click_button 'Update Post'

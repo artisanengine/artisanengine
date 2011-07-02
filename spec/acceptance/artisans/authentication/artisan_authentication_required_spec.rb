@@ -6,11 +6,11 @@ feature 'Artisan Authentication Required for Artisan-Only Functions', %q{
   I want to be required to authenticate to access artisan-specific actions.
 } do
   
-  scenario "A user is required to authenticate before accessing an artisan-specific function" do
-    # Given I am browsing the test frame,
+  scenario "A user is required to authenticate before accessing an artisan-only action" do
+    # Given I am browsing the default frame,
     browse_frame
     
-    # When I attempt to access an artisan-specific function,
+    # When I attempt to access an artisan-only function,
     visit new_page_page
     
     # Then I should be prompted to sign in.

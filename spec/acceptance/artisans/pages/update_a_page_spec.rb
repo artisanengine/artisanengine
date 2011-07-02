@@ -13,7 +13,7 @@ feature 'Update a Page', %q{
     # And there is a page,
     Page.generate title: 'Outdated Page'
     
-    # And I am on the edit page page,
+    # And I am on the edit page for the page,
     visit edit_page_page_for 'Outdated Page'
   end
   
@@ -28,13 +28,12 @@ feature 'Update a Page', %q{
     page_should_have_notice
     
     # And I should see my new page.
-    page.should have_content 'Updated Page'
+    page.should have_selector '.page', text: 'Updated Page'
   end
   
   scenario "An artisan cannot update a page with invalid attributes" do
     # When I fill in invalid information for my page,
-    fill_in 'Title',   with: 'Updated Page'
-    fill_in 'Content', with: ''
+    fill_in 'Title', with: ''
     
     # And I click Update Page,
     click_button 'Update Page'
@@ -42,7 +41,7 @@ feature 'Update a Page', %q{
     # Then I should see an alert,
     page_should_have_alert
     
-    # And I should not see my new page.
-    page.should have_no_content 'Updated Page'
+    # And my page's information should not change.
+    Page.last.title.should == 'Outdated Page'
   end
 end

@@ -1,7 +1,7 @@
 require 'acceptance/acceptance_helper'
 
 feature 'Upload an Image', %q{
-  In order to include my beautiful photography in pages and good listings
+  In order to include my beautiful photography in various locations around the site
   As an artisan
   I want to upload an image.
 } do
@@ -38,7 +38,7 @@ feature 'Upload an Image', %q{
     # Then I should see an alert,
     page_should_have_alert
     
-    # And I should not see my image.
-    page.should have_no_content 'image.rb'
+    # And there should be no images.
+    Image.count.should be 0
   end
 end

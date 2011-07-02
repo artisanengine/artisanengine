@@ -9,7 +9,7 @@ feature "Create a Frame", %q{
   background do
     # Given I am signed in as an engineer,
     sign_in_as_engineer
-
+    
     # And I am on the new frame page,
     visit new_frame_page
   end
@@ -26,8 +26,10 @@ feature "Create a Frame", %q{
     page_should_have_notice
     
     # And I should see my new frame's name and domain.
-    page.should have_content 'Haus Leather'
-    page.should have_content 'hausleather.com'
+    within '.frame' do
+      page.should have_content 'Haus Leather'
+      page.should have_content 'hausleather.com'
+    end
   end
   
   scenario "An engineer cannot create a frame with invalid attributes" do
@@ -41,7 +43,7 @@ feature "Create a Frame", %q{
     # Then I should see an alert,
     page_should_have_alert
     
-    # And I should not see my new frame's name.
-    page.should have_no_content 'Haus Leather'
+    # And there should be no frames.
+    Frame.count.should be 0
   end
 end

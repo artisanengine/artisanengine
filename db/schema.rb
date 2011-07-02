@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "blogs", :force => true do |t|
     t.integer "frame_id", :null => false
-    t.string  "name"
+    t.string  "name",     :null => false
   end
 
   add_index "blogs", ["id", "frame_id"], :name => "index_blogs_on_id_and_frame_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   create_table "pages", :force => true do |t|
     t.integer  "frame_id",     :null => false
     t.string   "title",        :null => false
-    t.text     "content",      :null => false
+    t.text     "content"
     t.text     "html_content"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   create_table "posts", :force => true do |t|
     t.integer  "blog_id",      :null => false
     t.string   "title",        :null => false
-    t.text     "content",      :null => false
+    t.text     "content"
     t.text     "html_content"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "taggings", :force => true do |t|
     t.integer "tag_id",        :null => false
-    t.integer "taggable_id"
-    t.string  "taggable_type"
+    t.integer "taggable_id",   :null => false
+    t.string  "taggable_type", :null => false
   end
 
   create_table "tags", :force => true do |t|
