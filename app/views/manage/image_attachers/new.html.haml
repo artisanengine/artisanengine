@@ -1,0 +1,7 @@
+- for image in @images
+	%div[ image ]
+		= image_tag( image.image.thumb( '200x200#' ).url )
+	
+		= form_for [ :manage, parent, @image_attacher ] do |f|
+			= hidden_field_tag "image_attacher[image_id]", image.id
+			= f.submit 'Attach'

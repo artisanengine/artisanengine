@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "goods", ["id", "frame_id"], :name => "index_goods_on_id_and_frame_id"
 
+  create_table "image_attachers", :force => true do |t|
+    t.integer "image_id",       :null => false
+    t.integer "imageable_id",   :null => false
+    t.string  "imageable_type", :null => false
+  end
+
   create_table "images", :force => true do |t|
     t.integer  "frame_id",   :null => false
     t.string   "image_uid"

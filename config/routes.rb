@@ -11,6 +11,7 @@ ArtisanEngine::Application.routes.draw do
     resources :goods do
       resources :options
       resources :variants
+      resources :image_attachers
     end
     resources :images
     resources :pages

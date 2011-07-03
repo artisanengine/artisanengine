@@ -12,6 +12,8 @@ class Good < ActiveRecord::Base
   belongs_to :frame
   has_many   :options
   has_many   :variants
+  has_many   :image_attachers, :as      => :imageable
+  has_many   :images,          :through => :image_attachers
   
   # ------------------------------------------------------------------
   # Validations

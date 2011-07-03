@@ -20,3 +20,8 @@ end
 def anaura_bay_image_path
   File.expand_path( "../anaura_bay.jpg", __FILE__ )
 end
+
+# The Anaura Bay image.
+def anaura_bay_image
+  File.new( anaura_bay_image_path )
+end

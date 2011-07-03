@@ -50,7 +50,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     add_index :artisans, :email, unique: true
     
     # ------------------------------------------------------------------
-    # Images
+    # Images and ImageAttachers
     
     create_table :images do |t|
       t.integer :frame_id,          null: false
@@ -62,6 +62,11 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     end
     
     add_index :images, [ :id, :frame_id ]
+    
+    create_table :image_attachers do |t|
+      t.integer    :image_id,       null: false
+      t.references :imageable,      null: false, polymorphic: true
+    end
     
     # ------------------------------------------------------------------
     # Blogs & Posts
