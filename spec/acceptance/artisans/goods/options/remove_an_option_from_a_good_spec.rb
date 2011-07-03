@@ -17,8 +17,8 @@ feature 'Add an Option to a Good', %q{
     good.options << Option.spawn( name: 'Destructiveness', default_value: 'Low' )
     good.options << Option.spawn( name: 'Horribleness',    default_value: 'High' )
     
-    # And I am on the manage good page for the good,
-    visit manage_good_page_for 'Freeze Ray'
+    # And I am on the edit good page for the good,
+    visit edit_good_page_for 'Freeze Ray'
   end
   
   scenario "An artisan can delete an option from a good" do

@@ -13,8 +13,8 @@ feature 'Auto-Create First Variant', %q{
     # And I have created a good,
     Good.generate name: 'Freeze Ray'
     
-    # And I am on the manage good page for the good,
-    visit manage_good_page_for 'Freeze Ray'
+    # And I am on the edit good page for the good,
+    visit edit_good_page_for 'Freeze Ray'
   end
   
   scenario "The first variant of a good is auto-created when the good is created" do

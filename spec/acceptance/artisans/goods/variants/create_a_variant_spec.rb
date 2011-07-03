@@ -11,10 +11,10 @@ feature 'Create a Variant', %q{
     sign_in_as_artisan
     
     # And I have created a good with two options,
-    g = Factory :good_with_size_and_color, name: 'Freeze Ray'
+    Factory :good_with_size_and_color, name: 'Freeze Ray'
     
-    # And I am on the manage good page for the good,
-    visit manage_good_page_for 'Freeze Ray'
+    # And I am on the edit good page for the good,
+    visit edit_good_page_for 'Freeze Ray'
   end
   
   scenario "An artisan can add a variant to a good with valid attributes" do

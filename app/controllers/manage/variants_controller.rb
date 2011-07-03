@@ -5,8 +5,8 @@ module Manage
       @variant = @good.variants.new( params[ :variant ] )
       
       @variant.save ?
-        redirect_to( manage_good_path( @good ), notice: "Variant was successfully created." ) :
-        redirect_to( manage_good_path( @good ), alert: "#{ @variant.errors.full_messages }" )
+        redirect_to( edit_manage_good_path( @good ), notice: "Variant was successfully created." ) :
+        redirect_to( edit_manage_good_path( @good ), alert: "#{ @variant.errors.full_messages }" )
     end
   end
 end

@@ -13,8 +13,8 @@ feature 'Add an Option to a Good', %q{
     # And I have created a good (with the default option),
     Good.generate name: 'Freeze Ray'
     
-    # And I am on the manage good page for the good,
-    visit manage_good_page_for 'Freeze Ray'
+    # And I am on the edit good page for the good,
+    visit edit_good_page_for 'Freeze Ray'
   end
   
   scenario "An artisan can add an option with valid attributes to a good" do
