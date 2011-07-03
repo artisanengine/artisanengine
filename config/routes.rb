@@ -10,6 +10,7 @@ ArtisanEngine::Application.routes.draw do
   namespace :manage do
     resources :goods do
       resources :options
+      resources :variants
     end
     resources :images
     resources :pages

@@ -16,6 +16,17 @@
 		%thead
 			%tr
 				- for option in @good.options
-					%th= option.name
+					%th= label_tag "variant_option_value_#{ option.position }", option.name
 		%tbody
 			= render @good.variants
+	
+	#add_variant
+		= semantic_form_for [ :manage, @good, @good.variants.new ] do |f|
+			= f.inputs do
+				= f.input :option_value_1, label: false
+				= f.input :option_value_2, label: false
+				= f.input :option_value_3, label: false
+				= f.input :option_value_4, label: false
+				= f.input :option_value_5, label: false
+				
+			= f.submit 'Add Variant'
