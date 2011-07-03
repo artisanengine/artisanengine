@@ -34,14 +34,14 @@ describe Option do
   context "callbacks: " do
     describe "before creating: " do
       context "if it is the only option in the good: " do
-        it "sets its position to 1 if it is the only option in the good" do
+        it "sets its position to 1" do
           good = Good.generate # Generates one option by default.
           good.options.first.position.should be 1
         end
       end
       
       context "if it is not the only option in the good: " do
-        it "sets its position to 1 lower than the previous option in the good" do
+        it "sets its position to 1 lower than the lowest positioned option in the good" do
           good     = Good.generate # Generates one option by default.
           option_2 = Option.generate good: good
           option_3 = Option.generate good: good
@@ -52,7 +52,7 @@ describe Option do
     end
     
     describe "after creating: " do
-      it "initializes its good's variants' option values" do
+      it "initializes its good's variants' corresponding option values" do
         good = Good.generate # Generates one option with default_value: "Default" by default.
         good.variants.first.option_value_1.should == "Default"
       end
@@ -67,20 +67,30 @@ describe Option do
     end
     
     describe "after destroying: " do
-      it "shifts lower-positioned items higher" do
-        # This is supposed to test the shift_higher method, but should_receive
-        # doesn't work in unit tests, so just make sure shift_higher is getting
-        # called after destroy.
+      it "migrates lower-positioned options' corresponding variant option values" do
+        good     = Good.generate # Generates one option and one variant by default.
         
-        good     = Good.generate
+        # Example: Good with 3 options. 
         option_1 = good.options.first
         option_2 = good.options.create!( name: 'Size',  default_value: 'Small' )
         option_3 = good.options.create!( name: 'Color', default_value: 'Red' )
-
+        
+        # Destroy first option.
         option_1.destroy
         
+        # All variant option values should shift.
+        good.variants.first.option_value_1.should == "Small"
+        good.variants.first.option_value_2.should == "Red"
+        good.variants.first.option_value_3.should == nil
+      end
+        
+      it "raises the positions of lower-positioned options" do
+        good     = Good.generate # Generates one option by default.
+        option_1 = good.options.first
+        option_2 = good.options.create!( Factory.attributes_for :option )
+        
+        option_1.destroy
         option_2.reload.position.should == 1
-        option_3.reload.position.should == 2
       end
     end
   end
@@ -94,36 +104,6 @@ describe Option do
         option_bottom = Option.generate good: good
         
         good.options.in_order.should == [ good.options.first, option_top, option_middle, option_bottom ]
-      end
-    end
-  end
-  
-  context "methods: " do
-    describe "#shift_higher" do
-      it "swaps its good's variants' option values from the old position to the new position" do
-        good     = Good.generate # Generates one option by default.
-        
-        # Example: Good with 3 options. 
-        option_1 = good.options.first
-        option_2 = good.options.create!( name: 'Size',  default_value: 'Small' )
-        option_3 = good.options.create!( name: 'Color', default_value: 'Red' )
-        
-        # Destroy first option.
-        option_1.destroy
-        
-        # All option values should shift.
-        good.variants.first.option_value_1.should == "Small"
-        good.variants.first.option_value_2.should == "Red"
-        good.variants.first.option_value_3.should == nil
-      end
-        
-      it "raises its position by 1" do
-        good     = Good.generate # Generates one option by default.
-        option_1 = good.options.first
-        option_2 = good.options.create!( Factory.attributes_for :option )
-        
-        option_1.destroy
-        option_2.reload.position.should == 1
       end
     end
   end
