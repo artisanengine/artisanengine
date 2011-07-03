@@ -20,3 +20,10 @@ Factory.define :good_with_5_options, parent: :good do |g|
     4.times { g.options << Option.spawn }
   end
 end
+
+Factory.define :good_with_3_variants, parent: :good do |g|
+  g.after_create do |g|
+    g.variants << Variant.spawn
+    g.variants << Variant.spawn
+  end
+end

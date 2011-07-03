@@ -9,7 +9,7 @@
 			%tr[ variant ]
 				- for option in @good_options
 					%td= eval( "variant.option_value_#{ option.position }" )
-				%td
+				%td= link_to 'Delete', [ :manage, @good, variant ], method: :delete, confirm: "Are you sure you want to delete this variant?"
 	%tbody#add_variant
 		%tr
 			= form_for [ :manage, @good, @good.variants.new ] do |f|
