@@ -57,5 +57,34 @@ namespace :db do
       post.tags = post.blog.frame.tags.sample( rand( 6 ) )
     end
     
+    # ------------------------------------------------------------------
+    # Goods, Options, and Variants
+    
+    5.times { Good.generate frame: hausleather }
+    5.times { Good.generate frame: peggyskemp }
+    5.times { Good.generate frame: emmysorganics }
+    
+    # Generate up to 5 options for each good.
+    for good in Good.all
+      rand( 6 ).times { good.options << Option.spawn }
+    end
+    
+    # Generate up to 5 variants for each good.
+    for good in Good.all
+      rand( 6 ).times do
+        # Determine how many options the good has, so we know how many random option values
+        # to generate for the variant.
+        num_options = good.options.count
+        variant     = Variant.spawn
+      
+        # Assign the variant with random values for each option.
+        num_options.times do |time|
+          eval( "variant.option_value_#{ time + 1 } = '#{ Faker::Lorem.words( 1 ).first }'" )
+        end
+      
+        # Add the variant to the good.
+        good.variants << variant
+      end
+    end
   end
 end
