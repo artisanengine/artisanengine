@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "goods", ["id", "frame_id"], :name => "index_goods_on_id_and_frame_id"
+
   create_table "images", :force => true do |t|
     t.integer  "frame_id",   :null => false
     t.string   "image_uid"
@@ -59,6 +61,14 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   add_index "images", ["id", "frame_id"], :name => "index_images_on_id_and_frame_id"
+
+  create_table "options", :force => true do |t|
+    t.integer "good_id", :null => false
+    t.string  "name",    :null => false
+    t.string  "default", :null => false
+  end
+
+  add_index "options", ["id", "good_id"], :name => "index_options_on_id_and_good_id"
 
   create_table "pages", :force => true do |t|
     t.integer  "frame_id",     :null => false

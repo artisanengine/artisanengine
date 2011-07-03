@@ -18,4 +18,14 @@ describe Good do
       new_good.should_not be_valid
     end
   end
+  
+  context "callbacks: " do
+    describe "after saving: " do
+      it "creates a default option" do
+        good = Good.generate
+        good.options.count.should == 1
+        good.options.first.name.should == 'Type'
+      end
+    end
+  end
 end

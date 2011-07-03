@@ -25,7 +25,7 @@ feature 'Create a Good', %q{
     page_should_have_notice
     
     # And I should see my good and my good's title.
-    page.should have_selector '.good', text: 'Freeze Ray'
+    page.should have_selector '#good', text: 'Freeze Ray'
   end
   
   scenario "An artisan cannot create a good with invalid attributes" do

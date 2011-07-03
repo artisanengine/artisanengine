@@ -115,6 +115,19 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    add_index :goods, [ :id, :frame_id ]
+    
+    # ------------------------------------------------------------------
+    # Options
+    
+    create_table :options do |t|
+      t.integer :good_id,           null: false
+      t.string  :name,              null: false
+      t.string  :default,           null: false
+    end
+    
+    add_index :options, [ :id, :good_id ]
   end
 
   def down

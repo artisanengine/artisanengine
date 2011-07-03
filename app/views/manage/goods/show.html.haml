@@ -1,2 +1,6 @@
-%div[ @good ]
+#good
 	%h1= @good.name
+	
+	%ul#options
+		- for option in @good.options
+			%li.option= option.name
