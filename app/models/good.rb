@@ -4,6 +4,7 @@ class Good < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Callbacks
   
+  after_create :create_first_variant
   after_create :create_default_option
   
   # ------------------------------------------------------------------
@@ -11,6 +12,7 @@ class Good < ActiveRecord::Base
   
   belongs_to :frame
   has_many   :options
+  has_many   :variants
   
   # ------------------------------------------------------------------
   # Validations
@@ -20,7 +22,11 @@ class Good < ActiveRecord::Base
   # ------------------------------------------------------------------
   private
   
+  def create_first_variant
+    variants.create!
+  end
+  
   def create_default_option
-    options.create! name: 'Type', default: 'Default'
+    options.create! name: 'Type', default_value: 'Default'
   end
 end

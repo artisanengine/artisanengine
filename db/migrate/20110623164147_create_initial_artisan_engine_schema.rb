@@ -123,11 +123,30 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     
     create_table :options do |t|
       t.integer :good_id,           null: false
+      
+      t.integer :position,          null: false
+      
       t.string  :name,              null: false
-      t.string  :default,           null: false
+      t.string  :default_value,     null: false
     end
     
     add_index :options, [ :id, :good_id ]
+    
+    # ------------------------------------------------------------------
+    # Variants
+    
+    create_table :variants do |t|
+      t.integer :good_id,           null: false
+      
+      t.string  :option_value_1
+      t.string  :option_value_2
+      t.string  :option_value_3
+      t.string  :option_value_4
+      t.string  :option_value_5
+    end
+    
+    add_index :variants, [ :id, :good_id ]
+    
   end
 
   def down

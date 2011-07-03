@@ -63,9 +63,10 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "images", ["id", "frame_id"], :name => "index_images_on_id_and_frame_id"
 
   create_table "options", :force => true do |t|
-    t.integer "good_id", :null => false
-    t.string  "name",    :null => false
-    t.string  "default", :null => false
+    t.integer "good_id",       :null => false
+    t.integer "position",      :null => false
+    t.string  "name",          :null => false
+    t.string  "default_value", :null => false
   end
 
   add_index "options", ["id", "good_id"], :name => "index_options_on_id_and_good_id"
@@ -106,5 +107,16 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   add_index "tags", ["id", "frame_id"], :name => "index_tags_on_id_and_frame_id"
+
+  create_table "variants", :force => true do |t|
+    t.integer "good_id",        :null => false
+    t.string  "option_value_1"
+    t.string  "option_value_2"
+    t.string  "option_value_3"
+    t.string  "option_value_4"
+    t.string  "option_value_5"
+  end
+
+  add_index "variants", ["id", "good_id"], :name => "index_variants_on_id_and_good_id"
 
 end

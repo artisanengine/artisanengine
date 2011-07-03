@@ -4,3 +4,11 @@
 	%ul#options
 		- for option in @good.options
 			%li.option= option.name
+	
+	%table#variants
+		%thead
+			%tr
+				- for option in @good.options
+					%th= option.name
+		%tbody
+			= render @good.variants

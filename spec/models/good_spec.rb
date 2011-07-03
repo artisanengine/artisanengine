@@ -21,6 +21,11 @@ describe Good do
   
   context "callbacks: " do
     describe "after saving: " do
+      it "creates a default variant" do
+        good = Good.generate
+        good.variants.count.should == 1
+      end
+      
       it "creates a default option" do
         good = Good.generate
         good.options.count.should == 1
