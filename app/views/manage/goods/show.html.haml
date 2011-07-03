@@ -23,10 +23,7 @@
 	#add_variant
 		= semantic_form_for [ :manage, @good, @good.variants.new ] do |f|
 			= f.inputs do
-				= f.input :option_value_1, label: false
-				= f.input :option_value_2, label: false
-				= f.input :option_value_3, label: false
-				= f.input :option_value_4, label: false
-				= f.input :option_value_5, label: false
+				- @good.options.count.times do |time|
+					= f.input :"option_value_#{ time + 1 }"
 				
 			= f.submit 'Add Variant'

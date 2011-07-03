@@ -6,7 +6,7 @@ module Manage
       
       @variant.save ?
         redirect_to( manage_good_path( @good ), notice: "Variant was successfully created." ) :
-        redirect_to( manage_good_path( @good ), alert: "Variant could not be created." )
+        redirect_to( manage_good_path( @good ), alert: "#{ @variant.errors.full_messages }" )
     end
   end
 end

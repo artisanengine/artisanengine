@@ -4,8 +4,7 @@ class Good < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Callbacks
   
-  after_create :create_first_variant
-  after_create :create_default_option
+  after_create :create_first_option_and_variant
   
   # ------------------------------------------------------------------
   # Associations
@@ -22,11 +21,8 @@ class Good < ActiveRecord::Base
   # ------------------------------------------------------------------
   private
   
-  def create_first_variant
-    variants.create!
-  end
-  
-  def create_default_option
-    options.create! name: 'Type', default_value: 'Default'
+  def create_first_option_and_variant
+    options.create!  name: 'Type', default_value: 'Default'
+    variants.create! option_value_1: 'Default'
   end
 end

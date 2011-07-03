@@ -35,5 +35,17 @@ feature 'Create a Variant', %q{
     end
   end
   
-  scenario "An artisan cannot add a variant to a good with invalid attributes"
+  scenario "An artisan cannot add a variant to a good with invalid attributes" do
+    # When I fill in the Add Variant section with invalid attributes,
+    within '#add_variant' do
+      fill_in 'Size', with: 'Medium'
+      click_button 'Add Variant'
+    end
+    
+    # Then I should see an alert,
+    page_should_have_alert
+    
+    # And I should not see my variant.
+    page.should_not have_selector '.variant', text: 'Medium'
+  end
 end
