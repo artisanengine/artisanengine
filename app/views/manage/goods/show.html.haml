@@ -3,7 +3,9 @@
 	
 	%ul#options
 		- for option in @good.options
-			%li.option= option.name
+			%li.option
+				= option.name
+				= link_to 'Delete', manage_good_option_path( @good, option ), method: :delete
 	
 	#add_option
 		= semantic_form_for [ :manage, @good, @good.options.new ] do |f|

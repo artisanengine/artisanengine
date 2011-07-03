@@ -7,6 +7,8 @@ class Option < ActiveRecord::Base
   before_create         :set_position
   after_create          :update_good_variants_with_default_value
   before_destroy        :ensure_not_last_option
+  after_destroy         :clear_good_variants_option_values
+  after_destroy         :shift_lower_positioned_options_higher
   
   # ------------------------------------------------------------------
   # Associations
@@ -25,6 +27,22 @@ class Option < ActiveRecord::Base
   scope :in_order,       order( "options.position ASC" )
   
   # ------------------------------------------------------------------
+  # Methods
+  
+  def shift_higher
+    Option.transaction do
+      for variant in good.variants
+        eval( "variant.option_value_#{ position - 1 } = variant.option_value_#{ position }" )
+        eval( "variant.option_value_#{ position } = nil" )
+        variant.save
+      end
+    
+      self.position = position - 1
+      save!
+    end
+  end
+  
+  # ------------------------------------------------------------------
   private
   
   def set_position
@@ -34,6 +52,14 @@ class Option < ActiveRecord::Base
   def assume_lowest_position
     lowest_option = good.options.in_order.last
     self.position = lowest_option.position + 1
+  end
+  
+  def shift_lower_positioned_options_higher
+    Option.transaction do
+      for option in good.options.where( "options.position > #{ position }" ).all
+        option.shift_higher
+      end
+    end
   end
   
   def update_good_variants_with_default_value
@@ -46,5 +72,9 @@ class Option < ActiveRecord::Base
   
   def ensure_not_last_option
     return false if good.options.count == 1
+  end
+  
+  def clear_good_variants_option_values
+    good.variants.update_all( :"option_value_#{ position }" => nil )
   end
 end
