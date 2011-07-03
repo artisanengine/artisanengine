@@ -17,7 +17,8 @@ module Manage
     end
     
     def show
-      @good = current_frame.goods.find( params[ :id ] )
+      @good         = current_frame.goods.find( params[ :id ] )
+      @good_options = @good.options.in_order.all
     end
   end
 end

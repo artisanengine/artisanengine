@@ -1,32 +1,5 @@
 #good
 	%h1= @good.name
 	
-	%ul#options
-		- for option in @good.options.in_order.all
-			%li.option
-				= option.name
-				= link_to 'Delete', manage_good_option_path( @good, option ), method: :delete
-	
-	#add_option
-		= semantic_form_for [ :manage, @good, @good.options.new ] do |f|
-			= f.inputs :name, :default_value
-			= f.submit 'Add Option'
-	
-	%table#variants
-		%thead
-			%tr
-				- for option in @good.options.in_order.all
-					%th= label_tag "variant_option_value_#{ option.position }", option.name
-		%tbody
-			- for variant in @good.variants
-				%tr[ variant ]
-					- for option in @good.options.in_order.all
-						%td= eval( "variant.option_value_#{ option.position }" )
-	
-	#add_variant
-		= semantic_form_for [ :manage, @good, @good.variants.new ] do |f|
-			= f.inputs do
-				- for option in @good.options.in_order.all
-					= f.input :"option_value_#{ option.position }"
-				
-			= f.submit 'Add Variant'
+	= render 'options'
+	= render 'variants'

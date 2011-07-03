@@ -1,0 +1,19 @@
+%table#variants
+	%thead
+		%tr
+			- for option in @good_options
+				%th= label_tag "variant_option_value_#{ option.position }", option.name
+			%th
+	%tbody
+		- for variant in @good.variants
+			%tr[ variant ]
+				- for option in @good_options
+					%td= eval( "variant.option_value_#{ option.position }" )
+				%td
+	%tbody#add_variant
+		%tr
+			= form_for [ :manage, @good, @good.variants.new ] do |f|
+				- for option in @good_options
+					%td= f.text_field :"option_value_#{ option.position }"
+			
+				%td= f.submit 'Add Variant'

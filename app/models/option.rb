@@ -39,7 +39,7 @@ class Option < ActiveRecord::Base
         eval( "variant.option_value_#{ position } = nil" )
       
         # Save the variant. Do not validate, since one of the required option values
-        # will temporarily be nil.
+        # may temporarily be nil if other options are waiting to be shifted.
         variant.save!( validate: false )
       end
 
@@ -62,11 +62,11 @@ class Option < ActiveRecord::Base
   end
   
   def shift_lower_positioned_options_higher
-    #Option.transaction do
+    Option.transaction do
       for option in good.options.where( "options.position > #{ position }" ).all
         option.shift_higher
       end
-    #end
+    end
   end
   
   def update_good_variants_with_default_value
