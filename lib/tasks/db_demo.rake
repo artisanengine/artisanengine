@@ -86,5 +86,18 @@ namespace :db do
         good.variants << variant
       end
     end
+    
+    # Attach up to 5 images to each good.
+    for good in Good.all
+      random_image_ids = []
+      
+      # Sample up to 5 random images from the frame.
+      rand( 6 ).times do 
+        random_image_ids << good.frame.images.sample.try( :id )
+      end
+
+      # Assign the images to the good. Only use unique IDs.
+      good.image_ids = random_image_ids.uniq
+    end
   end
 end
