@@ -17,19 +17,19 @@ gem 'cells',                  '3.6.2'       # Reusable view components.
 gem 'devise',                 '1.4.2'       # Authentication.
 
 # View-layer enhancements.
-gem 'formtastic',						  '1.2.4'
-gem 'haml',									  '3.1.2'
+gem 'formtastic',						  '1.2.4'       # Better forms.
+gem 'haml',									  '3.1.2'       # HTML haiku.
 gem 'compass',                git: 'https://github.com/chriseppstein/compass.git', branch: 'rails31'
 
 # Asset pipeline enhancements.
-gem 'sass-rails',             '3.1.0.rc.3'  # Enable SASS templates.
+gem 'sass-rails',             '3.1.0.rc.4'  # Enable SASS templates.
 gem 'coffee-script',          '2.2.0'       # Enable CoffeeScript.
 gem 'uglifier',               '1.0.0'       # Default asset compressor.
 gem 'jquery-rails',           '1.0.11'      # Serve JQuery through the asset pipeline.
 
 # Demo data.
-gem 'factory_girl_rails',		'1.0.1'       # Sample model generation.
-gem 'faker',							  '0.9.5'       # Sample data generation.
+gem 'factory_girl_rails',		  '1.0.1'       # Sample model generation.
+gem 'faker',							    '0.9.5'       # Sample data generation.
 
 # ------------------------------------------------------------------
 # Environment-Specific Gems
