@@ -15,11 +15,11 @@ class Variant < ActiveRecord::Base
   # Accessors
   
   def option_values
-    [ option_value_1, option_value_2, option_value_3, option_value_4, option_value_5 ].compact
+    [ option_value_1, option_value_2, option_value_3, option_value_4, option_value_5 ]
   end
   
   def number_of_options
-    option_values.count
+    option_values.compact.count
   end
   
   def required_number_of_options

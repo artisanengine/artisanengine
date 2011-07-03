@@ -1,6 +1,3 @@
 %tr[ variant ]
-	%td= variant.option_value_1
-	%td= variant.option_value_2
-	%td= variant.option_value_3
-	%td= variant.option_value_4
-	%td= variant.option_value_5
+	- for option in @good.options.in_order.all
+		%td= variant.send( :"option_value_#{ option.position }" )

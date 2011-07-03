@@ -67,25 +67,16 @@ describe Option do
     end
     
     describe "after destroying: " do
-      it "clears its good's variants' option values" do
-        good = Good.generate # Generates one option by default.
-        size = Option.spawn( name: 'Size', default_value: 'Small' )
-        good.options << size
+      it "shifts lower-positioned items higher" do
+        # This is supposed to test the shift_higher method, but should_receive
+        # doesn't work in unit tests, so just make sure shift_higher is getting
+        # called after destroy.
         
-        good.variants.first.option_value_2.should == 'Small'
-        size.destroy
-        good.variants.first.option_value_2.should == nil
-      end
-      
-      it "shifts lower-positioned options higher in position" do
-        good = Good.generate
-        good.options << Option.spawn
-        good.options << Option.spawn
-        
-        option_1 = good.options[0]
-        option_2 = good.options[1]
-        option_3 = good.options[2]
-        
+        good     = Good.generate
+        option_1 = good.options.first
+        option_2 = good.options.create!( name: 'Size',  default_value: 'Small' )
+        option_3 = good.options.create!( name: 'Color', default_value: 'Red' )
+
         option_1.destroy
         
         option_2.reload.position.should == 1
@@ -111,14 +102,19 @@ describe Option do
     describe "#shift_higher" do
       it "swaps its good's variants' option values from the old position to the new position" do
         good     = Good.generate # Generates one option by default.
-        option_1 = good.options.first
-        option_2 = good.options.create!( name: 'Size', default_value: 'Small' )
         
-        good.variants.first.option_value_1.should == 'Default'
-        good.variants.first.option_value_2.should == 'Small'
+        # Example: Good with 3 options. 
+        option_1 = good.options.first
+        option_2 = good.options.create!( name: 'Size',  default_value: 'Small' )
+        option_3 = good.options.create!( name: 'Color', default_value: 'Red' )
+        
+        # Destroy first option.
         option_1.destroy
-        good.variants.first.option_value_1.should == 'Small'
-        good.variants.first.option_value_2.should == nil
+        
+        # All option values should shift.
+        good.variants.first.option_value_1.should == "Small"
+        good.variants.first.option_value_2.should == "Red"
+        good.variants.first.option_value_3.should == nil
       end
         
       it "raises its position by 1" do
