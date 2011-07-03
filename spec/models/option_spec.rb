@@ -57,6 +57,14 @@ describe Option do
         good.variants.first.option_value_1.should == "Default"
       end
     end
+    
+    describe "before destroying: " do
+      it "cannot be destroyed if it is the good's last option" do
+        good   = Good.generate # Generates one option by default.
+        option = good.options.first
+        option.destroy.should be_false
+      end
+    end
   end
   
   context "scopes: " do

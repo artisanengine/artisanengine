@@ -11,4 +11,5 @@ en:
       last_name: "Last Name"
       password_confirmation: "Password Confirmation"
       tag_names: "Tags"
+      default_value: "Default Value"
         

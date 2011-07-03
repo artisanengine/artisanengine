@@ -5,6 +5,11 @@
 		- for option in @good.options
 			%li.option= option.name
 	
+	#add_option
+		= semantic_form_for [ :manage, @good, @good.options.new ] do |f|
+			= f.inputs :name, :default_value
+			= f.submit 'Add Option'
+	
 	%table#variants
 		%thead
 			%tr

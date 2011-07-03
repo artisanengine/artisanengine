@@ -4,8 +4,9 @@ class Option < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Callbacks
   
-  before_create :set_position
-  after_create  :update_good_variants_with_default_value
+  before_create         :set_position
+  after_create          :update_good_variants_with_default_value
+  before_destroy        :ensure_not_last_option
   
   # ------------------------------------------------------------------
   # Associations
@@ -41,5 +42,9 @@ class Option < ActiveRecord::Base
   
   def good_has_less_than_5_options
     errors.add( :good, "cannot have more than 5 options" ) if good and good.options.count == 5
+  end
+  
+  def ensure_not_last_option
+    return false if good.options.count == 1
   end
 end
