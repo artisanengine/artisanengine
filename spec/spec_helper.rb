@@ -37,4 +37,8 @@ end
 Spork.each_run do
   # Reload routes.
   require "#{ Rails.root }/config/routes"
+  
+  # Reload factories.
+  Factory.factories.clear
+  Dir[ "#{ Rails.root }/spec/support/factories/**/*.rb" ].each { |f| load f }
 end
