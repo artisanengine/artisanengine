@@ -7,6 +7,7 @@ module ArtisanEngine
       before_filter :prepend_current_frame_theme_to_view_paths
     end
   
+    # ------------------------------------------------------------------
     private
 
     # If request domain is hausleather.com, looks for views in

@@ -21,6 +21,7 @@ class Image < ActiveRecord::Base
   validates_property    :format, of: :image, 
                           in: [ :jpg, :jpeg, :png, :gif ]
   
+  # ------------------------------------------------------------------
   private
   
   # Store files under the frame domain with a unique timestamp.

@@ -2,6 +2,11 @@ class Frame < ActiveRecord::Base
   attr_accessible :name, :domain
   
   # ------------------------------------------------------------------
+  # Callbacks
+  
+  before_create           :initialize_blog
+  
+  # ------------------------------------------------------------------
   # Associations
   
   has_many :pages
@@ -18,10 +23,6 @@ class Frame < ActiveRecord::Base
   validates_uniqueness_of :domain
   
   # ------------------------------------------------------------------
-  # Callbacks
-  
-  before_create           :initialize_blog
-  
   private
   
   def initialize_blog

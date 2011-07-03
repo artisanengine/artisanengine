@@ -6,6 +6,7 @@ module FramesHelper
     @current_frame ||= set_frame
   end
   
+  # ------------------------------------------------------------------
   private
 
   # Set the current frame based on criteria in determine_domain, 

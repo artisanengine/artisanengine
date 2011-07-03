@@ -6,6 +6,7 @@ module Manage
     
     include FramesHelper                    # Helpers for managing the current frame.
     
+    # ------------------------------------------------------------------
     private
     
     # Render template only (no layout) for AJAX requests, otherwise JavaScripts get

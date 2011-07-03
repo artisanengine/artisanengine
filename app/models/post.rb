@@ -3,6 +3,12 @@ class Post < ActiveRecord::Base
   attr_accessor   :tag_names
   
   # ------------------------------------------------------------------
+  # Callbacks
+  
+  before_save :convert_content_to_html
+  after_save  :convert_tag_names_to_tag_associations
+  
+  # ------------------------------------------------------------------
   # Associations
   
   belongs_to :blog
@@ -13,13 +19,7 @@ class Post < ActiveRecord::Base
   # Validations
   
   validates_presence_of :title, :blog
-  
-  # ------------------------------------------------------------------
-  # Callbacks
-  
-  before_save :convert_content_to_html
-  after_save  :convert_tag_names_to_tag_associations
-  
+    
   # ------------------------------------------------------------------
   # Accessors
   
@@ -27,6 +27,7 @@ class Post < ActiveRecord::Base
     @tag_names || tags.map( &:name ).join( ', ' )
   end
   
+  # ------------------------------------------------------------------
   private
   
   def convert_content_to_html

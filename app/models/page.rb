@@ -2,6 +2,11 @@ class Page < ActiveRecord::Base
   attr_accessible :title, :content
   
   # ------------------------------------------------------------------
+  # Callbacks
+  
+  before_save :convert_content_to_html
+  
+  # ------------------------------------------------------------------
   # Associations
   
   belongs_to :frame
@@ -12,10 +17,6 @@ class Page < ActiveRecord::Base
   validates_presence_of :title, :frame
   
   # ------------------------------------------------------------------
-  # Callbacks
-  
-  before_save :convert_content_to_html
-  
   private
   
   def convert_content_to_html
