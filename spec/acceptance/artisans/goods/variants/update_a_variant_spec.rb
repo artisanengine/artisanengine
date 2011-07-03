@@ -17,24 +17,41 @@ feature 'Update a Variant', %q{
     visit edit_good_page_for 'Freeze Ray'
   end
   
-  scenario "An artisan can update a variant with valid attributes", js: true do
+  scenario "An artisan can update a variant with valid attributes" do
     # When I click the Edit link for the variant,
     within '.variant' do
       click_link 'Edit'
-      
-      # And I fill in valid attributes for the variant,
-      fill_in 'edit_variant_option_1', with: 'Extra Saucy'
-      
-      # And I click Update Variant
-      click_button 'Update Variant'
     end
+  
+    # And I fill in valid attributes for the variant,
+    fill_in 'Type', with: 'Extra Saucy'
+      
+    # And I click Update Variant,
+    click_button 'Update Variant'
     
     # Then I should see a notice,
     page_should_have_notice
     
-    # And I should see my update variant,
+    # And I should see my updated variant,
     page.should have_selector '.variant', text: 'Extra Saucy'
   end
 
-  scenario "An artisan cannot update a variant with invalid attributes"
+  scenario "An artisan cannot update a variant with invalid attributes" do
+    # When I click the Edit link for the variant,
+    within '.variant' do
+      click_link 'Edit'
+    end
+    
+    # And I fill in invalid attributes for the variant,
+    fill_in 'Type', with: ''
+    
+    # And I click Update Variant,
+    click_button 'Update Variant'
+    
+    # Then I should see an alert,
+    page_should_have_alert
+    
+    # And my variant's attributes should not change.
+    Variant.last.option_value_1.should == 'Default'
+  end
 end
