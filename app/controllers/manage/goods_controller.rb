@@ -2,6 +2,10 @@ module Manage
   class GoodsController < Manage::ManageController
     respond_to :html
     
+    def index
+      @goods = current_frame.goods
+    end
+    
     def new
       @good = current_frame.goods.build
     end
@@ -36,6 +40,14 @@ module Manage
       end
       
       respond_with :manage, @good, location: manage_good_path( @good )
+    end
+    
+    def destroy
+      @good = current_frame.goods.find( params[ :id ] )
+      
+      @good.destroy ?
+        redirect_to( manage_goods_path, notice: "Good: #{ @good.name } was successfully destroyed." ) :
+        redirect_to( manage_goods_path, notice: "Good: #{ @good.name } could not be destroyed." )
     end
   end
 end
