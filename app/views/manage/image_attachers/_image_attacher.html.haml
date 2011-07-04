@@ -1,2 +1,3 @@
 %div[ image_attacher.image ]
 	= image_tag( image_attacher.image.image.thumb( '200x200#' ).url )
+	= link_to 'Remove', [ :manage, @good, image_attacher ], method: :delete, confirm: "Are you sure you want to remove this image? (It will still be available in your image gallery.)" 

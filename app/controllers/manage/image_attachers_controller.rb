@@ -19,6 +19,18 @@ module Manage
       end
     end
     
+    def destroy
+      @image_attacher = ImageAttacher.find( params[ :id ] )
+      
+      if @image_attacher.destroy
+        flash[ :notice ] = "Image successfully removed."
+        redirect_to polymorphic_url( [ :manage, parent ], action: :edit )
+      else
+        flash[ :alert ] = "Image could not be removed."
+        redirect_to polymorphic_url( [ :manage, parent ], action: :edit )
+      end
+    end
+    
     private
     
     def parent

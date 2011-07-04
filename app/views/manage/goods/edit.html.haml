@@ -11,9 +11,8 @@
 		= render @good.image_attachers
 		= link_to 'Attach an Existing Image', new_manage_good_image_attacher_path( @good )
 		
-		= semantic_form_for [ :manage, @good, @image ] do |f|
-			= f.inputs do
-				= f.input :image, as: :file
+		= form_for [ :manage, @good, @image ] do |f|
+			= f.file_field :image
 			= f.submit 'Upload'
 
 	#danger_zone
