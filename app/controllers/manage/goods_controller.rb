@@ -38,6 +38,7 @@ module Manage
       else
         flash[ :alert ] = t( :form_alert )
         @good_options = @good.options.in_order.all
+        @image        = @good.images.build( frame: current_frame )
       end
       
       respond_with :manage, @good, location: manage_good_path( @good )
