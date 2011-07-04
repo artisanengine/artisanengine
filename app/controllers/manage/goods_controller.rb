@@ -27,6 +27,7 @@ module Manage
     def edit
       @good         = current_frame.goods.find( params[ :id ] )
       @good_options = @good.options.in_order.all
+      @image        = @good.images.build( frame: current_frame )
     end
     
     def update

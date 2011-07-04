@@ -38,4 +38,19 @@ feature 'Attach an Image to a Good', %q{
       page.should have_selector 'img'
     end
   end
+  
+  scenario "An artisan can attach a new image to a good" do
+    # When I add an image to the Image field,
+    attach_file 'Image', anaura_bay_image_path
+    
+    # And I click Upload,
+    click_button 'Upload'
+    
+    # Then I should see a notice,
+    page_should_have_notice
+    
+    # And I should see my good and my image.
+    page.should have_content 'Freeze Ray'
+    page.should have_content 'anaura_bay.jpg'
+  end
 end
