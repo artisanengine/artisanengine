@@ -20,7 +20,7 @@ module Manage
           redirect_to polymorphic_path( [ :manage, parent ], action: :edit ) and return 
         end
       else
-        flash[ :alert ]  = t( :form_alert )
+        flash[ :alert ] = t( :form_alert )
       end
 
       respond_with :manage, @image, location: manage_images_path
@@ -39,7 +39,7 @@ module Manage
     private
     
     def parent
-      Good.find( params[ :good_id ] ) if params[ :good_id ]
+      current_frame.goods.find( params[ :good_id ] ) if params[ :good_id ]
     end
   end
 end
