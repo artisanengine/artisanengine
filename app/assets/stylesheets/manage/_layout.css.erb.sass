@@ -1,0 +1,69 @@
+@import colors
+@import typography
+@import compass/css3
+@import blueprint/grid
+
+body
+	background-color: $bg-color
+	
+	#wrapper
+		+container
+		
+		h1#manage_header
+			font-weight: bold
+			+adjust-font-size-to( 16px )
+			+adjust-leading-to( 1.5 )
+			text-align: center
+		
+		ul#manage_links
+			background: darken( $bg-color, 4% )
+			padding: 7px 15px
+			margin-bottom: 10px
+			+border-radius( 5px )
+			text-align: center
+
+			li
+				display: inline
+				margin: 10px
+		
+		.heading_links
+			text-align: center
+			margin-bottom: 10px
+
+			.add
+				padding: 1px 0 1px 20px
+				background: url( '<%= asset_path "icons/add.png" %>' ) no-repeat center left
+		
+		#notifications
+			text-align: center
+			width: 75%
+			margin: 0 auto 10px
+			
+			.notification
+				padding: 5px
+				+border-radius( 10px )
+			
+			.notice
+				background-color: rgba( 0, 255, 0, 0.1 )
+			.alert
+				background-color: rgba( 255, 0, 0, 0.1 )
+		
+		#footer
+			+prepend( 7 )
+			+column( 10, true )
+			+append( 7 )
+			
+			margin: 20px 0 10px
+			text-align: center
+			
+			p#session_info
+				+adjust-font-size-to( 11px )
+				line-height: 15px
+				color: darken( $bg-color, 50% )
+				margin: 0 auto
+				background-color: darken( $bg-color, 3% )
+				padding: 5px
+				+border-radius( 5px )
+			
+				.name, .version
+					font-weight: bold

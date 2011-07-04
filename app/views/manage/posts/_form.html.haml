@@ -1,9 +1,9 @@
 = semantic_form_for [ :manage, :blog, @post ] do |f|
 	= f.inputs do
 		= f.input :title
-		= f.input :content, input_html: { id: 'page_content' }
 		= f.input :tag_names, input_html: { :"data-pre" => @post.tags.to_json } 	# Pre-populate TokenInput.
-	= f.submit
-
-= link_to 'Preview', 			'#', id: 'page_preview' 	# See /pages.js.coffee.
-= link_to 'Insert Image', '#', id: 'insert_image'		# See /pages.js.coffee.
+		= f.input :content, input_html: { id: 'page_content' }
+	= link_to 'Preview', 			'#', id: 'page_preview' 	# See /pages.js.coffee.
+	·
+	= link_to 'Insert Image', '#', id: 'insert_image'		# See /pages.js.coffee.	
+	= f.submit class: 'create'

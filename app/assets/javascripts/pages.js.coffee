@@ -33,13 +33,16 @@ appendImageLink = (image_link) ->
 
 # Adds Insert links to /images/index.html.
 addInsertLinks = () ->
+	# Hide heading links.
+	$( '.heading_links' ).hide()
+	
 	$( '.image img' ).each( (index) ->
 		# Get the image's original URL from the data-original attribute of the image.
 		image_source = $( this ).attr( 'data-original' )
 		
 		# Create a link using the URL.
 		insert_link = '<a class="insert_link" href="' + image_source + '">Insert</a>'
-		$( this ).parent().append( insert_link )
+		$( '.links a.delete' ).replaceWith( insert_link )
 	)
 	
 	# Add a click event which will close the Colorbox and
@@ -57,4 +60,4 @@ $ ->
 	
 	# Replace Insert Image link, since this function doesn't work without JS.
 	$( 'a#insert_image' ).attr( 'href', '/manage/images' )
-	$( 'a#insert_image' ).colorbox({ onComplete: () -> addInsertLinks() })
+	$( 'a#insert_image' ).colorbox({ width: 980, height: '100%', onComplete: () -> addInsertLinks() })

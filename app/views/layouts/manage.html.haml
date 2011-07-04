@@ -22,5 +22,8 @@
 					%li= link_to 'Images', 		 manage_images_path
 				
 			#main
-				= render 'notifications'
+				= render 'notifications' unless flash.empty?
 				= yield
+			
+			#footer
+				= render 'session_info'

@@ -1,4 +1,7 @@
 = content_for( :heading ) { 'Images' }
 
+.heading_links
+	= link_to 'Upload an Image', new_manage_image_path, class: 'add'
+
 #images
 	= render @images

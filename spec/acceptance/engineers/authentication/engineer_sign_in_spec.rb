@@ -21,7 +21,7 @@ feature 'Engineer Sign In', %q{
     sign_in_as_engineer email: @valid_email, password: @valid_password
     
     # Then I should be signed in.
-    page.should have_content 'Welcome back'
+    page.should have_content 'Signed in'
   end
   
   scenario "An engineer cannot sign in to his account with invalid credentials" do
@@ -32,6 +32,6 @@ feature 'Engineer Sign In', %q{
     page.should have_selector '.alert'
     
     # And I should not be signed in.
-    page.should have_no_content 'Welcome back'
+    page.should have_no_content 'Signed in'
   end
 end

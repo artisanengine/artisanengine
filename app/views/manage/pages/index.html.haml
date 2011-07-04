@@ -1,5 +1,8 @@
 = content_for( :heading ) { 'Pages' }
 
+.heading_links
+	= link_to 'Add a Page', new_manage_page_path, class: 'add'
+
 %table#pages
 	%thead
 		%tr

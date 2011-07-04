@@ -11,5 +11,5 @@
 		#wrapper
 			#main
 				= render 'session_info'
-				= render 'notifications'
+				= render 'notifications' unless flash.empty?
 				= yield

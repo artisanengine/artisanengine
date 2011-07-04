@@ -16,6 +16,6 @@ feature 'Automatic Blog Setup', %q{
     visit manage_blog_page
     
     # Then I should see my blog.
-    page.should have_content 'Test Frame Blog'
+    page.should have_content 'Blog'
   end
 end

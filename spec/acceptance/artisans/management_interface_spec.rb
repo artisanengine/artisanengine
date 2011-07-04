@@ -16,6 +16,6 @@ feature 'Management Interface', %q{
     visit management_interface
     
     # Then I should see the management interface.
-    page.should have_content 'Management'
+    page.should have_content 'Manage'
   end
 end

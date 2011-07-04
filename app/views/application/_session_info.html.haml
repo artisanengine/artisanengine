@@ -1,4 +1,10 @@
-- if current_engineer or current_artisan
-	%p Welcome back.
-- else
-	%p Not signed in.
+%p#session_info
+	%span.version ArtisanEngine 0.1 
+	
+	- if current_artisan
+		· Signed in as 
+		%span.name= current_artisan.first_name
+		from
+		%span.name= current_frame.name
+	- else
+		· Not signed in.
