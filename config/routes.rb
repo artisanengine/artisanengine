@@ -7,6 +7,7 @@ ArtisanEngine::Application.routes.draw do
     resources :artisans
   end
   
+  get '/manage' => 'manage/manage#interface'
   namespace :manage do
     resources :goods do
       resources :options

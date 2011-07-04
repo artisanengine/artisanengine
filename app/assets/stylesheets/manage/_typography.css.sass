@@ -1,0 +1,28 @@
+@import compass/typography
+
+// ------------------------------------------------------------------
+// Defaults
+
+$base-font-size: 	 12px
+$base-line-height: 16px
+
+$default-font-family: Helvetica, Arial, sans-serif
+$header-font-family:  Helvetica, Arial, sans-serif
+$accent-font-family:  Helvetica, Arial, sans-serif
+
+$default-text-color: #333333
+
+// ------------------------------------------------------------------
+// Mixins
+
+// ------------------------------------------------------------------
+// Styling
+
++establish-baseline
+
+body
+	font-family: $default-font-family
+	
+	h1
+		+adjust-font-size-to( 36px )
+		+adjust-leading-to( 1.5 )

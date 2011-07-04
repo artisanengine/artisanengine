@@ -6,6 +6,9 @@ module Manage
     
     include FramesHelper                    # Helpers for managing the current frame.
     
+    def interface
+    end
+    
     # ------------------------------------------------------------------
     private
     

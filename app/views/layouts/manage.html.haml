@@ -9,7 +9,18 @@
 
 	%body
 		#wrapper
+			- unless request.fullpath == new_artisan_session_path
+				%h1#manage_header Manage
+
+				%ul#manage_links
+					%li= link_to 'Goods',  		 manage_goods_path
+					%li= link_to 'Pages',  		 manage_pages_path
+					%li= link_to 'Blog',   		 manage_blog_path
+					%li= link_to 'Orders', 		 '#'
+					%li= link_to 'Patrons', 	 '#'
+					%li= link_to 'Promotions', '#'
+					%li= link_to 'Images', 		 '#'
+				
 			#main
-				= render 'session_info'
 				= render 'notifications'
 				= yield

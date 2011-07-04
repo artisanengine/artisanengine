@@ -15,3 +15,7 @@ end
 def development_interface
   '/develop'
 end
+
+def management_interface
+  '/manage'
+end

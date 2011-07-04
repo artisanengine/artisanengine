@@ -1,0 +1,31 @@
+$bg-color: #F0F0F0
+
+body
+	background-color: $bg-color
+	
+	#wrapper
+		+container
+		
+		h1#manage_header
+			font-weight: bold
+			+adjust-font-size-to( 16px )
+			+adjust-leading-to( 1.5 )
+			text-align: center
+		
+		ul#manage_links
+			background: darken( $bg-color, 4% )
+			padding: 7px 15px
+			+border-radius( 5px )
+			text-align: center
+
+			li
+				display: inline
+				margin: 0 10px
+
+				a
+					color: darken( $bg-color, 45% )
+					font-weight: bold
+					text-decoration: none
+
+					&:hover
+						text-decoration: underline
