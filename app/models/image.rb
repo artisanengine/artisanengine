@@ -9,7 +9,7 @@ class Image < ActiveRecord::Base
   # Associations
   
   belongs_to :frame
-  has_many   :image_attachers
+  has_many   :image_attachers, dependent: :destroy
   
   # ------------------------------------------------------------------
   # Validations

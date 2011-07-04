@@ -3,7 +3,7 @@ class Tag < ActiveRecord::Base
   # Associations
   
   belongs_to :frame
-  has_many   :taggings
+  has_many   :taggings, dependent: :destroy
   
   # ------------------------------------------------------------------
   # Validations
