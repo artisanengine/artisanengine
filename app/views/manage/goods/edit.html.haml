@@ -1,6 +1,6 @@
-#good
-	%h1= @good.name
-	
+= content_for( :heading ) { "Edit Good: " + @good.name }
+
+#good	
 	#basics
 		= render 'form'
 		
@@ -8,6 +8,7 @@
 	= render 'variants'
 	
 	#images
+		%h2 Images
 		= render @good.image_attachers
 		= link_to 'Attach an Existing Image', new_manage_good_image_attacher_path( @good )
 		
