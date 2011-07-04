@@ -4,6 +4,7 @@ class Good < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Callbacks
   
+  before_save  :convert_description_to_html
   after_create :create_first_option_and_variant
   
   # ------------------------------------------------------------------
@@ -26,5 +27,9 @@ class Good < ActiveRecord::Base
   def create_first_option_and_variant
     options.create!  name: 'Type', default_value: 'Default'
     variants.create! option_value_1: 'Default'
+  end
+  
+  def convert_description_to_html
+    self.html_description = ArtisanEngine::Textiling.textile( self.description )
   end
 end

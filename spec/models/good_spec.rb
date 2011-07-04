@@ -20,6 +20,13 @@ describe Good do
   end
   
   context "callbacks: " do
+    context "before saving: " do
+      it "converts its description from Textile to HTML and stores it in html_description" do
+        good = Good.generate description: 'A *bold* good.'
+        good.html_description.should == '<p>A <strong>bold</strong> good.</p>'
+      end
+    end
+    
     describe "after saving: " do
       it "creates a default variant" do
         good = Good.generate

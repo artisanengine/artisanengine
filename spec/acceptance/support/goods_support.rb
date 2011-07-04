@@ -18,3 +18,8 @@ end
 def manage_goods_page
   "/manage/goods"
 end
+
+def good_page_for( name )
+  good = Good.find_by_name( name )
+  "/goods/#{ good.id }"
+end
