@@ -11,6 +11,9 @@
  *
  * 07/01/2011: Added gr2m's very simple patch for allowing creation of new tags.
  * 						 https://github.com/gr2m/jquery-tokeninput.git
+ *
+ * 07/04/2011: Don't autofocus.
+ *
  */
 
 (function ($) {
@@ -398,7 +401,7 @@ $.TokenList = function (input, url_or_data, settings) {
             hide_dropdown();
             return;
         } else {
-            input_box.focus();
+            //input_box.focus();
         }
     }
 
