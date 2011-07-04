@@ -1,0 +1,30 @@
+table
+	width: 100%
+
+	thead
+		th
+			font-weight: bold
+			padding: 0 10px
+
+	tbody
+		tr
+			+adjust-leading-to( 1.5 )
+			td
+				padding: 0 10px
+				
+		tr:nth-child( odd )
+			background-color: darken( $bg-color, 2% )
+		tr:nth-child( even )
+			background-color: darken( $bg-color, 5% )
+	
+	&#goods
+		td.name
+			width: 90%
+		td.links
+			width: 10%
+	
+	&#pages
+		td.title
+			width: 90%
+		td.links
+			width: 10%

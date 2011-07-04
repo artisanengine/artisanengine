@@ -1,8 +1,12 @@
-%h1 Pages
+= content_for( :heading ) { 'Pages' }
 
-%table
+%table#pages
 	%thead
-		%th
-			%tr Title
+		%tr
+			%th Title
 	%tbody
-		= render @pages
+		- for page in @pages
+			%tr[ page ]
+				%td.title= page.title
+				%td.links
+					= link_to 'Edit', edit_manage_page_path( page )

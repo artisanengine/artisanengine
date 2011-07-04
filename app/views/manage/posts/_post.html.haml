@@ -1,5 +1,0 @@
-%tr[ post ]
-	%td= post.title
-	%td= post.created_at
-	%td= post.tag_names
-	%td= link_to 'Edit', polymorphic_url( [ :manage, :blog, post ], action: :edit )

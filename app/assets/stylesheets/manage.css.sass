@@ -3,8 +3,10 @@
 @import blueprint
 @import compass/css3
 
+@import manage/colors
 @import manage/typography
 @import manage/forms
+@import manage/tables
 @import manage/layout
 
 #notifications
@@ -40,3 +42,17 @@
 			
 			&:hover
 				border: 1px solid darken( $bg-color, 50% )
+
+// ------------------------------------------------------------------
+// Images
+
+#images
+	.image
+		+float( left )
+		width: 220px
+		margin-right: (70px/3)
+		&:nth-child(4n+4)
+			margin-right: 0
+	.links
+		+adjust-leading-to( 1.5 )
+		text-align: center

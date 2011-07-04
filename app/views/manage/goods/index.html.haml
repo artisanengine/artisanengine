@@ -1,4 +1,4 @@
-%h1 Manage Goods
+= content_for( :heading ) { 'Goods' }
 
 %table#goods
 	%thead
@@ -6,4 +6,8 @@
 			%th Name
 			%th
 	%tbody
-		= render @goods
+		- for good in @goods
+			%tr[ good ]
+				%td.name= good.name
+				%td.links
+					= link_to 'Edit', edit_manage_good_path( good )

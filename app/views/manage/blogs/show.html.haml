@@ -1,12 +1,17 @@
-%h1= @blog.name
+= content_for( :heading ) { 'Blog' }
 
-%table
+%table#posts
 	%thead
 		%tr
 			%th Title
-			%th Published At
+			%th Published
 			%th Tags
 			%th
 			
 	%tbody
-		= render @blog.posts
+		- for post in @blog.posts
+			%tr[ post ]
+				%td= post.title
+				%td= time_ago_in_words( post.created_at ) + " ago"
+				%td= post.tag_names
+				%td= link_to 'Edit', polymorphic_url( [ :manage, :blog, post ], action: :edit )
