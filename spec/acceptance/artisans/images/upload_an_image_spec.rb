@@ -30,7 +30,7 @@ feature 'Upload an Image', %q{
   
   scenario "An artisan cannot upload an invalid image" do
     # When I attach an invalid image to the Image field,
-    attach_file 'New Image', "#{ Rails.root }/app/models/image.rb"
+    attach_file 'Image', "#{ Rails.root }/app/models/image.rb"
     
     # And I click Upload,
     click_button 'Upload'

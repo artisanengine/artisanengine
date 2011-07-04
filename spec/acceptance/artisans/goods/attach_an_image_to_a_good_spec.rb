@@ -41,7 +41,7 @@ feature 'Attach an Image to a Good', %q{
   
   scenario "An artisan can attach a new image to a good" do
     # When I add an image to the Image field,
-    attach_file 'Image', anaura_bay_image_path
+    attach_file 'New Image', anaura_bay_image_path
     
     # And I click Upload,
     click_button 'Upload'

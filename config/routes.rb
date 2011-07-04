@@ -25,6 +25,9 @@ ArtisanEngine::Application.routes.draw do
   
   scope :module => :visit do
     resources :pages, only: [ :show ]
+    resource  :blog, only: [ :show ] do
+      resources :posts, only: [ :show ]
+    end
   end
   
   # Recreate Devise routes from scratch and override Sessions Controller.
