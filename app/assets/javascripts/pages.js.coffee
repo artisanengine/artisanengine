@@ -36,13 +36,15 @@ addInsertLinks = () ->
 	# Hide heading links.
 	$( '.heading_links' ).hide()
 	
-	$( '.image img' ).each( (index) ->
+	$( '.image' ).each( (index) ->
 		# Get the image's original URL from the data-original attribute of the image.
-		image_source = $( this ).attr( 'data-original' )
+		image_source = $( this ).children( 'img' ).attr( 'data-original' )
 		
-		# Create a link using the URL.
+		# Create a dynamic Insert link using the URL.
 		insert_link = '<a class="insert_link" href="' + image_source + '">Insert</a>'
-		$( '.links a.delete' ).replaceWith( insert_link )
+		
+		# Replace the image's Delete link with the dynamic Insert link.
+		$( this ).children( '.links' ).children( '.delete' ).replaceWith( insert_link )
 	)
 	
 	# Add a click event which will close the Colorbox and
