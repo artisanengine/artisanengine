@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.integer "image_id",       :null => false
     t.integer "imageable_id",   :null => false
     t.string  "imageable_type", :null => false
+    t.integer "position",       :null => false
   end
 
   create_table "images", :force => true do |t|
