@@ -28,7 +28,7 @@ feature 'Remove an Image from a Good', %q{
     page_should_have_notice
     
     # And I should see no images.
-    within '#images' do
+    within '#good_images' do
       page.should have_no_selector '.image'
     end
   end

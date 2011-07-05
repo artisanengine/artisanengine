@@ -34,7 +34,7 @@ feature 'Attach an Image to a Good', %q{
     
     # And I should see my good and my image.
     page.should have_content 'Freeze Ray'
-    within '#images' do
+    within '#good_images' do
       page.should have_selector 'img'
     end
   end
