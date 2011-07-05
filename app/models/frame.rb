@@ -4,7 +4,8 @@ class Frame < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Callbacks
   
-  before_create           :initialize_blog
+  after_create          :initialize_blog
+  after_create          :initialize_featured_display_case
   
   # ------------------------------------------------------------------
   # Associations
@@ -28,5 +29,9 @@ class Frame < ActiveRecord::Base
   
   def initialize_blog
     create_blog name: "#{ name } Blog"
+  end
+  
+  def initialize_featured_display_case
+    display_cases.create! name: "Featured"
   end
 end

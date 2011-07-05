@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "blogs", ["id", "frame_id"], :name => "index_blogs_on_id_and_frame_id"
 
+  create_table "collects", :force => true do |t|
+    t.integer "display_case_id", :null => false
+    t.integer "good_id",         :null => false
+  end
+
   create_table "display_cases", :force => true do |t|
     t.integer "frame_id", :null => false
     t.string  "name",     :null => false

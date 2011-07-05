@@ -19,14 +19,14 @@ feature 'Destroy a Display Case', %q{
   
   scenario "An artisan can destroy a display case" do
     # When I click the Delete link for the display case,
-    within '.display_case' do
+    within '.display_case', text: 'Stuff' do
       click_link 'Delete'
     end
     
     # Then I should see a notice,
     page_should_have_notice
     
-    # And I should see no display cases.
-    page.should have_no_selector '.display_case'
+    # And I should not see the display case.
+    page.should have_no_selector '.display_case', text: 'Stuff'
   end
 end

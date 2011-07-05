@@ -1,3 +1,15 @@
 = content_for( :heading ) { 'Edit Display Case: ' + @display_case.name }
 
 = render 'form'
+
+#uncollected_goods
+	- for good in ( Good.all - @display_case.goods )
+		.good
+			%p= good.name
+			= button_to 'Add to Case', manage_display_case_collects_path( @display_case, good_id: good.id )
+
+#collected_goods
+	- for good in @display_case.goods
+		.good
+			%p= good.name
+			= button_to 'Remove from Case', manage_display_case_collect_path( @display_case, good_id: good.id ), method: :delete

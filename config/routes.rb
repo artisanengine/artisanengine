@@ -17,7 +17,9 @@ ArtisanEngine::Application.routes.draw do
       end
       resources :images
     end
-    resources :display_cases
+    resources :display_cases do
+      resources :collects
+    end
     resources :images
     resources :pages
     post      'page/preview' => 'pages#preview', as: 'preview_page'

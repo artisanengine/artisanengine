@@ -39,6 +39,6 @@ feature 'Create a Display Case', %q{
     page_should_have_alert
     
     # And there should be no display cases.
-    DisplayCase.count.should be 0
+    DisplayCase.count.should be 1 # ( Featured Case only. )
   end
 end

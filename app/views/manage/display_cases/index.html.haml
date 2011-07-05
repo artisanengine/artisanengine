@@ -8,5 +8,7 @@
 		- for display_case in @display_cases
 			%tr[ display_case ]
 				%td= display_case.name
-				%td.links
-					= link_to 'Delete', [ :manage, display_case ], method: :delete, confirm: "Are you sure you want to delete Display Case: #{ display_case.name }?"
+				
+				- unless display_case.name == "Featured"
+					%td.links
+						= link_to 'Delete', [ :manage, display_case ], method: :delete, confirm: "Are you sure you want to delete Display Case: #{ display_case.name }?"
