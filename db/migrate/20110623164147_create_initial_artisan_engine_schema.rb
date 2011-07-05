@@ -153,6 +153,17 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     
     add_index :variants, [ :id, :good_id ]
     
+    # ------------------------------------------------------------------
+    # Display Cases
+    
+    create_table :display_cases do |t|
+      t.integer :frame_id,          null: false
+      
+      t.string  :name,              null: false
+    end
+    
+    add_index :display_cases, [ :id, :frame_id ]
+    
   end
 
   def down

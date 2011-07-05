@@ -15,6 +15,7 @@ class Frame < ActiveRecord::Base
   has_many :tags
   has_many :goods
   has_one  :blog
+  has_many :display_cases
   
   # ------------------------------------------------------------------
   # Validations

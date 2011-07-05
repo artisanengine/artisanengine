@@ -4,6 +4,10 @@
 en:
   form_alert: "Some fields contain invalid data. Please correct the highlighted fields and try your submission again."
 
+  activerecord:
+    models:
+      display_case: "Display Case"
+
   formtastic:
     labels:
       email: "E-Mail"
