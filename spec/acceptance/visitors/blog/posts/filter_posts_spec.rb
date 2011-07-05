@@ -33,7 +33,7 @@ feature 'Filter Posts', %q{
     page.should have_no_content '2011 Post'
   end
   
-  scenario "A visit can filter posts by tag" do
+  scenario "A visitor can filter posts by tag" do
     # Given there is a post tagged Awesome and a post tagged Mediocre,
     Post.generate title: 'Awesome Post',  tag_names: 'Awesome',  blog: @ae_blog
     Post.generate title: 'Mediocre Post', tag_names: 'Mediocre', blog: @ae_blog
