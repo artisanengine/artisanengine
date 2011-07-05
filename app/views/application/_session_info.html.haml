@@ -6,5 +6,8 @@
 		%span.name= current_artisan.first_name
 		from
 		%span.name= current_frame.name
+	- elsif current_engineer
+		· Signed in as
+		%span.name Engineer
 	- else
 		· Not signed in.
