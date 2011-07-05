@@ -48,9 +48,9 @@ namespace :db do
     # ------------------------------------------------------------------
     # Posts
     
-    5.times { Post.generate blog: hausleather.blog }
-    5.times { Post.generate blog: peggyskemp.blog }
-    5.times { Post.generate blog: emmysorganics.blog }
+    5.times { Factory :loaded_post, blog: hausleather.blog }
+    5.times { Factory :loaded_post, blog: peggyskemp.blog }
+    5.times { Factory :loaded_post, blog: emmysorganics.blog }
     
     # Tag each post with a random number of tags.
     for post in Post.all
