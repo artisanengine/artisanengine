@@ -19,5 +19,19 @@ module Manage
 
       respond_with :manage, @display_case, location: manage_display_cases_path
     end
+    
+    def edit
+      @display_case = current_frame.display_cases.find( params[ :id ] )
+    end
+    
+    def update
+      @display_case = current_frame.display_cases.find( params[ :id ] )
+      
+      @display_case.update_attributes( params[ :display_case ] ) ?
+        flash[ :notice ] = "Display Case: #{ @display_case.name } was successfully updated." :
+        flash[ :alert ]  = t( :form_alert )
+
+      respond_with :manage, @display_case, location: manage_display_cases_path
+    end
   end
 end

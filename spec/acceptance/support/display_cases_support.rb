@@ -4,3 +4,8 @@
 def new_display_case_page
   '/manage/display_cases/new'
 end
+
+def edit_display_case_page_for( name )
+  display_case = DisplayCase.find_by_name( name )
+  "/manage/display_cases/#{ display_case.id }/edit"
+end
