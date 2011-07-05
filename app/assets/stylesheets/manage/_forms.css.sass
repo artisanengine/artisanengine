@@ -75,7 +75,6 @@ form#new_good
 #good
 	h2
 		text-align: center
-		+adjust-leading-to( 3 )
 		
 	#basics
 		+centered-form
@@ -136,13 +135,39 @@ form#new_good
 				+accent
 				text-align: center
 				padding-top: 68px
+	
+	#variants
+		#add_variant
+			td.option input[type=text]
+				width: 100%
+				+box-sizing( border-box )
+				+border-radius( 5px )
+				border: 1px solid darken( $bg-color, 10% )
+				padding: 5px
+				margin: 10px 0
+			input[type=submit]
+				width: auto
+				border: 1px solid darken( $bg-color, 20% )
+				border-radius: 9px 9px 9px 9px
+				cursor: pointer
+				padding: 2px 4px
+
+				background-color: lighten( #00FF00, 45% )
+
+				&:hover
+					border: 1px solid darken( $bg-color, 50% )
+	
+	#danger_zone
+		+column( 24, true )
+		padding: 20px 0 10px
 				
 // ------------------------------------------------------------------
 // Sign In
 
 #sign_in
-	h1
+	h2
 		text-align: center
-		padding: 20px
+		+adjust-font-size-to( 30px )
+		+adjust-leading-to( 1.5 )
 	form
 		+centered-form
