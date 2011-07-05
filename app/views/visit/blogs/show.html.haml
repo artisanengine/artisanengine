@@ -1,5 +1,2 @@
 #blog
-	%h1= @blog.name
-	
-	#blog_content
-		= render @recent_post if @recent_post
+	= render @recent_post if @recent_post

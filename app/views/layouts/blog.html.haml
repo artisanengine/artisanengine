@@ -1,6 +1,8 @@
+= content_for( :main_class ) { 'blog' }
+
 = content_for( :main ) do
-	#sidebar
-		= render 'visit/blogs/sidebar'
-	#blog= yield
+	%h1= @blog.name
+	= render 'visit/blogs/sidebar'
+	#blog_main= yield
 
 = render template: 'layouts/visit'

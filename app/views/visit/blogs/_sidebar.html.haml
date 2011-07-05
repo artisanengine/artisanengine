@@ -1,6 +1,9 @@
 #sidebar
-	= link_to '2010', '/blog/year/2010'
+	%h3 View by Date
+	%ul#dates
+		%li= link_to '2011', '/blog/year/2011'
 	
-	#tags
+	%h3 View by Topic
+	%ul#tags
 		- for tag in @tags
-			= link_to tag.name, "/blog/#{ tag.id }"
+			%li= link_to tag.name, "/blog/#{ tag.id }"

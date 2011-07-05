@@ -24,13 +24,13 @@ feature 'Filter Posts', %q{
     visit blog_page
     
     # When I click "2010" in the By Year section,
-    click_link '2010'
+    click_link '2011'
     
-    # Then I should see the post from 2010
-    page.should have_content '2010 Post'
+    # Then I should see the post from 2011
+    page.should have_content '2011 Post'
     
-    # And I should not see the post from 2011
-    page.should have_no_content '2011 Post'
+    # And I should not see the post from 2010
+    page.should have_no_content '2010 Post'
   end
   
   scenario "A visitor can filter posts by tag" do
