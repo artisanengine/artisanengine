@@ -51,7 +51,20 @@ describe Post do
   end
   
   context "scopes: " do
-    describe "#by_year: " do
+    describe "::tagged_with: " do
+      it "returns all posts tagged with the given tag objects" do
+        post1 = Post.generate tag_names: "man, bear, pig"
+        post2 = Post.generate tag_names: "dog, bear"
+        
+        man   = Tag.find_by_name( 'man' )
+        bear  = Tag.find_by_name( 'bear' )
+        
+        Post.tagged_with( man ).count.should  == 1
+        Post.tagged_with( bear ).count.should == 2
+      end
+    end
+    
+    describe "::by_year: " do
       it "returns all posts created in the given year" do
         Post.generate created_at: Date.new( 2009, 12, 31 )
         Post.generate created_at: Date.new( 2010, 1, 1 )

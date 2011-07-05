@@ -23,8 +23,9 @@ class Post < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Scopes
   
-  scope :by_year, lambda { |year| { conditions: { created_at: Date.new( year.to_i, 1, 1 )..Date.new( year.to_i + 1, 1, 1 ) } } } 
-    
+  scope :by_year,     lambda { |year| { conditions: { created_at: Date.new( year.to_i, 1, 1 )..Date.new( year.to_i + 1, 1, 1 ) } } } 
+  scope :tagged_with, lambda { |tag| joins( :tags ).where( "tags.name = ?", tag.name ) }
+
   # ------------------------------------------------------------------
   # Accessors
   
