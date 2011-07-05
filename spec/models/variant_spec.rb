@@ -34,4 +34,14 @@ describe Variant do
       variant.should_not be_valid
     end
   end
+  
+  context "callbacks: " do
+    describe "before destroying: " do
+      it "cannot be destroyed if it is its good's only variant" do
+        good    = Good.generate
+        variant = good.variants.first
+        variant.destroy.should be_false
+      end
+    end
+  end
 end

@@ -1,5 +1,10 @@
 class Variant < ActiveRecord::Base
   # ------------------------------------------------------------------
+  # Callbacks
+  
+  before_destroy        :ensure_not_last_variant
+  
+  # ------------------------------------------------------------------
   # Associations
   
   belongs_to :good
@@ -39,6 +44,10 @@ class Variant < ActiveRecord::Base
     required_number_of_options.times do |time|
       errors.add( :"option_value_#{ time + 1 }", "cannot be blank." ) if eval( "option_value_#{ time + 1 }.blank?" )
     end
+  end
+  
+  def ensure_not_last_variant
+    return false if good.variants.count == 1
   end
   
 end
