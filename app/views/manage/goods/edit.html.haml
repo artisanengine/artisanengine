@@ -5,6 +5,7 @@
 		$( '#good_images' ).sortable({
 			items: '.image_attacher',
 			handle: '.handle',
+			tolerance: 'pointer',
 			update: function() {
 				$.ajax({
 					type: 'post',

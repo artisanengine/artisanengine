@@ -119,17 +119,22 @@ form#new_good
 				margin-right: 0
 			
 			#links
+				position: relative
 				padding: 0 5px
 				background-color: $bg-color
 				+adjust-leading-to( 1.5 )
 				
 				.handle
-					padding-top: 6px
+					width: 15px
 					&:hover
 						cursor: move
+					img
+						margin-top: 6px
 					
 				a
-					float: right
+					position: absolute
+					right: 5px
+					top: 0
 	
 	#options
 		#all_options
