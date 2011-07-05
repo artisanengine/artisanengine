@@ -12,5 +12,5 @@
 		#wrapper
 			= render 'layouts/top'
 			= render 'layouts/main_navigation'
-			#main= yield
+			#main= content_for?( :main ) ? yield( :main ) : yield
 			= render 'layouts/footer'

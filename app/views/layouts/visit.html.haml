@@ -9,7 +9,4 @@
 
 	%body
 		#wrapper
-			#main
-				= render 'session_info'
-				= render 'notifications'
-				= yield
+			#main= content_for?( :main ) ? yield( :main ) : yield

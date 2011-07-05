@@ -1,11 +1,5 @@
 #blog
 	%h1= @blog.name
 	
-	#sidebar
-		= link_to '2010', '/blog/year/2010'
-		
-		#tags
-			- for tag in @tags
-				= link_to tag.name, "/blog/#{ tag.id }"
 	#blog_content
 		= render @recent_post if @recent_post

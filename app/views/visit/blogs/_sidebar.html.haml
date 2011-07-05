@@ -1,0 +1,6 @@
+#sidebar
+	= link_to '2010', '/blog/year/2010'
+	
+	#tags
+		- for tag in @tags
+			= link_to tag.name, "/blog/#{ tag.id }"
