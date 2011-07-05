@@ -95,9 +95,14 @@ form#new_good
 			padding: 5px
 			border: 1px solid darken( $bg-color, 10% )
 			+border-radius( 10px )
+
+			form
+				margin-top: 5px
+				input[type=submit]
+					float: none
 		
-		input[type=submit]
-			float: none
+		p
+			+accent
 			
 	#good_images
 		.image
@@ -111,7 +116,27 @@ form#new_good
 			#links
 				padding: 0 5px
 				+adjust-leading-to( 1.5 )
+	
+	#options
+		#all_options
+			+column( 18 )
 			
+			table
+				.name
+					width: 20%
+				.values
+					width: 60%
+				.links
+					width: 20%
+					text-align: right
+		#add_option
+			+column( 6, true )
+			height: 100%
+			p
+				+accent
+				text-align: center
+				padding-top: 68px
+				
 // ------------------------------------------------------------------
 // Sign In
 

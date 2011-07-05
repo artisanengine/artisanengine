@@ -6,7 +6,8 @@
 	#add_image
 		.inner
 			= link_to 'Attach an Existing Image', new_manage_good_image_attacher_path( @good ), class: 'attach'
+			%p ~ or ~
 			= form_for [ :manage, @good, @image ] do |f|
-				= f.label :image, 'New Image'
+				= f.label :image, 'Attach a New Image'
 				= f.file_field :image
 				= f.submit 'Upload'

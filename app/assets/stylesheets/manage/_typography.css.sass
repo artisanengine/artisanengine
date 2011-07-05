@@ -8,7 +8,16 @@ $base-line-height: 16px
 
 $default-font-family: Helvetica, Arial, sans-serif
 $header-font-family:  Helvetica, Arial, sans-serif
-$accent-font-family:  Helvetica, Arial, sans-serif
+$accent-font-family:  Times New Roman, Times, serif
+
+// ------------------------------------------------------------------
+// Mixins
+
+@mixin accent
+	font-weight: bold
+	font-style: italic
+	font-family: $accent-font-family
+	color: darken( $bg-color, 25% )
 
 // ------------------------------------------------------------------
 // Styling

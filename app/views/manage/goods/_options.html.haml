@@ -1,28 +1,26 @@
 #options
 	%h2 Options
-	%table#options_table
-		%tbody
-			- for option in @good_options
-				%tr[ option ]
-					%td.name= option.name
-					%td.links
-						= link_to 'Edit', polymorphic_url( [ :manage, @good, option ], action: :edit )
-						·
-						= link_to 'Delete', manage_good_option_path( @good, option ), method: :delete, confirm: "Are you sure you want to delete Option: #{ option.name }?"
-		
-	%table#add_option
-		%thead
-			%tr
-				%th= label_tag 'option_option_name', 'Option Name*'
-				%th= label_tag 'option_default_value', 'Default Value*'
-				
-		%tbody
-			%tr
-				= form_for [ :manage, @good, @good.options.new ] do |f|
-					%td= f.text_field :name
-					%td= f.text_field :default_value
-					%td= f.submit 'Add Option', class: 'create'
-
-	- unless @good_options.count == 5
-		#add_option
-			
+	#all_options
+		%table
+			%thead
+				%tr
+					%th Name
+					%th Values
+					%th
+			%tbody
+				- for option in @good_options
+					%tr[ option ]
+						%td.name= option.name
+						%td.values
+						%td.links
+							= link_to 'Edit', polymorphic_url( [ :manage, @good, option ], action: :edit )
+							·
+							= link_to 'Delete', manage_good_option_path( @good, option ), method: :delete, confirm: "Are you sure you want to delete Option: #{ option.name }?"
+	
+	#add_option
+		- if @good.options.count < 5
+			= semantic_form_for [ :manage, @good, @good.options.new ] do |f|
+				= f.inputs :name, :default_value
+				= f.submit 'Add Option', class: 'create'
+		- else
+			%p Goods may have a maximum of 5 options.
