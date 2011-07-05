@@ -19,8 +19,8 @@ feature 'Remove an Image from a Good', %q{
   end
   
   scenario "An artisan can remove an image from a good" do
-    # When I click the Image's Remove link,
-    within '.image' do
+    # When I click the Image Attacher's Remove link,
+    within '.image_attacher' do
       click_link 'Remove'
     end
     

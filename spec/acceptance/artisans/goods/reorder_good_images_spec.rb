@@ -19,16 +19,24 @@ feature 'Re-order Good Images', %q{
   end 
   
   scenario "An artisan can re-order a good's images", js: true do
-    # When I drag the handle for image 3 to the handle for image 1,
+    # When I drag the handle for image 1 to the handle for image 3,
     within '#good_images' do
-      draggable = all( '.image' )[0].find( '.handle' )
-      droppable = all( '.image' )[2].find( '.handle' )
+      draggable     = all( '.image_attacher' )[0].find( '.handle' )
+      @draggable_id = all( '.image_attacher' )[0][:id]
+      
+      droppable     = all( '.image_attacher' )[2].find( '.handle' )
+      @droppable_id = all( '.image_attacher' )[2][:id]
+      
       draggable.drag_to( droppable )
     end
     
-    # Then my images should be in their new order.
+    # And I reload the page,
+    visit edit_good_page_for 'Freeze Ray'
+    
+    # Then my images should be in their new order (2, 3, 1).
     within '#good_images' do
-      find( '.image' )[0].should have_content 'ladooga'
+      all( '.image_attacher' )[1][:id].should == @droppable_id
+      all( '.image_attacher' )[2][:id].should == @draggable_id
     end
   end
 end
