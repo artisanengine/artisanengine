@@ -1,6 +1,6 @@
 #good_images
 	%h2 Images
-	= render @good.image_attachers
+	= render @good.image_attachers.in_order
 
 - if @good.images.count < 7
 	#add_image

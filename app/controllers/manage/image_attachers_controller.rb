@@ -36,6 +36,13 @@ module Manage
     
     # POST /manage/goods/:id/image_attachers/sort
     def sort
+      image_attachers = current_frame.goods.find( params[ :good_id ] ).image_attachers
+      
+      params[ :image_attacher ].each_with_index do |id, index|
+        image_attachers.update_all( [ "position = ?", index + 1 ], [ 'id = ?', id ] )
+      end
+      
+      render nothing: true
     end
     
     private
