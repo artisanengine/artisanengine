@@ -29,6 +29,7 @@ ArtisanEngine::Application.routes.draw do
   scope :module => :visit do
     resources :pages, only: [ :show ]
     resource  :blog, only: [ :show ] do
+      get '/:year' => 'posts#index'
       resources :posts, only: [ :show ]
     end
     resources :goods, only: [ :show ]

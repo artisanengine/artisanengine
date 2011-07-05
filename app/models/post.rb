@@ -19,6 +19,11 @@ class Post < ActiveRecord::Base
   # Validations
   
   validates_presence_of :title, :blog
+   
+  # ------------------------------------------------------------------
+  # Scopes
+  
+  scope :by_year, lambda { |year| { conditions: { created_at: Date.new( year.to_i, 1, 1 )..Date.new( year.to_i + 1, 1, 1 ) } } } 
     
   # ------------------------------------------------------------------
   # Accessors

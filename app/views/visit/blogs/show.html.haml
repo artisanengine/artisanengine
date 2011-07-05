@@ -2,5 +2,6 @@
 	%h1= @blog.name
 	
 	#sidebar
+		= link_to '2010', '/blog/2010'
 	#blog_content
 		= render @recent_post if @recent_post

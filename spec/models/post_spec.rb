@@ -49,4 +49,17 @@ describe Post do
       end
     end
   end
+  
+  context "scopes: " do
+    describe "#by_year: " do
+      it "returns all posts created in the given year" do
+        Post.generate created_at: Date.new( 2009, 12, 31 )
+        Post.generate created_at: Date.new( 2010, 1, 1 )
+        Post.generate created_at: Date.new( 2010, 12, 31 )
+        Post.generate created_at: Date.new( 2011, 1, 1 )
+        
+        Post.by_year( 2010 ).count.should == 2
+      end
+    end
+  end
 end

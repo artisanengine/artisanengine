@@ -7,7 +7,7 @@ feature 'Visit the Blog', %q{
 } do
 
   background do
-    # Given a test artisan has created a blog and two posts,
+    # Given a test artisan has created a blog,
     frame1   = use_frame( 'ae.test' )
     @ae_blog = frame1.blog
     
