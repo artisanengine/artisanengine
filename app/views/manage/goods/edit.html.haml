@@ -3,26 +3,10 @@
 #good	
 	#basics
 		= render 'form'
-	
-	#images
-		#first_image
-			= display_image( @good.images.first, '230x230#' )
-		#additional_images
-			- for image in @good.images.drop( 1 )
-				.additional_image
-					= display_image( image, '75x75#' )
-				
-		#add_image
-			= link_to 'Attach an Existing Image', new_manage_good_image_attacher_path( @good )
-			= form_for [ :manage, @good, @image ] do |f|
-				= f.label :image, 'New Image'
-				= f.file_field :image
-				= f.submit 'Upload'
 		
+	= render 'images'
 	= render 'options'
 	= render 'variants'
 	
-	
-
 	#danger_zone
 		= button_to 'Delete This Good', manage_good_path( @good ), method: :delete, confirm: "Are you sure you want to delete #{ @good.name }?"

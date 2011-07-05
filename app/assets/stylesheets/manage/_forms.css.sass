@@ -73,31 +73,51 @@ form#new_good
 	+centered-form
 
 #good
+	h2
+		text-align: center
+		+adjust-leading-to( 3 )
+		
 	#basics
-		form
-			+column( 14 )
+		+centered-form
 			
-	#images
-		+prepend( 2 )
-		+column( 6, true )
-		+append( 2 )
+	#good_images, #options, #variants
+		+column( 24, true )
+	
+	#add_image
+		+prepend( 5 )
+		+column( 14, true )
+		+append( 5 )
 		
-		padding-top: 15px
+		margin-top: 10px
 		
-		#first_image, #other_images, #add_image
-			+column( 6, true )
-			
-		#first_image
-			height: 230px
-			margin-bottom: 2px
-		.additional_image
-			float: left
-			width: 75px
-			height: 75px
-			margin-right: (5px/3)
-			margin-bottom: 2px
-			&:nth-child(3n+3)
-				margin-right: 0
-		
-		h2
+		.inner
 			text-align: center
+			padding: 5px
+			border: 1px solid darken( $bg-color, 10% )
+			+border-radius( 10px )
+		
+		input[type=submit]
+			float: none
+			
+	#good_images
+		.image
+			+single-box-shadow
+			float: left
+			width: 130px
+			margin-right: 6px
+			&:last-child
+				margin-right: 0
+			
+			#links
+				padding: 0 5px
+				+adjust-leading-to( 1.5 )
+			
+// ------------------------------------------------------------------
+// Sign In
+
+#sign_in
+	h1
+		text-align: center
+		padding: 20px
+	form
+		+centered-form
