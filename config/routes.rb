@@ -12,7 +12,9 @@ ArtisanEngine::Application.routes.draw do
     resources :goods do
       resources :options
       resources :variants
-      resources :image_attachers
+      resources :image_attachers do
+        post 'sort', on: :collection
+      end
       resources :images
     end
     resources :images

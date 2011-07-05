@@ -1,4 +1,5 @@
-%div[ image_attacher.image ]
+%div[ image_attacher ]
 	= display_image( image_attacher.image, '130x130#' )
 	#links
+		.handle= image_tag 'drag_handle.gif'
 		= link_to 'Remove', [ :manage, @good, image_attacher ], method: :delete, confirm: "Are you sure you want to detach this image? (The image will not be deleted.)" 

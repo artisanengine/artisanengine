@@ -31,6 +31,13 @@ module Manage
       end
     end
     
+    # ------------------------------------------------------------------
+    # Non-RESTful Actions
+    
+    # POST /manage/goods/:id/image_attachers/sort
+    def sort
+    end
+    
     private
     
     def parent
