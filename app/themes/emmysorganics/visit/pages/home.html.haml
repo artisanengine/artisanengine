@@ -23,14 +23,17 @@
 		#commitment.block
 			%h2 Our Commitment
 			.block-content
-				%p.placeholder Commitment
-	
+				= image_tag 'commitment.jpg'
+			.block-bottom
+				= link_to 'Learn more...', '#'
 	#blocks-2
 		#blog.block
 			%h2 emmy's blog
 			.block-content
 				= render_cell :recent_posts, :display, frame: current_frame
-	
+			.block-bottom
+				= link_to 'View all posts', blog_path
+		
 		#find-a-store
 			= image_tag 'find_a_store.jpg'
 	
