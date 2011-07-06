@@ -1,4 +1,8 @@
 class Tag < ActiveRecord::Base
+  attr_accessible :name
+  
+  has_friendly_id :name, use_slug: true, scope: :frame
+  
   # ------------------------------------------------------------------
   # Associations
   

@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :content, :tag_names
   attr_accessor   :tag_names
   
+  has_friendly_id :title, use_slug: true, scope: :blog
+  
   # ------------------------------------------------------------------
   # Callbacks
   
@@ -45,8 +47,11 @@ class Post < ActiveRecord::Base
       self.tags = tag_names.split( ',' ).map do |tag_name|
         # Trim any beginning-of-string whitespace and create a Tag from the tag name.
         # Also sub out any (new) text, as this is added by TokenInput if a tag doesn't exist.
-        Tag.find_or_create_by_name( tag_name.gsub( /\A\s+/, '' )
-                                            .gsub( ' (new)', '' ), frame: blog.frame )
+        new_tag = Tag.find_or_initialize_by_name( tag_name.gsub( /\A\s+/, '' )
+                                                          .gsub( ' (new)', '' ) )
+        new_tag.frame = blog.frame
+        new_tag.save!
+        new_tag
       end
     end
   end

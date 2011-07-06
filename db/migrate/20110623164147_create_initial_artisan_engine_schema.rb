@@ -21,6 +21,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.text    :content
       t.text    :html_content
 
+      t.string  :cached_slug        # Friendly ID
+
       t.timestamps
     end
     
@@ -99,6 +101,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.integer :frame_id,          null: false
       t.string  :name,              null: false
       
+      t.string  :cached_slug        # Friendly ID
+      
       t.timestamps
     end
     
@@ -118,6 +122,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.string  :name,              null: false
       t.text    :description
       t.text    :html_description
+      
+      t.string  :cached_slug        # Friendly ID
       
       t.timestamps
     end
@@ -160,14 +166,31 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.integer :frame_id,          null: false
       
       t.string  :name,              null: false
+      
+      t.string  :cached_slug        # Friendly ID
     end
     
     add_index :display_cases, [ :id, :frame_id ]
-    
+      
     create_table :collects do |t|
       t.integer   :display_case_id, null: false
       t.integer   :good_id,         null: false
     end
+    
+    # ------------------------------------------------------------------
+    # Friendly ID
+    
+    create_table :slugs do |t|
+      t.string    :name
+      t.integer   :sluggable_id
+      t.integer   :sequence,        null: false, default: 1
+      t.string    :sluggable_type,               limit: 40
+      t.string    :scope
+      t.datetime  :created_at
+    end
+    
+    add_index :slugs, :sluggable_id
+    add_index :slugs, [:name, :sluggable_type, :sequence, :scope], :name => "index_slugs_on_n_s_s_and_s", :unique => true
     
   end
 

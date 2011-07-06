@@ -13,7 +13,8 @@ module Manage
     end
     
     def destroy
-      @collect = Collect.where( "display_case_id = ? AND good_id = ?", params[ :display_case_id ], params[ :good_id ] ).first
+      @display_case = current_frame.display_cases.find( params[ :display_case_id ] )
+      @collect      = Collect.where( "collects.display_case_id = ? AND collects.good_id = ?", @display_case.id, params[ :good_id ] ).first
       
       if @collect.destroy
         redirect_to edit_manage_display_case_path( @display_case ), notice: 'Good was successfully removed.'

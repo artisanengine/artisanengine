@@ -1,6 +1,8 @@
 class Page < ActiveRecord::Base
   attr_accessible :title, :content
   
+  has_friendly_id :title, use_slug: true, scope: :frame
+  
   # ------------------------------------------------------------------
   # Callbacks
   

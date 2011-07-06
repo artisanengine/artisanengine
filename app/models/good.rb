@@ -1,6 +1,8 @@
 class Good < ActiveRecord::Base
   attr_accessible :name, :description
   
+  has_friendly_id :name, use_slug: true, scope: :frame
+  
   # ------------------------------------------------------------------
   # Callbacks
   

@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   create_table "display_cases", :force => true do |t|
-    t.integer "frame_id", :null => false
-    t.string  "name",     :null => false
+    t.integer "frame_id",    :null => false
+    t.string  "name",        :null => false
+    t.string  "cached_slug"
   end
 
   add_index "display_cases", ["id", "frame_id"], :name => "index_display_cases_on_id_and_frame_id"
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.string   "name",             :null => false
     t.text     "description"
     t.text     "html_description"
+    t.string   "cached_slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.string   "title",        :null => false
     t.text     "content"
     t.text     "html_content"
+    t.string   "cached_slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,6 +115,18 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "posts", ["id", "blog_id"], :name => "index_posts_on_id_and_blog_id"
 
+  create_table "slugs", :force => true do |t|
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
   create_table "taggings", :force => true do |t|
     t.integer "tag_id",        :null => false
     t.integer "taggable_id",   :null => false
@@ -119,8 +134,9 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   create_table "tags", :force => true do |t|
-    t.integer  "frame_id",   :null => false
-    t.string   "name",       :null => false
+    t.integer  "frame_id",    :null => false
+    t.string   "name",        :null => false
+    t.string   "cached_slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
