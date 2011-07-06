@@ -99,5 +99,26 @@ namespace :db do
       # Assign the images to the good. Only use unique IDs.
       good.image_ids = random_image_ids.uniq
     end
+    
+    # ------------------------------------------------------------------
+    # Display Cases
+    
+    3.times { DisplayCase.generate frame: hausleather }
+    3.times { DisplayCase.generate frame: peggyskemp }
+    3.times { DisplayCase.generate frame: emmysorganics }
+    
+    # Assign up to 5 random goods to each display case.
+    for display_case in DisplayCase.all
+      random_good_ids = []
+      
+      # Sample up to 5 random goods from hte frame.
+      rand( 6 ).times do
+        random_good_ids << display_case.frame.goods.sample.try( :id )
+      end
+      
+      # Assign the goods to the display case. Only use unique IDs.
+      display_case.good_ids = random_good_ids.uniq
+    end
+    
   end
 end
