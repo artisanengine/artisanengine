@@ -1,3 +1,4 @@
 %h1= @good.name
 
 = @good.html_description.html_safe
+= select_tag 'variant', options_from_collection_for_select( @good.variants, :id, :values_to_s )

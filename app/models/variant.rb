@@ -32,6 +32,20 @@ class Variant < ActiveRecord::Base
     good.options.count
   end
   
+  def values_to_s
+    values_string = ""
+    
+    option_values.each_with_index do |value, index|      
+      unless index == number_of_options - 1
+        values_string << "#{ value } / " unless value.blank?
+      else
+        values_string << "#{ value}"     unless value.blank?
+      end
+    end
+    
+    values_string
+  end
+  
   # ------------------------------------------------------------------
   private
   

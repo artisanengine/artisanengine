@@ -1,5 +1,5 @@
 require 'acceptance/acceptance_helper'
-=begin
+
 feature 'Select a Variant Using Option Drop-Downs', %q{
   In order to select a variation of a good
   As a visitor
@@ -7,16 +7,23 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
 } do
   
   background do
-    # Given a good exists,
-    good = Good.generate
+    # Given a good exists with three options and three variants,
+    good = Factory( :good_with_three_options_and_variants, name: 'Bag of Tricks' )
     
-    # And the good has three options,
-    3.times { good.options << Option.spawn }
-    
-    # And the good has three variants,
     # And I am on the show good page for the good,
+    visit good_page_for 'Bag of Tricks'
   end
   
+  scenario "A visit can select a variant using the variant drop-down" do
+    # Then I should see a variant drop down.
+    page.should have_selector 'select#variant' do
+      page.should have_selector 'option', text: 'Small / Blue / Cloth'
+      page.should have_selector 'option', text: 'Medium / Blue / Cloth'
+      page.should have_selector 'option', text: 'Medium / Red / Cloth'
+    end
+  end
+
+=begin 
   scenario "A visitor can select a variant using option drop-downs" do
     # There should be three drop-downs.
     page.should have_selector 'select', count: 3
@@ -39,5 +46,7 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
       page.should have_selector 'option', text: 'Cloth'
     end
   end
-end
+  
+  scenario "The price updates automatically when a variant is selected"
 =end
+end

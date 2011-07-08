@@ -44,4 +44,13 @@ describe Variant do
       end
     end
   end
+
+  context "methods: " do
+    it "can return its values in a slash-separated string" do
+      good    = Factory( :good_with_three_options_and_variants )
+      variant = good.variants.first
+      
+      variant.values_to_s.should == "Small / Blue / Cloth"
+    end
+  end
 end
