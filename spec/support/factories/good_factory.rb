@@ -37,6 +37,6 @@ Factory.define :good_with_three_options_and_variants, parent: :good do |g|
     g.options << Option.spawn( name: 'Material', default_value: 'Cloth' )
     
     g.variants << Variant.spawn( option_value_1: 'Medium', option_value_2: 'Blue', option_value_3: 'Cloth' )
-    g.variants << Variant.spawn( option_value_1: 'Medium', option_value_2: 'Red',  option_value_3: 'Cloth' )
+    g.variants << Variant.spawn( option_value_1: 'Large',  option_value_2: 'Red',  option_value_3: 'Cloth' )
   end
 end

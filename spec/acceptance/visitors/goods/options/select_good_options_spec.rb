@@ -23,11 +23,7 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
     end
   end
 
-=begin 
-  scenario "A visitor can select a variant using option drop-downs" do
-    # There should be three drop-downs.
-    page.should have_selector 'select', count: 3
-    
+  scenario "A visitor can select a variant using option drop-downs", js: true do
     # The Size drop-down should have Small, Medium, and Large options.
     within 'select#size' do
       page.should have_selector 'option', text: 'Small'
@@ -48,5 +44,4 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
   end
   
   scenario "The price updates automatically when a variant is selected"
-=end
 end
