@@ -1,0 +1,7 @@
+= content_for( :body_class ) { 'display_case' }
+
+= content_for( :main ) do
+	= render 'visit/goods/sidebar'
+	#display_case_main= yield
+
+= render template: 'layouts/visit'
