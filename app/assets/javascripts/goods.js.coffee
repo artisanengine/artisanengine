@@ -1,3 +1,11 @@
+$ ->
+	$('.goods #images a').colorbox({
+		rel:				'gallery'
+		width: 			'80%'
+		height: 		'80%'
+		transition: 'fade' 
+	})
+
 window.buildOptionSelects = (options) ->
 	variants = buildVariantsArray()
 	options  = JSON.parse( options )

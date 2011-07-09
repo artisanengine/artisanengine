@@ -29,8 +29,8 @@ class Image < ActiveRecord::Base
   def storage_filename
     "#{ frame.domain }" +
     "/images/" + 
-    "#{ image_name }" +
-    "_#{ Time.now.strftime( "%m_%d_%Y" ) }_#{ Time.now.to_i.to_s }"
+    "#{ Time.now.strftime( "%m_%d_%Y" ) }_#{ Time.now.to_i.to_s }_" +
+    "#{ image_name }"
   end
   
 end

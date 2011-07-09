@@ -1,0 +1,24 @@
+.goods
+	#main
+		background: $emmys-white
+	
+	#sidebar
+		+column( 5 )
+	
+	#goods_main
+		+column( 19, true )
+		
+		#goods_middle
+			+column( 14 )
+		
+		#goods_right
+			+column( 5, true )
+			
+			#options
+				+column( 5, true )
+				
+				background: $emmys-gray
+				+border-radius( 10px )
+
+				label, select
+					width: 100%
