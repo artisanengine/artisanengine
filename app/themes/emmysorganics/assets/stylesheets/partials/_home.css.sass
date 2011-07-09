@@ -1,10 +1,10 @@
-#home.page
+#home.page #main
 	width: 910px
-	margin: 20px auto
+	padding: 20px 25px
 	
 	#feature
 		+column( 23, true )
-		background-color: white
+		background-color: $emmys-white
 		height: 290px
 		+single-box-shadow
 		
@@ -16,33 +16,36 @@
 	
 	#featured-products
 		+column( 23, true )
-		background-color: white
+		background-color: $emmys-white
 		height: 380px
 		margin-top: 1em
 	
+	// ------------------------------------------------------------------
 	// Blocks
 	
 	.block
 		margin: 1em 0
 		
 		h2
-			background-color: $emmys-purple
-			color: white
-			font-weight: bold
-			font-family: "Helvetica", Helvetica, sans-serif
 			+adjust-font-size-to( 13px )
 			+adjust-leading-to( 1 )
+			background-color: $emmys-purple
+			color: $emmys-white
+			font-weight: bold
 			padding: 0.3em 0.5em
 		
 		.block-content
 			background-color: white
 	
-	#blocks-1
+	.blocks
 		+column( 23/3 )
-		
+		&:last-child
+			+column( 23/3, true )
+	
+	#left.blocks
 		#connect
 			.block-content
-				height: 125px
+				height: 135px
 				
 				#signup-image
 					+column( 23/3*(1/4) )
@@ -61,32 +64,34 @@
 						+adjust-font-size-to( 24px )
 						width: 275px
 						margin: 0 10px
-						border: 1px solid gray
+						border: 1px solid darken( $emmys-gray, 25% )
 					input[type=submit]
-						text-transform: uppercase
 						background: $emmys-red
+						color: $emmys-white
+						
 						border: none
-						color: white
-						font-weight: bold
 						padding: 0.2em 0.3em
 						margin: 2px 10px
+						
+						text-transform: uppercase
+						font-weight: bold
+						
 						cursor: pointer
 		
-	#blocks-2
-		+column( 23/3 )
-		
+	#middle.blocks
 		#blog
 			.block-content
 				height: 300px
+				
+				p
+					+trailer( 0.25 )
 		
 		#find-a-store
 			img
 				display: block
 				margin: 0 auto 1em
 		
-	#blocks-3
-		+column( 23/3, true )
-		
+	#right.blocks
 		#press
 			.block-content
 				height: 150px

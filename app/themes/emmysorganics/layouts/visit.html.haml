@@ -6,12 +6,13 @@
 		= javascript_include_tag "application"
 		= csrf_meta_tags
 
-	%body
+	%body{ class: content_for( :body_class ) || 'general', id: content_for( :body_id ) || nil }
 		= render 'layouts/header'
 				
 		#wrapper
 			= render 'layouts/top'
 			= render 'layouts/main_navigation'
-			#main{ class: content_for( :main_class ) }
-				= content_for?( :main ) ? yield( :main ) : yield
+			
+			#main= content_for?( :main ) ? yield( :main ) : yield
+			
 			= render 'layouts/footer'

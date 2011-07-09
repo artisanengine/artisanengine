@@ -1,54 +1,56 @@
-.page#home
-	#feature
-		= image_tag 'almond_sale.jpg'
+= content_for( :body_class ) { 'page' }
+= content_for( :body_id ) 	 { 'home' }
 
-	#featured-products
-		%p.placeholder Featured Products
+#feature
+	= image_tag 'almond_sale.jpg'
 
-	#blocks-1
-		#connect.block
-			%h2 Connect
-			.block-content
-				#signup-image
-					= image_tag 'signup.jpg'
-					
-				#signup-text
-					%h3 Monthly Email List
-					%p Get news, discounts, and more!
-					
-				= form_tag '#', class: 'formtastic' do
-					= text_field_tag 'email'
-					= submit_tag 'Sign Up'
+#featured-products
+	%p.placeholder Featured Products
+
+#left.blocks
+	#connect.block
+		%h2 Connect
+		.block-content
+			#signup-image
+				= image_tag 'signup.jpg'
+				
+			#signup-text
+				%h3 Monthly Email List
+				%p Get news, discounts, and more!
+				
+			= form_tag '#', class: 'formtastic' do
+				= text_field_tag 'email'
+				= submit_tag 'Sign Up'
+
+	#commitment.block
+		%h2 Our Commitment
+		.block-content
+			= image_tag 'commitment.jpg'
+		.block-bottom
+			= link_to 'Learn more...', '#'
+			
+#middle.blocks
+	#blog.block
+		%h2 emmy's blog
+		.block-content
+			= render_cell :recent_posts, :display, frame: current_frame
+		.block-bottom
+			= link_to 'View all posts', blog_path
 	
-		#commitment.block
-			%h2 Our Commitment
-			.block-content
-				= image_tag 'commitment.jpg'
-			.block-bottom
-				= link_to 'Learn more...', '#'
-	#blocks-2
-		#blog.block
-			%h2 emmy's blog
-			.block-content
-				= render_cell :recent_posts, :display, frame: current_frame
-			.block-bottom
-				= link_to 'View all posts', blog_path
-		
-		#find-a-store
-			= image_tag 'find_a_store.jpg'
-	
-	#blocks-3
-		#press.block
-			%h2 Press
-			.block-content
-				%p.placeholder Press
-	
-		#product.block
-			%h2 Featured Product
-			.block-content
-				%p.placeholder Featured Product
-	
-		#networking
-			%p.placeholder Networking Links
-	
-	
+	#find-a-store
+		= image_tag 'find_a_store.jpg'
+
+#right.blocks
+	#press.block
+		%h2 Press
+		.block-content
+			%p.placeholder Press
+
+	#product.block
+		%h2 Featured Product
+		.block-content
+			%p.placeholder Featured Product
+
+	#networking
+		%p.placeholder Networking Links
+
