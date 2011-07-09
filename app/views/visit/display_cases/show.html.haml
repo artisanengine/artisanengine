@@ -1,0 +1,6 @@
+%h1= @case.name
+
+#goods
+	- for good in @case.goods
+		%div[ good ]
+			= good.name

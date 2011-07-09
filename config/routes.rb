@@ -37,6 +37,7 @@ ArtisanEngine::Application.routes.draw do
       resources :posts, only: [ :show ]
     end
     resources :goods, only: [ :show ]
+    resources :display_cases, path: 'collections'
   end
   
   # Recreate Devise routes from scratch and override Sessions Controller.
