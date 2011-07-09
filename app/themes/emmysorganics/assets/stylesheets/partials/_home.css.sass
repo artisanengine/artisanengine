@@ -36,6 +36,14 @@
 		
 		.block-content
 			background-color: white
+
+		.block-bottom
+			margin-top: 1px
+			background: $emmys-white
+			+adjust-leading-to( 1.5 )
+			padding: 10px
+			a
+				+accent-link
 	
 	.blocks
 		+column( 23/3 )
@@ -43,6 +51,12 @@
 			+column( 23/3, true )
 	
 	#left.blocks
+		#commitment
+			img
+				display: block
+				margin: 0 auto
+				padding: 10px 0
+	
 		#connect
 			.block-content
 				height: 135px
@@ -85,6 +99,28 @@
 				
 				p
 					+trailer( 0.25 )
+					
+			#sam_image
+				float: right
+				padding: 10px
+
+				p
+					color: $emmys-purple
+					.name
+						font-weight: bold
+
+				img
+					+single-box-shadow
+
+			.post
+				padding: 10px 0 0 10px
+
+				p.date
+					color: $emmys-green
+				p.title
+					font-weight: bold
+				a
+					+accent-link
 		
 		#find-a-store
 			img

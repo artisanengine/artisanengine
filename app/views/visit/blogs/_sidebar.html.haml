@@ -1,9 +1,9 @@
 #sidebar
-	%h3 View by Date
-	%ul#dates
-		%li= link_to '2011', '/blog/year/2011'
-	
-	%h3 View by Topic
+	%h3.sort-heading View by Topic
 	%ul#tags
 		- for tag in @tags
 			%li= link_to tag.name, "/blog/#{ tag.id }"
+			
+	%h3.sort-heading View by Date
+	%ul#dates
+		%li= link_to '2011', '/blog/year/2011'

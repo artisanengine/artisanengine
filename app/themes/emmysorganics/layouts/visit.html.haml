@@ -6,7 +6,7 @@
 		= javascript_include_tag "application"
 		= csrf_meta_tags
 
-	%body{ class: content_for( :body_class ) || 'general', id: content_for( :body_id ) || nil }
+	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
 		= render 'layouts/header'
 				
 		#wrapper

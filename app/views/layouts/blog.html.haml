@@ -1,8 +1,8 @@
-= content_for( :main_class ) { 'blog' }
+= content_for( :body_class ) { 'blog' }
 
 = content_for( :main ) do
-	%h1= @blog.name
+	%h2= @blog.name
 	= render 'visit/blogs/sidebar'
-	#blog_main= yield
+	#featured.post= yield
 
 = render template: 'layouts/visit'
