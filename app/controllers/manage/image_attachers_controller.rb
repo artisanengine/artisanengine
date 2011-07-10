@@ -1,16 +1,15 @@
 module Manage
-  class ImageAttachersController < Manage::ManageController    
-    def new
-      @images         = current_frame.images.all
-      @image_attacher = ImageAttacher.new
+  class ImageAttachersController < Manage::ManageController
+    expose( :images )         { current_frame.images }
+    expose( :image_attacher )
+    expose( :parent ) do
+      current_frame.goods.find( params[ :good_id ] )
     end
-    
+
     def create
-      @image_attacher           = ImageAttacher.new
-      @image_attacher.image_id  = params[ :image_attacher ][ :image_id ]
-      @image_attacher.imageable = parent
-      
-      if @image_attacher.save
+      image_attacher.imageable = parent
+
+      if image_attacher.save
         flash[ :notice ] = "Image successfully attached."
         redirect_to polymorphic_url( [ :manage, parent ], action: :edit )
       else
@@ -20,9 +19,7 @@ module Manage
     end
     
     def destroy
-      @image_attacher = ImageAttacher.find( params[ :id ] )
-      
-      if @image_attacher.destroy
+      if image_attacher.destroy
         flash[ :notice ] = "Image successfully removed."
         redirect_to polymorphic_url( [ :manage, parent ], action: :edit )
       else
@@ -44,13 +41,6 @@ module Manage
       
       render nothing: true
     end
-    
-    private
-    
-    def parent
-      current_frame.goods.find( params[ :good_id ] ) if params[ :good_id ]
-    end
-    helper_method :parent
-    
+        
   end
 end
