@@ -1,13 +1,21 @@
 #good_images
 	%h2 Images
-	= render @good.image_attachers.in_order
+	- for image_attacher in good_image_attachers
+		%div[ image_attacher ]
+			= display_image( image_attacher.image, '130x130#' )
+			
+			#links
+				.handle= image_tag 'icons/drag_handle.gif'
+				= link_to 'Remove', [ :manage, good, image_attacher ], method: :delete, confirm: "Are you sure you want to detach this image? (The image will not be deleted.)"
 
-- if @good.images.count < 7
+- if good.images.count < 7
 	#add_image
 		.inner
-			= link_to 'Attach an Existing Image', new_manage_good_image_attacher_path( @good ), class: 'attach'
+			= link_to 'Attach an Existing Image', new_manage_good_image_attacher_path( good ), class: 'attach'
+			
 			%p ~ or ~
-			= form_for [ :manage, @good, @image ] do |f|
+			
+			= form_for [ :manage, good, image ] do |f|
 				= f.label :image, 'Attach a New Image'
 				= f.file_field :image
 				= f.submit 'Upload'

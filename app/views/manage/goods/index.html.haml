@@ -9,7 +9,7 @@
 			%th Name
 			%th
 	%tbody
-		- for good in @goods
+		- for good in goods
 			%tr[ good ]
 				%td.name= link_to good.name, good
 				%td.links

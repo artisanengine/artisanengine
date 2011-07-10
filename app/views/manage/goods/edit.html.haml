@@ -1,4 +1,4 @@
-= content_for( :heading ) { "Edit Good: " + @good.name }
+= content_for( :heading ) { "Edit Good: " + good.name }
 
 :javascript
 	$(document).ready( function() {
@@ -9,7 +9,7 @@
 			update: function() {
 				$.ajax({
 					type: 'post',
-					url: '/manage/goods/#{ @good.id }/image_attachers/sort',
+					url: '/manage/goods/#{ good.id }/image_attachers/sort',
 					data: $( this ).sortable( 'serialize' ),
 				});
 			}
@@ -25,4 +25,4 @@
 	= render 'variants'
 	
 	#danger_zone
-		= button_to 'Delete This Good', manage_good_path( @good ), method: :delete, confirm: "Are you sure you want to delete #{ @good.name }?", class: 'delete'
+		= button_to 'Delete This Good', manage_good_path( good ), method: :delete, confirm: "Are you sure you want to delete #{ good.name }?", class: 'delete'

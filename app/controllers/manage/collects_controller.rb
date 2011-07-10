@@ -1,6 +1,6 @@
 module Manage
   class CollectsController < Manage::ManageController
-    expose( :display_case )
+    expose( :display_case ) { current_frame.display_cases.find( params[ :display_case_id ] ) }
     expose( :collects )     { display_case.collects }
     expose( :collect )
     
