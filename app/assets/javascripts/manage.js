@@ -1,2 +1,2 @@
-//= require tokeninput/jquery.tokeninput
+//= require jquery/jquery.tokeninput
 //= require_tree ./manage
