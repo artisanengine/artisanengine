@@ -10,10 +10,12 @@ module ArtisanEngine
     # ------------------------------------------------------------------
     private
 
-    # If request domain is hausleather.com, looks for views in
-    # app/views/themes/hausleather.com.
+    # If current frame's domain is hausleather.com, looks for views in
+    # app/views/themes/hausleather and cell views in
+    # app/views/themes/hausleather/cells.
     def prepend_current_frame_theme_to_view_paths
       theme_folder = current_frame.domain.split( '.' ).first
+      
       self.prepend_view_path "#{ Rails.root }/app/themes/#{ theme_folder }/cells"
       self.prepend_view_path "#{ Rails.root }/app/themes/#{ theme_folder }"
     end
