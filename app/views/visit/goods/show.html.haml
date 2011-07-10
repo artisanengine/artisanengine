@@ -1,7 +1,6 @@
-:javascript
-	$(document).ready(function (){
-		buildOptionSelects('#{ @options }');
-	});
+= content_for :javascripts do
+	:coffeescript
+		$ -> buildOptionSelects( '#{ @options }' )
 
 %h1= @good.name
 

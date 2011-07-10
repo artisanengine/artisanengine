@@ -5,6 +5,7 @@
 		%title ArtisanEngine
 		= stylesheet_link_tag		 "application", "manage"
 		= javascript_include_tag "application", "manage"
+		= yield :javascripts
 		= csrf_meta_tags
 
 	%body

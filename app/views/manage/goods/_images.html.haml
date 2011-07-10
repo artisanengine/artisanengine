@@ -1,3 +1,18 @@
+= content_for :javascripts do
+	:coffeescript
+		$ ->
+			$( '#good_images' ).sortable({ 
+				items: 		 '.image_attacher'
+				handle: 	 '.handle'
+				tolerance: 'pointer' 
+				update: () -> 
+					$.ajax({ 
+						type: 'post'
+						url:  '/manage/goods/#{ good.id }/image_attachers/sort'
+						data: $( this ).sortable( 'serialize' ) 
+					}) 
+				})
+
 #good_images
 	%h2 Images
 	- for image_attacher in good_image_attachers

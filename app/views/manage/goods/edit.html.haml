@@ -1,21 +1,5 @@
 = content_for( :heading ) { "Edit Good: " + good.name }
 
-:javascript
-	$(document).ready( function() {
-		$( '#good_images' ).sortable({
-			items: '.image_attacher',
-			handle: '.handle',
-			tolerance: 'pointer',
-			update: function() {
-				$.ajax({
-					type: 'post',
-					url: '/manage/goods/#{ good.id }/image_attachers/sort',
-					data: $( this ).sortable( 'serialize' ),
-				});
-			}
-		});
-	});
-
 #good	
 	#basics
 		= render 'form'
