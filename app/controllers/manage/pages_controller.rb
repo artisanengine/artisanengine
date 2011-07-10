@@ -1,37 +1,24 @@
 module Manage
   class PagesController < Manage::ManageController
     respond_to :html
-
-    def index
-      @pages = current_frame.pages
-    end
     
-    def new
-      @page = current_frame.pages.new
-    end
+    expose( :pages ) { current_frame.pages }
+    expose( :page )
     
     def create
-      @page = current_frame.pages.new( params[ :page ] )
-      
-      @page.save ?
-        flash[ :notice ] = "Page: #{ @page.title } was successfully created." :
+      page.save ?
+        flash[ :notice ] = "Page: #{ page.title } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
 
-      respond_with :manage, @page, location: manage_pages_path
-    end
-    
-    def edit
-      @page = current_frame.pages.find( params[ :id ] )
+      respond_with :manage, page, location: manage_pages_path
     end
     
     def update
-      @page = current_frame.pages.find( params[ :id ] )
-      
-      @page.update_attributes( params[ :page ] ) ?
-        flash[ :notice ] = "Page: #{ @page.title } was successfully updated." :
+      page.update_attributes( params[ :page ] ) ?
+        flash[ :notice ] = "Page: #{ page.title } was successfully updated." :
         flash[ :alert ]  = t( :form_alert )
       
-      respond_with :manage, @page, location: manage_pages_path
+      respond_with :manage, page, location: manage_pages_path
     end
     
     # ------------------------------------------------------------------
