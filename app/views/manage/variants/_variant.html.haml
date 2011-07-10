@@ -1,3 +1,3 @@
 %tr[ variant ]
-	- for option in @good.options.in_order.all
+	- for option in good_options
 		%td= variant.send( :"option_value_#{ option.position }" )
