@@ -17,6 +17,9 @@ gem 'friendly_id',            '3.3.0.alpha2'     # SEO-friendly URLs.
 # Authentication and authorization.
 gem 'devise',                 '1.4.2'       # Authentication.
 
+# Controller-layer enhancements.
+gem 'decent_exposure',        '1.0.1'
+
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'       # Better forms.
 gem 'haml',									  '3.1.2'       # HTML haiku.

@@ -2,22 +2,15 @@ module Develop
   class ArtisansController < Develop::DevelopController
     respond_to :html
     
-    def index
-      @artisans = Artisan.all
-    end
-    
-    def new
-      @artisan = Artisan.new
-    end
-    
+    expose( :artisans ) { Artisan.all }
+    expose( :artisan )
+        
     def create
-      @artisan = Artisan.new( params[ :artisan ] )
-      
-      @artisan.save ?
-        flash[ :notice ] = "Artisan: #{ @artisan.email } was successfully created." :
+      artisan.save ?
+        flash[ :notice ] = "Artisan: #{ artisan.email } was successfully created." :
         flash[ :alert ]  = t( :form_alert )
 
-      respond_with :develop, @artisan, location: develop_artisans_path
+      respond_with :develop, artisan, location: develop_artisans_path
     end
   end
 end

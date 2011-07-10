@@ -9,4 +9,9 @@
 			%th Frame
 	
 	%tbody
-		= render @artisans
+		- for artisan in artisans
+			%tr[ artisan ]
+				%td= artisan.first_name
+				%td= artisan.last_name
+				%td= artisan.email
+				%td= artisan.frame.domain
