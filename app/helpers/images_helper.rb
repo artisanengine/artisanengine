@@ -1,9 +1,9 @@
 module ImagesHelper
-  def display_image( image, size = '200x200#' )
+  def display_image( image, size = '200x200#', options = {} )
     unless image.nil?
-      image_tag( image.image.thumb( size ).url )
+      image_tag( image.image.thumb( size ).url, options )
     else
-      placeholder_image( size )
+      placeholder_image( size, options )
     end
   end
   

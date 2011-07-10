@@ -2,44 +2,34 @@ module Manage
   class ImagesController < Manage::ManageController
     respond_to :html
     
-    def index
-      @images = current_frame.images
-    end
-    
-    def new
-      @image = current_frame.images.new
+    expose( :images ) { current_frame.images }
+    expose( :image )
+    expose( :parent ) do
+      current_frame.goods.find( params[ :good_id ] ) if params[ :good_id ]
     end
     
     def create
-      @image = current_frame.images.new( params[ :image ] )
-      
-      if @image.save
-        flash[ :notice ] = "Image: #{ @image.image_name } was successfully created."
+      if image.save
+        flash[ :notice ] = "Image: #{ image.image_name } was successfully created."
+        
         if parent
-          ImageAttacher.create! image: @image, imageable: parent
+          ImageAttacher.create! image: image, imageable: parent
           redirect_to polymorphic_path( [ :manage, parent ], action: :edit ) and return 
         end
+      
       else
         flash[ :alert ] = t( :form_alert )
       end
 
-      respond_with :manage, @image, location: manage_images_path
+      respond_with :manage, image, location: manage_images_path
     end
     
     def destroy
-      @image = current_frame.images.find( params[ :id ] )
-      
-      @image.destroy ?
-        flash[ :notice ] = "Image: #{ @image.image_name } was successfully destroyed." :
+      image.destroy ?
+        flash[ :notice ] = "Image: #{ image.image_name } was successfully destroyed." :
         flash[ :alert ]  = "Image could not be destroyed."
       
-      respond_with :manage, @image
-    end
-    
-    private
-    
-    def parent
-      current_frame.goods.find( params[ :good_id ] ) if params[ :good_id ]
+      respond_with :manage, image
     end
   end
 end
