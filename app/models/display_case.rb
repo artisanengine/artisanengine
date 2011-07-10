@@ -1,5 +1,5 @@
 class DisplayCase < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :good_id, :display_case_id
   
   has_friendly_id :name, use_slug: true, scope: :frame
   

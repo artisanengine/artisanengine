@@ -1,15 +1,17 @@
-= content_for( :heading ) { 'Edit Display Case: ' + @display_case.name }
+= content_for( :heading ) { 'Edit Display Case: ' + display_case.name }
 
 = render 'form'
 
 #uncollected_goods
-	- for good in ( current_frame.goods - @display_case.goods )
+	- for good in ( current_frame.goods - display_case.goods )
 		.good
 			%p= good.name
-			= button_to 'Add to Case', manage_display_case_collects_path( @display_case, good_id: good.id )
+			= form_for [ :manage, display_case, Collect.new ] do |f|
+				= f.hidden_field :good_id, value: good.id
+				= f.submit 'Add to Case'
 
 #collected_goods
-	- for good in @display_case.goods
+	- for collect in display_case.collects
 		.good
-			%p= good.name
-			= button_to 'Remove from Case', manage_display_case_collect_path( @display_case, good_id: good.id ), method: :delete
+			%p= collect.good.name
+			= button_to 'Remove from Case', manage_display_case_collect_path( display_case, collect ), method: :delete
