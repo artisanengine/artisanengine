@@ -6,4 +6,7 @@
 			%th Name
 			%th Domain
 	%tbody
-		= render @frames
+		- for frame in frames
+			%tr[ frame ]
+				%td= frame.name
+				%td= frame.domain
