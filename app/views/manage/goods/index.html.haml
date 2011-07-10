@@ -11,6 +11,6 @@
 	%tbody
 		- for good in @goods
 			%tr[ good ]
-				%td.name= good.name
+				%td.name= link_to good.name, good
 				%td.links
 					= link_to 'Edit', edit_manage_good_path( good )
