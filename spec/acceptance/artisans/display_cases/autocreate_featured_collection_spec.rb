@@ -18,9 +18,8 @@ feature 'Auto-Create Featured Display Case', %q{
     # Then I should see a Featured display case,
     page.should have_selector '.display_case', text: 'Featured'
     
-    # And I should not be able to edit or delete the Featured display case.
+    # And I should not be able to delete the Featured display case.
     within '.display_case', text: 'Featured' do
-      page.should_not have_content 'Edit'
       page.should_not have_content 'Delete'
     end
   end

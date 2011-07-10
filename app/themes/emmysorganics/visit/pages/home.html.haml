@@ -5,7 +5,7 @@
 	= image_tag 'almond_sale.jpg'
 
 #featured-products
-	%p.placeholder Featured Products
+	= render_cell :featured_products, :display, frame: current_frame, limit: 5
 
 #left.blocks
 	#connect.block
@@ -49,7 +49,7 @@
 	#product.block
 		%h2 Featured Product
 		.block-content
-			%p.placeholder Featured Product
+			= render_cell :featured_products, :display, frame: current_frame
 
 	#networking
 		%p.placeholder Networking Links

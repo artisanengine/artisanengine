@@ -9,6 +9,7 @@
 			%tr[ display_case ]
 				%td= display_case.name
 				
-				- unless display_case.name == "Featured"
-					%td.links
+				%td.links
+					= link_to 'Edit', edit_manage_display_case_path( display_case )
+					- unless display_case.name == "Featured"
 						= link_to 'Delete', [ :manage, display_case ], method: :delete, confirm: "Are you sure you want to delete Display Case: #{ display_case.name }?"

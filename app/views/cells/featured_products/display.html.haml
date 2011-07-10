@@ -1,2 +1,5 @@
 - for good in @goods
-	= good.name
+	%div[good]
+		= display_image( good.images.first, '174x174#' )
+		%p= good.name
+		%p Link

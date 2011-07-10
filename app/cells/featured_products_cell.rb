@@ -1,5 +1,6 @@
 class FeaturedProductsCell < Cell::Rails
   include FramesHelper
+  helper  :images
   include ArtisanEngine::Theming
 
   def display( state )

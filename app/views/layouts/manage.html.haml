@@ -13,13 +13,14 @@
 				%h1#manage_header= yield( :heading )
 
 				%ul#manage_links
-					%li= link_to 'Goods',  		 manage_goods_path
-					%li= link_to 'Pages',  		 manage_pages_path
-					%li= link_to 'Blog',   		 manage_blog_path
-					%li= link_to 'Orders', 		 '#'
-					%li= link_to 'Patrons', 	 '#'
-					%li= link_to 'Promotions', '#'
-					%li= link_to 'Images', 		 manage_images_path
+					%li= link_to 'Goods',  		 		manage_goods_path
+					%li= link_to 'Display Cases', manage_display_cases_path
+					%li= link_to 'Pages',  		 		manage_pages_path
+					%li= link_to 'Blog',   		 		manage_blog_path
+					%li= link_to 'Orders', 		 		'#'
+					%li= link_to 'Patrons', 	 		'#'
+					%li= link_to 'Promotions', 		'#'
+					%li= link_to 'Images', 		 		manage_images_path
 				
 			#main
 				= render 'notifications' unless flash.empty?

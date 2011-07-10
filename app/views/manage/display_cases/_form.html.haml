@@ -1,3 +1,4 @@
 = semantic_form_for( [ :manage, @display_case ] ) do |f|
-	= f.inputs :name
+	= f.inputs do 
+		= f.input :name, input_html: { disabled: @display_case.name == "Featured" }
 	= f.submit
