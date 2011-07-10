@@ -23,6 +23,7 @@ gem 'decent_exposure',        '1.0.1'
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'       # Better forms.
 gem 'haml',									  '3.1.2'       # HTML haiku.
+gem 'coffee-filter',          '0.1.1'       # Use CoffeeScript with HAML.
 gem 'compass',                git: 'https://github.com/chriseppstein/compass.git', branch: 'rails31'
 
 # Asset pipeline enhancements.
