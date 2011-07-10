@@ -1,7 +1,7 @@
 module Manage
   class BlogsController < Manage::ManageController
-    def show
-      @blog        = current_frame.blog
-    end
+    respond_to :html
+    
+    expose( :blog ) { current_frame.blog }
   end
 end

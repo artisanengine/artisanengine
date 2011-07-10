@@ -12,7 +12,7 @@
 			%th
 			
 	%tbody
-		- for post in @blog.posts.order( "created_at DESC" )
+		- for post in blog.posts.order( "created_at DESC" )
 			%tr[ post ]
 				%td= post.title
 				%td= time_ago_in_words( post.created_at ) + " ago"
