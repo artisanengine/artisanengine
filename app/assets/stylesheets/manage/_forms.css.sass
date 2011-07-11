@@ -6,8 +6,8 @@
 	+column( 14, true )
 	+append( 5 )
 	
-	input[type=text], input[type=email], input[type=password], textarea
-		width: 550px
+	input[type=text], input[type=email], input[type=password], textarea, label
+		+column( 14, true )
 
 // ------------------------------------------------------------------
 // Form Styles
@@ -41,15 +41,15 @@ form
 		cursor: pointer
 		padding: 2px 4px
 		
-		background-color: lighten( #00FF00, 45% )
+		background-color: lighten( green, 70% )
 
 		&:hover
 			border: 1px solid darken( $bg-color, 50% )			
 		&.delete
-			background-color: lighten( #FF0000, 45% )
+			background-color: lighten( red, 45% )
 		
 	&.formtastic li.error input
-		border: 1px solid lighten( #FF0000, 30% )
+		border: 1px solid lighten( red, 30% )
 
 // ------------------------------------------------------------------
 // TokenInput
@@ -66,15 +66,9 @@ li.token-input-input-token-facebook
 // ------------------------------------------------------------------
 // Centered Forms
 
-form.variant
+form.variant, form.display_case, form.page, form.post, form.good
 	+centered-form
 
-// ------------------------------------------------------------------
-// Pages & Posts
-
-form.page, form.post
-	+centered-form
-	
 // ------------------------------------------------------------------
 // Display Cases & Collects
 
@@ -85,15 +79,9 @@ form.page, form.post
 // ------------------------------------------------------------------
 // Goods
 
-form#new_good
-	+centered-form
-
 #good
 	h2
 		text-align: center
-		
-	#basics
-		+centered-form
 			
 	#good_images, #options, #variants
 		+column( 24, true )
@@ -182,7 +170,7 @@ form#new_good
 				cursor: pointer
 				padding: 2px 4px
 
-				background-color: lighten( #00FF00, 45% )
+				background-color: lighten( green, 70% )
 
 				&:hover
 					border: 1px solid darken( $bg-color, 50% )
