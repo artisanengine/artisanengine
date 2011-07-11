@@ -35,7 +35,7 @@ var DEFAULT_SETTINGS = {
     preventDuplicates: false,
     prePopulate: null,
     processPrePopulate: false,
-    animateDropdown: true,
+    animateDropdown: false,
     onResult: null,
     onAdd: null,
     onDelete: null,
