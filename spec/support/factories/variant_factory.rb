@@ -1,6 +1,6 @@
 Factory.define :variant do |v|
   v.association :good
-  v.price       rand( 5000 ) + 1
+  v.price       { rand( 5000 ) + 1 }
   
   v.after_build do |v|
     v.required_number_of_options.times do |time|
