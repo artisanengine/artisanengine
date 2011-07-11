@@ -29,24 +29,22 @@ class Option < ActiveRecord::Base
   # Methods
   
   def shift_higher
-    Option.transaction do
-      for variant in good.variants
-        # Example: Shifting Option Value 3 higher.
-        # Set Option Value 2 = Option Value 3
-        eval( "variant.option_value_#{ position - 1 } = variant.option_value_#{ position }" )
-      
-        # Clear Option Value 3.
-        eval( "variant.option_value_#{ position } = nil" )
-      
-        # Save the variant. Do not validate, since one of the required option values
-        # may temporarily be nil if other options are waiting to be shifted.
-        variant.save!( validate: false )
-      end
-
-      # Set option position to one higher.
-      self.position = position - 1
-      save!
+    for variant in good.variants
+      # Example: Shifting Option Value 3 higher.
+      # Set Option Value 2 = Option Value 3
+      eval( "variant.option_value_#{ position - 1 } = variant.option_value_#{ position }" )
+    
+      # Clear Option Value 3.
+      eval( "variant.option_value_#{ position } = nil" )
+    
+      # Save the variant. Do not validate, since one of the required option values
+      # may temporarily be nil if other options are waiting to be shifted.
+      variant.save!( validate: false )
     end
+
+    # Set option position to one higher.
+    self.position = position - 1
+    save!
   end
   
   # ------------------------------------------------------------------
@@ -62,10 +60,8 @@ class Option < ActiveRecord::Base
   end
   
   def shift_lower_positioned_options_higher
-    Option.transaction do
-      for option in good.options.where( "options.position > #{ position }" ).all
-        option.shift_higher
-      end
+    for option in good.options.where( "options.position > #{ position }" ).all
+      option.shift_higher
     end
   end
   
