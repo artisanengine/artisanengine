@@ -1,7 +1,7 @@
 #sidebar
 	%h3.sort-heading View by Topic
 	%ul#tags
-		- for tag in @tags
+		- for tag in tags
 			%li= link_to tag.name, "/blog/#{ tag.id }"
 			
 	%h3.sort-heading View by Date

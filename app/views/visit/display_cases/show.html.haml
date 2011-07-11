@@ -1,4 +1,9 @@
-%h1= @case.name
+%h1= display_case.name
 
-#goods= render @case.goods
-		
+#goods
+	- for good in display_case.goods
+		%div[ good ]
+			.image= link_to display_image( good.images.first, '150x150#' ), good
+			.description
+				%p= link_to good.name, good
+			.quick_purchase Quick Purchase Options

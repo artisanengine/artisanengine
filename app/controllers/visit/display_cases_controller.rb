@@ -2,10 +2,10 @@ module Visit
   class DisplayCasesController < Visit::VisitController
     layout :display_cases_or_visit
     
-    def show
-      @case = current_frame.display_cases.find( params[ :id ] )
-    end
+    expose( :display_cases ) { current_frame.display_cases }
+    expose( :display_case )
     
+    # ------------------------------------------------------------------
     private
     
     def display_cases_or_visit

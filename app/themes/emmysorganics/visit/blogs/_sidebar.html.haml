@@ -1,12 +1,12 @@
 #sidebar
 	%h3.sort-heading View by Topic
 	%ul#tags
-		- for tag in @tags
-			%li= link_to tag.name, "/blog/#{ tag.id }"
+		- for tag in tags
+			%li= link_to tag.name, by_tag_blog_path( tag )
 			
 	%h3.sort-heading View by Date
 	%ul#dates
-		%li= link_to '2011', '/blog/year/2011'
+		%li= link_to '2011', by_year_blog_path( '2011' )
 	
 	#author
 		%table

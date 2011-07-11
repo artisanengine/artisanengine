@@ -32,8 +32,8 @@ ArtisanEngine::Application.routes.draw do
   scope :module => :visit do
     resources :pages, only: [ :show ]
     resource  :blog, only: [ :show ] do
-      get '/year/:year' => 'posts#index'
-      get '/:tag_id'    => 'posts#index'
+      get '/year/:year' => 'posts#index', as: 'by_year'
+      get '/:tag_id'    => 'posts#index', as: 'by_tag'
       resources :posts, only: [ :show ]
     end
     resources :goods, only: [ :show ]

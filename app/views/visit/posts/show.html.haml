@@ -1,4 +1,4 @@
-%h1= @post.title
-%p.date= @post.created_at.strftime( "%A, %B %d, %Y" )
+%h1= post.title
+%p.date= post.created_at.strftime( "%A, %B %d, %Y" )
 
-.content= @post.html_content.html_safe
+.content= post.html_content.html_safe

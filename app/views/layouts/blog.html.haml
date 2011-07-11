@@ -1,7 +1,7 @@
 = content_for( :body_class ) { 'blog' }
 
 = content_for( :main ) do
-	%h2= @blog.name
+	%h2= blog.name
 	= render 'visit/blogs/sidebar'
 	#featured.post= yield
 

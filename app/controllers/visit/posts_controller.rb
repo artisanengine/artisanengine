@@ -1,25 +1,29 @@
+# TODO: Create sample app and raise an issue with decent_exposure. 
+# Exposing "tag" here instead of "requested_tag" 
+# breaks any method with the word "tag" in it.
+
 module Visit
   class PostsController < Visit::VisitController
     layout :blog_or_visit
     
-    def index
-      @blog  = current_frame.blog
-      @posts = @blog.posts.by_year( params[ :year ] ).order( "created_at DESC" ) if params[ :year ]
-      @tags  = current_frame.tags
-      
-      if params[ :tag_id ]
-        @tag = current_frame.tags.find( params[ :tag_id ] )
-        render_404 unless @tag
-        @posts = @blog.posts.order( "created_at DESC" ).tagged_with( @tag )
+    expose( :blog )          { current_frame.blog }
+    
+    expose( :tags )          { current_frame.tags }
+    expose( :requested_tag ) { tags.find( params[ :tag_id ] ) }
+    
+    expose( :posts ) do
+      if params[ :year ]
+        blog.posts.by_year( params[ :year ] ).order( "created_at DESC" )
+      elsif params[ :tag_id ]
+        blog.posts.tagged_with( requested_tag ).order( "created_at DESC" )
+      else
+        blog.posts
       end
     end
     
-    def show
-      @blog = current_frame.blog
-      @post = @blog.posts.order( "created_at DESC" ).find( params[ :id ] )
-      @tags = current_frame.tags
-    end
+    expose( :post )
     
+    # ------------------------------------------------------------------
     private
     
     def blog_or_visit

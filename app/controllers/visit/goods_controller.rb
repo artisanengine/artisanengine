@@ -7,6 +7,7 @@ module Visit
       @options = @good.options.to_json
     end
     
+    # ------------------------------------------------------------------
     private
     
     def goods_or_visit
