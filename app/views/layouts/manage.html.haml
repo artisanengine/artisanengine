@@ -8,7 +8,7 @@
 		= yield :javascripts
 		= csrf_meta_tags
 
-	%body
+	%body{ class: body_classes, id: body_ids }
 		#wrapper
 			- unless request.fullpath == new_artisan_session_path
 				%h1#manage_header= yield( :heading )

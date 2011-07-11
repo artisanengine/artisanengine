@@ -8,6 +8,6 @@
 		= yield :javascripts
 		= csrf_meta_tags
 
-	%body
+	%body{ class: body_classes, id: body_ids }
 		#wrapper
 			#main= content_for?( :main ) ? yield( :main ) : yield

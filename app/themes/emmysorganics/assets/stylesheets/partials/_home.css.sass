@@ -15,11 +15,52 @@
 			margin: 5px auto 0
 	
 	#featured-products
-		+column( 23, true )
+		+prepend( 0.5 )
+		+column( 22, true )
+		+append( 0.5 )
+		
 		background-color: $emmys-white
 		height: 380px
 		margin-top: 1em
-	
+		
+		h2
+			+adjust-leading-to( 2 )
+		
+		.good
+			+column( 22/5 )
+			&:last-child
+				+column( 22/5, true )
+				border-right: none
+			
+			a
+				font-family: $accent-font-family
+				font-weight: bold
+				border-bottom: 1px solid $emmys-gray
+				text-decoration: none
+				&:hover
+					border-bottom: 1px solid darken( $emmys-gray, 25% )
+			
+			.info
+				.name
+					height: 50px
+					a
+						color: $emmys-purple		
+						+adjust-font-size-to( 13.5px )
+			
+				.links
+					height: 13px
+				
+					img
+						padding-top: 2px
+					
+					a
+						height: 100%
+						color: $emmys-green
+						+adjust-font-size-to( 11.5px )
+						vertical-align: top
+						&:first-child
+							border-bottom: none
+
 	// ------------------------------------------------------------------
 	// Blocks
 	
@@ -136,9 +177,29 @@
 		
 		#product
 			.block-content
-				height: 220px
-				p.placeholder	
-					line-height: 220px
+				height: 160px
+				
+				.info
+					+column( 23/3/2 )
+					+pull( 23/3, true )
+					height: 160px
+					line-height: 160px
+					padding-left: 1em
+					
+					a
+						text-decoration: none
+						color: $default-text-color
+						font-weight: bold
+					
+					.links
+						display: none
+						
+				#image
+					+prepend( 23/3/2 )
+					+column( 23/3/2, true )
+					img
+						width: 143px
+						padding-top: 10px
 		
 		#networking
 			height: 75px

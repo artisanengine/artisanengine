@@ -1,10 +1,11 @@
-= content_for( :body_class ) { 'page' }
-= content_for( :body_id ) 	 { 'home' }
+- add_body_class 'page'
+- add_body_id 	 'home'
 
 #feature
 	= image_tag 'almond_sale.jpg'
 
 #featured-products
+	%h2 Products
 	= render_cell :featured_products, :display, frame: current_frame, limit: 5
 
 #left.blocks
@@ -50,7 +51,8 @@
 		%h2 Featured Product
 		.block-content
 			= render_cell :featured_products, :display, frame: current_frame
-
+		.block-bottom
+			= link_to 'More Info'
 	#networking
 		%p.placeholder Networking Links
 
