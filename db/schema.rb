@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "variants", :force => true do |t|
     t.integer "good_id",                       :null => false
+    t.integer "position",                      :null => false
     t.integer "price_in_cents", :default => 0, :null => false
     t.string  "currency"
     t.string  "option_value_1"

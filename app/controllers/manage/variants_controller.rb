@@ -26,5 +26,19 @@ module Manage
         redirect_to( edit_manage_good_path( good ), notice: "Variant was successfully destroyed." ) :
         redirect_to( edit_manage_good_path( good ), alert: "#{ variant.errors.full_messages }" )
     end
+    
+    # ------------------------------------------------------------------
+    # Non-RESTful Actions
+    
+    # POST /manage/goods/:id/variants/sort
+    def sort
+      variants = current_frame.goods.find( params[ :good_id ] ).variants
+      
+      params[ :variant ].each_with_index do |id, index|
+        variants.update_all( [ "position = ?", index + 1 ], [ 'id = ?', id ] )
+      end
+      
+      render nothing: true
+    end
   end
 end

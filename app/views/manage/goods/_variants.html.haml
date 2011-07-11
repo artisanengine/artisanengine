@@ -1,8 +1,31 @@
+= content_for :javascripts do
+	:coffeescript
+		$ ->
+			# Fix table collapse, solution from http://www.foliotek.com/devblog/make-table-rows-sortable-using-jquery-ui-sortable/.
+			fixHelper = (e, ui) ->
+				ui.children().each( () -> $(this).width( $(this).width() ) )
+				return ui
+				
+			$( '#all_variants' ).sortable({ 
+				items: 		 '.variant'
+				handle: 	 '.handle'
+				tolerance: 'pointer' ,
+				helper: fixHelper
+				update: () -> 
+					$.ajax({ 
+						type: 'post'
+						url:  '/manage/goods/#{ good.id }/variants/sort'
+						data: $( this ).sortable( 'serialize' )
+						dataType: 'script'
+					}) 
+				})
+
 #variants
 	%h2 Variants
 	%table#all_variants
 		%thead
 			%tr
+				%th
 				- for option in good_options
 					%th= label_tag "variant_option_value_#{ option.position }", option.name
 				%th= label_tag "variant_price", 'Price'
@@ -11,6 +34,7 @@
 		%tbody
 			- for variant in good_variants
 				%tr[ variant ]
+					%td.handle= image_tag 'icons/drag_handle.gif'
 					- for option in good_options
 						%td.option= eval( "variant.option_value_#{ option.position }" )
 					%td.price= variant.price.format

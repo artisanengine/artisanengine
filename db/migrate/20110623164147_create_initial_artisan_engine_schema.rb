@@ -150,6 +150,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     create_table :variants do |t|
       t.integer :good_id,           null: false
       
+      t.integer :position,          null: false
+      
       t.integer :price_in_cents,    null: false, default: 0
       t.string  :currency
       
