@@ -2,11 +2,10 @@ module Visit
   class GoodsController < Visit::VisitController
     layout :goods_or_visit
     
-    def show
-      @good = current_frame.goods.find( params[ :id ] )
-      @options = @good.options.to_json
-    end
-    
+    expose( :goods )   { current_frame.goods }
+    expose( :good )
+    expose( :options ) { good.options.to_json }
+        
     # ------------------------------------------------------------------
     private
     

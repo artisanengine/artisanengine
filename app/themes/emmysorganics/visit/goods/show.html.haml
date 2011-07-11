@@ -1,21 +1,21 @@
 = content_for :javascripts do
 	:coffeescript
-		$ -> buildOptionSelects( '#{ @options }' )
+		$ -> buildOptionSelects( '#{ options }' )
 
 #goods_middle
-	%h1= @good.name
+	%h1= good.name
 	
 	#images
-		.featured= link_to display_image( @good.images.first, '550x350#' ), @good.images.first ? @good.images.first.image.remote_url : asset_path( 'placeholder.jpg' )
+		.featured= link_to display_image( good.images.first, '550x350#' ), good.images.first ? good.images.first.image.remote_url : asset_path( 'placeholder.jpg' )
 		.additional
-			- for image in @good.images.drop( 1 )
+			- for image in good.images.drop( 1 )
 				= link_to display_image( image, '130x85#' ), image.image.remote_url
 	
-	.description= @good.html_description.html_safe
+	.description= good.html_description.html_safe
 
 #goods_right
 	#options
-		= select_tag 'variant', options_from_collection_for_select( @good.variants, :id, :values_to_s )
+		= select_tag 'variant', options_from_collection_for_select( good.variants, :id, :values_to_s )
 	
 	#purchase
 		#price

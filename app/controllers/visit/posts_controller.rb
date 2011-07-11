@@ -2,6 +2,9 @@
 # Exposing "tag" here instead of "requested_tag" 
 # breaks any method with the word "tag" in it.
 
+# TODO: Possibly refactor this using has_scope and change URLs to query
+# strings.
+
 module Visit
   class PostsController < Visit::VisitController
     layout :blog_or_visit

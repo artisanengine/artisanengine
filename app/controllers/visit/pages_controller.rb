@@ -2,10 +2,12 @@ module Visit
   class PagesController < Visit::VisitController
     respond_to :html
     
-    def show
-      @page = current_frame.pages.find( params[ :id ] )
-    end
+    expose( :pages ) { current_frame.pages }
+    expose( :page )
 
+    # ------------------------------------------------------------------
+    # Non-RESTful Actions
+    
     # GET /
     def home
     end

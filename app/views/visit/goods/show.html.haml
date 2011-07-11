@@ -1,13 +1,13 @@
 = content_for :javascripts do
 	:coffeescript
-		$ -> buildOptionSelects( '#{ @options }' )
+		$ -> buildOptionSelects( '#{ options }' )
 
-%h1= @good.name
+%h1= good.name
 
-= @good.html_description.html_safe
+= good.html_description.html_safe
 
 #options
-	= select_tag 'variant', options_from_collection_for_select( @good.variants, :id, :values_to_s )
+	= select_tag 'variant', options_from_collection_for_select( good.variants, :id, :values_to_s )
 
 #purchase
 	#price
