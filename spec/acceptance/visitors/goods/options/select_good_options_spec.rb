@@ -8,7 +8,7 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
   
   background do
     # Given a good exists with three options and three variants,
-    good = Factory( :good_with_three_options_and_variants, name: 'Bag of Tricks' )
+    @good = Factory( :good_with_three_options_and_variants, name: 'Bag of Tricks' )
     
     # And I am on the show good page for the good,
     visit good_page_for 'Bag of Tricks'
@@ -43,5 +43,25 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
     end
   end
   
-  scenario "The price updates automatically when a variant is selected"
+  scenario "The price updates automatically when a variant is selected", js: true do
+    # Given the first variant has a price of 25
+    @good.variants.first.update_attributes price: "$25.00"
+    
+    # And the last variant has a price of 50
+    @good.variants.last.update_attributes price: "$50.00"
+    
+    # And I reload the page,
+    visit good_page_for 'Bag of Tricks'
+    
+    # Then I should see $25.00,
+    page.should have_selector '#price', text: '$25.00'
+    
+    # And when I select the last variant,
+    select 'Large',  from: 'Size'
+    select 'Red',    from: 'Color'
+    select 'Cloth',  from: 'Material'
+    
+    # Then I should see $50.00.
+    page.should have_selector '#price', text: '$50.00'
+  end
 end

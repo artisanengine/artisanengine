@@ -30,7 +30,7 @@
 			
 			%p ~ or ~
 			
-			= form_for [ :manage, good, image ] do |f|
+			= form_for [ :manage, good, new_image ] do |f|
 				= f.label :image, 'Attach a New Image'
 				= f.file_field :image
 				= f.submit 'Upload'

@@ -8,6 +8,13 @@ describe Variant do
       new_variant.should be_valid
     end
     
+    it "is not valid without a price greater than 1" do
+      for invalid_price in [ -1, 0, 0.001 ]
+        new_variant.price = invalid_price
+        new_variant.should_not be_valid
+      end
+    end
+    
     it "is not valid without a good" do
       new_variant.good = nil
       new_variant.should_not be_valid
@@ -46,11 +53,12 @@ describe Variant do
   end
 
   context "methods: " do
-    it "can return its values in a slash-separated string" do
+    it "can return its values in a slash-separated string with price" do
       good    = Factory( :good_with_three_options_and_variants )
       variant = good.variants.first
+      variant.update_attributes price: 25
       
-      variant.values_to_s.should == "Small / Blue / Cloth"
+      variant.values_to_s.should == "Small / Blue / Cloth -- $25.00"
     end
   end
 end

@@ -15,8 +15,8 @@ class Good < ActiveRecord::Base
   belongs_to :frame
   has_many   :options
   has_many   :variants
-  has_many   :image_attachers, :as => :imageable, dependent: :destroy
-  has_many   :images,          :through => :image_attachers
+  has_many   :image_attachers, as: :imageable, dependent: :destroy
+  has_many   :images,          through: :image_attachers
   
   # ------------------------------------------------------------------
   # Validations
@@ -28,7 +28,7 @@ class Good < ActiveRecord::Base
   
   def create_first_option_and_variant
     options.create!  name: 'Type', default_value: 'Default'
-    variants.create! option_value_1: 'Default'
+    variants.create! option_value_1: 'Default', price: 100
   end
   
   def convert_description_to_html

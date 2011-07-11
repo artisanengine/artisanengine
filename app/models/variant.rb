@@ -5,6 +5,14 @@ class Variant < ActiveRecord::Base
   before_destroy        :ensure_not_last_variant
   
   # ------------------------------------------------------------------
+  # Money
+  
+  composed_of :price, class_name:  "Money",
+                      mapping:     [ %w(price_in_cents cents), %w(currency currency_as_string) ],
+                      constructor: lambda { |cents, currency| Money.new( cents || 0, currency || Money.default_currency ) },
+                      converter:   lambda { |value| value.respond_to?( :to_money ) ? value.to_money : 0.to_money }
+  
+  # ------------------------------------------------------------------
   # Associations
   
   belongs_to :good
@@ -12,9 +20,10 @@ class Variant < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Validations
   
-  validates_presence_of :good
-  validate              :correct_number_of_option_values
-  validate              :no_required_option_value_can_be_blank
+  validates_presence_of     :good
+  validates_numericality_of :price, greater_than_or_equal_to: 1
+  validate                  :correct_number_of_option_values
+  validate                  :no_required_option_value_can_be_blank
   
   # ------------------------------------------------------------------
   # Accessors
@@ -39,10 +48,11 @@ class Variant < ActiveRecord::Base
       unless index == number_of_options - 1
         values_string << "#{ value } / " unless value.blank?
       else
-        values_string << "#{ value}"     unless value.blank?
+        values_string << "#{ value }"    unless value.blank?
       end
     end
     
+    values_string << " -- #{ price.format }"
     values_string
   end
   

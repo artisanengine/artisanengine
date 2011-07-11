@@ -19,13 +19,15 @@ window.buildOptionSelects = (options) ->
 		currentVariant = getCurrentVariant( variants, currentValues )
 		
 		if currentVariant
-			$('#price').html( currentVariant.id )
+			$('#price').html( currentVariant.price )
 			$('#variant').val( currentVariant.id )
 		else
 			$('#price').html( 'Not available.' )
 	)
 	
 	# Initialize original data.
+	$( '#price' ).html( variants[0].price )
+	
 	# Hide original select.
 	$('#options #variant').hide()
 	
@@ -35,11 +37,16 @@ window.buildVariantsArray = () ->
 	
 	$( '#variant option' ).each( () ->
 		# Retrieve option values into an array and trim them of whitespace.
-		option_values = $( this ).text().split( "/" )
+		option_values = $( this ).text().replace( /-{2}.+/, '' )						# Trim price.
+		option_values = option_values.split( "/" )
 		option_values = $.map( option_values, (value) -> $.trim( value ) )
 		
+		# Retrieve trimmed price.
+		variant_price = $( this ).text().split( "--" )[1]
+		variant_price = $.trim( variant_price )
+		
 		# Create the Variant object.
-		variant = { "id": $( this ).val(), "option_values": option_values }
+		variant = { "id": $( this ).val(), "option_values": option_values, "price": variant_price }
 
 		# Add the Variant object to the array of variants.
 		variants.push( variant )

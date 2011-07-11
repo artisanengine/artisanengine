@@ -9,7 +9,7 @@ module Manage
     expose( :good_variants )        { good.variants }
     expose( :new_variant )          { good_variants.new }
     expose( :good_image_attachers ) { good.image_attachers.in_order }
-    expose( :image )                { good.images.build frame: current_frame }
+    expose( :new_image )            { good.images.build frame: current_frame }
    
     def create
       good.save ?

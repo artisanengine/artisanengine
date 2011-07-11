@@ -22,6 +22,7 @@ feature 'Create a Variant', %q{
     within '#add_variant' do
       fill_in 'Size',  with: 'Medium'
       fill_in 'Color', with: 'Red'
+      fill_in 'Price', with: '$50.00'
       click_button 'Add Variant'
     end
     
@@ -32,6 +33,7 @@ feature 'Create a Variant', %q{
     within '.variant:last-child' do
       page.should have_content 'Medium'
       page.should have_content 'Red'
+      page.should have_content '$50.00'
     end
   end
   

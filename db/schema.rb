@@ -144,7 +144,9 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "tags", ["id", "frame_id"], :name => "index_tags_on_id_and_frame_id"
 
   create_table "variants", :force => true do |t|
-    t.integer "good_id",        :null => false
+    t.integer "good_id",                       :null => false
+    t.integer "price_in_cents", :default => 0, :null => false
+    t.string  "currency"
     t.string  "option_value_1"
     t.string  "option_value_2"
     t.string  "option_value_3"

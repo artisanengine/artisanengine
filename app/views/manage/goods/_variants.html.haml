@@ -5,6 +5,7 @@
 			%tr
 				- for option in good_options
 					%th= label_tag "variant_option_value_#{ option.position }", option.name
+				%th= label_tag "variant_price", 'Price'
 				%th
 	
 		%tbody
@@ -12,6 +13,7 @@
 				%tr[ variant ]
 					- for option in good_options
 						%td.option= eval( "variant.option_value_#{ option.position }" )
+					%td.price= variant.price.format
 					%td
 						= link_to 'Edit', edit_manage_good_variant_path( good, variant )
 						·
@@ -21,6 +23,7 @@
 			%tr
 				= form_for [ :manage, good, new_variant ] do |f|
 					- for option in good_options
-						%td.option= f.text_field :"option_value_#{ option.position }"
+						%td.option= f.text_field :"option_value_#{ option.position }", placeholder: "Option #{ option.position }"
+					%td.price= f.text_field :price
 			
 					%td= f.submit 'Add Variant'
