@@ -9,20 +9,18 @@ module Manage
     expose( :variant )
     
     def create
-      variant.save ?
-        redirect_to( edit_manage_good_path( good ), notice: "Variant was successfully created." ) :
-        redirect_to( edit_manage_good_path( good ), alert: "#{ variant.errors.full_messages }" )
+      flash[ :notice ] = "Variant was successfully created." if variant.save
+      redirect_to edit_manage_good_path( good )
     end
     
     def update
       flash[ :notice ] = "Variant was successfully updated." if variant.update_attributes( params[ :variant ] ) and !request.xhr?
-      respond_with variant, location: edit_manage_good_path( good )
+      respond_with :manage, good, variant, location: edit_manage_good_path( good )
     end  
     
     def destroy
-      variant.destroy ?
-        redirect_to( edit_manage_good_path( good ), notice: "Variant was successfully destroyed." ) :
-        redirect_to( edit_manage_good_path( good ), alert: "#{ variant.errors.full_messages }" )
+      flash[ :notice ] = "Variant was successfully destroyed." if variant.destroy
+      respond_with :manage, good, variant, location: edit_manage_good_path( good )
     end
   end
 end
