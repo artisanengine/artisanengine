@@ -1,5 +1,8 @@
 = content_for( :heading ) { 'Display Cases' }
 
+.heading_links
+	= link_to 'Add a Display Case', new_manage_display_case_path, class: 'add'
+
 %table#display_cases
 	%thead
 		%tr
