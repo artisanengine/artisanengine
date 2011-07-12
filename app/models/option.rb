@@ -6,7 +6,7 @@ class Option < ActiveRecord::Base
   
   after_create          :update_good_variants_with_default_value
   before_destroy        :ensure_not_last_option
-  before_destroy        :shift_lower_positioned_options_higher
+  before_destroy        :shift_variant_values
   
   # ------------------------------------------------------------------
   # Positioning
@@ -25,22 +25,6 @@ class Option < ActiveRecord::Base
   validate              :good_has_less_than_5_options
 
   # ------------------------------------------------------------------
-  # Methods
-  
-  def shift_higher
-    for variant in good.variants
-      eval( "variant.option_value_#{ order_in_good - 1 } = variant.option_value_#{ order_in_good }" )
-    
-      # Clear Option Value 3.
-      eval( "variant.option_value_#{ order_in_good } = nil" )
-    
-      # Save the variant. Do not validate, since one of the required option values
-      # may temporarily be nil if other options are waiting to be shifted.
-      variant.save!( validate: false )
-    end
-  end
-  
-  # ------------------------------------------------------------------
   # Scopes
 
   scope :in_order, order( "options.order_in_good ASC" )
@@ -48,10 +32,11 @@ class Option < ActiveRecord::Base
   # ------------------------------------------------------------------
   private
     
-  def shift_lower_positioned_options_higher
+  def shift_variant_values
     Option.transaction do
       for option in good.options.where( "options.order_in_good > #{ order_in_good }" ).all
-        option.shift_higher
+        option.good.variants.update_all( "option_value_#{ option.order_in_good - 1 } = option_value_#{ option.order_in_good }" )
+        option.good.variants.update_all( "option_value_#{ option.order_in_good } = NULL" )
       end
     end
   end
