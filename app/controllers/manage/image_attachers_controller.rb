@@ -1,5 +1,7 @@
 module Manage
   class ImageAttachersController < Manage::ManageController
+    respond_to :html, :json
+    
     expose( :images )         { current_frame.images }
     expose( :image_attacher )
     expose( :parent ) do
@@ -18,6 +20,12 @@ module Manage
       end
     end
     
+    def update
+      image_attacher.imageable = parent
+      image_attacher.update_attributes( params[ :image_attacher ] )
+      respond_with image_attacher, location: polymorphic_url( [ :manage, parent ], action: :edit )
+    end
+    
     def destroy
       if image_attacher.destroy
         flash[ :notice ] = "Image successfully removed."
@@ -26,21 +34,6 @@ module Manage
         flash[ :alert ] = "Image could not be removed."
         redirect_to polymorphic_url( [ :manage, parent ], action: :edit )
       end
-    end
-    
-    # ------------------------------------------------------------------
-    # Non-RESTful Actions
-    
-    # POST /manage/goods/:id/image_attachers/sort
-    def sort
-      image_attachers = current_frame.goods.find( params[ :good_id ] ).image_attachers
-      
-      params[ :image_attacher ].each_with_index do |id, index|
-        image_attachers.update_all( [ "position = ?", index + 1 ], [ 'id = ?', id ] )
-      end
-      
-      render nothing: true
-    end
-        
+    end        
   end
 end

@@ -68,7 +68,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     create_table :image_attachers do |t|
       t.integer    :image_id,       null: false
       t.references :imageable,      null: false, polymorphic: true
-      t.integer    :position,       null: false
+      t.integer    :display_order,  null: false
     end
     
     # ------------------------------------------------------------------

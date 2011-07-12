@@ -8,7 +8,7 @@ module Manage
     expose( :new_option )           { good_options.new }
     expose( :good_variants )        { good.variants.rank( :display_order ) }
     expose( :new_variant )          { good_variants.new }
-    expose( :good_image_attachers ) { good.image_attachers.in_order }
+    expose( :good_image_attachers ) { good.image_attachers.rank( :display_order ) }
     expose( :new_image )            { good.images.build frame: current_frame }
    
     def create

@@ -5,12 +5,16 @@
 				items: 		 '.image_attacher'
 				handle: 	 '.handle'
 				tolerance: 'pointer' 
-				update: () -> 
+				update: (event, ui) -> 
+					attacher_id  = ui.item.attr( 'id' ).split( '_' )[2]
+					new_position = ui.item.prevAll( '.image_attacher' ).length
+					
 					$.ajax({ 
-						type: 'post'
-						url:  '/manage/goods/#{ good.id }/image_attachers/sort'
-						data: $( this ).sortable( 'serialize' ) 
-					}) 
+						type: 'put'
+						url:  '/manage/goods/#{ good.id }/image_attachers/' + attacher_id
+						data: { "id": attacher_id, "image_attacher": { "display_order_position": new_position } }
+						dataType: 'json'
+					})
 				})
 
 #good_images

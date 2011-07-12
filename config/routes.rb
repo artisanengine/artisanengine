@@ -11,12 +11,8 @@ ArtisanEngine::Application.routes.draw do
   namespace :manage do
     resources :goods do
       resources :options
-      resources :variants do
-        post 'sort', on: :collection
-      end
-      resources :image_attachers do
-        post 'sort', on: :collection
-      end
+      resources :variants
+      resources :image_attachers
       resources :images
     end
     resources :display_cases do
