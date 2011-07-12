@@ -16,41 +16,44 @@ namespace :db do
     hausleather   = Frame.generate name: 'Haus Leather',    domain: 'hausleather.dev'
     peggyskemp    = Frame.generate name: 'Peggy Skemp',     domain: 'peggyskemp.dev'
     emmysorganics = Frame.generate name: "Emmy's Organics", domain: 'emmysorganics.dev'
-  
+    zodiacleather = Frame.generate name: 'Zodiac Leather',  domain: 'zodiacleather.dev'
+    
     # ------------------------------------------------------------------
     # Artisans
     
-    Artisan.generate email: 'haus@hausleather.dev',  password: 'password', frame: hausleather
-    Artisan.generate email: 'peggy@peggyskemp.dev',  password: 'password', frame: peggyskemp
-    Artisan.generate email: 'ian@emmysorganics.dev', password: 'password', frame: emmysorganics
-
+    Artisan.generate email: 'haus@hausleather.dev',    password: 'password', frame: hausleather
+    Artisan.generate email: 'peggy@peggyskemp.dev',    password: 'password', frame: peggyskemp
+    Artisan.generate email: 'ian@emmysorganics.dev',   password: 'password', frame: emmysorganics
+    Artisan.generate email: 'reade@zodiacleather.dev', password: 'password', frame: zodiacleather
+    
     # ------------------------------------------------------------------
     # Pages
     
     Page.generate title: 'About', content: 'About Haus',      frame: hausleather
     Page.generate title: 'Bio',   content: 'Peggy Skemp Bio', frame: peggyskemp 
     Page.generate title: 'About', content: "About Emmy's",    frame: emmysorganics
-
+    Page.generate title: 'Bio',   content: 'Zodiac Leather',  frame: zodiacleather
+    
     # ------------------------------------------------------------------
     # Images
     
-    5.times { Image.generate frame: hausleather }
-    5.times { Image.generate frame: peggyskemp }
-    5.times { Image.generate frame: emmysorganics }
+    for frame in Frame.all
+      5.times { Image.generate frame: frame }
+    end
     
     # ------------------------------------------------------------------
     # Tags
     
-    5.times { Tag.generate frame: hausleather }
-    5.times { Tag.generate frame: peggyskemp }
-    5.times { Tag.generate frame: emmysorganics }
+    for frame in Frame.all
+      5.times { Tag.generate frame: frame }
+    end
     
     # ------------------------------------------------------------------
     # Posts
     
-    5.times { Factory :loaded_post, blog: hausleather.blog }
-    5.times { Factory :loaded_post, blog: peggyskemp.blog }
-    5.times { Factory :loaded_post, blog: emmysorganics.blog }
+    for frame in Frame.all
+      5.times { Factory :loaded_post, blog: frame.blog }
+    end
     
     # Tag each post with a random number of tags.
     for post in Post.all
@@ -60,13 +63,13 @@ namespace :db do
     # ------------------------------------------------------------------
     # Goods, Options, and Variants
     
-    5.times { Good.generate frame: hausleather }
-    5.times { Good.generate frame: peggyskemp }
-    5.times { Good.generate frame: emmysorganics }
+    for frame in Frame.all
+      5.times { Good.generate frame: frame }
+    end
     
     # Generate up to 5 options for each good.
     for good in Good.all
-      rand( 6 ).times { good.options << Option.spawn }
+      rand( 6 ).times { good.options << Option.spawn( good: good ) }
     end
     
     # Generate up to 5 variants for each good.
@@ -75,7 +78,7 @@ namespace :db do
         # Determine how many options the good has, so we know how many random option values
         # to generate for the variant.
         num_options = good.options.count
-        variant     = Variant.spawn
+        variant     = Variant.spawn good: good
       
         # Assign the variant with random values for each option.
         num_options.times do |time|
@@ -83,10 +86,10 @@ namespace :db do
         end
       
         # Add the variant to the good.
-        good.variants << variant
+        variant.save!
       end
     end
-    
+        
     # Attach up to 5 images to each good.
     for good in Good.all
       random_image_ids = []
@@ -99,13 +102,13 @@ namespace :db do
       # Assign the images to the good. Only use unique IDs.
       good.image_ids = random_image_ids.uniq
     end
-    
+        
     # ------------------------------------------------------------------
     # Display Cases
     
-    3.times { DisplayCase.generate frame: hausleather }
-    3.times { DisplayCase.generate frame: peggyskemp }
-    3.times { DisplayCase.generate frame: emmysorganics }
+    for frame in Frame.all
+      3.times { DisplayCase.generate frame: frame }
+    end
     
     # Assign up to 5 random goods to each display case.
     for display_case in DisplayCase.all
