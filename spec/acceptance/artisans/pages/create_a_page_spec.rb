@@ -36,7 +36,7 @@ feature 'Create a Page', %q{
     click_button 'Create Page'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And there should be no pages.
     Page.count.should be 0

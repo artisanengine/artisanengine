@@ -54,7 +54,7 @@ feature 'Create an Artisan', %q{
     click_button 'Create Artisan'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And there should be no artisans.
     Artisan.count.should be 0

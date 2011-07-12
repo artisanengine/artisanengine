@@ -39,7 +39,7 @@ feature 'Update a Display Case', %q{
     click_button 'Update Display Case'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And my display case's attributes should not change.
     DisplayCase.last.name.should == 'Stuff'

@@ -48,7 +48,7 @@ feature 'Update an Option', %q{
     click_button 'Update Option'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And my option's attributes should not change.
     @good.options[1].name.should == 'Destructiveness'

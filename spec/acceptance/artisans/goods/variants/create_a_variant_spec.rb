@@ -44,10 +44,7 @@ feature 'Create a Variant', %q{
       click_button 'Add Variant'
     end
     
-    # Then I should see an alert,
-    page_should_have_alert
-    
-    # And I should not see my variant.
+    # Then I should not see my variant.
     page.should_not have_selector '.variant', text: 'Medium'
   end
 end

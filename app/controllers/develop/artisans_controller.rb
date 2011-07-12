@@ -6,11 +6,8 @@ module Develop
     expose( :artisan )
         
     def create
-      artisan.save ?
-        flash[ :notice ] = "Artisan: #{ artisan.email } was successfully created." :
-        flash[ :alert ]  = t( :form_alert )
-
-      respond_with :develop, artisan, location: develop_artisans_path
+      flash[ :notice ] = "Artisan: #{ artisan.email } was successfully created." if artisan.save
+      respond_with artisan, location: develop_artisans_path
     end
   end
 end

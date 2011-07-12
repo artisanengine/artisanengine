@@ -45,10 +45,7 @@ feature 'Add an Option to a Good', %q{
       click_button 'Add Option'
     end
     
-    # Then I should see an alert,
-    page_should_have_alert
-    
-    # And I should not see my new option.
+    # Then I should not see my new option.
     page.should have_no_selector '.option', text: 'Size'
   end
 end

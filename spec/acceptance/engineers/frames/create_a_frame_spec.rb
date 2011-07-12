@@ -41,7 +41,7 @@ feature "Create a Frame", %q{
     click_button 'Create Frame'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And there should be no frames.
     Frame.count.should be 0

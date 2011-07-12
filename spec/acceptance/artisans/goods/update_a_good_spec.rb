@@ -39,7 +39,7 @@ feature 'Update a Good', %q{
     end
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And my good's attributes should not change.
     Good.last.name.should == "Freeze Ray"

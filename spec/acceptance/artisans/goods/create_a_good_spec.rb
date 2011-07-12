@@ -36,7 +36,7 @@ feature 'Create a Good', %q{
     click_button 'Create Good'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And there should be no goods.
     Good.count.should be 0

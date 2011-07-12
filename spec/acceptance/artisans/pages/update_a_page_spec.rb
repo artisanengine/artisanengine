@@ -39,7 +39,7 @@ feature 'Update a Page', %q{
     click_button 'Update Page'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And my page's information should not change.
     Page.last.title.should == 'Outdated Page'

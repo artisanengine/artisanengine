@@ -36,7 +36,7 @@ feature 'Create a Display Case', %q{
     click_button 'Create Display Case'
     
     # Then I should see an alert,
-    page_should_have_alert
+    page_should_have_error
     
     # And there should be no display cases.
     DisplayCase.count.should be 1 # ( Featured Case only. )
