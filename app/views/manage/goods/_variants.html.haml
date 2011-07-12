@@ -48,6 +48,7 @@
 	
 		%tbody#add_variant
 			%tr
+				%td
 				= form_for [ :manage, good, new_variant ] do |f|
 					- for option in good_options
 						%td.option= f.text_field :"option_value_#{ option.position }", placeholder: "Option #{ option.position }"
