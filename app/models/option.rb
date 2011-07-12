@@ -60,8 +60,10 @@ class Option < ActiveRecord::Base
   end
   
   def shift_lower_positioned_options_higher
-    for option in good.options.where( "options.position > #{ position }" ).all
-      option.shift_higher
+    Option.transaction do
+      for option in good.options.where( "options.position > #{ position }" ).all
+        option.shift_higher
+      end
     end
   end
   
