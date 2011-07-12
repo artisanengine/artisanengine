@@ -1,4 +1,5 @@
 #notifications
 	- flash.each do |type, message|
-		.notification{ class: type }
-			= message
+		- unless message.blank?
+			.notification{ class: type }
+				= message
