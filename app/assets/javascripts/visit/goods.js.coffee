@@ -61,7 +61,7 @@ window.buildOptionSelect = (option, variants) ->
 	
 	# Create an array of option values based on the option's position.
 	for variant in variants
-		values.push( variant.option_values[option.position - 1] )
+		values.push( variant.option_values[option.order_in_good - 1] )
 	
 	# Build a select list from the values.
 	optionLabel		= "<label for='" + name.toLowerCase() + "'>" + name + "</label>"

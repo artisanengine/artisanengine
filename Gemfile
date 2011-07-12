@@ -14,6 +14,7 @@ gem 'fog',                    '0.9.0'         # S3 support for Dragonfly.
 gem 'cells',                  '3.6.2'         # Reusable view components.
 gem 'friendly_id',            '3.3.0.alpha2'  # SEO-friendly URLs.
 gem 'money',                  '3.7.1'         # Currency handling.
+gem 'acts_as_list',           '0.1.3'
 gem 'ranked-model',           git: 'https://github.com/harvesthq/ranked-model.git', ref: '8a70b396e762a7042cc6'
 
 # Authentication and authorization.

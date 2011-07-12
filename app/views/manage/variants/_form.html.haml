@@ -1,5 +1,5 @@
 = semantic_form_for [ :manage, good, variant ] do |f|
 	= f.inputs do
 		- for option in good_options
-			= f.input :"option_value_#{ option.position }", label: option.name
+			= f.input :"option_value_#{ option.order_in_good }", label: option.name
 	= f.submit

@@ -136,7 +136,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     create_table :options do |t|
       t.integer :good_id,           null: false
       
-      t.integer :position,          null: false
+      t.integer :order_in_good,     null: false
       
       t.string  :name,              null: false
       t.string  :default_value,     null: false

@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "options", :force => true do |t|
     t.integer "good_id",       :null => false
-    t.integer "position",      :null => false
+    t.integer "order_in_good", :null => false
     t.string  "name",          :null => false
     t.string  "default_value", :null => false
   end

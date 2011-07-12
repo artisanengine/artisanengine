@@ -36,7 +36,7 @@ describe Option do
       context "if it is the only option in the good: " do
         it "sets its position to 1" do
           good = Good.generate # Generates one option by default.
-          good.options.first.position.should be 1
+          good.options.first.order_in_good.should be 1
         end
       end
       
@@ -46,7 +46,7 @@ describe Option do
           option_2 = Option.generate good: good
           option_3 = Option.generate good: good
           
-          option_3.position.should be 3
+          option_3.order_in_good.should be 3
         end
       end
     end
@@ -83,15 +83,6 @@ describe Option do
         good.variants.first.option_value_2.should == "Red"
         good.variants.first.option_value_3.should == nil
       end
-        
-      it "raises the positions of lower-positioned options" do
-        good     = Good.generate # Generates one option by default.
-        option_1 = good.options.first
-        option_2 = good.options.create!( Factory.attributes_for :option )
-        
-        option_1.destroy
-        option_2.reload.position.should == 1
-      end
     end
   end
   
@@ -102,7 +93,7 @@ describe Option do
         option_top    = Option.generate good: good
         option_middle = Option.generate good: good
         option_bottom = Option.generate good: good
-        
+
         good.options.in_order.should == [ good.options.first, option_top, option_middle, option_bottom ]
       end
     end

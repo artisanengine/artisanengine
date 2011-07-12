@@ -12,7 +12,6 @@ class Variant < ActiveRecord::Base
                       constructor: lambda { |cents, currency| Money.new( cents || 0, currency || Money.default_currency ) },
                       converter:   lambda { |value| value.respond_to?( :to_money ) ? value.to_money : 0.to_money }
   
-  
   # ------------------------------------------------------------------
   # Positioning
   
