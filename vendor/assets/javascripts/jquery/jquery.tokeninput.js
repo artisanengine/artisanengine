@@ -19,9 +19,9 @@
 (function ($) {
 // Default settings
 var DEFAULT_SETTINGS = {
-    hintText: "Type in a search term",
-    noResultsText: "No results",
-    searchingText: "Searching...",
+    hintText: "Start typing a tag name ...",
+    noResultsText: "No results.",
+    searchingText: "Searching ...",
     deleteText: "&times;",
     searchDelay: 300,
     minChars: 1,
