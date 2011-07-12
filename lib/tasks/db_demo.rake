@@ -8,7 +8,7 @@ namespace :db do
     Rake::Task[ 'db:reset' ].invoke
     
     # Generate the super-user.
-    Engineer.generate email: 'reade@artisanengine.dev', password: 'micagrl'
+    Engineer.generate email: 'reade@artisanengine.dev', password: 'password'
     
     # ------------------------------------------------------------------
     # Frames
@@ -29,10 +29,9 @@ namespace :db do
     # ------------------------------------------------------------------
     # Pages
     
-    Page.generate title: 'About', content: 'About Haus',      frame: hausleather
-    Page.generate title: 'Bio',   content: 'Peggy Skemp Bio', frame: peggyskemp 
-    Page.generate title: 'About', content: "About Emmy's",    frame: emmysorganics
-    Page.generate title: 'Bio',   content: 'Zodiac Leather',  frame: zodiacleather
+    for frame in Frame.all
+      5.times { Factory :loaded_page, frame: frame }
+    end
     
     # ------------------------------------------------------------------
     # Images
