@@ -16,7 +16,8 @@ class Variant < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Positioning
   
-  acts_as_list scope: :good
+  include RankedModel
+  ranks :display_order, with_same: :good_id
   
   # ------------------------------------------------------------------
   # Associations

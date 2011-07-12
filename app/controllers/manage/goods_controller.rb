@@ -6,7 +6,7 @@ module Manage
     expose( :good )
     expose( :good_options )         { good.options.in_order }
     expose( :new_option )           { good_options.new }
-    expose( :good_variants )        { good.variants.order( "position ASC" ) }
+    expose( :good_variants )        { good.variants.rank( :display_order ) }
     expose( :new_variant )          { good_variants.new }
     expose( :good_image_attachers ) { good.image_attachers.in_order }
     expose( :new_image )            { good.images.build frame: current_frame }

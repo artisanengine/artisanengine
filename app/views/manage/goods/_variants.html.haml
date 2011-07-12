@@ -1,22 +1,25 @@
 = content_for :javascripts do
 	:coffeescript
 		$ ->
-			# Fix table collapse, solution from http://www.foliotek.com/devblog/make-table-rows-sortable-using-jquery-ui-sortable/.
-			fixHelper = (e, ui) ->
-				ui.children().each( () -> $(this).width( $(this).width() ) )
+			# Fix table row widths collapsing on drag by manually resetting widths.
+			fixHelper = (event, ui) ->
+				ui.children().each () -> $(this).width( $(this).width() )
 				return ui
 				
 			$( '#all_variants' ).sortable({ 
 				items: 		 '.variant'
 				handle: 	 '.handle'
-				tolerance: 'pointer' ,
+				tolerance: 'pointer'
 				helper: fixHelper
-				update: () -> 
+				update: (event, ui) ->
+					variant_id   = ui.item.attr('id').split( '_' )[1]
+					new_position = ui.item.prevAll().length
+					
 					$.ajax({ 
-						type: 'post'
-						url:  '/manage/goods/#{ good.id }/variants/sort'
-						data: $( this ).sortable( 'serialize' )
-						dataType: 'script'
+						type: 'put'
+						url:  '/manage/goods/#{ good.id }/variants/' + variant_id
+						data: { "id": variant_id, "variant": { "display_order_position": new_position } }
+						dataType: 'json'
 					}) 
 				})
 

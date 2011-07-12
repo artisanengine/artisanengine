@@ -48,8 +48,8 @@ feature 'Update a Variant', %q{
     # And I click Update Variant,
     click_button 'Update Variant'
     
-    # Then I should see an alert,
-    page_should_have_alert
+    # Then I should see an error,
+    page_should_have_error
     
     # And my variant's attributes should not change.
     Variant.last.option_value_1.should == 'Default'
