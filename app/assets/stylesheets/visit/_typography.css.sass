@@ -1,0 +1,38 @@
+@import compass/typography
+
+// ------------------------------------------------------------------
+// Defaults
+
+$base-font-size: 	 12px
+$base-line-height: 16px
+
+$default-font-family: Helvetica, Arial, sans-serif
+$accent-font-family:  Times New Roman, Times, serif
+
+// ------------------------------------------------------------------
+// Styling
+
++establish-baseline
+
+body
+	font-family: $default-font-family
+	color: $default-text-color
+	
+	h1, h2, h3, h4, h5
+		font-family: $accent-font-family
+		+rhythm( 0.25, 0.25, 0.25, 0.25 )
+		border-bottom: 1px solid darken( $bg-color, 5% )
+	
+	h1
+		+adjust-font-size-to( 36px )
+	h2
+		+adjust-font-size-to( 30px )
+	h3
+		+adjust-font-size-to( 24px )
+	h4
+		+adjust-font-size-to( 18px )
+	h5
+		+adjust-font-size-to( 12px )
+	
+	p
+		+trailer( 1 )

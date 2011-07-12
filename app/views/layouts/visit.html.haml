@@ -3,11 +3,11 @@
 %html
 	%head
 		%title ArtisanEngine
-		= stylesheet_link_tag		 "application"
+		= stylesheet_link_tag		 "application", "visit"
 		= javascript_include_tag "application", "visit"
 		= yield :javascripts
 		= csrf_meta_tags
 
 	%body{ class: body_classes, id: body_ids }
-		#wrapper
-			#main= content_for?( :main ) ? yield( :main ) : yield
+		#wrapper.container
+			= content_for?( :main ) ? yield( :main ) : yield
