@@ -12,25 +12,18 @@ module Manage
     expose( :new_image )            { good.images.build frame: current_frame }
    
     def create
-      good.save ?
-        flash[ :notice ] = "Good: #{ good.name } was successfully created." :
-        flash[ :alert ]  = t( :form_alert )
-      
+      flash[ :notice ] = "Good: #{ good.name } was successfully created." if good.save
       respond_with :manage, good
     end
     
     def update
-      good.update_attributes( params[ :good ] ) ?
-        flash[ :notice ] = "Good: #{ good.name } was successfully updated." :
-        flash[ :alert ] = t( :form_alert )
-      
-      respond_with :manage, good, location: manage_good_path( good )
+      flash[ :notice ] = "Good: #{ good.name } was successfully updated." if good.update_attributes( params[ :good ] )
+      respond_with :manage, good
     end
     
     def destroy
-      good.destroy ?
-        redirect_to( manage_goods_path, notice: "Good: #{ good.name } was successfully destroyed." ) :
-        redirect_to( manage_goods_path, notice: "Good: #{ good.name } could not be destroyed." )
+      flash[ :notice ] = "Good: #{ good.name } was successfully destroye." if good.destroy
+      respond_with :manage, good
     end
   end
 end

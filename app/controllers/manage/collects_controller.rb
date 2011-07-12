@@ -1,23 +1,19 @@
 module Manage
   class CollectsController < Manage::ManageController
+    respond_to :html
+    
     expose( :display_case ) { current_frame.display_cases.find( params[ :display_case_id ] ) }
     expose( :collects )     { display_case.collects }
     expose( :collect )
     
     def create
-      if collect.save
-        redirect_to edit_manage_display_case_path( display_case ), notice: 'Good was successfully added.'
-      else
-        redirect_to edit_manage_display_case_path( display_case ), notice: 'Good could not be added.'
-      end
+      flash[ :notice ] = 'Good was successfully added.' if collect.save
+      respond_with collect, location: edit_manage_display_case_path( display_case )
     end
     
     def destroy
-      if collect.destroy
-        redirect_to edit_manage_display_case_path( display_case ), notice: 'Good was successfully removed.'
-      else
-        redirect_to edit_manage_display_case_path( display_case ), notice: 'Good could not be removed.'
-      end
+      flash[ :notice ] = 'Good was successfully removed.' if collect.destroy
+      respond_with collect, location: edit_manage_display_case_path( display_case )
     end
   end
 end
