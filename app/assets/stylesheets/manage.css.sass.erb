@@ -36,3 +36,27 @@ a.attach
 	input[type=submit]
 		float: none
 		margin: 0 0 5px 75px
+
+// ------------------------------------------------------------------
+// Previews
+
+.preview
+	+nested-reset
+	
+	h1, h2, h3, h4
+		+adjust-leading-to( 1 )
+	
+	h1
+		+adjust-font-size-to( 36px )
+	h2
+		+adjust-font-size-to( 28px )
+	h3
+		+adjust-font-size-to( 24px )
+	h4
+		+adjust-font-size-to( 18px )
+	p
+		+trailer( 1 )
+	strong
+		font-weight: bold
+	em
+		font-style: italic

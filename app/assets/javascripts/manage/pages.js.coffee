@@ -2,7 +2,7 @@
 # Page Preview Functions
 
 preview_in_colorbox = (content) -> 
-	$.colorbox({ html: content, transition: 'fade', width: 960, height: '100%' })
+	$.colorbox({ html: "<div class='preview'>" + content + "</div>", transition: 'fade', width: 960, height: '100%' })
 
 # ------------------------------------------------------------------
 # Page Preview Events
