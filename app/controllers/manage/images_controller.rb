@@ -9,26 +9,18 @@ module Manage
     end
     
     def create
-      if image.save
-        flash[ :notice ] = "Image: #{ image.image_name } was successfully created."
-        
-        if parent
-          ImageAttacher.create! image: image, imageable: parent
-          redirect_to polymorphic_path( [ :manage, parent ], action: :edit ) and return 
-        end
+      flash[ :notice ] = "Image: #{ image.image_name } was successfully created." if image.save
       
-      else
-        flash[ :alert ] = t( :form_alert )
+      if parent
+        ImageAttacher.create! image: image, imageable: parent
+        redirect_to polymorphic_path( [ :manage, parent ], action: :edit ) and return
       end
-
+      
       respond_with :manage, image, location: manage_images_path
     end
     
     def destroy
-      image.destroy ?
-        flash[ :notice ] = "Image: #{ image.image_name } was successfully destroyed." :
-        flash[ :alert ]  = "Image could not be destroyed."
-      
+      flash[ :notice ] = "Image: #{ image.image_name } was successfully destroyed." if image.destroy
       respond_with :manage, image
     end
   end
