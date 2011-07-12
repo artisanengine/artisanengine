@@ -7,7 +7,7 @@ module Develop
         
     def create
       flash[ :notice ] = "Artisan: #{ artisan.email } was successfully created." if artisan.save
-      respond_with artisan, location: develop_artisans_path
+      respond_with :develop, artisan, location: develop_artisans_path
     end
   end
 end

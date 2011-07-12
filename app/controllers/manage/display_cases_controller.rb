@@ -6,27 +6,18 @@ module Manage
     expose( :display_case )
 
     def create
-      display_case.save ?
-        flash[ :notice ] = "Display Case: #{ display_case.name } was successfully created." :
-        flash[ :alert ]  = t( :form_alert )
-
+      flash[ :notice ] = "Display Case: #{ display_case.name } was successfully created." if display_case.save
       respond_with :manage, display_case, location: manage_display_cases_path
     end
     
     def update
-      display_case.update_attributes( params[ :display_case ] ) ?
-        flash[ :notice ] = "Display Case: #{ display_case.name } was successfully updated." :
-        flash[ :alert ]  = t( :form_alert )
-
+      flash[ :notice ] = "Display Case: #{ display_case.name } was successfully updated." if display_case.update_attributes( params[ :display_case ] )
       respond_with :manage, display_case, location: manage_display_cases_path
     end
     
     def destroy
-      display_case.destroy ?
-        flash[ :notice ] = "Display Case: #{ display_case.name } was successfully destroyed." :
-        flash[ :alert ]  = "Display Case: #{ display_case.name } could not be destroyed."
-      
-      respond_with :manage, display_case, location: manage_display_cases_path
+      flash[ :notice ] = "Display Case: #{ display_case.name } was successfully destroyed." if display_case.destroy      
+      respond_with :manage, display_case
     end
   end
 end

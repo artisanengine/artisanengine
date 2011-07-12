@@ -8,12 +8,12 @@ module Manage
     
     def create
       flash[ :notice ] = 'Good was successfully added.' if collect.save
-      respond_with collect, location: edit_manage_display_case_path( display_case )
+      respond_with :manage, collect, location: edit_manage_display_case_path( display_case )
     end
     
     def destroy
       flash[ :notice ] = 'Good was successfully removed.' if collect.destroy
-      respond_with collect, location: edit_manage_display_case_path( display_case )
+      respond_with :manage, collect, location: edit_manage_display_case_path( display_case )
     end
   end
 end

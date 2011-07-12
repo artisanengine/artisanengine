@@ -7,7 +7,7 @@ module Develop
   
     def create
       flash[ :notice ] = "Frame: #{ frame.name } was successfully created." if frame.save
-      respond_with frame, location: develop_frames_path
+      respond_with :develop, frame, location: develop_frames_path
     end
   end
 end
