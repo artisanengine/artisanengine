@@ -7,18 +7,12 @@ module Manage
     expose( :post )
 
     def create
-      post.save ?
-        flash[ :notice ] = "Post: #{ post.title } was successfully created." :
-        flash[ :alert ]  = t( :form_alert )
-      
+      flash[ :notice ] = "Post: #{ post.title } was successfully created." if post.save
       respond_with :manage, :blog, post, location: manage_blog_path
     end
 
     def update
-      post.update_attributes( params[ :post ] ) ?
-        flash[ :notice ] = "Post: #{ post.title } was successfully updated." :
-        flash[ :alert ]  = t( :form_alert )
-      
+      flash[ :notice ] = "Post: #{ post.title } was successfully updated." if post.update_attributes( params[ :post ] )
       respond_with :manage, :blog, post, location: manage_blog_path
     end
   end

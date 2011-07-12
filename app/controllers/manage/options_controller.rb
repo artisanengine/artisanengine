@@ -1,29 +1,25 @@
 module Manage
   class OptionsController < Manage::ManageController
+    respond_to :html
+    
     expose( :goods )   { current_frame.goods }
     expose( :good )
     expose( :options ) { good.options }
     expose( :option )
     
     def create
-      option.save ? 
-        redirect_to( edit_manage_good_path( good ), notice: "Option was successfully added." ) :
-        redirect_to( edit_manage_good_path( good ), alert: "Option could not be added." )
+      flash[ :notice ] = "Option was successfully added." if option.save
+      redirect_to edit_manage_good_path( good )
     end
     
     def update
-      if option.update_attributes( params[ :option ] )
-        redirect_to edit_manage_good_path( good ), notice: "Option was successfully updated."
-      else
-        flash[ :alert ] = t( :form_alert )
-        render :edit
-      end
+      flash[ :notice ] = "Option was successfully updated." if option.update_attributes( params[ :option ] )
+      respond_with :manage, option, location: edit_manage_good_path( good )
     end
     
     def destroy
-      option.destroy ?
-        redirect_to( edit_manage_good_path( good ), notice: "Option was successfully removed." ) :
-        redirect_to( edit_manage_good_path( good ), alert: "Option could not be removed." )
+      flash[ :notice ] = "Option was successfully removed." if option.destroy
+      respond_with :manage, option, location: edit_manage_good_path( good )
     end
   end
 end

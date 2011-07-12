@@ -1,11 +1,13 @@
 module Manage
   class TagsController < Manage::ManageController
-    expose( :tags ) { current_frame.tags }
+    respond_to :json
+    
+    expose( :tags ) do 
+      current_frame.tags.where( "name LIKE ?", "%#{ params[ :q ] }%" )
+    end
     
     def index
-      respond_to do |format|
-        format.json { render json: tags.where( "name LIKE ?", "%#{ params[ :q ] }%" ) }
-      end
+      respond_with tags
     end
   end
 end
