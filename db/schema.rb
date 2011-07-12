@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   create_table "collects", :force => true do |t|
     t.integer "display_case_id", :null => false
     t.integer "good_id",         :null => false
+    t.integer "display_order",   :null => false
   end
 
   create_table "display_cases", :force => true do |t|

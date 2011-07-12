@@ -1,5 +1,24 @@
 = content_for( :heading ) { 'Edit Display Case: ' + display_case.name }
 
+= content_for :javascripts do
+	:coffeescript
+		$ ->
+			$( '#collected_goods' ).sortable({ 
+				items: 		 '.collect'
+				handle: 	 '.handle'
+				tolerance: 'pointer' 
+				update: (event, ui) -> 
+					collect_id  = ui.item.attr( 'id' ).split( '_' )[1]
+					new_position = ui.item.prevAll( '.collect' ).length
+					
+					$.ajax({ 
+						type: 'put'
+						url:  '/manage/display_cases/#{ display_case.id }/collects/' + collect_id
+						data: { "id": collect_id, "collect": { "display_order_position": new_position } }
+						dataType: 'json'
+					})
+				})
+
 = render 'form'
 
 #uncollected_goods
@@ -11,7 +30,8 @@
 				= f.submit 'Add to Case'
 
 #collected_goods
-	- for collect in display_case.collects
-		.good
+	- for collect in display_case.collects.rank( :display_order )
+		%div[ collect ]
+			.handle= image_tag 'icons/drag_handle.gif'
 			%p= collect.good.name
 			= button_to 'Remove from Case', manage_display_case_collect_path( display_case, collect ), method: :delete

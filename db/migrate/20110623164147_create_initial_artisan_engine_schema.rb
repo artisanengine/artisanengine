@@ -168,11 +168,11 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Display Cases & Collects
     
     create_table :display_cases do |t|
-      t.integer :frame_id,          null: false
+      t.integer   :frame_id,        null: false
       
-      t.string  :name,              null: false
+      t.string    :name,            null: false
       
-      t.string  :cached_slug        # Friendly ID
+      t.string    :cached_slug      # Friendly ID
     end
     
     add_index :display_cases, [ :id, :frame_id ]
@@ -180,6 +180,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     create_table :collects do |t|
       t.integer   :display_case_id, null: false
       t.integer   :good_id,         null: false
+      
+      t.integer   :display_order,   null: false
     end
     
     # ------------------------------------------------------------------

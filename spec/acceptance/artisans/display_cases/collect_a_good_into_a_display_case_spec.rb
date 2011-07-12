@@ -28,7 +28,7 @@ feature 'Collect a Good into a Display Case', %q{
     page_should_have_notice
     
     # And the good should be in the case,
-    within '#collected_goods .good' do
+    within '#collected_goods' do
       page.should have_content 'Freeze Ray'
     end
     
@@ -38,7 +38,7 @@ feature 'Collect a Good into a Display Case', %q{
     end
     
     # When I click the Remove from Case button next to my good,
-    within '#collected_goods .good' do
+    within '#collected_goods .collect' do
       click_button 'Remove from Case'
     end
     
