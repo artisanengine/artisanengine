@@ -51,4 +51,7 @@ ArtisanEngine::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Kill requests before Heroku's 30 second limit is reached.
+  Rack::Timeout.timeout = 29
 end

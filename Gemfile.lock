@@ -153,6 +153,7 @@ GEM
       rack
     rack-test (0.6.0)
       rack (>= 1.0)
+    rack-timeout (0.0.1)
     rails (3.1.0.rc4)
       actionmailer (= 3.1.0.rc4)
       actionpack (= 3.1.0.rc4)
@@ -251,6 +252,7 @@ DEPENDENCIES
   launchy (= 0.4.0)
   money (= 3.7.1)
   pg (= 0.11.0)
+  rack-timeout (= 0.0.1)
   rails (= 3.1.0.rc4)
   rake (= 0.8.7)
   ranked-model!

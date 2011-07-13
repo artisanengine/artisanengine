@@ -63,4 +63,5 @@ end
 group :production do
   gem 'therubyracer-heroku',  '0.8.1.pre3'    # JS Runtime for Heroku.
   gem 'pg',                   '0.11.0'        # Use Postgres DB in production to match Heroku.
+  gem 'rack-timeout',         '0.0.1'         # Abort requests before Heroku's 30-second limit is reached.
 end
