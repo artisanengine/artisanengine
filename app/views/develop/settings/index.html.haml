@@ -1,0 +1,12 @@
+%h1 Settings for Frame: #{ frame.name }
+
+%table
+	%thead
+		%tr
+			%th Name
+			%th Value
+	%tbody
+		- for setting in settings
+			%tr[ setting ]
+				%td= setting.name
+				%td= setting.value

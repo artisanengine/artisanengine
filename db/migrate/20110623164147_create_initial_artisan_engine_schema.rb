@@ -2,7 +2,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
   def up
     
     # ------------------------------------------------------------------
-    # Frames
+    # Frames & Settings
     
     create_table :frames do |t|
       t.string :name,               null: false
@@ -10,6 +10,15 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     end
     
     add_index :frames, :domain, unique: true
+    
+    create_table :settings do |t|
+      t.integer :frame_id,          null: false
+      
+      t.string  :name,              null: false
+      t.string  :value,             null: false
+    end
+    
+    add_index :settings, [ :name, :frame_id ]
     
     # ------------------------------------------------------------------
     # Pages

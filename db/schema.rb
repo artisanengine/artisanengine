@@ -116,6 +116,14 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "posts", ["id", "blog_id"], :name => "index_posts_on_id_and_blog_id"
 
+  create_table "settings", :force => true do |t|
+    t.integer "frame_id", :null => false
+    t.string  "name",     :null => false
+    t.string  "value",    :null => false
+  end
+
+  add_index "settings", ["name", "frame_id"], :name => "index_settings_on_name_and_frame_id"
+
   create_table "slugs", :force => true do |t|
     t.string   "name"
     t.integer  "sluggable_id"

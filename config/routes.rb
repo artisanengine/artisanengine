@@ -3,7 +3,9 @@ ArtisanEngine::Application.routes.draw do
   
   get '/develop' => 'develop/develop#interface'
   namespace :develop do
-    resources :frames
+    resources :frames do
+      resources :settings
+    end
     resources :artisans
   end
   

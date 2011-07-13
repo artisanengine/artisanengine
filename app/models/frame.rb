@@ -10,6 +10,7 @@ class Frame < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
   
+  has_many :settings
   has_many :pages
   has_many :users
   has_many :images
