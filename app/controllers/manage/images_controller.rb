@@ -1,8 +1,8 @@
 module Manage
   class ImagesController < Manage::ManageController
-    respond_to :html
+    respond_to :html, :js
     
-    expose( :images ) { current_frame.images }
+    expose( :images ) { current_frame.images.page( params[ :page ] ).per( 8 ) }
     expose( :image )
     expose( :parent ) do
       current_frame.goods.find( params[ :good_id ] ) if params[ :good_id ]

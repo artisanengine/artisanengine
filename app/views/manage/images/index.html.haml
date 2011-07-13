@@ -1,13 +1,4 @@
 = content_for( :heading ) { 'Images' }
 
-.heading_links
-	= link_to 'Upload an Image', new_manage_image_path, class: 'add'
-
-#images
-	- for image in images
-		%div[ image ]
-			= display_image( image, '220x200#', :'data-original' => image.image.remote_url )
-			
-			.links
-				= image.image_name + " | "
-				= link_to 'Delete', [ :manage, image ], class: 'delete', method: :delete, confirm: "Are you sure you want to delete Image: #{ image.image_name }?"
+#images_index	
+	= render 'index'

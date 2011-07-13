@@ -36,12 +36,12 @@ appendImageLink = (image_link) ->
 	field = $( '#page_content' )
 	field.val( field.val() + "!" + image_link + "!" )
 
-# Adds Insert links to /images/index.html.
-addInsertLinks = () ->
+# Adds Insert links to /images/index.html, as long as it is in a Colorbox.
+window.addInsertLinks = () ->
 	# Hide heading links.
-	$( '.heading_links' ).hide()
+	$( '#colorbox .heading_links' ).hide()
 	
-	$( '.image' ).each( (index) ->
+	$( '#colorbox .image' ).each( (index) ->
 		# Get the image's original URL from the data-original attribute of the image.
 		image_source = $( this ).children( 'img' ).attr( 'data-original' )
 		
@@ -54,7 +54,7 @@ addInsertLinks = () ->
 	
 	# Add a click event which will close the Colorbox and
 	# append the URL to the page content field.
-	$( 'a.insert_link' ).click( () ->
+	$( '#colorbox a.insert_link' ).click( () ->
 		appendImageLink( $( this ).attr( 'href' ) )
 		$.fn.colorbox.close()
 		return false
@@ -67,4 +67,4 @@ $ ->
 	
 	# Replace Insert Image link, since this function doesn't work without JS.
 	$( 'a#insert_image' ).attr( 'href', '/manage/images' )
-	$( 'a#insert_image' ).colorbox({ width: 980, height: '100%', onComplete: () -> addInsertLinks() })
+	$( 'a#insert_image' ).colorbox({ width: 980, height: '100%', onComplete: () -> window.addInsertLinks() })
