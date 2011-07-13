@@ -11,9 +11,10 @@ gem 'rake',                   '0.8.7'         # Lock rake at 0.8.7 for Heroku.
 gem 'RedCloth',               '4.2.7'         # Text handling.
 gem 'dragonfly',              '0.9.4'         # Image handling.
 gem 'fog',                    '0.9.0'         # S3 support for Dragonfly.
-gem 'cells',                  '3.6.2'         # Reusable view components.
 gem 'friendly_id',            '3.3.0.alpha2'  # SEO-friendly URLs.
 gem 'money',                  '3.7.1'         # Currency handling.
+
+# Positioning.
 gem 'acts_as_list',           '0.1.3'
 gem 'ranked-model',           git: 'https://github.com/harvesthq/ranked-model.git', ref: '8a70b396e762a7042cc6'
 
@@ -22,6 +23,7 @@ gem 'devise',                 '1.4.2'         # Authentication.
 
 # Controller-layer enhancements.
 gem 'decent_exposure',        '1.0.1'
+gem 'cells',                  '3.6.2'         # Reusable mini-controllers.
 
 # View-layer enhancements.
 gem 'formtastic',						  '1.2.4'         # Better forms.
@@ -50,10 +52,10 @@ group :test do
 	gem 'rspec-cells',          '0.0.5'         # Integration testing for Cells.
 	gem 'capybara',						  '1.0.0'         # All-purpose integration testing.
 	gem 'capybara-webkit',      '1.0.0.beta4'   # Headless JS driver.
-	gem 'database_cleaner',     '0.6.7'         # For JS testing.
-	gem 'launchy',              '0.4.0'
+	gem 'database_cleaner',     '0.6.7'         # Database management for JS testing.
+	gem 'launchy',              '0.4.0'         # Open pages during testing.
 	gem 'watchr',							  '0.7'           # All-purpose automation.
-	gem 'spork',							  '0.9.0rc8'      # Faster tests.
+	gem 'spork',							  '0.9.0rc8'      # DRb server for Faster tests.
 end
 
 group :development, :test do
