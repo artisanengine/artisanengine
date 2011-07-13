@@ -6,17 +6,17 @@ $ ->
 		transition: 'fade' 
 	})
 
-window.buildOptionSelects = (options) ->
-	variants = buildVariantsArray()
+ArtisanEngine.buildOptionSelects = (options) ->
+	variants = ArtisanEngine.buildVariantsArray()
 	options  = JSON.parse( options )
 	
 	# Build an option select for each option.
-	buildOptionSelect( option, variants ) for option in options
+	ArtisanEngine.buildOptionSelect( option, variants ) for option in options
 	
 	# Apply change event to all option selects.
 	$('.variant_selector').change( () ->
-		currentValues  = getCurrentValues()
-		currentVariant = getCurrentVariant( variants, currentValues )
+		currentValues  = ArtisanEngine.getCurrentValues()
+		currentVariant = ArtisanEngine.getCurrentVariant( variants, currentValues )
 		
 		if currentVariant
 			$('#price').html( currentVariant.price )
@@ -32,7 +32,7 @@ window.buildOptionSelects = (options) ->
 	$('#options #variant').hide()
 	
 # Build an array of Variant objects from the original select list.
-window.buildVariantsArray = () ->
+ArtisanEngine.buildVariantsArray = () ->
 	variants = []
 	
 	$( '#variant option' ).each( () ->
@@ -55,7 +55,7 @@ window.buildVariantsArray = () ->
 	return variants
 
 # Build an option select from an option and variants.
-window.buildOptionSelect = (option, variants) ->
+ArtisanEngine.buildOptionSelect = (option, variants) ->
 	name 	 = option.name
 	values = []
 	
@@ -74,7 +74,7 @@ window.buildOptionSelect = (option, variants) ->
 	$('#options').append( optionSelect )
 
 # Get current values from the option selects.
-window.getCurrentValues = () ->
+ArtisanEngine.getCurrentValues = () ->
 	current_values = []
 	
 	$('.variant_selector').each( () ->
@@ -84,13 +84,13 @@ window.getCurrentValues = () ->
 	return current_values
 
 # Get variant based on values from option selects.
-window.getCurrentVariant = (variants, current_values) ->
+ArtisanEngine.getCurrentVariant = (variants, current_values) ->
 	for variant in variants
-		match = checkVariant( variant, current_values )
+		match = ArtisanEngine.checkVariant( variant, current_values )
 		return variant unless match is false
 
 # Check if a variant's option values match an array of option-select values.
-window.checkVariant = (variant, current_values) ->
+ArtisanEngine.checkVariant = (variant, current_values) ->
 	all_values_match = true
 	
 	index = 0

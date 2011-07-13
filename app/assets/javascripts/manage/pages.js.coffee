@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------
 # Page Preview Functions
 
-preview_in_colorbox = (content) -> 
+ArtisanEngine.preview_in_colorbox = (content) -> 
 	$.colorbox({ 
 		html: 			"<div class='preview'>" + content + "</div>"
 		transition: 'fade'
@@ -24,7 +24,7 @@ $ ->
 			url: 			'/manage/page/preview'
 			data: 		{ textile_content: textile_content }
 			dataType: 'json'
-			success:  (converted) -> preview_in_colorbox( converted.content )
+			success:  (converted) -> ArtisanEngine.preview_in_colorbox( converted.content )
 		}) 
 	)
 
@@ -32,12 +32,12 @@ $ ->
 # Page Content Textile Helper Functions
 
 # Add a Textile-formatted image link to the content field with the given image link.
-appendImageLink = (image_link) ->
+ArtisanEngine.appendImageLink = (image_link) ->
 	field = $( '#page_content' )
 	field.val( field.val() + "!" + image_link + "!" )
 
 # Adds Insert links to /images/index.html, as long as it is in a Colorbox.
-window.addInsertLinks = () ->
+ArtisanEngine.addInsertLinks = () ->
 	# Hide heading links.
 	$( '#colorbox .heading_links' ).hide()
 	
@@ -55,7 +55,7 @@ window.addInsertLinks = () ->
 	# Add a click event which will close the Colorbox and
 	# append the URL to the page content field.
 	$( '#colorbox a.insert_link' ).click( () ->
-		appendImageLink( $( this ).attr( 'href' ) )
+		ArtisanEngine.appendImageLink( $( this ).attr( 'href' ) )
 		$.fn.colorbox.close()
 		return false
 	)
@@ -67,4 +67,4 @@ $ ->
 	
 	# Replace Insert Image link, since this function doesn't work without JS.
 	$( 'a#insert_image' ).attr( 'href', '/manage/images' )
-	$( 'a#insert_image' ).colorbox({ width: 980, height: '100%', onComplete: () -> window.addInsertLinks() })
+	$( 'a#insert_image' ).colorbox({ width: 980, height: '100%', onComplete: () -> ArtisanEngine.addInsertLinks() })
