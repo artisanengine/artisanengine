@@ -1,13 +1,14 @@
 %p#session_info
 	%span.version ArtisanEngine 0.1 
+	- if current_engineer
+		· Signed in as
+		%span.name Engineer
 	
-	- if current_artisan
+	- elsif current_artisan
 		· Signed in as 
 		%span.name= current_artisan.first_name
 		from
 		%span.name= current_frame.name
-	- elsif current_engineer
-		· Signed in as
-		%span.name Engineer
+	
 	- else
 		· Not signed in.

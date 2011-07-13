@@ -27,6 +27,13 @@ class Frame < ActiveRecord::Base
   validates_uniqueness_of :domain
   
   # ------------------------------------------------------------------
+  # Methods
+  
+  def protected?
+    settings.exists? name: 'Password Protected', value: 'Yes'
+  end
+  
+  # ------------------------------------------------------------------
   private
   
   def initialize_blog
@@ -36,4 +43,6 @@ class Frame < ActiveRecord::Base
   def initialize_featured_display_case
     display_cases.create! name: "Featured"
   end
+  
+  
 end

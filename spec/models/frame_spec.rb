@@ -34,4 +34,15 @@ describe Frame do
       end
     end
   end
+  
+  context "methods: " do
+    describe "#protected?" do
+      it "returns true if it has a Password Protected setting" do
+        frame = Frame.generate
+        frame.settings << Setting.spawn( name: 'Password Protected', value: 'Yes' )
+        
+        frame.protected?.should be_true
+      end
+    end
+  end
 end
