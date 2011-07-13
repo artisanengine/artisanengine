@@ -5,6 +5,7 @@
 		%title ArtisanEngine
 		= stylesheet_link_tag		 "application", "visit"
 		= javascript_include_tag "application", "visit"
+		= render 'google_analytics'
 		= yield :javascripts
 		= csrf_meta_tags
 
