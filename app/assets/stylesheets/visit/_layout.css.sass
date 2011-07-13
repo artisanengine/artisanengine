@@ -13,3 +13,58 @@ body
 	
 	.container
 		+container
+	
+	#top
+		background: darken( $bg-color, 80% )
+		width: 100%
+		
+		nav#primary
+			+column( 24, true )
+			text-align: right
+			
+			a
+				+adjust-font-size-to( 11px )
+				+adjust-leading-to( 2 )
+				
+				font-family: $accent-font-family
+				font-weight: bold
+				text-transform: uppercase
+				
+				color: $bg-color
+				&:hover
+					color: white
+				
+				margin-right: 0.5em
+				&:last-child
+					margin-right: 0
+					
+	header
+		+column( 24, true )
+		+prepend-top( 2em )
+		
+		a#logo
+			+adjust-font-size-to( 36px )
+			font-family: $accent-font-family
+			color: $default-text-color
+	
+#home
+	#feature
+		+column( 24, true )
+		height: 400px
+		
+		img
+			+single-box-shadow
+	
+	#blocks
+		+column( 24, true )
+		+prepend-top( 1em )
+	
+		.block
+			+column( 8 )
+			&:last-child
+				+column( 8, true )
+			
+			h2
+				+adjust-font-size-to( 16px )
+				+adjust-leading-to( 1 )
+				border-bottom: 1px solid darken( $bg-color, 5% )

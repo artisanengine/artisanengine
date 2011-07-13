@@ -9,5 +9,15 @@
 		= csrf_meta_tags
 
 	%body{ class: body_classes, id: body_ids }
-		#wrapper.container
+		#top
+			#top_wrapper.container
+				%nav#primary
+					= link_to 'Home', root_path
+					= link_to 'Shop', display_case_path( DisplayCase.first )
+					= link_to 'News', blog_path
+				
+		#main.container
+			%header
+				%a#logo{ href: root_path, title: current_frame.name }= current_frame.name
+			
 			= content_for?( :main ) ? yield( :main ) : yield
