@@ -4,6 +4,7 @@ module Manage
     
     expose( :display_cases ) { current_frame.display_cases }
     expose( :display_case )
+    expose( :new_collect )   { Collect.new }
 
     def create
       flash[ :notice ] = "Display Case: #{ display_case.name } was successfully created." if display_case.save

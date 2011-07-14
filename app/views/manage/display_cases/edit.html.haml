@@ -21,17 +21,27 @@
 
 = render 'form'
 
-#uncollected_goods
-	- for good in ( current_frame.goods - display_case.goods )
-		.good
-			%p= good.name
-			= form_for [ :manage, display_case, Collect.new ] do |f|
-				= f.hidden_field :good_id, value: good.id
-				= f.submit 'Add to Case'
+#display_case_goods
+	#uncollected_goods
+		%h2 Not In Case
+		
+		%table
+			%tbody
+				- for good in ( current_frame.goods - display_case.goods )
+					%tr.good
+						%td= good.name
+						%td.links
+							= form_for [ :manage, display_case, new_collect ] do |f|
+								= f.hidden_field :good_id, value: good.id
+								= f.submit 'Add to Case'
 
-#collected_goods
-	- for collect in display_case.collects.rank( :display_order )
-		%div[ collect ]
-			.handle= image_tag 'icons/drag_handle.gif'
-			%p= collect.good.name
-			= button_to 'Remove from Case', manage_display_case_collect_path( display_case, collect ), method: :delete
+	#collected_goods
+		%h2 In Case
+		
+		%table
+			%tbody
+				- for collect in display_case.collects.rank( :display_order )
+					%tr[ collect ]
+						%td.handle= image_tag 'icons/drag_handle.gif'
+						%td= collect.good.name
+						%td.links= button_to 'Remove from Case', manage_display_case_collect_path( display_case, collect ), method: :delete, class: 'delete'
