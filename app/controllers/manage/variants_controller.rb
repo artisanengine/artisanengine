@@ -1,6 +1,6 @@
 module Manage
   class VariantsController < Manage::ManageController
-    respond_to :html, :json
+    respond_to :html, :js, :json
     
     expose( :goods )        { current_frame.goods }
     expose( :good )

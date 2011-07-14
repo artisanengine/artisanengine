@@ -13,7 +13,7 @@
 				helper: fixHelper
 				update: (event, ui) ->
 					variant_id   = ui.item.attr('id').split( '_' )[1]
-					new_position = ui.item.prevAll().length
+					new_position = ui.item.prevAll( '.variant' ).length
 					
 					$.ajax({ 
 						type: 'put'
@@ -35,21 +35,12 @@
 				%th
 	
 		%tbody
-			- for variant in good_variants
-				%tr[ variant ]
-					%td.handle= image_tag 'icons/drag_handle.gif'
-					- for option in good_options
-						%td.option= eval( "variant.option_value_#{ option.order_in_good }" )
-					%td.price= variant.price.format
-					%td
-						= link_to 'Edit', edit_manage_good_variant_path( good, variant )
-						·
-						= link_to 'Delete', manage_good_variant_path( good, variant ), method: :delete, confirm: "Are you sure you want to delete this variant?"
-	
+			= render good_variants
+			
 		%tbody#add_variant
 			%tr
 				%td
-				= form_for [ :manage, good, new_variant ] do |f|
+				= form_for [ :manage, good, new_variant ], remote: true do |f|
 					- for option in good_options
 						%td.option= f.text_field :"option_value_#{ option.order_in_good }", placeholder: "Option #{ option.order_in_good }"
 					%td.price= f.text_field :price

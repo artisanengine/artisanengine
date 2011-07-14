@@ -1,0 +1,9 @@
+%tr[ variant ]
+	%td.handle= image_tag 'icons/drag_handle.gif'
+	- for option in good_options
+		%td.option= eval( "variant.option_value_#{ option.order_in_good }" )
+	%td.price= variant.price.format
+	%td
+		= link_to 'Edit', edit_manage_good_variant_path( good, variant )
+		·
+		= link_to 'Delete', manage_good_variant_path( good, variant ), method: :delete, remote: true, confirm: "Are you sure you want to delete this variant?"
