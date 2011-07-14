@@ -27,7 +27,7 @@ class Option < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Scopes
 
-  scope :in_order, order( "options.order_in_good ASC" )
+  scope :in_order, lambda { order( "options.order_in_good ASC" ) }
   
   # ------------------------------------------------------------------
   private
