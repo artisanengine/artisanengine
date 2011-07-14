@@ -9,7 +9,7 @@ module Manage
     
     def create
       flash[ :notice ] = "Option was successfully added." if option.save
-      redirect_to edit_manage_good_path( good )
+      respond_with :manage, option, location: edit_manage_good_path( good )
     end
     
     def update
