@@ -20,7 +20,10 @@ class Image < ActiveRecord::Base
                           with: /^[\w-]+\.[a-zA-Z]{3,4}$/
   
   validates_property    :format, of: :image, 
-                          in: [ :jpg, :jpeg, :png, :gif ]
+                          in: [ :jpg, :png, :gif ]
+  
+  validates_size_of     :image,
+                          maximum: 2.megabytes
   
   # ------------------------------------------------------------------
   private

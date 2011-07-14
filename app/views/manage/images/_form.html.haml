@@ -1,3 +1,8 @@
+%p.image_info 
+	Images must be less than 2MB in size. 
+	%br
+	Image filenames may not include spaces and must have an extension of .jpg, .png, or .gif.
+
 = semantic_form_for [ :manage, image ] do |f|
 	= f.inputs do
 		= f.input :image, as: :file
