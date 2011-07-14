@@ -1,6 +1,5 @@
-- set_title 		 good.name
-- add_body_class 'good'
-- add_body_id		 good.name.parameterize
+= content_for( :title ) 			 { good.name }
+= content_for( :body_classes ) { 'good' }
 
 = content_for :javascripts do
 	:coffeescript

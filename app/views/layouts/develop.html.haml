@@ -2,13 +2,13 @@
 
 %html
 	%head
-		%title ArtisanEngine
+		%title= content_for?( :title ) ? content_for( :title ) : "Develop ArtisanEngine"
 		= stylesheet_link_tag		 "application"
 		= javascript_include_tag "application"
 		= yield :javascripts
 		= csrf_meta_tags
 
-	%body{ class: body_classes, id: body_ids }
+	%body{ class: content_for( :body_classes ), id: content_for( :body_ids ) }
 		#wrapper
 			#main
 				= render 'session_info'

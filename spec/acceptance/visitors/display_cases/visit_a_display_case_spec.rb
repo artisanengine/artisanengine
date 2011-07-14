@@ -20,10 +20,10 @@ feature 'Visit a Display Case', %q{
   scenario "A visitor can visit a display case" do
     # When I visit the display case page,
     visit display_case_page_for 'Swag'
-    
+
     # Then I should see the display case's title
     page.should have_content 'Swag'
-    
+
     # And I should see the goods in the display case.
     page.should have_selector '.good', count: 3
   end

@@ -1,4 +1,4 @@
-- add_body_class 'page'
+= content_for( :body_classes ) { 'page' }
 
 %h1= page.title
 #page_content= page.html_content.html_safe

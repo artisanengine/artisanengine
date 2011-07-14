@@ -1,6 +1,5 @@
-- set_title "#{ display_case.name }"
-- add_body_class 'collection'
-- add_body_id		 display_case.name.parameterize
+= content_for( :title ) 			 { display_case.name }
+= content_for( :body_classes ) { 'collection' }
 
 %h1= display_case.name
 

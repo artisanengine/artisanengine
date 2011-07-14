@@ -2,14 +2,14 @@
 
 %html
 	%head
-		%title= title.blank? ? current_frame.name : title
+		%title= content_for?( :title ) ? content_for( :title ) : current_frame.name
 		= stylesheet_link_tag		 "application", "visit"
 		= javascript_include_tag "application", "visit"
 		= render 'google_analytics'
 		= yield :javascripts
 		= csrf_meta_tags
 
-	%body{ class: body_classes, id: body_ids }
+	%body{ class: content_for( :body_classes ), id: content_for( :body_ids ) }
 		#top
 			#top_wrapper.container
 				%nav#primary

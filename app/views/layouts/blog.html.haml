@@ -1,4 +1,4 @@
-- add_body_class 'blog'
+= content_for( :body_classes ) { 'blog' }
 
 = content_for( :main ) do
 	%h2= blog.name

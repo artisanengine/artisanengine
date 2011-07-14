@@ -2,7 +2,7 @@
 
 %html
 	%head
-		%title= title.blank? ? current_frame.name : title
+		%title= content_for?( :title ) ? content_for( :title ) : "Manage #{ current_frame.name }"
 		= stylesheet_link_tag		 "application", "manage"
 		/[if lt IE8]
 			= stylesheet_link_tag  "ie"
@@ -10,7 +10,7 @@
 		= yield :javascripts
 		= csrf_meta_tags
 
-	%body{ class: body_classes, id: body_ids }
+	%body{ class: content_for( :body_classes ), id: content_for( :body_ids ) }
 		#wrapper.container
 			%header
 				%h1#manage= yield( :heading )
