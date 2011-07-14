@@ -1,9 +1,13 @@
-#home.page #main
-	width: 910px
-	padding: 20px 25px
+#home.page #home_wrapper
+	+prepend( 0.5 )
+	+column( 23, true )
+	+append( 0.5 )
+	
+	background: $emmys-gray
 	
 	#feature
 		+column( 23, true )
+		+leader( 0.5 )
 		background-color: $emmys-white
 		height: 290px
 		+single-box-shadow
@@ -14,7 +18,7 @@
 			display: block
 			margin: 5px auto 0
 	
-	#featured-products
+	#featured_products
 		+prepend( 0.5 )
 		+column( 22, true )
 		+append( 0.5 )
@@ -113,7 +117,6 @@
 				
 				#signup-text
 					+column( 23/3*(3/4), true )
-					color: $soft
 					padding-top: 21px
 					font-weight: bold
 				

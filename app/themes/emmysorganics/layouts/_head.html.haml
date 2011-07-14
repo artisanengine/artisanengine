@@ -1,0 +1,12 @@
+%head
+	%title= content_for?( :title ) ? content_for( :title ) : current_frame.name
+	
+	= stylesheet_link_tag		 "application", "emmys"
+	
+	/[if lt IE8]
+		= stylesheet_link_tag  "ie"
+	
+	= javascript_include_tag "application", "visit"
+	= yield :javascripts
+	
+	= csrf_meta_tags

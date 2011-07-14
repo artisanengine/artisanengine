@@ -6,10 +6,9 @@
 $base-font-size: 	 12px
 $base-line-height: 16px
 
-$default-font-family: "Helvetica", Helvetica, sans-serif
-$accent-font-family:  "Arial", Arial, sans-serif
-
-$default-text-color: #323232
+$default-font-family: Helvetica, Arial, sans-serif
+$header-font-family:  Helvetica, Arial, sans-serif
+$accent-font-family:  Arial, sans-serif
 
 // ------------------------------------------------------------------
 // Mixins
@@ -31,26 +30,18 @@ body
 	font-family: $default-font-family
 	color: $default-text-color
 	
+	h1, h2, h3, h4, h5
+		+adjust-leading-to( 1 )
+		
 	h1, h2
 		font-weight: bold
 	
 	h1
 		+adjust-font-size-to( 32px )
-		+adjust-leading-to( 1 )
-		
 	h2
 		+adjust-font-size-to( 24px )
-		+adjust-leading-to( 1 )
-
 	h3
 		+adjust-font-size-to( 16px )
-		+adjust-leading-to( 1 )
 	
 	p
 		+trailer( 1 )
-		
-	#footer
-		font-family: $accent-font-family
-		
-		.footer-links
-			+adjust-font-size-to( 13px )

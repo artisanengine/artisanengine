@@ -1,31 +1,12 @@
 @import blueprint/grid
-@import compass/css3
+@import compass/typography
+@import compass/css3/box-shadow
+@import compass/css3/box-sizing
+@import compass/css3/border-radius
+@import compass/css3/inline-block
 
 @import colors
 @import typography
 @import layout
 
-@import partials/header
-@import partials/top
-@import partials/main_navigation
-@import partials/footer
-@import partials/home
-@import partials/goods
-
-@import partials/blog
-
-body
-	#wrapper
-		+container
-		margin-bottom: 1em
-	
-	#main
-		+column( 24, true )
-		background-color: $emmys-gray
-		
-	p.placeholder
-		+adjust-font-size-to( 24px )
-		height: 100%
-		line-height: 380px
-		text-align: center
-		color: rgba( 0, 0, 0, 0.3 )
+@import partials/**/*

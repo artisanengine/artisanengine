@@ -1,14 +1,136 @@
+.container
+	+container
+	header, footer, section, nav
+		+column( 24, true )
+	
+#wrapper
+	+trailer( 1 )
+
+header
+	background-color: $emmys-purple
+	height: 40px
+
+	#header_wrapper
+		#header_left
+			+column( 5 )
+			height: 40px
+
+		nav#header
+			+column( 19, true )
+			text-align: right
+
+			a
+				border-right: 1px solid lighten( $emmys-purple, 10% )
+				padding: 0 0.5em
+				line-height: 40px
+
+				&:last-child
+					padding: 0 0 0 0.5em
+					border-right: none
+
+#top
+	+column( 24, true )
+	+leader( 1 )
+	+trailer( 1 )
+	height: 131px
+
+	#logo
+		+column( 12 )
+		
+	#bag
+		+column( 12, true )
+		padding-top: 42.5px
+
+		#bag_image
+			width: 340px
+			display: inline
+			+float( left )
+			margin-right: 10px
+			text-align: right
+
+		#bag_text
+			width: 120px
+			display: inline
+			+float( left )
+			padding-top: 20px
+
+			#view_bag
+				+accent
+
+			#bag_count
+				font-weight: bold
+				color: black
+
+nav#main
+	background: $emmys-purple
+	
+	margin-left: span( 11 )
+	+column( 13, true )
+	
+	+border-top-radius( 10px )
+	
+	text-align: right
+	height: 40px
+
+	a
+		+adjust-font-size-to( 16px )
+		line-height: 40px
+		margin-right: 3em
+
+footer
+	background-color: $emmys-purple
+	color: lighten( $emmys-purple, 60% )
+	
+	height: 200px
+	+rhythm( 0, 1, 1, 1 )
+	
+	+border-bottom-radius( 15px )
+
+	h3
+		+adjust-font-size-to( 18px )
+		+adjust-leading-to( 1 )
+
+	nav.footer a, a#privacy
+		text-decoration: none
+
+	a#privacy
+		color: $emmys-white
+		text-decoration: underline
+
+	#footer_signup
+		+column( 8 )
+
+		.inner
+			padding-left: 1em
+
+		p#enter_email
+			+adjust-leading-to( 1.5 )
+
+		input
+			border: 0
+
+		input[type=text]
+			+adjust-font-size-to( 24px )
+			width: 100%
+
+		input[type=submit]
+			+adjust-font-size-to( 14px )
+			margin: 0.5em 0.5em 0 0
+			padding: 0.3em
+			background-color: $button-bg
+			color: $emmys-white
+			cursor: pointer
+
+	#about_us_links, #products_links, #educate_links
+		+column( 4 )
+
+	#sustainability_links
+		+column( 4, true )
+		
 // ------------------------------------------------------------------
 // Navigation Lists
 
-ul.nav-list
-	margin: 0
-	padding: 0
-	list-style-type: none
-	
-	li
-		display: inline
-		
-		a
-			color: $emmys-white
-			text-decoration: none
+nav
+	a
+		color: $emmys-white
+		text-decoration: none

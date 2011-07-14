@@ -1,19 +1,18 @@
 !!!
 %html
-	%head
-		%title Emmy's Organics
-		= stylesheet_link_tag		 "application", "emmys"
-		= javascript_include_tag "application", "visit"
-		= yield :javascripts
-		= csrf_meta_tags
+	= render 'layouts/head'
 
-	%body{ class: body_classes, id: body_ids }
+	%body{ class: content_for( :body_classes ), id: content_for( :body_ids ) }
 		= render 'layouts/header'
 				
-		#wrapper
+		#wrapper.container
 			= render 'layouts/top'
-			= render 'layouts/main_navigation'
 			
-			#main= content_for?( :main ) ? yield( :main ) : yield
+			%nav#main
+				= link_to 'about us', '#'
+				= link_to 'products', '#'
+				= link_to 'educate', '#'
+				= link_to 'sustainability', '#'
 			
+			= content_for?( :main ) ? yield( :main ) : yield
 			= render 'layouts/footer'
