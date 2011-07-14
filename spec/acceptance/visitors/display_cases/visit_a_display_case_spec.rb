@@ -17,7 +17,7 @@ feature 'Visit a Display Case', %q{
     end    
   end
   
-  scenario "A visit can visit a display case" do
+  scenario "A visitor can visit a display case" do
     # When I visit the display case page,
     visit display_case_page_for 'Swag'
     
