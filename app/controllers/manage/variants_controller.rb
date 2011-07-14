@@ -10,7 +10,7 @@ module Manage
     
     def create
       flash[ :notice ] = "Variant was successfully created." if variant.save
-      redirect_to edit_manage_good_path( good )
+      respond_with :manage, good, variant, location: edit_manage_good_path( good )
     end
     
     def update
