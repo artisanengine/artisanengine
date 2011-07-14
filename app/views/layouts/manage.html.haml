@@ -2,7 +2,7 @@
 
 %html
 	%head
-		%title ArtisanEngine
+		%title= title.blank? ? current_frame.name : title
 		= stylesheet_link_tag		 "application", "manage"
 		/[if lt IE8]
 			= stylesheet_link_tag  "ie"

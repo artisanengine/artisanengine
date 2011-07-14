@@ -1,9 +1,11 @@
+- set_title "#{ display_case.name }"
+- add_body_class 'collection'
+- add_body_id		 display_case.name.parameterize
+
 %h1= display_case.name
 
-#goods
+%section#goods
 	- for good in display_case.goods
 		%div[ good ]
 			.image= link_to display_image( good.images.first, '150x150#' ), good
-			.description
-				%p= link_to good.name, good
-			.quick_purchase Quick Purchase Options
+			%p.description= link_to good.name, good

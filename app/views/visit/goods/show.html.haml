@@ -1,13 +1,27 @@
+- set_title 		 good.name
+- add_body_class 'good'
+- add_body_id		 good.name.parameterize
+
 = content_for :javascripts do
 	:coffeescript
 		$ -> ArtisanEngine.buildOptionSelects( '#{ options }' )
 
 %h1= good.name
 
-= good.html_description.html_safe
+%section#good
+	#information
+		.description= good.html_description.html_safe
+		
+		#options
+			= select_tag 'variant', options_from_collection_for_select( good.variants, :id, :values_to_s )
 
-#options
-	= select_tag 'variant', options_from_collection_for_select( good.variants, :id, :values_to_s )
-
-#purchase
-	#price
+		#purchase
+			#price
+	
+	#images
+		.featured
+			= link_to display_image( good.images.first, '470x470#' ), url_for_image( good.images.first )
+		
+		.additional
+			- for image in good.images.drop( 1 )
+				= link_to display_image( image, '130x85#' ), image.image.remote_url

@@ -1,5 +1,5 @@
 $ ->
-	$('.goods #images a').colorbox({
+	$( '#good #images a' ).colorbox({
 		rel:				'gallery'
 		width: 			'80%'
 		height: 		'80%'

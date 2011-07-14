@@ -2,7 +2,7 @@
 
 %html
 	%head
-		%title ArtisanEngine
+		%title= title.blank? ? current_frame.name : title
 		= stylesheet_link_tag		 "application", "visit"
 		= javascript_include_tag "application", "visit"
 		= render 'google_analytics'
@@ -16,8 +16,8 @@
 					= link_to 'Home', root_path
 					= link_to 'Shop', display_case_path( DisplayCase.first )
 					= link_to 'News', blog_path
-				
-		#main.container
+		
+		#wrapper.container		
 			%header
 				%a#logo{ href: root_path, title: current_frame.name }= current_frame.name
 			

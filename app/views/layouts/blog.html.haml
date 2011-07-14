@@ -3,6 +3,6 @@
 = content_for( :main ) do
 	%h2= blog.name
 	= render 'visit/blogs/sidebar'
-	#featured.post= yield
+	%article#featured.post= yield
 
 = render template: 'layouts/visit'

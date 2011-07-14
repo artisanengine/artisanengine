@@ -7,6 +7,10 @@ module ImagesHelper
     end
   end
   
+  def url_for_image( image )
+    image.nil? ? asset_path( 'placeholder.jpg' ) : image.image.remote_url
+  end
+  
   def placeholder_image( size = '200x200#', options = {} )
     width  = size.split( 'x' )[0]
     height = size.split( 'x' )[1].gsub( '#', '' )
