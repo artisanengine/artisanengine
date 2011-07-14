@@ -7,5 +7,5 @@
 %section#goods
 	- for good in display_case.goods
 		%div[ good ]
-			.image= link_to display_image( good.images.first, '150x150#' ), good
+			.image= link_to display_image( good.images.first, '182x182#' ), good
 			%p.description= link_to good.name, good

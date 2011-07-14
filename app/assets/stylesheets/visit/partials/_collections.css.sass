@@ -3,5 +3,7 @@
 		+column( 24, true )
 		
 		.good
-			+column( 4 )
+			+column( 24/5 )
 			text-align: center
+			&:nth-child( 5n+5 )
+				+column( 24/5, true )
