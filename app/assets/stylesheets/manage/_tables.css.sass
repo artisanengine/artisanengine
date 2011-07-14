@@ -1,33 +1,27 @@
 table
 	width: 100%
 	
-	td.links
-		text-align: right
-	
-	thead
-		th
-			font-weight: bold
-			padding: 0 10px
-
-	tbody
-		tr
-			+adjust-leading-to( 1.5 )
-			td
-				padding: 0 10px
+	th
+		font-weight: bold
+		padding: 0.5em
 				
+	tbody
 		tr:nth-child( odd )
 			background-color: darken( $bg-color, 2% )
 		tr:nth-child( even )
 			background-color: darken( $bg-color, 5% )
+		td
+			padding: 0.5em
+			&.links
+				text-align: right
+				width: 10%
+				a[value=Delete]
+					display: none
 	
-	&#goods
-		td.name
-			width: 90%
-		td.links
-			width: 10%
-	
-	&#pages
-		td.title
-			width: 90%
-		td.links
-			width: 10%
+table#goods
+	td.name
+		width: 90%
+
+table#pages
+	td.title
+		width: 90%

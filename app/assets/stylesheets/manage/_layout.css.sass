@@ -1,31 +1,37 @@
 body
-	background-color: $bg-color
+	background: $bg-color
 	
-	#wrapper
+	.container
 		+container
+		header, footer, section, nav
+			+column( 24, true )
 	
-	h1#manage_header
-		font-weight: bold
+	h1#manage
 		+adjust-font-size-to( 16px )
-		+adjust-leading-to( 1.5 )
+		+adjust-leading-to( 1 )
+		+rhythm( 0.35, 0, 0, 0.35 )
+		font-weight: bold
 		text-align: center
 	
-	ul#manage_links
+	nav#manage
 		background: darken( $bg-color, 4% )
-		padding: 7px 15px
-		margin-bottom: 10px
+		
+		+rhythm( 0, 0.25, 0.25, 0.75 )
 		+border-radius( 5px )
+		
 		text-align: center
 
-		li
-			display: inline
+		a
 			margin: 10px
 	
-	.heading_links
+	nav.heading_links
 		text-align: center
-		margin-bottom: 10px
+		+trailer( 0.75 )
+	
+	nav.pagination
+		+leader( 0.75 )
 
-	#notifications
+	div#notifications
 		text-align: center
 		width: 75%
 		margin: 0 auto 10px
@@ -39,22 +45,19 @@ body
 		.alert
 			background-color: rgba( 255, 0, 0, 0.1 )
 	
-	#footer
-		+prepend( 7 )
-		+column( 10, true )
-		+append( 7 )
-		
-		margin: 20px 0 10px
+	footer
+		+leader( 1 )
 		text-align: center
 		
-		p#session_info
-			+adjust-font-size-to( 11px )
-			line-height: 15px
+		span#session_info
+			background: darken( $bg-color, 3% )
 			color: darken( $bg-color, 50% )
-			margin: 0 auto
-			background-color: darken( $bg-color, 3% )
-			padding: 5px
+			
+			padding: 0.5em 1em
 			+border-radius( 5px )
-		
+			
+			+adjust-font-size-to( 11px )
+			+adjust-leading-to( 2 )
+
 			.name, .version
 				font-weight: bold

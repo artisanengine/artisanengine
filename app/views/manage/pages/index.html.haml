@@ -1,15 +1,16 @@
 = content_for( :heading ) { 'Pages' }
 
-.heading_links
+%nav.heading_links
 	= link_to 'Add a Page', new_manage_page_path, class: 'add'
 
-%table#pages
-	%thead
-		%tr
-			%th Title
-	%tbody
-		- for page in pages
-			%tr[ page ]
-				%td.title= page.title
-				%td.links
-					= link_to 'Edit', edit_manage_page_path( page )
+%section#pages
+	%table#pages
+		%thead
+			%tr
+				%th Title
+		%tbody
+			- for page in pages
+				%tr[ page ]
+					%td.title= page.title
+					%td.links
+						= link_to 'Edit', edit_manage_page_path( page )

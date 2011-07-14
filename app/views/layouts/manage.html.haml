@@ -4,28 +4,28 @@
 	%head
 		%title ArtisanEngine
 		= stylesheet_link_tag		 "application", "manage"
+		/[if lt IE8]
+			= stylesheet_link_tag  "ie"
 		= javascript_include_tag "application", "manage"
 		= yield :javascripts
 		= csrf_meta_tags
 
 	%body{ class: body_classes, id: body_ids }
-		#wrapper
-			- unless request.fullpath == new_artisan_session_path
-				%h1#manage_header= yield( :heading )
-
-				%ul#manage_links
-					%li= link_to 'Goods',  		 		manage_goods_path
-					%li= link_to 'Display Cases', manage_display_cases_path
-					%li= link_to 'Pages',  		 		manage_pages_path
-					%li= link_to 'Blog',   		 		manage_blog_path
-					%li= link_to 'Orders', 		 		'#'
-					%li= link_to 'Patrons', 	 		'#'
-					%li= link_to 'Promotions', 		'#'
-					%li= link_to 'Images', 		 		manage_images_path
-				
-			#main
+		#wrapper.container
+			%header
+				%h1#manage= yield( :heading )
+				%nav#manage
+					= link_to 'Goods',  		 	 manage_goods_path
+					= link_to 'Display Cases', manage_display_cases_path
+					= link_to 'Pages',  		 	 manage_pages_path
+					= link_to 'Blog',   		 	 manage_blog_path
+					= link_to 'Orders', 		 	 '#'
+					= link_to 'Patrons', 	 		 '#'
+					= link_to 'Promotions', 	 '#'
+					= link_to 'Images', 		 	 manage_images_path
 				= render 'notifications' unless flash.empty?
-				= yield
 			
-			#footer
+			= yield
+			
+			%footer
 				= render 'session_info'

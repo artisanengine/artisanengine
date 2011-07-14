@@ -1,16 +1,17 @@
 = content_for( :heading ) { 'Goods' }
 
-.heading_links
+%nav.heading_links
 	= link_to 'Add a Good', new_manage_good_path, class: 'add'
 
-%table#goods
-	%thead
-		%tr
-			%th Name
-			%th
-	%tbody
-		- for good in goods
-			%tr[ good ]
-				%td.name= link_to good.name, good
-				%td.links
-					= link_to 'Edit', edit_manage_good_path( good )
+%section#goods
+	%table#goods
+		%thead
+			%tr
+				%th Name
+				%th
+		%tbody
+			- for good in goods
+				%tr[ good ]
+					%td.name= link_to good.name, good
+					%td.links
+						= link_to 'Edit', edit_manage_good_path( good )

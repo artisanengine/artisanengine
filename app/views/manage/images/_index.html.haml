@@ -1,7 +1,7 @@
-.heading_links
+%nav.heading_links
 	= link_to 'Upload an Image', new_manage_image_path, class: 'add'
 
-#images
+%section#images
 	- for image in images
 		%div[ image ]
 			= display_image( image, '220x200#', :'data-original' => image.image.remote_url )

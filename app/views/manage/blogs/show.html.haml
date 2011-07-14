@@ -1,20 +1,21 @@
 = content_for( :heading ) { 'Blog' }
 
-.heading_links
+%nav.heading_links
 	= link_to 'Add a Post', new_manage_blog_post_path, class: 'add'
 
-%table#posts
-	%thead
-		%tr
-			%th Title
-			%th Published
-			%th Tags
-			%th
+%section#posts
+	%table#posts
+		%thead
+			%tr
+				%th Title
+				%th Published
+				%th Tags
+				%th
 			
-	%tbody
-		- for post in blog.posts.order( "created_at DESC" )
-			%tr[ post ]
-				%td= post.title
-				%td= time_ago_in_words( post.created_at ) + " ago"
-				%td= post.tag_names
-				%td.links= link_to 'Edit', polymorphic_url( [ :manage, :blog, post ], action: :edit )
+		%tbody
+			- for post in blog.posts.order( "created_at DESC" )
+				%tr[ post ]
+					%td= post.title
+					%td= time_ago_in_words( post.created_at ) + " ago"
+					%td= post.tag_names
+					%td.links= link_to 'Edit', polymorphic_url( [ :manage, :blog, post ], action: :edit )
