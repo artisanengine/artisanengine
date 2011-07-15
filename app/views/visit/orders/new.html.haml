@@ -1,7 +1,11 @@
 %h1 Your Order
 
-- for line_item in order.line_items
-	%div[ line_item ]
-		= line_item.name
-		= line_item.price.format
-		= text_field_tag 'line_item[quantity]', line_item.quantity
+= form_tag quantities_line_items_path do
+	- for line_item in order.line_items
+		%div[ line_item ]
+			= line_item.name
+			= line_item.price.format
+			= text_field_tag "line_item[#{ line_item.id }]", line_item.quantity
+	= submit_tag 'Update'
+
+.total= order.line_total.format

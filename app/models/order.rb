@@ -22,6 +22,16 @@ class Order < ActiveRecord::Base
     variant_id ? initialize_line_item_with_variant( variant_id ) : line_items.build
   end
   
+  def line_total
+    total = Money.new( 0, 'USD' )
+    
+    for line_item in line_items
+      total += ( line_item.price * line_item.quantity )
+    end
+    
+    total
+  end
+  
   # ------------------------------------------------------------------
   private
   

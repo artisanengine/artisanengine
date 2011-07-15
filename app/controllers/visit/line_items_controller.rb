@@ -9,5 +9,16 @@ module Visit
       line_item.save
       redirect_to new_order_path
     end
+    
+    # ------------------------------------------------------------------
+    # Non-RESTful Actions
+    
+    def update_quantities
+      params[ :line_item ].each do |key, value|
+        order.line_items.find( key ).update_attributes quantity: value
+      end
+
+      redirect_to new_order_path
+    end
   end
 end

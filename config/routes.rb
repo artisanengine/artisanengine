@@ -42,7 +42,9 @@ ArtisanEngine::Application.routes.draw do
     resources :display_cases, path: 'collections'
     
     get '/order' => 'orders#new', as: :new_order
-    resources :line_items
+    resources :line_items do
+      post 'update_quantities', on: :collection, as: 'quantities'
+    end
   end
   
   # Recreate Devise routes from scratch and override Sessions Controller.
