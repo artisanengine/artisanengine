@@ -16,7 +16,7 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
   
   scenario "A visit can select a variant using the variant drop-down" do
     # Then I should see a variant drop down.
-    page.should have_selector 'select#variant' do
+    page.should have_selector 'select.main_variant_selector' do
       page.should have_selector 'option', text: 'Small / Blue / Cloth'
       page.should have_selector 'option', text: 'Medium / Blue / Cloth'
       page.should have_selector 'option', text: 'Medium / Red / Cloth'

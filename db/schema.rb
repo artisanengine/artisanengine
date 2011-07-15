@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "images", ["id", "frame_id"], :name => "index_images_on_id_and_frame_id"
 
+  create_table "line_items", :force => true do |t|
+    t.integer  "order_id",                      :null => false
+    t.integer  "variant_id"
+    t.integer  "quantity",       :default => 1, :null => false
+    t.integer  "price_in_cents", :default => 0, :null => false
+    t.string   "currency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "options", :force => true do |t|
     t.integer "good_id",       :null => false
     t.integer "order_in_good", :null => false
@@ -92,6 +102,13 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   add_index "options", ["id", "good_id"], :name => "index_options_on_id_and_good_id"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "frame_id",   :null => false
+    t.string   "status",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", :force => true do |t|
     t.integer  "frame_id",     :null => false

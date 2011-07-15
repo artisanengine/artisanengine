@@ -10,13 +10,14 @@
 	
 	#information
 		.description= good.html_description.html_safe
-		
-		#options
-			= select_tag 'variant', options_from_collection_for_select( good.variants, :id, :values_to_s )
-
-		#purchase
-			#price
 	
+	#purchase	
+		= form_for new_line_item do |f|
+			#options
+				= f.select :variant_id, options_from_collection_for_select( good.variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
+			#price
+			#complete
+				= f.submit 'Add to Order'
 	#images
 		.featured
 			= link_to display_image( good.images.first, '470x470#' ), url_for_image( good.images.first )

@@ -19,9 +19,10 @@ class Variant < ActiveRecord::Base
   ranks :display_order, with_same: :good_id
   
   # ------------------------------------------------------------------
-  # Associations
+  # Associations & Delegations
   
   belongs_to :good
+  delegate :name, to: :good
   
   # ------------------------------------------------------------------
   # Validations

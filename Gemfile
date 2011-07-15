@@ -14,6 +14,7 @@ gem 'fog',                    '0.9.0'         # S3 support for Dragonfly.
 gem 'friendly_id',            '3.3.0.alpha2'  # SEO-friendly URLs.
 gem 'money',                  '3.7.1'         # Currency handling.
 gem 'kaminari',               '0.12.4'        # Pagination.
+gem 'state_machine',          '1.0.1'         # Statefulness for models.
 
 # Positioning.
 gem 'acts_as_list',           '0.1.3'

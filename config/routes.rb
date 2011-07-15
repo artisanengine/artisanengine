@@ -31,13 +31,18 @@ ArtisanEngine::Application.routes.draw do
   
   scope :module => :visit do
     resources :pages, only: [ :show ]
+    
     resource  :blog, only: [ :show ] do
       get '/year/:year' => 'posts#index', as: 'by_year'
       get '/:tag_id'    => 'posts#index', as: 'by_tag'
       resources :posts, only: [ :show ]
     end
+    
     resources :goods, only: [ :show ]
     resources :display_cases, path: 'collections'
+    
+    get '/order' => 'orders#new', as: :new_order
+    resources :line_items
   end
   
   # Recreate Devise routes from scratch and override Sessions Controller.

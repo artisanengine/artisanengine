@@ -1,0 +1,7 @@
+%h1 Your Order
+
+- for line_item in order.line_items
+	%div[ line_item ]
+		= line_item.name
+		= line_item.price.format
+		= text_field_tag 'line_item[quantity]', line_item.quantity

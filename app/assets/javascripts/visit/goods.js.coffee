@@ -14,28 +14,28 @@ ArtisanEngine.buildOptionSelects = (options) ->
 	ArtisanEngine.buildOptionSelect( option, variants ) for option in options
 	
 	# Apply change event to all option selects.
-	$('.variant_selector').change( () ->
+	$( '.variant_selector' ).change( () ->
 		currentValues  = ArtisanEngine.getCurrentValues()
 		currentVariant = ArtisanEngine.getCurrentVariant( variants, currentValues )
 		
 		if currentVariant
-			$('#price').html( currentVariant.price )
-			$('#variant').val( currentVariant.id )
+			$( '#price' ).html( currentVariant.price )
+			$( '#variant' ).val( currentVariant.id )
 		else
-			$('#price').html( 'Not available.' )
+			$( '#price' ).html( 'Not available.' )
 	)
 	
 	# Initialize original data.
 	$( '#price' ).html( variants[0].price )
 	
 	# Hide original select.
-	$('#options #variant').hide()
+	$( '.main_variant_selector' ).hide()
 	
 # Build an array of Variant objects from the original select list.
 ArtisanEngine.buildVariantsArray = () ->
 	variants = []
 	
-	$( '#variant option' ).each( () ->
+	$( '.main_variant_selector option' ).each( () ->
 		# Retrieve option values into an array and trim them of whitespace.
 		option_values = $( this ).text().replace( /-{2}.+/, '' )						# Trim price.
 		option_values = option_values.split( "/" )
@@ -77,7 +77,7 @@ ArtisanEngine.buildOptionSelect = (option, variants) ->
 ArtisanEngine.getCurrentValues = () ->
 	current_values = []
 	
-	$('.variant_selector').each( () ->
+	$( '.variant_selector' ).each( () ->
 		current_values.push( $(this).val() )
 	)
 	

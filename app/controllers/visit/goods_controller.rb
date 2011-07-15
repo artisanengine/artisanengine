@@ -2,9 +2,10 @@ module Visit
   class GoodsController < Visit::VisitController
     layout :goods_or_visit
     
-    expose( :goods )   { current_frame.goods }
+    expose( :goods )         { current_frame.goods }
     expose( :good )
-    expose( :options ) { good.options.to_json }
+    expose( :options )       { good.options.to_json }
+    expose( :new_line_item ) { LineItem.new }
         
     # ------------------------------------------------------------------
     private

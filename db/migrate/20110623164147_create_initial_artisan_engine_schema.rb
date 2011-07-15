@@ -174,6 +174,26 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     add_index :variants, [ :id, :good_id ]
     
     # ------------------------------------------------------------------
+    # Orders & Line Items
+    
+    create_table :orders do |t|
+      t.integer :frame_id,          null: false
+      t.string  :status,            null: false
+      
+      t.timestamps
+    end
+    
+    create_table :line_items do |t|
+      t.integer :order_id,          null: false
+      t.integer :variant_id
+      t.integer :quantity,          null: false, default: 1
+      t.integer :price_in_cents,    null: false, default: 0
+      t.string  :currency
+      
+      t.timestamps
+    end
+    
+    # ------------------------------------------------------------------
     # Display Cases & Collects
     
     create_table :display_cases do |t|
