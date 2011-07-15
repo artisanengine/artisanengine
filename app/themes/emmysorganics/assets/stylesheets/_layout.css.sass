@@ -1,136 +1,126 @@
 .container
 	+container
-	header, footer, section, nav
-		+column( 24, true )
-	
-#wrapper
-	+trailer( 1 )
+
+nav
+	a
+		text-decoration: none
+		color: $emmys-white
+
+// ------------------------------------------------------------------
+// Header
 
 header
-	background-color: $emmys-purple
+	background: $emmys-purple
 	height: 40px
+	
+	#header_left
+		+column( 5 )
+		
+	nav#header
+		+column( 19, true )
+		text-align: right
+		
+		a
+			padding: 0 0.5em
+			line-height: 40px
+			
+			border-right: 1px solid lighten( $emmys-purple, 10% )
 
-	#header_wrapper
-		#header_left
-			+column( 5 )
-			height: 40px
+			&:last-child
+				padding: 0 0 0 0.5em
+				border-right: none
 
-		nav#header
-			+column( 19, true )
-			text-align: right
-
-			a
-				border-right: 1px solid lighten( $emmys-purple, 10% )
-				padding: 0 0.5em
-				line-height: 40px
-
-				&:last-child
-					padding: 0 0 0 0.5em
-					border-right: none
+// ------------------------------------------------------------------
+// Top
 
 #top
 	+column( 24, true )
-	+leader( 1 )
-	+trailer( 1 )
-	height: 131px
-
+	+rhythm( 1, 0, 0, 1 )
+	
 	#logo
 		+column( 12 )
-		
+
 	#bag
 		+column( 12, true )
 		padding-top: 42.5px
 
 		#bag_image
-			width: 340px
-			display: inline
-			+float( left )
-			margin-right: 10px
+			+column( 8.85 )
 			text-align: right
 
 		#bag_text
-			width: 120px
-			display: inline
-			+float( left )
-			padding-top: 20px
+			+column( 3.15, true )
+			padding-top: 30px
 
 			#view_bag
 				+accent
 
 			#bag_count
 				font-weight: bold
-				color: black
+				color: $emmys-black
 
-nav#main
-	background: $emmys-purple
+#top_navigation
+	+prepend( 0.5 )
+	+column( 23, true )
+	+append( 0.5 )
 	
-	margin-left: span( 11 )
-	+column( 13, true )
-	
-	+border-top-radius( 10px )
-	
-	text-align: right
-	height: 40px
-
-	a
+	nav#top
+		+column( 11, true )
+		+push( 12 )
+		
+		background: $emmys-purple
+		+rhythm( 0, 0.5, 0.5, 0 )
+		
 		+adjust-font-size-to( 16px )
-		line-height: 40px
-		margin-right: 3em
+		+border-top-radius( 10px )
+		
+		text-align: right
+		
+		a
+			padding-right: 2em
+			&:last-child
+				padding-right: 1.5em
+
+// ------------------------------------------------------------------
+// Footer
 
 footer
-	background-color: $emmys-purple
-	color: lighten( $emmys-purple, 60% )
+	background: $emmys-purple
+	color: lighten( $emmys-purple, 50% )
+	+column( 24, true )
+	+rhythm( 0, 1, 1, 0 )
 	
-	height: 200px
-	+rhythm( 0, 1, 1, 1 )
+	+border-bottom-radius( 10px )
 	
-	+border-bottom-radius( 15px )
-
 	h3
 		+adjust-font-size-to( 18px )
 		+adjust-leading-to( 1 )
-
-	nav.footer a, a#privacy
-		text-decoration: none
-
-	a#privacy
-		color: $emmys-white
-		text-decoration: underline
-
+	
 	#footer_signup
 		+column( 8 )
-
-		.inner
-			padding-left: 1em
-
-		p#enter_email
-			+adjust-leading-to( 1.5 )
-
+		+box-sizing( border-box )
+		
+		padding-left: 1em
+		
+		a
+			color: $emmys-white
 		input
 			border: 0
-
 		input[type=text]
-			+adjust-font-size-to( 24px )
-			width: 100%
-
+			+adjust-font-size-to( 16px )
+			+rhythm( 0, 0.25, 0.25, 0 )
 		input[type=submit]
-			+adjust-font-size-to( 14px )
-			margin: 0.5em 0.5em 0 0
-			padding: 0.3em
 			background-color: $button-bg
 			color: $emmys-white
-			cursor: pointer
-
-	#about_us_links, #products_links, #educate_links
-		+column( 4 )
-
-	#sustainability_links
-		+column( 4, true )
+			
+			margin: 0.5em 0.5em 0 0
+			padding: 0.3em
+			
+			+adjust-font-size-to( 14px )
 		
-// ------------------------------------------------------------------
-// Navigation Lists
-
-nav
-	a
-		color: $emmys-white
-		text-decoration: none
+			cursor: pointer
+	
+	nav
+		+column( 4 )
+		&:last-child
+			+column( 4, true )

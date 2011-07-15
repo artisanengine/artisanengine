@@ -1,18 +1,18 @@
 !!!
-%html
-	= render 'layouts/head'
 
-	%body{ class: content_for( :body_classes ), id: content_for( :body_ids ) }
+%html
+	%head
+		%title= content_for?( :title ) ? content_for( :title ) : "Emmy's Organics"
+		= stylesheet_link_tag		 "application", "emmys"
+		= javascript_include_tag "application", "visit"
+		= render 'google_analytics'
+		= yield :javascripts
+		= csrf_meta_tags
+	
+	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
 		= render 'layouts/header'
-				
+		
 		#wrapper.container
 			= render 'layouts/top'
-			
-			%nav#main
-				= link_to 'about us', '#'
-				= link_to 'products', '#'
-				= link_to 'educate', '#'
-				= link_to 'sustainability', '#'
-			
-			= content_for?( :main ) ? yield( :main ) : yield
+			= yield
 			= render 'layouts/footer'

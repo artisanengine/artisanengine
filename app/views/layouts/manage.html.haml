@@ -10,7 +10,7 @@
 		= yield :javascripts
 		= csrf_meta_tags
 
-	%body{ class: content_for( :body_classes ), id: content_for( :body_ids ) }
+	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
 		#wrapper.container
 			%header
 				%h1#manage= yield( :heading )

@@ -1,12 +1,19 @@
 #top
 	#logo
 		= link_to image_tag( 'emmys_logo.jpg', alt: "Emmy's Organics Logo" ), root_path
-	
+
 	#bag
 		#bag_image
 			= image_tag 'shopping_bag.jpg', alt: 'Shopping Bag'
-		
+
 		%p#bag_text
 			%span#view_bag View Shopping Bag
 			%br
 			= link_to '(0) Items', '#', id: 'bag_count'
+
+#top_navigation
+	%nav#top
+		= link_to 'about us', '#'
+		= link_to 'products', '#'
+		= link_to 'educate', '#'
+		= link_to 'sustainability', '#'
