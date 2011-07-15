@@ -1,0 +1,63 @@
+.individual_good
+	h1
+		+adjust-font-size-to( 24px )
+		+adjust-leading-to( 1 )
+		border-bottom: 2px dotted $emmys-gray
+		+trailer( 0.5 )
+
+	h2
+		+column( 24, true )
+		+adjust-font-size-to( 36px )
+		+adjust-leading-to( 1.75 )
+	
+		border-bottom: 1px solid $emmys-gray
+	
+	#goods_wrapper
+		+column( 24, true )
+		
+		img
+			+single-box-shadow
+		
+	#sidebar
+		+column( 4 )
+	
+	#good
+		+leader( 1 )
+		+column( 14 )
+	
+	#good_right
+		+leader( 4 )
+		+column( 6, true )
+		
+		h3
+			background: darken( $emmys-gray, 45% )
+			+adjust-font-size-to( 23px )
+			+adjust-leading-to( 2 )
+			
+			font-family: $accent-font-family
+			color: $emmys-white
+			
+			+border-top-radius( 10px )
+			
+			font-weight: bold
+			text-align: center
+			
+		#purchase
+			+column( 6, true )
+			
+			background: $emmys-gray
+			+border-bottom-radius( 10px )
+		
+			text-align: center
+		
+			#options
+				+leader( 1 )
+
+				label
+					display: block
+					width: 100%
+				select
+					+trailer( 0.5 )
+			#price
+				+trailer( 1 )
+				

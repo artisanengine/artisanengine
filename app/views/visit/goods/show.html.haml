@@ -1,13 +1,13 @@
-= content_for( :title ) 			 { good.name }
-= content_for( :body_class ) { 'good' }
+= content_for( :title ) 		 { good.name }
+= content_for( :body_class ) { 'individual_good' }
 
 = content_for :javascripts do
 	:coffeescript
 		$ -> ArtisanEngine.buildOptionSelects( '#{ options }' )
 
-%h1= good.name
-
 %section#good
+	%h1= good.name
+	
 	#information
 		.description= good.html_description.html_safe
 		

@@ -1,0 +1,27 @@
+= content_for( :title ) 		 { good.name }
+= content_for( :body_class ) { 'individual_good' }
+
+= content_for :javascripts do
+	:coffeescript
+		$ -> ArtisanEngine.buildOptionSelects( '#{ options }' )
+
+%section#good
+	%h1= good.name
+	
+	#images
+		.featured
+			= link_to display_image( good.images.first, '550x350#' ), url_for_image( good.images.first )
+		
+		.additional
+			- for image in good.images.drop( 1 )
+				= link_to display_image( image, '180x100#' ), image.image.remote_url
+	
+	#information
+		.description= good.html_description.html_safe
+
+#good_right
+	%h3 Purchase This
+	#purchase
+		#options
+			= select_tag 'variant', options_from_collection_for_select( good.variants, :id, :values_to_s )
+		#price
