@@ -1,0 +1,70 @@
+.blog
+	#blog_wrapper
+		+column( 24, true )
+		height: 100%
+
+	h2
+		+column( 24, true )
+		+adjust-font-size-to( 36px )
+		+adjust-leading-to( 1.75 )
+		
+		border-bottom: 1px solid $emmys-gray
+	
+	#sidebar
+		+column( 6 )
+		+padding-leader( 1 )
+		height: 100%
+		
+		+box-sizing( border-box )
+		border-right: 1px solid $emmys-gray
+		
+		h3
+			+adjust-font-size-to( 13px )
+			+adjust-leading-to( 1 )
+			+trailer( 0.5 )
+			margin-left: 1px
+			
+			font-weight: bold
+		
+		#tags, #dates
+			+trailer( 1 )
+			
+			a
+				+adjust-font-size-to( 13px )
+				+adjust-leading-to( 1.2 )
+				color: $emmys-purple
+				margin-left: 1px
+		
+		#author
+			+rhythm( 1, 1, 1, 1 )
+		
+			border-top: 1px solid $emmys-gray
+			border-bottom: 1px solid $emmys-gray
+			
+			img
+				width: 90px
+				+inline-block
+	
+			#description
+				+inline-block
+				padding: 5px 0 0 5px
+				.name
+					font-weight: bold
+		
+	#featured.post
+		+column( 18, true )
+		+box-sizing( border-box )
+		height: 100%
+
+		+padding-leader( 1 )
+	
+		h1
+			+adjust-font-size-to( 24px )
+			+adjust-leading-to( 1 )
+		
+		p.date
+			+adjust-font-size-to( 11px )
+			+adjust-leading-to( 1 )
+			
+			color: darken( $emmys-gray, 10% )
+			text-transform: uppercase

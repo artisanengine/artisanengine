@@ -1,0 +1,9 @@
+= content_for( :body_class ) { 'blog' }
+
+= content_for( :main ) do
+	%h2 Blog
+	#blog_wrapper
+		= render 'visit/blogs/sidebar'
+		%article#featured.post= yield
+
+= render template: 'layouts/visit'

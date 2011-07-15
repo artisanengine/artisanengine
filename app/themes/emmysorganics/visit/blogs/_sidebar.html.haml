@@ -1,0 +1,23 @@
+%section#sidebar
+	%h3.sort-heading View by Topic
+	%ul#tags
+		- for tag in tags
+			%li= link_to tag.name, "/blog/#{ tag.id }"
+			
+	%h3.sort-heading View by Date
+	%ul#dates
+		%li= link_to '2011', '/blog/year/2011'
+	
+	#author
+		= image_tag 'sam.jpg'
+
+		%p#description
+			%span.name Samantha Abrams
+			%br
+			co-creator
+			%br
+			marketing guru
+			%br
+			enthusiast
+			%br
+			blogger
