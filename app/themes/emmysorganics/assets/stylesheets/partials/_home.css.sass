@@ -1,7 +1,201 @@
 #home_wrapper
-	+column( 24, true )
+	+prepend( 0.5 )
+	+column( 23, true )
+	+append( 0.5 )
+	
 	background: $emmys-gray
+
+#feature
+	+column( 23, true )
+	+leader( 0.5 )
+	+trailer( 1 )
+	height: 290px
+	
+	background: $emmys-white
+	+single-box-shadow
+	
+	img
+		width: 900px
+		height: 280px
+		display: block
+		margin: 5px auto 0
+
+#featured_products
+	+prepend( 0.5 )
+	+column( 22, true )
+	+append( 0.5 )
+	
+	+padding-leader( 0.5 )
+	+trailer( 1 )
+	
+	background: $emmys-white
+	
+	a
+		+accent
+	
+	#featured_products_top
+		+column( 22, true )
+		+trailer( 1 )
+		
+		h2
+			+column( 11 )
+		.links
+			+column( 11, true )
+			text-align: right
+			+rhythm( 0, 0.25, 0.25, 0 )
+			
+			a:first-child
+				padding-right: 1em
+
+	.good
+		+column( 22/5 )
+		&:last-child
+			+column( 22/5, true )
+		
+		+trailer( 2 )
+		+border( $emmys-gray, 1px )
+		&:last-child
+			border: 0
+			padding-right: 0
+		
+		.links
+			height: 13px
+	
+			img
+				padding-top: 2px
+		
+			a
+				color: $emmys-green
+				+adjust-font-size-to( 11.5px )
+				vertical-align: top
+			
+				&:first-child
+					border-bottom: none
 
 // ------------------------------------------------------------------
 // Blocks
 
+.blocks
+	+column( 23/3 )
+	&:last-child
+		+column( 23/3, true )
+
+.block
+	+trailer( 1 )
+	
+	h2
+		padding: 0.3em 0.5em
+		
+		+adjust-font-size-to( 13px )
+		+adjust-leading-to( 1 )
+		
+		background-color: $emmys-purple
+		color: $emmys-white
+		
+		font-weight: bold
+		
+	.block_content
+		background-color: $emmys-white
+
+	.block_bottom
+		margin-top: 1px
+		padding: 0.5em 1em
+		
+		+adjust-leading-to( 1.5 )	
+
+		background: $emmys-white
+		
+		a
+			+accent-link
+
+#connect.block
+	.block_content
+		height: 135px
+		
+		#signup_image
+			+column( 23/3*(1/4) )
+			img
+				padding: 10px 10px 0
+		
+		#signup_text
+			+column( 23/3*(3/4), true )
+			padding-top: 21px
+			font-weight: bold
+		
+		form
+			+column( 23/3, true )
+			
+			input[type=text]
+				+adjust-font-size-to( 24px )
+				width: 275px
+				margin: 0 10px
+				border: 1px solid darken( $emmys-gray, 25% )
+			
+			input[type=submit]
+				background: $emmys-red
+				color: $emmys-white
+				
+				border: none
+				padding: 0.2em 0.3em
+				margin: 2px 10px
+				
+				text-transform: uppercase
+				font-weight: bold
+				
+				cursor: pointer
+
+#blog.block
+	.block_content
+		height: 300px
+		p
+			+trailer( 0.25 )
+			
+	#sam_image
+		float: right
+		padding: 10px
+		p
+			color: $emmys-purple
+			.name
+				font-weight: bold
+		img
+			+single-box-shadow
+
+	.post
+		padding: 10px 0 0 10px
+		p.date
+			color: $emmys-green
+		p.title
+			font-weight: bold
+		a
+			+accent-link
+
+#find-a-store
+	img
+		display: block
+		margin: 0 auto 1em
+
+#press.block
+	.block_content
+		height: 150px
+		p.placeholder
+			line-height: 150px
+			text-align: center
+			color: darken( $emmys-gray, 30% )
+
+#product.block
+	.block_content
+		height: 166px
+
+		.links
+			display: none
+		img
+			float: right
+			height: 155px
+			padding: 5px 5px 0 0
+		p
+			line-height: 166px
+			text-align: center
+			a
+				text-decoration: none
+				color: $emmys-black
+				font-weight: bold
