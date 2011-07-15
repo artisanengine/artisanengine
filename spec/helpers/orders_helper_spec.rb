@@ -13,8 +13,8 @@ describe OrdersHelper do
       let( :order_from_session ) { mock_model( 'Order' ).as_null_object }
 
       before do
-        controller.stub( :session ).and_return( { :order_id => 1 } )
-        Order.stub( :find ).and_return( order_from_session )
+        controller.stub session: { :order_id => 1 }
+        Order.stub find: order_from_session
       end
       
       it "finds the order from the session" do
@@ -24,7 +24,7 @@ describe OrdersHelper do
             
       context "and the order is new or pending" do
         before do
-          order_from_session.stub :new? => true
+          order_from_session.stub new?: true
         end
         
         it "returns the order from the session" do
@@ -35,9 +35,20 @@ describe OrdersHelper do
       
       context "and the order is not new or pending" do
         before do
-          order_from_session.stub :new?     => false
-          order_from_session.stub :pending? => false
+          order_from_session.stub new?: false
+          order_from_session.stub pending?: false
         end
+        
+        it "creates a new order and stores it in the session" do
+          Order.should_receive( :create! ).and_return( new_order )
+          
+          order         = helper.current_order
+          order.should == new_order
+        end
+      end
+      
+      context "and the order doesn't exist in the database" do
+        before { Order.stub find: nil }
         
         it "creates a new order and stores it in the session" do
           Order.should_receive( :create! ).and_return( new_order )
@@ -50,7 +61,7 @@ describe OrdersHelper do
     
     context "if the session does not already contain an order" do
       before do
-        controller.stub( :session ).and_return( { :order_id => nil } )
+        controller.stub session: { :order_id => nil }
       end
       
       it "creates a new order and stores it in the session" do

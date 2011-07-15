@@ -2,13 +2,12 @@ module Visit
   class LineItemsController < Visit::VisitController
     respond_to :html
     
-    expose( :order )      { current_order }
-    expose( :line_items ) { order.line_items }
-    expose( :line_item )
+    expose( :order )     { current_order }
+    expose( :line_item ) { order.line_item_from( params[ :line_item ][ :variant_id ] ) }
     
     def create
       line_item.save
-      respond_with line_item, location: new_order_path
+      redirect_to new_order_path
     end
   end
 end

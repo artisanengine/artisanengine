@@ -1,9 +1,19 @@
 class LineItem < ActiveRecord::Base
+  # ------------------------------------------------------------------
+  # Associations & Delegations
+  
   belongs_to :variant
   belongs_to :order
-  delegate :name, to: :variant
+  
+  delegate   :name, to: :variant
+  
+  # ------------------------------------------------------------------
+  # Validations
   
   validates_presence_of :variant, :order
+  
+  # ------------------------------------------------------------------
+  # Callbacks
   
   before_create :capture_variant_price
   
