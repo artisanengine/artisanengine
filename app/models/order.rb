@@ -39,6 +39,18 @@ class Order < ActiveRecord::Base
     
     after_transition :new     => :pending, :do => :set_patron
     after_transition :pending => :pending, :do => :set_patron
+    
+    event :purchase! do
+      transition :pending => :purchased
+    end
+    
+    state :purchased
+    
+    event :fail! do
+      transition all => :failed
+    end
+    
+    state :failed
   end
   
   # ------------------------------------------------------------------
@@ -56,6 +68,10 @@ class Order < ActiveRecord::Base
     end
     
     total
+  end
+  
+  def total
+    line_total
   end
   
   # ------------------------------------------------------------------

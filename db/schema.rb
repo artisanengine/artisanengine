@@ -117,6 +117,19 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "options", ["id", "good_id"], :name => "index_options_on_id_and_good_id"
 
+  create_table "order_transactions", :force => true do |t|
+    t.integer  "order_id",                           :null => false
+    t.integer  "amount_in_cents", :default => 0,     :null => false
+    t.string   "currency"
+    t.boolean  "success",                            :null => false
+    t.string   "reference"
+    t.string   "action"
+    t.text     "params"
+    t.boolean  "test",            :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "orders", :force => true do |t|
     t.integer  "frame_id",            :null => false
     t.integer  "patron_id"
@@ -143,7 +156,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.string   "first_name",                    :null => false
     t.string   "last_name",                     :null => false
     t.string   "email",                         :null => false
-    t.boolean  "subscribed", :default => false, :null => false
+    t.boolean  "subscribed", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

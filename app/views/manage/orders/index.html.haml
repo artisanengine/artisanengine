@@ -1,0 +1,12 @@
+%h1 Orders
+
+%table
+	%thead
+		%tr
+			%th Order No.
+			%th Status
+	%tbody
+		- for order in orders
+			%tr[ order ]
+				%td= order.id
+				%td.status= order.status.titleize

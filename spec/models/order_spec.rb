@@ -74,6 +74,15 @@ describe Order do
       end
     end
         
+    describe "#total" do
+      it "returns the line total plus any applicable adjustments" do
+        order       = Order.generate
+        line_item_1 = LineItem.generate order: order, quantity: 3
+        line_item_1.update_attributes price: 100
+        
+        order.total.should == 300
+      end
+    end
   end
 
   describe "status: " do
@@ -131,10 +140,28 @@ describe Order do
           end
         end
                                        
-        it "checks out the order (status: pending)" do
+        it "sets the order's status to Pending" do
           order.checkout!.should be_true
           order.should be_pending
         end
+      end
+    end
+    
+    describe "#purchase!" do
+      let( :order ) { Factory :pending_order }
+      
+      it "sets the order's status to Purchased" do
+        order.purchase!
+        order.should be_purchased
+      end
+    end
+    
+    describe "#fail!" do
+      let( :order ) { Factory :pending_order }
+      
+      it "sets the order's status to Failed" do
+        order.fail!
+        order.should be_failed
       end
     end
   end

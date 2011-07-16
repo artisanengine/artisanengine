@@ -18,6 +18,7 @@ class Frame < ActiveRecord::Base
   has_many :goods
   has_one  :blog
   has_many :display_cases
+  has_many :orders
   has_one  :featured_case, class_name: 'DisplayCase', conditions: [ 'display_cases.name = ?', 'Featured' ]
   
   # ------------------------------------------------------------------

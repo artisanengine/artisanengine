@@ -197,6 +197,23 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     end
     
     # ------------------------------------------------------------------
+    # Order Transactions
+    
+    create_table :order_transactions do |t|
+      t.integer :order_id,          null: false
+      t.integer :amount_in_cents,   null: false, default: 0
+      t.string  :currency
+      
+      t.boolean :success,           null: false
+      t.string  :reference
+      t.string  :action
+      t.text    :params
+      t.boolean :test,              default: false
+      
+      t.timestamps
+    end
+    
+    # ------------------------------------------------------------------
     # Addresses
     
     create_table :addresses do |t|
@@ -220,7 +237,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.string    :first_name,      null: false
       t.string    :last_name,       null: false
       t.string    :email,           null: false
-      t.boolean   :subscribed,      null: false, default: false
+      t.boolean   :subscribed,      default: false
 
       t.timestamps
     end

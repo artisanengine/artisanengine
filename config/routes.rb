@@ -27,6 +27,7 @@ ArtisanEngine::Application.routes.draw do
       resources :posts
     end
     resources :tags
+    resources :orders
   end
   
   scope :module => :visit do
@@ -44,7 +45,9 @@ ArtisanEngine::Application.routes.draw do
     get '/order'     => 'orders#new',    as: 'new_order'
     get '/checkout'  => 'orders#edit',   as: 'checkout'
     put '/checkout'  => 'orders#update', as: 'checkout'
-    get '/paypal'    => 'orders#paypal', as: 'paypal'
+    
+    get  '/paypal'   => 'orders#paypal',           as: 'paypal'
+    post '/ipns'     => 'order_transactions#ipns', as: 'ipns'
     
     resources :line_items do
       post 'update_quantities', on: :collection, as: 'quantities'
