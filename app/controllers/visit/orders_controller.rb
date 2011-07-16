@@ -5,19 +5,29 @@ module Visit
     expose( :order )                { current_order }
     expose( :line_items )           { order.line_items }
     expose( :shipping_address )     { order.shipping_address }
-    expose( :new_shipping_address ) { order.build_shipping_address }
-    expose( :new_billing_address )  { order.build_billing_address }
+    expose( :new_shipping_address ) { params[ :order ].try( :[], :shipping_address ) ? Address.new( params[ :order ][ :shipping_address ] ) : Address.new }
+    expose( :new_billing_address )  { params[ :order ].try( :[], :billing_address ) ? Address.new( params[ :order ][ :billing_address ] ) : Address.new }
     
+    # POST /checkout
     def update
-      # Copy shipping address parameters to billing address if Shipping is Billing was checked.
-      params[ :order ][ :billing_address_attributes ] = params[ :order ][ :shipping_address_attributes ] if params[ :shipping_is_billing ]
+      # Set frames.
+      params[ :order ][ :shipping_address ][ :frame_id ] = current_frame.id
+      params[ :order ][ :billing_address ][ :frame_id ]  = current_frame.id
       
-      # Set the address frames.
-      params[ :order ][ :billing_address_attributes ][ :frame_id ]  = current_frame.id
-      params[ :order ][ :shipping_address_attributes ][ :frame_id ] = current_frame.id
+      # Set billing attributes to shipping attributes if Shipping is Billing is set.
+      params[ :order ][ :billing_address ] = params[ :order ][ :shipping_address ] if params[ :shipping_is_billing ]
       
-      order.checkout! if order.update_attributes( params[ :order ] )
-      respond_with order, location: paypal_path
+      # Set order addresses.
+      order.shipping_address = new_shipping_address
+      order.billing_address  = new_billing_address
+      @billing_errors        = params[ :shipping_is_billing ] ? false : true
+      
+      # Update order.
+      if order.update_attributes( params[ :order ] )
+        order.checkout! ? redirect_to( paypal_path ) : render( :edit )
+      else
+        render :edit
+      end
     end
   end
 end

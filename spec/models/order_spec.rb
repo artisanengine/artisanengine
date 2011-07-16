@@ -201,4 +201,66 @@ describe Order do
       end
     end
   end
+
+  describe "when setting a shipping address" do
+    let( :order ) { Order.generate }
+    
+    context "if an address with the same attributes already exists" do
+      before do
+        @address_attributes = Factory.attributes_for :address
+        @existing_address   = Address.create! @address_attributes
+      end
+      
+      it "sets the order's address to the existing address" do
+        expect { 
+          order.shipping_address = Address.new @address_attributes
+        }.not_to change( Address, :count )
+        
+        order.shipping_address.should == @existing_address
+      end
+    end
+    
+    context "if an address with the same attributes does not already exist" do
+      let( :new_address ) { Factory.build :address }
+      
+      it "creates and sets the order's address to the new address" do
+        expect { 
+          order.shipping_address = new_address 
+        }.to change( Address, :count ).by( 1 )
+        
+        order.shipping_address.should == new_address
+      end
+    end
+  end
+  
+  describe "when setting a billing address" do
+    let( :order ) { Order.generate }
+    
+    context "if an address with the same attributes already exists" do
+      before do
+        @address_attributes = Factory.attributes_for :address
+        @existing_address   = Address.create! @address_attributes
+      end
+      
+      it "sets the order's address to the existing address" do
+        expect { 
+          order.billing_address = Address.new @address_attributes
+        }.not_to change( Address, :count )
+        
+        order.billing_address.should == @existing_address
+      end
+    end
+    
+    context "if an address with the same attributes does not already exist" do
+      let( :new_address ) { Factory.build :address }
+      
+      it "creates and sets the order's address to the new address" do
+        expect { 
+          order.billing_address = new_address 
+        }.to change( Address, :count ).by( 1 )
+        
+        order.billing_address.should == new_address
+      end
+    end
+  end
 end

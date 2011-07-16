@@ -14,11 +14,9 @@ class Order < ActiveRecord::Base
   belongs_to :patron
   
   belongs_to                    :shipping_address, class_name: 'Address'
-  accepts_nested_attributes_for :shipping_address
   validates_associated          :shipping_address
   
   belongs_to                    :billing_address, class_name: 'Address'
-  accepts_nested_attributes_for :billing_address
   validates_associated          :billing_address
   
   # ------------------------------------------------------------------
@@ -77,6 +75,49 @@ class Order < ActiveRecord::Base
   
   def total
     line_total
+  end
+  
+  # ------------------------------------------------------------------
+  # Setter Overrides
+  
+  def shipping_address=( address )
+    return unless address and address.is_a? Address
+       
+    duplicate_address = Address.where( first_name:  address.first_name,
+                                       last_name:   address.last_name,
+                                       address_1:   address.address_1,
+                                       address_2:   address.address_2,
+                                       city:        address.city,
+                                       province:    address.province,
+                                       country:     address.country,
+                                       postal_code: address.postal_code ).first
+                   
+    if duplicate_address
+      self.shipping_address_id = duplicate_address.id
+    else
+      address.save
+      self.shipping_address_id = address.id
+    end
+  end
+  
+  def billing_address=( address )   
+    return unless address and address.is_a? Address
+    
+    duplicate_address = Address.where( first_name:  address.first_name,
+                                       last_name:   address.last_name,
+                                       address_1:   address.address_1,
+                                       address_2:   address.address_2,
+                                       city:        address.city,
+                                       province:    address.province,
+                                       country:     address.country,
+                                       postal_code: address.postal_code ).first
+                   
+    if duplicate_address
+      self.billing_address_id = duplicate_address.id
+    else
+      address.save
+      self.billing_address_id = address.id
+    end
   end
   
   # ------------------------------------------------------------------
