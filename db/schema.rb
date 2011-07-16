@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(:version => 20110623164147) do
 
+  create_table "address_attachers", :force => true do |t|
+    t.integer "address_id",       :null => false
+    t.integer "addressable_id",   :null => false
+    t.string  "addressable_type", :null => false
+  end
+
   create_table "addresses", :force => true do |t|
     t.integer  "frame_id",    :null => false
     t.integer  "patron_id"

@@ -135,6 +135,9 @@ class Order < ActiveRecord::Base
                                                   first_name:  billing_address.first_name, 
                                                   last_name:   billing_address.last_name,
                                                   subscribed:  subscribed )
+    
+    patron.addresses << billing_address
+    patron.addresses << shipping_address
     save
   end
   

@@ -175,6 +175,11 @@ describe Order do
             order.patron.subscribed.should == true
           end
         end
+        
+        it "associates its addresses with its patron" do
+          order.checkout!
+          order.patron.addresses.count.should == 2
+        end
                                        
         it "sets the order's status to Pending" do
           order.checkout!.should be_true

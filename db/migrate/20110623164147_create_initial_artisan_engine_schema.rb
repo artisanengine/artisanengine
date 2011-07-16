@@ -232,6 +232,11 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
+    create_table :address_attachers do |t|
+      t.integer    :address_id,     null: false
+      t.references :addressable,    null: false, polymorphic: true
+    end
+    
     # ------------------------------------------------------------------
     # Patrons
     
