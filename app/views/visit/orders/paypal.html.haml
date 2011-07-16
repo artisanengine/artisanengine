@@ -1,0 +1,29 @@
+= form_tag ActiveMerchant::Billing::Integrations::Paypal.service_url do
+	= hidden_field_tag :cmd, 						'_cart'
+	= hidden_field_tag :upload, 				'1'
+	= hidden_field_tag :business, 			Setting.get_or_set( current_frame, 'PayPal WPS E-Mail', 'seller_1310784529_biz@artisanengine.com' )
+	= hidden_field_tag :invoice, 				order.id
+	
+	= hidden_field_tag :return, 			 	"http://#{ current_frame.domain }/order/confirm"
+	= hidden_field_tag :notify_url,  	 	"http://#{ current_frame.domain }/ipns"
+	= hidden_field_tag :cancel_return, 	"http://#{ current_frame.domain }/order/cancel"
+	
+	= hidden_field_tag :first_name, 		shipping_address.first_name
+	= hidden_field_tag :last_name, 			shipping_address.last_name
+	= hidden_field_tag :email, 					order.email
+	= hidden_field_tag :address1, 			shipping_address.address_1
+	= hidden_field_tag :address2, 			shipping_address.address_2
+	= hidden_field_tag :city, 					shipping_address.city
+	= hidden_field_tag :country, 				shipping_address.country
+	= hidden_field_tag :state, 					shipping_address.province
+	= hidden_field_tag :zip, 						shipping_address.postal_code
+	
+	- line_items.each_with_index do |item, index|
+		- item_name = item.name
+		- item_name += " (#{ item.options })" unless item.options.blank?
+		
+		= hidden_field_tag :"amount_#{ index + 1 }", 		item.price
+		= hidden_field_tag :"item_name_#{ index + 1 }", item_name
+		= hidden_field_tag :"quantity_#{ index + 1 }", 	item.quantity
+			
+	= submit_tag 'Continue to PayPal'

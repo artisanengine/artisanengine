@@ -53,12 +53,28 @@ describe Variant do
   end
 
   context "methods: " do
-    it "can return its values in a slash-separated string with price" do
-      good    = Factory( :good_with_three_options_and_variants )
-      variant = good.variants.first
-      variant.update_attributes price: 25
+    describe "#values_to_s" do
+      it "can return its values in a slash-separated string with price" do
+        good    = Factory( :good_with_three_options_and_variants )
+        variant = good.variants.first
+        variant.update_attributes price: 25
       
-      variant.values_to_s.should == "Small / Blue / Cloth -- $25.00"
+        variant.values_to_s.should == "Small / Blue / Cloth -- $25.00"
+      end
+      
+      it "can return its values in a slash-separated string without price" do
+        good    = Factory( :good_with_three_options_and_variants )
+        variant = good.variants.first
+        
+        variant.values_to_s( false ).should == "Small / Blue / Cloth"
+      end
+      
+      it "returns nothing if its only value is the default value" do
+        good    = Good.generate
+        variant = good.variants.first
+        
+        variant.values_to_s.should == ""
+      end
     end
   end
 end

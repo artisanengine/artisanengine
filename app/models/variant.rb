@@ -48,8 +48,9 @@ class Variant < ActiveRecord::Base
     good.options.count
   end
   
-  def values_to_s
+  def values_to_s( with_price = true )
     values_string = ""
+    return values_string if number_of_options == 1 and option_value_1 == "Default"
     
     option_values.each_with_index do |value, index|      
       unless index == number_of_options - 1
@@ -59,7 +60,7 @@ class Variant < ActiveRecord::Base
       end
     end
     
-    values_string << " -- #{ price.format }"
+    values_string << " -- #{ price.format }" if with_price
     values_string
   end
   

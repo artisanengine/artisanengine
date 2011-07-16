@@ -3,6 +3,8 @@ module Visit
     respond_to :html
     
     expose( :order )                { current_order }
+    expose( :line_items )           { order.line_items }
+    expose( :shipping_address )     { order.shipping_address }
     expose( :new_shipping_address ) { order.build_shipping_address }
     expose( :new_billing_address )  { order.build_billing_address }
     

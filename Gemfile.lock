@@ -35,6 +35,10 @@ GEM
       rack-test (~> 0.6.0)
       sprockets (~> 2.0.0.beta.10)
       tzinfo (~> 0.3.27)
+    activemerchant (1.15.0)
+      activesupport (>= 2.3.8)
+      braintree (>= 2.0.0)
+      builder (>= 2.0.0)
     activemodel (3.1.0.rc4)
       activesupport (= 3.1.0.rc4)
       bcrypt-ruby (~> 2.1.4)
@@ -54,6 +58,8 @@ GEM
     arel (2.1.3)
     babosa (0.3.5)
     bcrypt-ruby (2.1.4)
+    braintree (2.10.1)
+      builder (>= 2.0.0)
     builder (3.0.0)
     capybara (1.0.0)
       mime-types (>= 1.16)
@@ -235,6 +241,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth (= 4.2.7)
+  activemerchant (= 1.15.0)
   acts_as_list (= 0.1.3)
   capybara (= 1.0.0)
   capybara-webkit (= 1.0.0.beta4)
