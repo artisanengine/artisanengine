@@ -43,6 +43,4 @@ class Frame < ActiveRecord::Base
   def initialize_featured_display_case
     display_cases.create! name: "Featured"
   end
-  
-  
 end

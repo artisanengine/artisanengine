@@ -32,6 +32,11 @@ describe Frame do
         frame = Frame.generate name: 'Rockadoodle'
         frame.blog.name.should == "Rockadoodle Blog"
       end
+      
+      it "creates its featured display case" do
+        frame = Frame.generate
+        frame.featured_case.should_not be_nil
+      end
     end
   end
   
