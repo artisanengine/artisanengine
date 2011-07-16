@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "addresses", :force => true do |t|
+    t.integer  "frame_id",    :null => false
     t.integer  "patron_id"
     t.string   "first_name",  :null => false
     t.string   "last_name",   :null => false

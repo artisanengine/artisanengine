@@ -1,3 +1,4 @@
 class Address < ActiveRecord::Base
-  validates_presence_of :first_name, :last_name, :address_1, :city, :country, :postal_code
+  belongs_to :frame
+  validates_presence_of :first_name, :last_name, :address_1, :city, :country, :postal_code, :frame
 end

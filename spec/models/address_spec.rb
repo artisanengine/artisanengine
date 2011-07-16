@@ -8,6 +8,11 @@ describe Address do
       new_address.should be_valid
     end
     
+    it "is not valid without a frame" do
+      new_address.frame = nil
+      new_address.should_not be_valid
+    end
+    
     it "is not valid without a first name" do
       new_address.first_name = nil
       new_address.should_not be_valid

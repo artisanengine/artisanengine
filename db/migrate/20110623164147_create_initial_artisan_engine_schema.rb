@@ -218,6 +218,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Addresses
     
     create_table :addresses do |t|
+      t.integer   :frame_id,        null: false
       t.integer   :patron_id
       t.string    :first_name,      null: false
       t.string    :last_name,       null: false

@@ -5,13 +5,13 @@
 	
 	#shipping_address
 		= f.semantic_errors :shipping_address
-		= f.inputs for: [ :shipping_address, new_shipping_address ]
+		= f.inputs :first_name, :last_name, :address_1, :address_2, :country, :city, :province, :postal_code, for: [ :shipping_address, new_shipping_address ]
 		
 		= check_box_tag :shipping_is_billing, '1'
 		= label_tag 	  :shipping_is_billing, 'My billing address is the same as my shipping address.'
 	
 	#billing_address
 		= f.semantic_errors :billing_address
-		= f.inputs for: [ :billing_address, new_billing_address ]
+		= f.inputs :first_name, :last_name, :address_1, :address_2, :country, :city, :province, :postal_code, for: [ :billing_address, new_billing_address ]
 	
 	= f.submit 'Pay with PayPal'
