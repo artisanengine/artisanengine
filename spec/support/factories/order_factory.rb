@@ -13,6 +13,10 @@ Factory.define :pending_order, parent: :order do |o|
   end
 end
 
+Factory.define :purchased_order, parent: :pending_order do |o|
+  o.after_create { |o| o.purchase! }
+end
+
 Factory.define :line_item do |l|
   l.association :order
   l.association :variant

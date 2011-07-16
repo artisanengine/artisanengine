@@ -1,0 +1,31 @@
+#order
+	= order.id_in_frame
+	= order.status.titleize
+
+#patron
+	= "#{ patron.first_name } #{ patron.last_name }"
+	= patron.email
+
+#addresses
+	#shipping
+		%h2 Shipping Address
+		= render shipping_address
+	
+	#billing
+		%h2 Billing Address
+		= render billing_address
+
+#line_items
+	%table
+		%thead
+			%tr
+				%th Name
+				%th Quantity
+				%th Price
+		%tbody
+			- for item in line_items
+				%tr[ item ]
+					%td.name= item.name
+					%td.quantity= item.quantity
+					%td.price= item.price.format
+	

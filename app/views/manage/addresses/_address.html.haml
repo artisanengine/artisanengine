@@ -1,0 +1,12 @@
+%span.address_name= "#{ address.first_name } #{ address.last_name }"
+%br
+%span.address_1= "#{ address.address_1 }"
+%br
+%span.address_2= "#{ address.address_2 }"
+%br
+%span.address_city= "#{ address.city }"
+- unless address.province.blank? 
+	%span.address_province= ", #{ address.province }" 
+%span.address_postal_code= "#{ address.postal_code }"
+%br
+%span.address_country= "#{ address.country }"

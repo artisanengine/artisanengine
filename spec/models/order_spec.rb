@@ -14,6 +14,42 @@ describe Order do
     end
   end
   
+  context "attributes: " do
+    describe "#id_in_frame" do
+      context "if it is the only order in the frame" do
+        it "initializes to 1001" do
+          new_order.save
+          new_order.id_in_frame.should == 1001
+        end
+      end
+      
+      context "if it is not the only order in the frame" do
+        it "initializes to one higher than the last order's id_in_frame" do
+          frame  = Frame.generate
+          order1 = Order.generate frame: frame
+          order2 = Order.generate frame: frame
+          order3 = Order.generate frame: frame
+          
+          order1.id_in_frame.should == 1001
+          order2.id_in_frame.should == 1002
+          order3.id_in_frame.should == 1003
+        end
+        
+        it "is not affected by orders in other frames" do
+          frame1 = Frame.generate
+          frame2 = Frame.generate
+          
+          order1 = Order.generate frame: frame1
+          order2 = Order.generate frame: frame2
+          order3 = Order.generate frame: frame1
+          
+          order2.id_in_frame.should == 1001
+          order3.id_in_frame.should == 1002
+        end
+      end
+    end
+  end
+  
   context "methods: " do
     describe "#line_item_from" do
       let( :order ) { Order.generate }

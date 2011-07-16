@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "orders", :force => true do |t|
     t.integer  "frame_id",            :null => false
+    t.integer  "id_in_frame",         :null => false
     t.integer  "patron_id"
     t.integer  "shipping_address_id"
     t.integer  "billing_address_id"

@@ -2,6 +2,11 @@ class Order < ActiveRecord::Base
   attr_accessor :email, :subscribed
   
   # ------------------------------------------------------------------
+  # Callbacks
+  
+  before_create                 :initialize_id_in_frame
+  
+  # ------------------------------------------------------------------
   # Associations
   
   belongs_to :frame
@@ -90,5 +95,10 @@ class Order < ActiveRecord::Base
                                                   last_name:   billing_address.last_name,
                                                   subscribed:  subscribed )
     save
+  end
+  
+  def initialize_id_in_frame
+    last_in_frame = frame.orders.order( "orders.id_in_frame DESC" ).first
+    self.id_in_frame = last_in_frame ? last_in_frame.id_in_frame + 1 : 1001
   end
 end
