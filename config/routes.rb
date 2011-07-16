@@ -41,7 +41,11 @@ ArtisanEngine::Application.routes.draw do
     resources :goods, only: [ :show ]
     resources :display_cases, path: 'collections'
     
-    get '/order' => 'orders#new', as: :new_order
+    get '/order'     => 'orders#new',    as: 'new_order'
+    get '/checkout'  => 'orders#edit',   as: 'checkout'
+    put '/checkout'  => 'orders#update', as: 'checkout'
+    get '/paypal'    => 'orders#paypal', as: 'paypal'
+    
     resources :line_items do
       post 'update_quantities', on: :collection, as: 'quantities'
     end

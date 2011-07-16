@@ -12,6 +12,20 @@
 
 ActiveRecord::Schema.define(:version => 20110623164147) do
 
+  create_table "addresses", :force => true do |t|
+    t.integer  "patron_id"
+    t.string   "first_name",  :null => false
+    t.string   "last_name",   :null => false
+    t.string   "address_1",   :null => false
+    t.string   "address_2"
+    t.string   "country",     :null => false
+    t.string   "city",        :null => false
+    t.string   "province"
+    t.string   "postal_code", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "artisans", :force => true do |t|
     t.integer "frame_id",                                          :null => false
     t.string  "first_name",                                        :null => false
@@ -104,8 +118,11 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "options", ["id", "good_id"], :name => "index_options_on_id_and_good_id"
 
   create_table "orders", :force => true do |t|
-    t.integer  "frame_id",   :null => false
-    t.string   "status",     :null => false
+    t.integer  "frame_id",            :null => false
+    t.integer  "patron_id"
+    t.integer  "shipping_address_id"
+    t.integer  "billing_address_id"
+    t.string   "status",              :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,6 +138,15 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   add_index "pages", ["id", "frame_id"], :name => "index_pages_on_id_and_frame_id"
+
+  create_table "patrons", :force => true do |t|
+    t.string   "first_name",                    :null => false
+    t.string   "last_name",                     :null => false
+    t.string   "email",                         :null => false
+    t.boolean  "subscribed", :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", :force => true do |t|
     t.integer  "blog_id",      :null => false

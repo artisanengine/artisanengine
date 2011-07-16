@@ -177,8 +177,11 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Orders & Line Items
     
     create_table :orders do |t|
-      t.integer :frame_id,          null: false
-      t.string  :status,            null: false
+      t.integer :frame_id,            null: false
+      t.integer :patron_id
+      t.integer :shipping_address_id
+      t.integer :billing_address_id
+      t.string  :status,              null: false
       
       t.timestamps
     end
@@ -190,6 +193,35 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.integer :price_in_cents,    null: false, default: 0
       t.string  :currency
       
+      t.timestamps
+    end
+    
+    # ------------------------------------------------------------------
+    # Addresses
+    
+    create_table :addresses do |t|
+      t.integer   :patron_id
+      t.string    :first_name,      null: false
+      t.string    :last_name,       null: false
+      t.string    :address_1,       null: false
+      t.string    :address_2
+      t.string    :country,         null: false
+      t.string    :city,            null: false
+      t.string    :province
+      t.string    :postal_code,     null: false
+      
+      t.timestamps
+    end
+    
+    # ------------------------------------------------------------------
+    # Patrons
+    
+    create_table :patrons do |t|
+      t.string    :first_name,      null: false
+      t.string    :last_name,       null: false
+      t.string    :email,           null: false
+      t.boolean   :subscribed,      null: false, default: false
+
       t.timestamps
     end
     

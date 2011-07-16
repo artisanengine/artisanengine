@@ -75,4 +75,67 @@ describe Order do
     end
         
   end
+
+  describe "status: " do
+    let( :order ) { Order.generate }
+    
+    it "has a default status of 'new'" do
+      new_order.status.should == 'new'
+    end
+    
+    describe "#checkout!" do
+      context "validations: " do
+        it "is not valid without an E-Mail" do
+          order.email = nil
+          order.checkout!.should be_false
+        end
+        
+        it "is not valid without a shipping address" do
+          order.shipping_address = nil
+          order.checkout!.should be_false
+        end
+        
+        it "is not valid without a billing address" do
+          order.billing_address = nil
+          order.checkout!.should be_false
+        end
+      end
+      
+      context "if valid: " do
+        before do
+          order.email            = 'patron@example.com'
+          order.subscribed       = true
+          order.billing_address  = Address.generate
+          order.shipping_address = Address.generate
+        end
+        
+        context "if a patron exists with the order's E-Mail" do
+          before do
+            @existing_patron = Patron.generate email: 'patron@example.com'
+          end
+          
+          it "sets the patron to the existing patron" do
+            expect { order.checkout! }.not_to change( Patron, :count )
+            order.patron.should == @existing_patron
+          end
+        end
+        
+        context "if a patron does not exist with the order's E-Mail" do
+          it "creates a new patron with the billing address's first and last name and order's subscription status" do
+            expect { order.checkout! }.to change( Patron, :count ).by( 1 )
+            
+            order.patron.email.should      == 'patron@example.com'
+            order.patron.first_name.should == order.billing_address.first_name
+            order.patron.last_name.should  == order.billing_address.last_name
+            order.patron.subscribed.should == true
+          end
+        end
+                                       
+        it "checks out the order (status: pending)" do
+          order.checkout!.should be_true
+          order.should be_pending
+        end
+      end
+    end
+  end
 end
