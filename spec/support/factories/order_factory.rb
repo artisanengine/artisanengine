@@ -17,3 +17,8 @@ Factory.define :line_item do |l|
   l.association :order
   l.association :variant
 end
+
+Factory.define :order_transaction do |o|
+  o.association :order
+  o.success     true
+end

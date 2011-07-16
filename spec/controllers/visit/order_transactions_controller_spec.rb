@@ -15,6 +15,8 @@ describe Visit::OrderTransactionsController do
       notification.stub :acknowledge
       notification.stub :invoice
       notification.stub :complete?
+      notification.stub :gross
+      notification.stub :transaction_id
     end
     
     it "creates a new PayPal Notification with the request parameters" do
@@ -37,16 +39,24 @@ describe Visit::OrderTransactionsController do
       before { notification.stub acknowledge: true }
          
       context "and the notification has Completed status with a total matching the order total" do
-        before { notification.stub complete?: true }
+        before do 
+          notification.stub complete?: true, gross: "36"
+          order.stub total: "12".to_money
+        end
         
         it "creates a successful OrderTransaction with the details" do
-          OrderTransaction.should_receive( :create! ).with( order: order, success: true )
-          post :ipns
+          OrderTransaction.should_receive( :create! ).with( order:     order, 
+                                                            success:   true, 
+                                                            amount:    order.total,
+                                                            reference: nil,
+                                                            action:    "purchase",
+                                                            params:    { "mc_shipping"=>"12", "tax"=>"12" } )
+          post :ipns, mc_shipping: "12", tax: "12"
         end
         
         it "purchases the order" do
           order.should_receive( :purchase! )
-          post :ipns
+          post :ipns, mc_shipping: "12", tax: "12"
         end
       end
     
@@ -54,7 +64,7 @@ describe Visit::OrderTransactionsController do
         before { notification.stub complete?: false }
         
         it "creates a failed OrderTransaction with the details" do
-          OrderTransaction.should_receive( :create! ).with( order: order, success: false )
+          OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {} )
           post :ipns
         end
         
@@ -67,7 +77,7 @@ describe Visit::OrderTransactionsController do
     
     context "if the IPN is not succesfully acknowledged" do
       it "creates a failed OrderTransaction with the details" do
-        OrderTransaction.should_receive( :create! ).with( order: order, success: false )
+        OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {} )
         post :ipns
       end
       
