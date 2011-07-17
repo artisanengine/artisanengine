@@ -11,7 +11,8 @@
 		- for order in orders
 			%tr[ order ]
 				%td= "##{ order.id_in_frame }"
-				%td.status= order.status.titleize
+				%td
+					%span.status{ class: order.status }= order.status.titleize
 				%td.placed= order.created_at
 				%td.links
 					= link_to 'Details', manage_order_path( order )

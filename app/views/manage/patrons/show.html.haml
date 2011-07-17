@@ -1,20 +1,26 @@
-#basics
-	= "#{ patron.first_name } #{ patron.last_name }"
-	= patron.email
-	= patron.subscribed ? "Subscribed" : "Not Subscribed"
+= content_for( :heading ) { "Manage Patron Account: #{ patron.first_name } #{ patron.last_name }" }
 
-#orders
-	%h2 Orders
+%section#patron
+	#basics
+		%h2 Contact Information
+		%span.name= "#{ patron.first_name } #{ patron.last_name }"
+		%br
+		%span.email= patron.email
+		%br
+		%span.subscription_status= patron.subscribed ? "Subscribed" : "Not Subscribed"
+
+	#orders
+		%h2 Orders
 	
-	%table
-		%thead
-			%tr
-				%th Order No.
-		%tbody
-			- for order in patron.orders
-				%tr[ order ]
-					%td= link_to order.id_in_frame, manage_order_path( order )
+		%table
+			%thead
+				%tr
+					%th Order No.
+			%tbody
+				- for order in patron.orders
+					%tr[ order ]
+						%td= link_to order.id_in_frame, manage_order_path( order )
 
-#addresses
-	%h2 Addresses
-	= render patron.addresses
+	#addresses
+		%h2 Addresses
+		= render patron.addresses

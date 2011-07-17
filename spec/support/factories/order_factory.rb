@@ -4,7 +4,7 @@ end
 
 Factory.define :pending_order, parent: :order do |o|
   o.after_create do |o|
-    3.times { LineItem.generate order: o }
+    3.times { LineItem.generate order: o, quantity: rand( 6 ) }
     
     o.email            = Faker::Internet.email
     o.shipping_address = Address.generate
@@ -14,7 +14,14 @@ Factory.define :pending_order, parent: :order do |o|
 end
 
 Factory.define :purchased_order, parent: :pending_order do |o|
-  o.after_create { |o| o.purchase! }
+  o.after_create do |o| 
+    o.order_transactions << Factory( :paypal_transaction, order: o )
+    o.purchase!
+  end
+end
+
+Factory.define :failed_order, parent: :pending_order do |o|
+  o.after_create { |o| o.fail! }
 end
 
 Factory.define :line_item do |l|
@@ -25,4 +32,12 @@ end
 Factory.define :order_transaction do |o|
   o.association :order
   o.success     true
+end
+
+Factory.define :paypal_transaction, parent: :order_transaction do |o|
+  o.amount            { |o| o.order.line_total }
+  o.reference         "TESTTRANS"
+  o.action            "purchase"
+  o.params            { { param1: "param", param2: "param" } }
+  o.payment_service   "PayPal WPS"
 end

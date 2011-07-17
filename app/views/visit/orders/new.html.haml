@@ -3,6 +3,11 @@
 - if order.line_items.any?
 	= form_tag quantities_line_items_path do
 		%table
+			%thead
+				%tr
+					%th Name
+					%th Quantity
+					%th Total Price
 			%tbody
 				- for line_item in order.line_items
 					%tr[ line_item ]

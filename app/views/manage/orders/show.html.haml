@@ -1,56 +1,68 @@
 = content_for( :heading ) { "Manage Order: ##{ order.id_in_frame }" }
 
-#order
-	= order.id_in_frame
-	= order.status.titleize
+%section#order
+	%p#status
+		Status:
+		%br
+		%span.status{ class: order.status }= order.status.titleize
 
-#patron
-	= "#{ patron.first_name } #{ patron.last_name }"
-	= patron.email
+	#patron
+		%h2 Patron
+		= link_to "#{ patron.first_name } #{ patron.last_name }", manage_patron_path( patron )
+		%br
+		= patron.email
 
-#addresses
 	#shipping
 		%h2 Shipping Address
 		= render shipping_address
-	
+
 	#billing
 		%h2 Billing Address
 		= render billing_address
 
-#line_items
-	%h2 Line Items
+	#line_items
+		%h2 Line Items
 	
-	%table
-		%thead
-			%tr
-				%th Name
-				%th Options
-				%th Quantity
-				%th Price
-		%tbody
-			- for item in line_items
-				%tr[ item ]
-					%td.name= item.name
-					%td.options= item.options
-					%td.quantity= item.quantity
-					%td.price= item.price.format
+		%table
+			%thead
+				%tr
+					%th Name
+					%th Options
+					%th Quantity
+					%th Unit Price
+					%th Total Price
+			%tbody
+				- for item in line_items
+					%tr[ item ]
+						%td.name= item.name
+						%td.options= item.options
+						%td.quantity= item.quantity
+						%td.unit_price= item.price.format
+						%td.line_price= ( item.price * item.quantity ).format
+			%tbody
+				%tr
+					%td{ colspan: 4 }
+					%td
+						Line Total
+						%br
+						= order.line_total.format
 
-#activity
-	%h2 Activity
+	#activity
+		%h2 Activity
 	
-	%table
-		%thead
-			%tr
-				%th Amount Received
-				%th Time
-				%th Payment Service
-				%th Transaction Type
-				%th Status
-		%tbody
-			- for transaction in order_transactions
-				%tr[ transaction ]
-					%td= transaction.amount.format
-					%td= transaction.created_at
-					%td= transaction.payment_service
-					%td= transaction.action
-					%td= transaction.success ? "Success" : "Failed"
+		%table
+			%thead
+				%tr
+					%th Amount Received
+					%th Time
+					%th Payment Service
+					%th Transaction Type
+					%th Status
+			%tbody
+				- for transaction in order_transactions
+					%tr[ transaction ]
+						%td= transaction.amount.format
+						%td= transaction.created_at
+						%td= transaction.payment_service
+						%td= transaction.action
+						%td= transaction.success ? "Success" : "Failed"

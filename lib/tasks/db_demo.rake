@@ -128,6 +128,7 @@ namespace :db do
     for frame in Frame.all
       3.times { Factory :pending_order,   frame: frame }
       3.times { Factory :purchased_order, frame: frame }
+      1.times { Factory :failed_order,    frame: frame }
     end
   end
 end

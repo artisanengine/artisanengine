@@ -1,0 +1,13 @@
+section#order
+	p#status
+		font-weight: bold
+		text-align: center
+
+	#patron, #shipping
+		+column( 8 )
+	#billing
+		+column( 8, true )
+	
+	#line_items, #activity
+		+column( 24, true )
+		

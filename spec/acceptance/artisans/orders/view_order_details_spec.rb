@@ -49,7 +49,7 @@ feature "View An Order's Details", %q{
     line_item = order.line_items.first
     
     page.should have_selector '.line_item'
-    page.should have_selector '.price',    text: line_item.price.format
+    page.should have_selector '.unit_price',    text: line_item.price.format
     page.should have_selector '.quantity', text: line_item.quantity.to_s
   end
 end

@@ -3,6 +3,7 @@
 @import blueprint/grid
 @import compass/typography
 @import compass/css3/box-shadow
+@import compass/css3/text-shadow
 @import compass/css3/box-sizing
 @import compass/css3/border-radius
 @import compass/css3/inline-block
@@ -12,6 +13,8 @@
 @import manage/forms
 @import manage/tables
 @import manage/layout
+
+@import manage/partials/**/*
 
 a.add
 	background: url( '<%= asset_path "icons/add.png" %>' ) no-repeat center left
@@ -27,6 +30,25 @@ a.attach
 	width: 15px
 	&:hover
 		cursor: move
+
+span.status
+	background: darken( $bg-color, 15% )
+	padding: 0.5em
+	font-weight: bold
+	
+	+adjust-font-size-to( 12px )
+	+adjust-leading-to( 1.5 )
+	
+	+border-radius( 10px )
+	+single-text-shadow
+	
+.pending
+	color: $pending
+.purchased
+	color: $complete
+.failed
+	color: $failed
+	
 
 // ------------------------------------------------------------------
 // Images
