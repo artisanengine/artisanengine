@@ -2,11 +2,6 @@ class Order < ActiveRecord::Base
   attr_accessor :email, :subscribed
   
   # ------------------------------------------------------------------
-  # Callbacks
-  
-  before_create                 :initialize_id_in_frame
-  
-  # ------------------------------------------------------------------
   # Associations
   
   belongs_to :frame
@@ -25,6 +20,13 @@ class Order < ActiveRecord::Base
   validates_presence_of :frame
   
   # ------------------------------------------------------------------
+  # General
+  
+  def to_param
+    id_in_frame ? id_in_frame.to_s : id.to_s
+  end
+  
+  # ------------------------------------------------------------------
   # State Machine
   
   state_machine :status, initial: :new do
@@ -40,7 +42,7 @@ class Order < ActiveRecord::Base
       validates_format_of   :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     end
     
-    after_transition :new     => :pending, :do => :set_patron
+    after_transition :new     => :pending, :do => [ :set_patron, :set_id_in_frame! ]
     after_transition :pending => :pending, :do => :set_patron
     
     event :purchase! do
@@ -58,6 +60,18 @@ class Order < ActiveRecord::Base
   
   # ------------------------------------------------------------------
   # Methods
+  
+  def set_id_in_frame!
+    last_in_frame = frame.orders.order( "orders.id_in_frame DESC" ).first
+    
+    if last_in_frame and last_in_frame.id_in_frame
+      self.id_in_frame = last_in_frame.id_in_frame + 1
+      save
+    else
+      self.id_in_frame = 1001
+      save
+    end
+  end
   
   def line_item_from( variant_id = nil )
     variant_id ? initialize_line_item_with_variant( variant_id ) : line_items.build
@@ -139,10 +153,5 @@ class Order < ActiveRecord::Base
     patron.addresses << billing_address
     patron.addresses << shipping_address
     save
-  end
-  
-  def initialize_id_in_frame
-    last_in_frame = frame.orders.order( "orders.id_in_frame DESC" ).first
-    self.id_in_frame = last_in_frame ? last_in_frame.id_in_frame + 1 : 1001
   end
 end

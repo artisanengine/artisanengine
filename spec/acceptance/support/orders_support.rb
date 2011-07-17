@@ -10,8 +10,7 @@ def manage_orders_page
 end
 
 def order_details_page_for( id_in_frame )
-  order = Order.find_by_id_in_frame( id_in_frame )
-  "/manage/orders/#{ order.id_in_frame }"
+  "/manage/orders/#{ id_in_frame }"
 end
 
 # ------------------------------------------------------------------

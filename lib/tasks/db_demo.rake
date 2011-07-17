@@ -122,5 +122,12 @@ namespace :db do
       display_case.good_ids = random_good_ids.uniq
     end
     
+    # ------------------------------------------------------------------
+    # Orders
+    
+    for frame in Frame.all
+      3.times { Factory :pending_order,   frame: frame }
+      3.times { Factory :purchased_order, frame: frame }
+    end
   end
 end

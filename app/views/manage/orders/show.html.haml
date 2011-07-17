@@ -1,3 +1,5 @@
+= content_for( :heading ) { "Manage Order: ##{ order.id_in_frame }" }
+
 #order
 	= order.id_in_frame
 	= order.status.titleize
@@ -16,6 +18,8 @@
 		= render billing_address
 
 #line_items
+	%h2 Line Items
+	
 	%table
 		%thead
 			%tr

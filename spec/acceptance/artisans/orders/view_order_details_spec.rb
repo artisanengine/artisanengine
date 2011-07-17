@@ -11,7 +11,7 @@ feature "View An Order's Details", %q{
     sign_in_as_artisan
     
     # And there is a purchased order,
-    Factory :purchased_order, id_in_frame: 1001
+    Factory :purchased_order
     
     # And I am on the order details page for the order,
     visit order_details_page_for 1001

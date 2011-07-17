@@ -14,11 +14,11 @@ describe Order do
     end
   end
   
-  context "attributes: " do
-    describe "#id_in_frame" do
+  context "methods: " do
+    describe "#set_id_in_frame" do
       context "if it is the only order in the frame" do
         it "initializes to 1001" do
-          new_order.save
+          new_order.set_id_in_frame!
           new_order.id_in_frame.should == 1001
         end
       end
@@ -26,10 +26,15 @@ describe Order do
       context "if it is not the only order in the frame" do
         it "initializes to one higher than the last order's id_in_frame" do
           frame  = Frame.generate
+          
           order1 = Order.generate frame: frame
           order2 = Order.generate frame: frame
           order3 = Order.generate frame: frame
           
+          for order in [ order1, order2, order3 ]
+            order.set_id_in_frame!
+          end
+
           order1.id_in_frame.should == 1001
           order2.id_in_frame.should == 1002
           order3.id_in_frame.should == 1003
@@ -43,14 +48,16 @@ describe Order do
           order2 = Order.generate frame: frame2
           order3 = Order.generate frame: frame1
           
+          for order in [ order1, order2, order3 ]
+            order.set_id_in_frame!
+          end
+          
           order2.id_in_frame.should == 1001
           order3.id_in_frame.should == 1002
         end
       end
     end
-  end
-  
-  context "methods: " do
+    
     describe "#line_item_from" do
       let( :order ) { Order.generate }
 
@@ -154,6 +161,11 @@ describe Order do
           order.shipping_address = Address.generate
         end
         
+        it "sets the order's frame-specific ID" do
+          order.checkout!
+          order.id_in_frame.should == 1001
+        end
+        
         context "if a patron exists with the order's E-Mail" do
           before do
             @existing_patron = Patron.generate email: 'patron@example.com'
@@ -187,7 +199,7 @@ describe Order do
         end
       end
     end
-    
+        
     describe "#purchase!" do
       let( :order ) { Factory :pending_order }
       
