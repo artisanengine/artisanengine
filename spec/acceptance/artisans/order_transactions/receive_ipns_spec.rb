@@ -45,5 +45,16 @@ feature "Receive PayPal IPNs", %q{
     
     # Then I should see a Failed order.
     page.should have_selector '.order .status', text: 'Failed'
+    
+    # And when I visit the order details page,
+    within '.order' do
+      click_link 'Details'
+    end
+    
+    # Then I should see a failed transaction.
+    within '.order_transaction' do
+      page.should have_content 'PayPal WPS'
+      page.should have_content 'Failed'
+    end
   end
 end
