@@ -2,13 +2,15 @@ require 'spec_helper'
 include ActiveMerchant::Billing::Integrations
 
 describe Visit::OrderTransactionsController do
-  before { Frame.generate domain: 'test.host' }
+  before { @frame = Frame.generate domain: 'test.host' }
   
   describe "#ipns" do
     let( :notification ) { mock 'PaypalNotification' }
     let( :order )        { stub_model Order }
     
     before do 
+      controller.stub current_frame: @frame
+      
       Order.stub find: order
       
       Paypal::Notification.stub new: notification
@@ -66,6 +68,15 @@ describe Visit::OrderTransactionsController do
         it "purchases the order" do
           order.should_receive( :purchase! )
           post :ipns, mc_shipping: "12", tax: "12"
+        end
+        
+        context "if the order is purchased successfully" do
+          before { order.stub purchase!: true }
+          
+          it "sends the patron confirmation E-Mail" do
+            OrderMailer.should_receive( :patron_order_confirmation_email ).with( order, @frame )
+            post :ipns, mc_shipping: "12", tax: "12"
+          end
         end
       end
     

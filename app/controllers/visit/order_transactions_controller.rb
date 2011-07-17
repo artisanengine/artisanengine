@@ -44,7 +44,10 @@ module Visit
                                     amount: "-#{ params[ :mc_fee ] }",
                                     order:  order
             
-            order.purchase!                                           # Order in!
+            if order.purchase!                                            # Order in!
+              OrderMailer.patron_order_confirmation_email( order, current_frame ).deliver
+            end
+          
           else
             logger.error "PayPal transaction was not completed. Please investigate."
             create_failed_order_transaction( order, params )
