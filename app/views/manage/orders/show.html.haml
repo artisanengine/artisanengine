@@ -1,10 +1,15 @@
 = content_for( :heading ) { "Manage Order: ##{ order.id_in_frame }" }
 
 %section#order
-	%p#status
-		Status:
-		%br
-		%span.status{ class: order.status }= order.status.titleize
+	#status_report
+		#payment_status
+			Payment Status:
+			%br
+			%span.status{ class: order.status }= order.status.titleize
+		#fulfillment_status
+			Fulfillment Status:
+			%br
+			%span.status{ class: fulfillment_class( order ) }= order.fulfillment_status
 
 	#patron
 		%h2 Patron
@@ -79,7 +84,7 @@
 								= transaction.success ? "Success" : "Failed"
 	
 	#fulfillment
-		%h2 Fulfillment (#{ order.fulfillment_status })
+		%h2 Fulfillment
 		
 		- unless order.fulfillment_status == "Fulfilled"
 			%nav.heading_links

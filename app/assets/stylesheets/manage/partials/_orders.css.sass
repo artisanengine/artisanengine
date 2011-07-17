@@ -1,7 +1,17 @@
 section#order
-	p#status
-		font-weight: bold
-		text-align: center
+	#status_report
+		+prepend( 9 )
+		+column( 6, true )
+		+append( 9 )
+		
+		#payment_status, #fulfillment_status
+			color: lighten( $default-text-color, 20% )
+			font-weight: bold
+			text-align: center
+		#payment_status
+			+column( 3 )
+		#fulfillment_status
+			+column( 3, true )
 
 	#patron, #shipping
 		+column( 8 )
