@@ -74,5 +74,15 @@ describe Post do
         Post.by_year( 2010 ).count.should == 2
       end
     end
+    
+    describe "::descending_by_date: " do
+      it "returns posts in descending order of the date they were created" do
+        early  = Post.generate created_at: Date.new( 2009, 12, 31 )
+        late   = Post.generate created_at: Date.new( 2011, 1, 1 )
+        middle = Post.generate created_at: Date.new( 2010, 12, 31 )
+        
+        Post.descending_by_date.should == [ late, middle, early ]
+      end
+    end
   end
 end
