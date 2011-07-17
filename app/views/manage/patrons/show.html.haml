@@ -1,0 +1,20 @@
+#basics
+	= "#{ patron.first_name } #{ patron.last_name }"
+	= patron.email
+	= patron.subscribed ? "Subscribed" : "Not Subscribed"
+
+#orders
+	%h2 Orders
+	
+	%table
+		%thead
+			%tr
+				%th Order No.
+		%tbody
+			- for order in patron.orders
+				%tr[ order ]
+					%td= order.id_in_frame
+
+#addresses
+	%h2 Addresses
+	= render patron.addresses

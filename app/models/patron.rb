@@ -5,6 +5,7 @@ class Patron < ActiveRecord::Base
   belongs_to :frame
   has_many   :address_attachers, as:      :addressable,       dependent: :destroy
   has_many   :addresses,         through: :address_attachers
+  has_many   :orders
   
   # ------------------------------------------------------------------
   # Validations
