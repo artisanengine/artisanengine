@@ -23,6 +23,17 @@ feature "Receive PayPal IPNs", %q{
     
     # Then I should see a Purchased order.
     page.should have_selector '.order .status', text: 'Purchased'
+    
+    # And when I visit the order details page,
+    within '.order' do
+      click_link 'Details'
+    end
+    
+    # Then I should see a successful transaction.
+    within '.order_transaction' do
+      page.should have_content 'PayPal WPS'
+      page.should have_content 'Success'
+    end
   end
     
   scenario "The application can properly process an invalid IPN" do

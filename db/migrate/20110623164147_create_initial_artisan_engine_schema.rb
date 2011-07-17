@@ -210,6 +210,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.string  :action
       t.text    :params
       t.boolean :test,              default: false
+      t.string  :payment_service
       
       t.timestamps
     end

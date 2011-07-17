@@ -32,4 +32,23 @@
 					%td.name= item.name
 					%td.quantity= item.quantity
 					%td.price= item.price.format
+
+#activity
+	%h2 Activity
 	
+	%table
+		%thead
+			%tr
+				%th Amount Received
+				%th Time
+				%th Payment Service
+				%th Transaction Type
+				%th Status
+		%tbody
+			- for transaction in order_transactions
+				%tr[ transaction ]
+					%td= transaction.amount.format
+					%td= transaction.created_at
+					%td= transaction.payment_service
+					%td= transaction.action
+					%td= transaction.success ? "Success" : "Failed"

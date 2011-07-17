@@ -20,12 +20,13 @@ module Visit
       if ipn.acknowledge or Rails.env.test?                           # Verify authenticity with PayPal.
         begin
           if ipn.complete? and order.total == base_total( ipn )       # Verify the amount is correct.
-            OrderTransaction.create! order:     order,                # Log the transaction details.
-                                     success:   true,
-                                     amount:    base_total( ipn ),
-                                     reference: ipn.transaction_id,
-                                     action:    'purchase',
-                                     params:    params
+            OrderTransaction.create! order:           order,          # Log the transaction details.
+                                     success:         true,
+                                     amount:          base_total( ipn ),
+                                     reference:       ipn.transaction_id,
+                                     action:          'purchase',
+                                     params:          params,
+                                     payment_service: 'PayPal WPS'
             order.purchase!                                           # Order in!
           else
             logger.error "PayPal transaction was not completed. Please investigate."
@@ -50,7 +51,7 @@ module Visit
     
     # Log a failed IPN.
     def create_failed_order_transaction( order, params )
-      OrderTransaction.create! order: order, success: false, params: params
+      OrderTransaction.create! order: order, success: false, params: params, payment_service: 'PayPal WPS'
     end
     
     # Get the total of the IPN before tax and shipping to check against

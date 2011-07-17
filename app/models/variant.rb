@@ -22,7 +22,7 @@ class Variant < ActiveRecord::Base
   # Associations & Delegations
   
   belongs_to :good
-  delegate :name, to: :good
+  delegate   :name, to: :good
   
   # ------------------------------------------------------------------
   # Validations
@@ -35,19 +35,25 @@ class Variant < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Accessors
   
+  # Return an array of the variant's option values.
   def option_values
     [ option_value_1, option_value_2, option_value_3, option_value_4, option_value_5 ]
   end
   
+  # Return the number of set option values.
   def number_of_options
     option_values.compact.count
   end
   
+  # Return how many options need to be set for a valid variant - derived from how many
+  # options the parent good has.
   def required_number_of_options
     return nil unless good
     good.options.count
   end
   
+  # Create a slash-separated string of option values ( "Small / Red / Cloth" ), with
+  # optional price ( "Small / Red / Cloth -- $25.00" ).
   def values_to_s( with_price = true )
     values_string = ""
     return values_string if number_of_options == 1 and option_value_1 == "Default"

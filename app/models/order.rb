@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   # Associations
   
   has_many   :line_items
+  has_many   :order_transactions
   
   belongs_to :frame
   belongs_to :patron

@@ -50,7 +50,8 @@ describe Visit::OrderTransactionsController do
                                                             amount:    order.total,
                                                             reference: nil,
                                                             action:    "purchase",
-                                                            params:    { "mc_shipping"=>"12", "tax"=>"12" } )
+                                                            params:    { "mc_shipping"=>"12", "tax"=>"12" },
+                                                            payment_service: 'PayPal WPS' )
           post :ipns, mc_shipping: "12", tax: "12"
         end
         
@@ -64,7 +65,7 @@ describe Visit::OrderTransactionsController do
         before { notification.stub complete?: false }
         
         it "creates a failed OrderTransaction with the details" do
-          OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {} )
+          OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {}, payment_service: 'PayPal WPS' )
           post :ipns
         end
         
@@ -77,7 +78,7 @@ describe Visit::OrderTransactionsController do
     
     context "if the IPN is not succesfully acknowledged" do
       it "creates a failed OrderTransaction with the details" do
-        OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {} )
+        OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {}, payment_service: 'PayPal WPS' )
         post :ipns
       end
       

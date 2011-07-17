@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.string   "action"
     t.text     "params"
     t.boolean  "test",            :default => false
+    t.string   "payment_service"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
