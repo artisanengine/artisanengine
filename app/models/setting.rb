@@ -12,6 +12,10 @@ class Setting < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Methods
   
+  # Basic method for getting a setting if it exists or setting a default.
+  # If an Environment variable is set with an all-caps equivalent, it 
+  # will be treated as an override. So, even if a 'Awesome Factor' Setting
+  # exists, ENV[ "AWESOME_FACTOR" ] will be used if it exists.
   def self.get_or_set( frame, setting_name, default = nil )
     setting = self.find_by_frame_id_and_name( frame.id, setting_name )
     

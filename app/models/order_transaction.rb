@@ -1,7 +1,13 @@
 class OrderTransaction < ActiveRecord::Base
+  serialize :params
+  
+  # ------------------------------------------------------------------
+  # Associations
+  
   belongs_to :order
   
-  serialize :params
+  # ------------------------------------------------------------------
+  # Validations
   
   validates_presence_of :order
   

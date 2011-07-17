@@ -43,6 +43,9 @@ class Post < ActiveRecord::Base
     self.html_content = ArtisanEngine::Textiling.textile( self.content )
   end
   
+  # Make or assign existing Tag objects based on the string given to tag_names.
+  # man, bear pig, crocodile will make three new tags and associate them with the post
+  # (unless any of them already exist, in which case it will use the existing tags).
   def convert_tag_names_to_tag_associations
     if tag_names
       self.tags = tag_names.split( ',' ).map do |tag_name|
