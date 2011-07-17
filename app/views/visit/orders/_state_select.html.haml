@@ -1,0 +1,2 @@
+= label_tag "order_#{ type }_address_province", 'State/Province'
+= select_tag "order[#{ type }_address][province]", raw( "<option></option>" ) + raw( state_options_for_select( nil, country ) )

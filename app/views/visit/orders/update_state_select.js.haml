@@ -1,0 +1,9 @@
+- if Carmen::states?( @country_code )
+	:plain
+		$( '#order_#{ @type }_address_province_input' ).show();
+		$( '#order_#{ @type }_address_province_input' ).html( '#{ escape_javascript( render 'state_select', country: @country_code, type: @type ) }' );
+
+- else
+	:plain
+		$( '#order_#{ @type }_address_province_input' ).hide();
+		$( 'select#order_#{ @type }_address_province' ).val( '' );

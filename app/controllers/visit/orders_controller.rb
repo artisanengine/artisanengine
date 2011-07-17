@@ -29,5 +29,11 @@ module Visit
         render :edit
       end
     end
+    
+    # GET /update_state_select
+    def update_state_select
+      @country_code = params[ :country ]
+      @type         = params[ :type ]
+    end
   end
 end

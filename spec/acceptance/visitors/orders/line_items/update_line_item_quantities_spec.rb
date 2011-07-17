@@ -30,15 +30,15 @@ feature "Update Line Item Quantities", %q{
   scenario "A visitor can update the quantities of line items in his order" do
     # When I fill in the quantities 0, 1, and 3,
     within '.line_item', text: 'See No Evil' do
-      fill_in 'line_item_1', with: '0'
+      fill_in "line_item_#{ LineItem.all[0].id }", with: '0'
     end
     
     within '.line_item', text: 'Hear No Evil' do
-      fill_in 'line_item_2', with: '1'
+      fill_in "line_item_#{ LineItem.all[1].id }", with: '1'
     end
     
     within '.line_item', text: 'Speak No Evil' do
-      fill_in 'line_item_3', with: '3'
+      fill_in "line_item_#{ LineItem.all[2].id }", with: '3'
     end
     
     # And I press Update,

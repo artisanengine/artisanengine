@@ -49,6 +49,8 @@ ArtisanEngine::Application.routes.draw do
     get  '/paypal'   => 'orders#paypal',           as: 'paypal'
     post '/ipns'     => 'order_transactions#ipns', as: 'ipns'
     
+    get '/update_state_select' => 'orders#update_state_select', as: 'update_state_select'
+    
     resources :line_items do
       post 'update_quantities', on: :collection, as: 'quantities'
     end

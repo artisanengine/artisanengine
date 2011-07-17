@@ -1,3 +1,30 @@
+= content_for :javascripts do
+	:coffeescript
+		$ ->
+			$( '#order_shipping_address_province_input' ).html( '#{ escape_javascript( render 'state_select', country: 'US', type: 'shipping' ) }' )
+
+			$( '#order_shipping_address_country_input' ).change( () ->
+				country_code = $( '#order_shipping_address_country_input option:selected' ).attr( 'value' );
+
+				$.ajax({
+					type: 	 "GET"
+					dataType: "script"
+					url: 		 '/update_state_select?type=shipping&country=' + country_code
+				})
+			)
+			
+			$( '#order_billing_address_province_input' ).html( '#{ escape_javascript( render 'state_select', country: 'US', type: 'billing' ) }' )
+
+			$( '#order_billing_address_country_input' ).change( () ->
+				country_code = $( '#order_billing_address_country_input option:selected' ).attr( 'value' );
+
+				$.ajax({
+					type: 	 "GET"
+					dataType: "script"
+					url: 		 '/update_state_select?type=billing&country=' + country_code
+				})
+			)
+
 = semantic_form_for order, url: checkout_path do |f|
 	= f.inputs do
 		= f.input :email

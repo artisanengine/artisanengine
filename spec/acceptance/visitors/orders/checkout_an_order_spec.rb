@@ -118,4 +118,61 @@ feature "Checkout an Order", %q{
     patron.addresses.should include order.shipping_address
     patron.addresses.should include order.billing_address
   end
+  
+  scenario "Auto-updating state select", js: true do
+    # Within shipping address,
+    within '#shipping_address' do
+      # When I select United States,
+      select 'United States', from: 'Country'
+      
+      # Then I should see a select list of states.
+      within 'select#order_shipping_address_province' do
+        page.should have_selector 'option', text: 'Alabama'
+      end
+      
+      # When I select Canada,
+      select 'Canada', from: 'Country'
+      sleep 0.2
+      
+      # Then I should see a select list of provinces.
+      within 'select#order_shipping_address_province' do
+        page.should have_selector 'option', text: 'Alberta'
+      end
+      
+      # When I select Madagascar,
+      select 'Madagascar', from: 'Country'
+      sleep 0.2
+      
+      # Then I should not see a select list.
+      page.should have_no_selector 'select#order_shipping_address_province', visible: true
+    end
+    
+    # Within billing address,
+    within '#billing_address' do
+      # When I select United States,
+      select 'United States', from: 'Country'
+      
+      # Then I should see a select list of states.
+      within 'select#order_billing_address_province' do
+        page.should have_selector 'option', text: 'Alabama'
+      end
+      
+      # When I select Canada,
+      select 'Canada', from: 'Country'
+      sleep 0.2
+      
+      # Then I should see a select list of provinces.
+      within 'select#order_billing_address_province' do
+        page.should have_selector 'option', text: 'Alberta'
+      end
+      
+      # When I select Madagascar,
+      select 'Madagascar', from: 'Country'
+      sleep 0.2
+      
+      # Then I should not see a select list.
+      page.should have_no_selector 'select#order_billing_address_province', visible: true
+    end
+  end
+    
 end
