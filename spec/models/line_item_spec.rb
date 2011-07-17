@@ -26,5 +26,13 @@ describe LineItem do
         new_line_item.price.should == new_line_item.variant.price
       end
     end
+    
+    describe "after saving: " do
+      it "destroys itself if its quantity is 0" do
+        new_line_item.save
+        new_line_item.quantity = 0
+        expect { new_line_item.save }.to change( LineItem, :count ).by( -1 )
+      end
+    end
   end
 end

@@ -16,6 +16,7 @@ class LineItem < ActiveRecord::Base
   # Callbacks
   
   before_create :capture_variant_price
+  after_save    :destroy_if_quantity_is_0
   
   # ------------------------------------------------------------------
   # Money
@@ -37,5 +38,9 @@ class LineItem < ActiveRecord::Base
   
   def capture_variant_price
     self.price = variant.price
+  end
+  
+  def destroy_if_quantity_is_0
+    destroy if quantity == 0
   end
 end
