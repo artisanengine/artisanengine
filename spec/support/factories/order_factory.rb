@@ -50,4 +50,8 @@ end
 Factory.define :fulfillment do |f|
   f.association       :order
   f.shipping_method   'UPS 3-Day Select'
+  
+  f.after_build do |f|
+    f.line_items << LineItem.spawn( order: f.order ) unless f.line_item_ids.any?
+  end
 end

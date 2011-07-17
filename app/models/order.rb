@@ -5,9 +5,9 @@ class Order < ActiveRecord::Base
   # Associations
   
   has_many   :line_items
+  has_many   :fulfillments, through: :line_items, uniq: true
   has_many   :order_transactions
   has_many   :order_adjustments
-  has_many   :fulfillments
   
   belongs_to :frame
   belongs_to :patron
@@ -108,9 +108,11 @@ class Order < ActiveRecord::Base
     line_total
   end
   
-  # Placeholder method for determining whether an order is fulfilled or not.
+  # Determine what proportion of an orders line items are fulfilled.
   def fulfillment_status
-    fulfillments.any? ? "Fulfilled" : "Not Fulfilled"
+    return "Not Fulfilled"       if line_items.fulfilled.count == 0
+    return "Fulfilled"           if line_items.fulfilled.count == line_items.count
+    return "Partially Fulfilled" if line_items.fulfilled.count  < line_items.count and line_items.fulfilled.count != 0
   end
   
   # ------------------------------------------------------------------

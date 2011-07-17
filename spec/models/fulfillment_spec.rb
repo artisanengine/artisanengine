@@ -17,5 +17,10 @@ describe Fulfillment do
       new_fulfillment.shipping_method = nil
       new_fulfillment.should_not be_valid
     end
+    
+    it "is not valid without at least one line item" do
+      new_fulfillment.line_item_ids = nil
+      new_fulfillment.should_not be_valid
+    end
   end
 end

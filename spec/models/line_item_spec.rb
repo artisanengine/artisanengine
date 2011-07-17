@@ -35,4 +35,31 @@ describe LineItem do
       end
     end
   end
+  
+  context "scopes: " do
+    describe "::fulfilled" do
+      it "returns line items with fulfillments" do
+        line_item_1 = LineItem.generate
+        line_item_2 = LineItem.generate
+        line_item_3 = LineItem.generate
+        
+        Fulfillment.generate( line_item_ids: [ line_item_2.id ] )
+
+        LineItem.fulfilled.should == [ line_item_2 ]
+      end
+    end
+    
+    describe "::unfulfilled" do
+      it "returns line items without fulfillments" do
+        line_item_1 = LineItem.generate
+        line_item_2 = LineItem.generate
+        line_item_3 = LineItem.generate
+        
+        Fulfillment.generate( line_item_ids: [ line_item_1.id, line_item_3.id ] )
+        
+        LineItem.unfulfilled.should == [ line_item_2 ]
+      end
+    end
+      
+  end
 end

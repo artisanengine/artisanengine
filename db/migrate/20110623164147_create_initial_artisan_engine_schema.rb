@@ -189,6 +189,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     
     create_table :line_items do |t|
       t.integer :order_id,          null: false
+      t.integer :fulfillment_id
       t.integer :variant_id
       t.integer :quantity,          null: false, default: 1
       t.integer :price_in_cents,    null: false, default: 0

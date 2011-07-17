@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "line_items", :force => true do |t|
     t.integer  "order_id",                      :null => false
+    t.integer  "fulfillment_id"
     t.integer  "variant_id"
     t.integer  "quantity",       :default => 1, :null => false
     t.integer  "price_in_cents", :default => 0, :null => false

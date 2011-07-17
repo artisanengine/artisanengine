@@ -41,11 +41,9 @@
 						%td.line_price= ( item.price * item.quantity ).format
 			%tbody
 				%tr
-					%td{ colspan: 4 }
-					%td
-						Line Total
-						%br
-						= order.line_total.format
+					%td{ colspan: 3 }
+					%td Line Total
+					%td= order.line_total.format
 			%tbody
 				- for adjustment in order.order_adjustments
 					%tr[ adjustment ]
@@ -88,7 +86,8 @@
 					%th Cost
 			%tbody
 				- for fulfillment in order.fulfillments
-					%td= fulfillment.created_at
-					%td= fulfillment.shipping_method
-					%td= fulfillment.tracking
-					%td= fulfillment.cost.format
+					%tr[ fulfillment ]
+						%td= fulfillment.created_at
+						%td= fulfillment.shipping_method
+						%td= fulfillment.tracking
+						%td= fulfillment.cost.format

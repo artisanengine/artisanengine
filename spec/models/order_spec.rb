@@ -28,18 +28,28 @@ describe Order do
   
   context "methods: " do
     describe "#fulfillment_status" do
-      context "if the order has a fulfillment" do
+      context "if all the order's line items have fulfillments" do
         it "returns 'Fulfilled'" do
-          order               = Order.generate
-          order.fulfillments << Fulfillment.generate
+          order = Factory :pending_order
+          Fulfillment.generate order: order, line_item_ids: order.line_item_ids
           
           order.fulfillment_status.should == "Fulfilled"
         end
       end
       
-      context "if the order does not have a fulfillment" do
+      context "if some of the order's line items have fulfillments" do
+        it "returns 'Partially Fulfilled'" do
+          order = Factory :pending_order
+          Fulfillment.generate order: order, line_item_ids: order.line_item_ids.drop( 1 )
+          
+          order.fulfillment_status.should == "Partially Fulfilled"
+        end
+      end
+          
+      context "if none of the order's line items have fulfillments" do
         it "returns 'Not Fulfilled'" do
-          order = Order.generate
+          order = Factory :pending_order
+          
           order.fulfillment_status.should == "Not Fulfilled"
         end
       end

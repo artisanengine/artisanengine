@@ -2,9 +2,10 @@ module Manage
   class FulfillmentsController < Manage::ManageController
     respond_to :html
     
-    expose( :orders )       { current_frame.orders }
-    expose( :order )        { orders.find_by_id_in_frame( params[ :order_id ] ) }
+    expose( :orders )            { current_frame.orders }
+    expose( :order )             { orders.find_by_id_in_frame( params[ :order_id ] ) }
     expose( :fulfillment )
+    expose( :unfulfilled_items ) { order.line_items.unfulfilled }
   
     def create
       fulfillment.order = order

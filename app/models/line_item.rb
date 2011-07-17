@@ -4,6 +4,7 @@ class LineItem < ActiveRecord::Base
   
   belongs_to :variant
   belongs_to :order
+  belongs_to :fulfillment
   
   delegate   :name, to: :variant
   
@@ -17,6 +18,12 @@ class LineItem < ActiveRecord::Base
   
   before_create :capture_variant_price
   after_save    :destroy_if_quantity_is_0
+  
+  # ------------------------------------------------------------------
+  # Scopes
+  
+  scope :fulfilled,   lambda { where( "line_items.fulfillment_id IS NOT NULL" ) }
+  scope :unfulfilled, lambda { where( "line_items.fulfillment_id IS NULL"     ) }
   
   # ------------------------------------------------------------------
   # Money
