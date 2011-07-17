@@ -105,7 +105,13 @@ class Order < ActiveRecord::Base
   
   # Return the final order total after adjustments have been made.
   def total
-    line_total
+    total = line_total
+    
+    for adjustment in order_adjustments
+      total += adjustment.amount
+    end
+    
+    total
   end
   
   # Determine what proportion of an orders line items are fulfilled.

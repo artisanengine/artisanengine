@@ -21,7 +21,7 @@
 		= render billing_address
 
 	#line_items
-		%h2 Line Items
+		%h2 Items & Adjustments
 	
 		%table
 			%thead
@@ -39,16 +39,22 @@
 						%td.quantity= item.quantity
 						%td.unit_price= item.price.format
 						%td.line_price= ( item.price * item.quantity ).format
-			%tbody
+
 				%tr
 					%td{ colspan: 3 }
 					%td Line Total
 					%td= order.line_total.format
-			%tbody
+
 				- for adjustment in order.order_adjustments
 					%tr[ adjustment ]
-						%td.type{ colspan: 4 }= adjustment.message
+						%td{ colspan: 3 }
+						%td.message= adjustment.message
 						%td.amount= adjustment.amount.format
+
+				%tr
+					%td{ colspan: 3 }
+					%td Adjusted Total
+					%td.total= order.total.format
 
 	#activity
 		%h2 Activity
@@ -68,7 +74,9 @@
 						%td= transaction.created_at
 						%td= transaction.payment_service
 						%td= transaction.action
-						%td= transaction.success ? "Success" : "Failed"
+						%td
+							%span.status{ class: transaction.success? ? "success" : "failed" }
+								= transaction.success ? "Success" : "Failed"
 	
 	#fulfillment
 		%h2 Fulfillment (#{ order.fulfillment_status })
