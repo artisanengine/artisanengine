@@ -31,33 +31,35 @@
 		%table
 			%thead
 				%tr
-					%th Name
-					%th Options
+					%th Item
 					%th Quantity
 					%th Unit Price
 					%th Total Price
 			%tbody
 				- for item in line_items
 					%tr[ item ]
-						%td.name= item.name
-						%td.options= item.options
+						%td 
+							= item.name
+							- unless item.options.blank?
+								%br
+								.options= item.options
 						%td.quantity= item.quantity
 						%td.unit_price= item.price.format
 						%td.line_price= ( item.price * item.quantity ).format
 
 				%tr
-					%td{ colspan: 3 }
+					%td{ colspan: 2 }
 					%td Line Total
 					%td= order.line_total.format
 
 				- for adjustment in order.order_adjustments
 					%tr[ adjustment ]
-						%td{ colspan: 3 }
+						%td{ colspan: 2 }
 						%td.message= adjustment.message
 						%td.amount= adjustment.amount.format
 
 				%tr
-					%td{ colspan: 3 }
+					%td{ colspan: 2 }
 					%td Adjusted Total
 					%td.total= order.total.format
 

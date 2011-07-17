@@ -1,11 +1,23 @@
 = semantic_form_for [ :manage, order, fulfillment ] do |f|
-	#unfulfilled_items
-		- for item in unfulfilled_items do
-			%div[ item ]
-				= check_box_tag "fulfillment[line_item_ids][]", item.id, true, id: 'fulfill'
-				= label_tag "fulfillment[line_item_ids][]", item.name
-				%br
-				= item.options unless item.options.blank?
+	%h2 Items to Fulfill
+	
+	%table#unfulfilled_items
+		%thead
+			%tr
+				%th Fulfill?
+				%th Item Name
+				%th Item Quantity
+				
+		%tbody
+			- for item in unfulfilled_items do
+				%tr[ item ]
+					%td= check_box_tag "fulfillment[line_item_ids][]", item.id, true, id: 'fulfill'
+					%td 
+						= item.name
+						- unless item.options.blank?
+							%br
+							.options= item.options
+					%td= item.quantity
 	
 	= f.inputs :shipping_method, :cost, :tracking
 	= f.submit 'Fulfill'
