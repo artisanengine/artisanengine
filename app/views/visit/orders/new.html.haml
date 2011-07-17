@@ -1,13 +1,25 @@
 %h1 Your Order
 
-= form_tag quantities_line_items_path do
-	- for line_item in order.line_items
-		%div[ line_item ]
-			= line_item.name
-			= line_item.price.format
-			= text_field_tag "line_item[#{ line_item.id }]", line_item.quantity
-	= submit_tag 'Update'
-
-.total= order.line_total.format
-
-= link_to 'Checkout', checkout_path
+- if order.line_items.any?
+	= form_tag quantities_line_items_path do
+		%table
+			%tbody
+				- for line_item in order.line_items
+					%tr[ line_item ]
+						%td= line_item.name
+						%td= text_field_tag "line_item[#{ line_item.id }]", line_item.quantity
+						%td= ( line_item.price * line_item.quantity ).format
+			%tbody
+				%tr
+					%td
+					%td= submit_tag 'Update'
+					%td.total
+						Total
+						%br
+						= order.line_total.format
+			%tbody
+				%tr
+					%td{ colspan: 2 }
+					%td= link_to 'Checkout', checkout_path
+- else
+	%p Your order is empty.

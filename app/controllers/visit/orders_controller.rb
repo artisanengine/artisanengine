@@ -2,6 +2,8 @@ module Visit
   class OrdersController < Visit::VisitController
     respond_to :html
     
+    before_filter :order_cannot_be_empty, only: [ :edit, :update ]
+    
     expose( :order )                { current_order }
     expose( :line_items )           { order.line_items }
     expose( :shipping_address )     { order.shipping_address }
@@ -30,10 +32,20 @@ module Visit
       end
     end
     
+    # ------------------------------------------------------------------
+    # Non-RESTful Actions
+    
     # GET /update_state_select
     def update_state_select
       @country_code = params[ :country ]
       @type         = params[ :type ]
+    end
+    
+    # ------------------------------------------------------------------
+    private
+    
+    def order_cannot_be_empty
+      redirect_to new_order_path unless line_items.any?
     end
   end
 end
