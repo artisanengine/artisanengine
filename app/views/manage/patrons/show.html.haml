@@ -13,7 +13,7 @@
 		%tbody
 			- for order in patron.orders
 				%tr[ order ]
-					%td= order.id_in_frame
+					%td= link_to order.id_in_frame, manage_order_path( order )
 
 #addresses
 	%h2 Addresses

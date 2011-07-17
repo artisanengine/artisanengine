@@ -24,12 +24,14 @@
 		%thead
 			%tr
 				%th Name
+				%th Options
 				%th Quantity
 				%th Price
 		%tbody
 			- for item in line_items
 				%tr[ item ]
 					%td.name= item.name
+					%td.options= item.options
 					%td.quantity= item.quantity
 					%td.price= item.price.format
 

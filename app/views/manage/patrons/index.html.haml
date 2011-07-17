@@ -4,7 +4,10 @@
 	%thead
 		%tr
 			%th Name
+			%th
 	%tbody
 		- for patron in patrons
 			%tr[ patron ]
 				%td= "#{ patron.last_name }, #{ patron.first_name }"
+				%td.links
+					= link_to 'Details', manage_patron_path( patron )
