@@ -20,6 +20,11 @@ class Order < ActiveRecord::Base
   validates_presence_of :frame
   
   # ------------------------------------------------------------------
+  # Scopes
+  
+  scope :except_new, lambda { where( "orders.status != ?", 'new' ) }
+  
+  # ------------------------------------------------------------------
   # General
   
   def to_param

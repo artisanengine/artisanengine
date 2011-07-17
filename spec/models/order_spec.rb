@@ -13,6 +13,18 @@ describe Order do
       new_order.should_not be_valid
     end
   end
+ 
+  context "scopes: " do
+    describe "::except_new" do
+      it "returns orders with any status except 'new'" do
+        2.times { Factory :order }
+        2.times { Factory :pending_order }
+        2.times { Factory :purchased_order }
+        
+        Order.except_new.count.should == 4
+      end
+    end
+  end
   
   context "methods: " do
     describe "#set_id_in_frame" do
