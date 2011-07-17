@@ -5,6 +5,7 @@ describe Visit::OrdersController do
   
   before do
     controller.stub current_order: order
+    order.stub_chain( :line_items, :any? ).and_return( true )     # Skip the :order_cannot_be_empty before_filter.
     Frame.generate  domain: 'test.host'
   end
    

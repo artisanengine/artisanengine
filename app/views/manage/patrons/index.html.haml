@@ -1,0 +1,10 @@
+= content_for( :heading ) { 'Manage Patrons' }
+
+%table
+	%thead
+		%tr
+			%th Name
+	%tbody
+		- for patron in patrons
+			%tr[ patron ]
+				%td= "#{ patron.last_name }, #{ patron.first_name }"

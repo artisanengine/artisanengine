@@ -28,6 +28,7 @@ ArtisanEngine::Application.routes.draw do
     end
     resources :tags
     resources :orders
+    resources :patrons
   end
   
   scope :module => :visit do

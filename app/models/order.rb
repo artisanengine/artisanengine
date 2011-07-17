@@ -173,7 +173,8 @@ class Order < ActiveRecord::Base
     self.patron = Patron.find_or_create_by_email( email:       email,
                                                   first_name:  billing_address.first_name, 
                                                   last_name:   billing_address.last_name,
-                                                  subscribed:  subscribed )
+                                                  subscribed:  subscribed,
+                                                  frame:       frame )
     
     patron.addresses << billing_address
     patron.addresses << shipping_address

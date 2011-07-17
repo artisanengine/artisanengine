@@ -8,6 +8,11 @@ describe Patron do
       new_patron.should be_valid
     end
     
+    it "is not valid without a frame" do
+      new_patron.frame = nil
+      new_patron.should_not be_valid
+    end
+    
     it "is not valid without an E-Mail" do
       new_patron.email = nil
       new_patron.should_not be_valid

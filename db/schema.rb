@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "pages", ["id", "frame_id"], :name => "index_pages_on_id_and_frame_id"
 
   create_table "patrons", :force => true do |t|
+    t.integer  "frame_id",                      :null => false
     t.string   "first_name",                    :null => false
     t.string   "last_name",                     :null => false
     t.string   "email",                         :null => false
