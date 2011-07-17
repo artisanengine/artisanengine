@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   has_many   :line_items
   has_many   :order_transactions
   has_many   :order_adjustments
+  has_many   :fulfillments
   
   belongs_to :frame
   belongs_to :patron
@@ -105,6 +106,11 @@ class Order < ActiveRecord::Base
   # Return the final order total after adjustments have been made.
   def total
     line_total
+  end
+  
+  # Placeholder method for determining whether an order is fulfilled or not.
+  def fulfillment_status
+    fulfillments.any? ? "Fulfilled" : "Not Fulfilled"
   end
   
   # ------------------------------------------------------------------

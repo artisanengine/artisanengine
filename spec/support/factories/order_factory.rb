@@ -46,3 +46,8 @@ Factory.define :order_adjustment do |a|
   a.association       :order
   a.message           "Test Message"
 end
+
+Factory.define :fulfillment do |f|
+  f.association       :order
+  f.shipping_method   'UPS 3-Day Select'
+end

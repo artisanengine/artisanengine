@@ -229,6 +229,19 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     end
     
     # ------------------------------------------------------------------
+    # Order Fulfillments
+    
+    create_table :fulfillments do |t|
+      t.integer   :order_id,        null: false
+      t.integer   :cost_in_cents,   null: false, default: 0
+      t.string    :currency
+      t.string    :tracking
+      t.string    :shipping_method
+    
+      t.timestamps
+    end
+    
+    # ------------------------------------------------------------------
     # Addresses
     
     create_table :addresses do |t|

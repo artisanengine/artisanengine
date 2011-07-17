@@ -27,6 +27,24 @@ describe Order do
   end
   
   context "methods: " do
+    describe "#fulfillment_status" do
+      context "if the order has a fulfillment" do
+        it "returns 'Fulfilled'" do
+          order               = Order.generate
+          order.fulfillments << Fulfillment.generate
+          
+          order.fulfillment_status.should == "Fulfilled"
+        end
+      end
+      
+      context "if the order does not have a fulfillment" do
+        it "returns 'Not Fulfilled'" do
+          order = Order.generate
+          order.fulfillment_status.should == "Not Fulfilled"
+        end
+      end
+    end
+    
     describe "#set_id_in_frame" do
       context "if it is the only order in the frame" do
         it "initializes to 1001" do

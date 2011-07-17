@@ -28,15 +28,22 @@ module Visit
                                      params:          params,
                                      payment_service: 'PayPal WPS'
             
-            OrderAdjustment.create! message: "PayPal-Calculated Shipping", 
-                                    amount: params[ :mc_shipping ],
-                                    order:  order
-            OrderAdjustment.create! message: "PayPal-Calculated Tax", 
-                                    amount: params[ :tax ],
-                                    order:  order
+            unless params[ :mc_shipping ].to_money.zero?
+              OrderAdjustment.create! message: "PayPal-Calculated Shipping", 
+                                      amount: params[ :mc_shipping ],
+                                      order:  order
+            end
+            
+            unless params[ :tax ].to_money.zero?
+              OrderAdjustment.create! message: "PayPal-Calculated Tax", 
+                                      amount: params[ :tax ],
+                                      order:  order
+            end
+            
             OrderAdjustment.create! message: "PayPal Transaction Fee", 
                                     amount: "-#{ params[ :mc_fee ] }",
                                     order:  order
+            
             order.purchase!                                           # Order in!
           else
             logger.error "PayPal transaction was not completed. Please investigate."

@@ -20,3 +20,4 @@ en:
       address_2: "Address 2"
       postal_code: "Postal Code"
       province: "State/Province"
+      shipping_method: "Shipping Method"

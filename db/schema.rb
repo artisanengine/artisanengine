@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "frames", ["domain"], :name => "index_frames_on_domain", :unique => true
 
+  create_table "fulfillments", :force => true do |t|
+    t.integer  "order_id",                       :null => false
+    t.integer  "cost_in_cents",   :default => 0, :null => false
+    t.string   "currency"
+    t.string   "tracking"
+    t.string   "shipping_method"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "goods", :force => true do |t|
     t.integer  "frame_id",         :null => false
     t.string   "name",             :null => false

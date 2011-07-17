@@ -27,7 +27,9 @@ ArtisanEngine::Application.routes.draw do
       resources :posts
     end
     resources :tags
-    resources :orders
+    resources :orders do
+      resources :fulfillments
+    end
     resources :patrons
   end
   
