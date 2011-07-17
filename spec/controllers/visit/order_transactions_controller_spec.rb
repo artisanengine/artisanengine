@@ -41,7 +41,7 @@ describe Visit::OrderTransactionsController do
       context "and the notification has Completed status with a total matching the order total" do
         before do 
           notification.stub complete?: true, gross: "36"
-          order.stub total: "12".to_money
+          order.stub line_total: "36".to_money
         end
         
         it "creates a successful OrderTransaction with the details" do
@@ -53,6 +53,14 @@ describe Visit::OrderTransactionsController do
                                                             params:    { "mc_shipping"=>"12", "tax"=>"12" },
                                                             payment_service: 'PayPal WPS' )
           post :ipns, mc_shipping: "12", tax: "12"
+        end
+        
+        it "creates OrderAdjustments for PayPal's shipping, tax, and fee" do
+          OrderAdjustment.should_receive( :create! ).with( message: "PayPal-Calculated Shipping", amount: "12", order: order )
+          OrderAdjustment.should_receive( :create! ).with( message: "PayPal-Calculated Tax", amount: "12", order: order )
+          OrderAdjustment.should_receive( :create! ).with( message: "PayPal Transaction Fee", amount: "-1", order: order )
+          
+          post :ipns, mc_shipping: "12", tax: "12", mc_fee: "1"
         end
         
         it "purchases the order" do

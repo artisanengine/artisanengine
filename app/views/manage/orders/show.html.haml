@@ -46,6 +46,11 @@
 						Line Total
 						%br
 						= order.line_total.format
+			%tbody
+				- for adjustment in order.order_adjustments
+					%tr[ adjustment ]
+						%td.type{ colspan: 4 }= adjustment.message
+						%td.amount= adjustment.amount.format
 
 	#activity
 		%h2 Activity

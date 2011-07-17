@@ -19,14 +19,24 @@ module Visit
       
       if ipn.acknowledge or Rails.env.test?                           # Verify authenticity with PayPal.
         begin
-          if ipn.complete? and order.total == base_total( ipn )       # Verify the amount is correct.
+          if ipn.complete? and order.line_total == ipn.gross.to_money # Verify the amount is correct.
             OrderTransaction.create! order:           order,          # Log the transaction details.
                                      success:         true,
-                                     amount:          base_total( ipn ),
+                                     amount:          ipn.gross,
                                      reference:       ipn.transaction_id,
                                      action:          'purchase',
                                      params:          params,
                                      payment_service: 'PayPal WPS'
+            
+            OrderAdjustment.create! message: "PayPal-Calculated Shipping", 
+                                    amount: params[ :mc_shipping ],
+                                    order:  order
+            OrderAdjustment.create! message: "PayPal-Calculated Tax", 
+                                    amount: params[ :tax ],
+                                    order:  order
+            OrderAdjustment.create! message: "PayPal Transaction Fee", 
+                                    amount: "-#{ params[ :mc_fee ] }",
+                                    order:  order
             order.purchase!                                           # Order in!
           else
             logger.error "PayPal transaction was not completed. Please investigate."

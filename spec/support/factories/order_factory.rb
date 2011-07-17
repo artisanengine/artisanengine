@@ -41,3 +41,8 @@ Factory.define :paypal_transaction, parent: :order_transaction do |o|
   o.params            { { param1: "param", param2: "param" } }
   o.payment_service   "PayPal WPS"
 end
+
+Factory.define :order_adjustment do |a|
+  a.association       :order
+  a.message           "Test Message"
+end

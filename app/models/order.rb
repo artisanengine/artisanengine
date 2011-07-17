@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   
   has_many   :line_items
   has_many   :order_transactions
+  has_many   :order_adjustments
   
   belongs_to :frame
   belongs_to :patron
