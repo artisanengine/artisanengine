@@ -2,15 +2,21 @@
 
 %html
 	%head
-		%title= content_for?( :title ) ? content_for( :title ) : "Develop ArtisanEngine"
-		= stylesheet_link_tag		 "application"
+		%title= content_for?( :title ) ? content_for( :title ) : "ArtisanEngine Development"
+		= stylesheet_link_tag		 "application", "manage"
 		= javascript_include_tag "application"
 		= yield :javascripts
 		= csrf_meta_tags
 
 	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
-		#wrapper
-			#main
-				= render 'session_info'
+		#wrapper.container
+			%header
+				%h1#manage= yield( :heading )
+				%nav#manage
+					= link_to 'Frames', develop_frames_path
 				= render 'notifications' unless flash.empty?
-				= yield
+			
+			= yield
+			
+			%footer
+				= render 'session_info'

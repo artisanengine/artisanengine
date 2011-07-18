@@ -1,4 +1,7 @@
-%h1 Frames
+= content_for( :heading ) { 'Develop Frames' }
+
+%nav.heading_links
+	= link_to 'Add a Frame', new_develop_frame_path, class: 'add'
 
 %table
 	%thead
@@ -10,3 +13,6 @@
 			%tr[ frame ]
 				%td= frame.name
 				%td= frame.domain
+				%td.links
+					= link_to 'Settings', develop_frame_settings_path( frame )
+					= link_to 'Edit', edit_develop_frame_path( frame )

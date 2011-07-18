@@ -1,4 +1,7 @@
-%h1 Settings for Frame: #{ frame.name }
+= content_for( :heading ) { "Settings for Frame: #{ frame.name }" }
+
+%nav.heading_links
+	= link_to 'Add a Setting', new_develop_frame_setting_path( frame ), class: 'add'
 
 %table
 	%thead
