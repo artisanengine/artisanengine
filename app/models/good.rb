@@ -18,6 +18,7 @@ class Good < ActiveRecord::Base
   has_many   :image_attachers, as: :imageable, dependent: :destroy
   has_many   :images,          through: :image_attachers
   has_many   :collects,        dependent: :destroy
+  has_many   :display_cases,   through: :collects
   
   # ------------------------------------------------------------------
   # Validations

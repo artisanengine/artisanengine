@@ -4,7 +4,7 @@
 %h1= display_case.name
 
 %section#goods
-	- for good in display_case.goods
+	- for good in goods
 		%div[ good ]
 			.image= link_to display_image( good.images.first, '182x182#' ), good
 			%p.description= link_to good.name, good
