@@ -88,7 +88,7 @@ namespace :db do
         variant.save!
       end
     end
-        
+    
     # Attach up to 5 images to each good.
     for good in Good.all
       random_image_ids = []
@@ -126,9 +126,9 @@ namespace :db do
     # Orders
     
     for frame in Frame.all
-      3.times { Factory :pending_order,   frame: frame }
-      3.times { Factory :purchased_order, frame: frame }
-      1.times { Factory :failed_order,    frame: frame }
+      3.times { frame.orders << Factory.build( :pending_order,   frame: frame ) }
+      3.times { frame.orders << Factory.build( :purchased_order, frame: frame ) }
+      3.times { frame.orders << Factory.build( :failed_order,    frame: frame ) }
     end
   end
 end
