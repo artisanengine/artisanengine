@@ -75,9 +75,11 @@ class Order < ActiveRecord::Base
   # is set only for non-new orders and only looks at other orders in the
   # frame.
   def set_id_in_frame!
-    last_in_frame = frame.orders.order( "orders.id_in_frame DESC" ).first
+    last_in_frame = Order.where( "orders.frame_id = ? AND orders.id_in_frame IS NOT NULL", frame.id )
+                         .order( "orders.id_in_frame DESC" )
+                         .first
     
-    if last_in_frame and last_in_frame.id_in_frame
+    if last_in_frame
       self.id_in_frame = last_in_frame.id_in_frame + 1
       save
     else
