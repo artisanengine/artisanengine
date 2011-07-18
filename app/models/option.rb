@@ -50,7 +50,7 @@ class Option < ActiveRecord::Base
   end
   
   def update_good_variants_with_default_value
-    good.variants.update_all( :"option_value_#{ order_in_good }" => default_value )
+    good.variants.update_all( "option_value_#{ order_in_good } = '#{ default_value }'" )
   end
   
   def good_has_less_than_5_options
