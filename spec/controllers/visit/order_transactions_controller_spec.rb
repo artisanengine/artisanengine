@@ -33,6 +33,10 @@ describe Visit::OrderTransactionsController do
     end
     
     it "verifies the IPN with PayPal" do
+      # This will get skipped for acceptance tests, so pretend we're not 
+      # testing.
+      Rails.env.stub test?: false
+      
       notification.should_receive( :acknowledge )
       post :ipns
     end

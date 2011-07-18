@@ -17,7 +17,7 @@ module Visit
       ipn   = Paypal::Notification.new( request.raw_post )            # Use ActiveMerchant's IPN parser.
       order = Order.find( ipn.invoice )                               # Gotta have an order to check against.
       
-      if ipn.acknowledge or Rails.env.test?                           # Verify authenticity with PayPal.
+      if Rails.env.test? or ipn.acknowledge                           # Verify authenticity with PayPal.
         begin
           if ipn.complete? and order.line_total == ipn.gross.to_money # Verify the amount is correct.
             OrderTransaction.create! order:           order,          # Log the transaction details.
