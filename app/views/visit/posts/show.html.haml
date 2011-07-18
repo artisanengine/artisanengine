@@ -2,3 +2,5 @@
 %p.date= post.created_at.strftime( "%A, %B %d, %Y" )
 
 .content= post.html_content.html_safe
+
+= render 'disqus' unless Rails.env.development?
