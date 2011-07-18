@@ -1,7 +1,9 @@
 module Visit
   class PatronsController < Visit::VisitController
+    expose( :patrons ) { current_frame.patrons }
+    
     def subscribe
-      patron            = Patron.find_or_initialize_by_email( params[ :email ] )
+      patron            = patrons.find_or_initialize_by_email( params[ :email ] )
       patron.frame      = current_frame
       patron.subscribed = true
       
