@@ -12,7 +12,7 @@ class OrderMailer < ActionMailer::Base
           subject: "Thank you for your order!" )
   end
   
-  def artisan_order_confirmation_email( order, frame )
+  def artisan_order_receipt_email( order, frame )
     @frame      = frame
     @order      = order
     @patron     = order.patron
@@ -20,7 +20,7 @@ class OrderMailer < ActionMailer::Base
 
     mail( from:    "noreply@artisanengine.com",
           to:      "frame.artisan.email",
-          subject: "Thank you for your order!" )
+          subject: "You have received an order!" )
   end
   
   def patron_fulfillment_confirmation_email( fulfillment, frame )

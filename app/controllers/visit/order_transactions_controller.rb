@@ -46,15 +46,15 @@ module Visit
             
             if order.purchase!                                            # Order in!
               OrderMailer.patron_order_confirmation_email( order, current_frame ).deliver
+              OrderMailer.artisan_order_receipt_email( order, current_frame ).deliver
             end
-          
           else
             logger.error "PayPal transaction was not completed. Please investigate."
             create_failed_order_transaction( order, params )
             order.fail!
           end
         rescue => e
-          logger.error "PayPal transaction raised an error. Please investigate."
+          logger.error "An error occurred while handling a PayPal IPN. Please investigate."
           create_failed_order_transaction( order, params )
           order.fail!
         end

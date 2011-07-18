@@ -73,8 +73,13 @@ describe Visit::OrderTransactionsController do
         context "if the order is purchased successfully" do
           before { order.stub purchase!: true }
           
-          it "sends the patron confirmation E-Mail" do
+          it "sends confirmation E-Mails to the patron and artisan" do
+            OrderMailer.stub_chain( :patron_order_confirmation_email, :deliver )
+            OrderMailer.stub_chain( :artisan_order_receipt_email, :deliver )
+            
             OrderMailer.should_receive( :patron_order_confirmation_email ).with( order, @frame )
+            OrderMailer.should_receive( :artisan_order_receipt_email ).with( order, @frame )
+            
             post :ipns, mc_shipping: "12", tax: "12"
           end
         end
