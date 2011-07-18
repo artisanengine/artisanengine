@@ -35,7 +35,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :pages, [ :id, :frame_id ]
+    add_index :pages, [ :frame_id, :cached_slug ]
     
     # ------------------------------------------------------------------
     # Users
@@ -98,10 +98,12 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.text    :content
       t.text    :html_content
       
+      t.string  :cached_slug        # Friendly ID
+      
       t.timestamps
     end
     
-    add_index :posts, [ :id, :blog_id ]
+    add_index :posts, [ :cached_slug, :blog_id ]
     
     # ------------------------------------------------------------------
     # Tags & Taggings
@@ -115,7 +117,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :tags, [ :id, :frame_id ]
+    add_index :tags, [ :cached_slug, :frame_id ]
     
     create_table :taggings do |t|
       t.integer    :tag_id,         null: false
@@ -137,7 +139,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :goods, [ :id, :frame_id ]
+    add_index :goods, [ :cached_slug, :frame_id ]
     
     # ------------------------------------------------------------------
     # Options
@@ -187,6 +189,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
+    add_index :orders, :id_in_frame
+    
     create_table :line_items do |t|
       t.integer :order_id,          null: false
       t.integer :fulfillment_id
@@ -197,6 +201,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    add_index :line_items, [ :id, :order_id ]
     
     # ------------------------------------------------------------------
     # Order Transactions
@@ -216,6 +222,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
+    add_index :order_transactions, [ :id, :order_id ]
+    
     # ------------------------------------------------------------------
     # Order Adjustments
     
@@ -229,6 +237,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
+    add_index :order_adjustments, [ :id, :order_id ]
+    
     # ------------------------------------------------------------------
     # Order Fulfillments
     
@@ -241,6 +251,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     
       t.timestamps
     end
+    
+    add_index :fulfillments, [ :id, :order_id ]
     
     # ------------------------------------------------------------------
     # Addresses
@@ -259,6 +271,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    add_index :addresses, [ :id, :patron_id ]
     
     create_table :address_attachers do |t|
       t.integer    :address_id,     null: false
@@ -289,7 +303,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.string    :cached_slug      # Friendly ID
     end
     
-    add_index :display_cases, [ :id, :frame_id ]
+    add_index :display_cases, [ :cached_slug, :frame_id ]
       
     create_table :collects do |t|
       t.integer   :display_case_id, null: false

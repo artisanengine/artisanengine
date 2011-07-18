@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "addresses", ["id", "patron_id"], :name => "index_addresses_on_id_and_patron_id"
+
   create_table "artisans", :force => true do |t|
     t.integer "frame_id",                                          :null => false
     t.string  "first_name",                                        :null => false
@@ -62,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.string  "cached_slug"
   end
 
-  add_index "display_cases", ["id", "frame_id"], :name => "index_display_cases_on_id_and_frame_id"
+  add_index "display_cases", ["cached_slug", "frame_id"], :name => "index_display_cases_on_cached_slug_and_frame_id"
 
   create_table "engineers", :force => true do |t|
     t.string "email",                             :default => "", :null => false
@@ -86,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "fulfillments", ["id", "order_id"], :name => "index_fulfillments_on_id_and_order_id"
+
   create_table "goods", :force => true do |t|
     t.integer  "frame_id",         :null => false
     t.string   "name",             :null => false
@@ -96,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
-  add_index "goods", ["id", "frame_id"], :name => "index_goods_on_id_and_frame_id"
+  add_index "goods", ["cached_slug", "frame_id"], :name => "index_goods_on_cached_slug_and_frame_id"
 
   create_table "image_attachers", :force => true do |t|
     t.integer "image_id",       :null => false
@@ -126,6 +130,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "line_items", ["id", "order_id"], :name => "index_line_items_on_id_and_order_id"
+
   create_table "options", :force => true do |t|
     t.integer "good_id",       :null => false
     t.integer "order_in_good", :null => false
@@ -145,6 +151,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "order_adjustments", ["id", "order_id"], :name => "index_order_adjustments_on_id_and_order_id"
+
   create_table "order_transactions", :force => true do |t|
     t.integer  "order_id",                           :null => false
     t.integer  "amount_in_cents", :default => 0,     :null => false
@@ -159,6 +167,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "order_transactions", ["id", "order_id"], :name => "index_order_transactions_on_id_and_order_id"
+
   create_table "orders", :force => true do |t|
     t.integer  "frame_id",            :null => false
     t.integer  "id_in_frame"
@@ -170,6 +180,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
+  add_index "orders", ["id_in_frame"], :name => "index_orders_on_id_in_frame"
+
   create_table "pages", :force => true do |t|
     t.integer  "frame_id",     :null => false
     t.string   "title",        :null => false
@@ -180,7 +192,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
-  add_index "pages", ["id", "frame_id"], :name => "index_pages_on_id_and_frame_id"
+  add_index "pages", ["frame_id", "cached_slug"], :name => "index_pages_on_frame_id_and_cached_slug"
 
   create_table "patrons", :force => true do |t|
     t.integer  "frame_id",                      :null => false
@@ -197,11 +209,12 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.string   "title",        :null => false
     t.text     "content"
     t.text     "html_content"
+    t.string   "cached_slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "posts", ["id", "blog_id"], :name => "index_posts_on_id_and_blog_id"
+  add_index "posts", ["cached_slug", "blog_id"], :name => "index_posts_on_cached_slug_and_blog_id"
 
   create_table "settings", :force => true do |t|
     t.integer "frame_id", :null => false
@@ -237,7 +250,7 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.datetime "updated_at"
   end
 
-  add_index "tags", ["id", "frame_id"], :name => "index_tags_on_id_and_frame_id"
+  add_index "tags", ["cached_slug", "frame_id"], :name => "index_tags_on_cached_slug_and_frame_id"
 
   create_table "variants", :force => true do |t|
     t.integer "good_id",                       :null => false
