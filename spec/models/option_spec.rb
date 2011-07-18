@@ -83,6 +83,25 @@ describe Option do
         good.variants.first.option_value_2.should == "Red"
         good.variants.first.option_value_3.should == nil
       end
+      
+      context "if it is the highest-positioned option" do
+        it "nullifies all its corresponding variant option values" do
+          good     = Good.generate # Generates one option and one variant by default.
+
+          # Example: Good with 3 options. 
+          option_1 = good.options.first
+          option_2 = good.options.create!( name: 'Size',  default_value: 'Small' )
+          option_3 = good.options.create!( name: 'Color', default_value: 'Red' )
+
+          # Destroy last option.
+          option_3.destroy
+
+          # The last option should disappear.
+          good.variants.first.option_value_1.should == "Default"
+          good.variants.first.option_value_2.should == "Small"
+          good.variants.first.option_value_3.should == nil
+        end
+      end
     end
   end
   

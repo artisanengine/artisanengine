@@ -34,9 +34,17 @@ class Option < ActiveRecord::Base
     
   def shift_variant_values
     Option.transaction do
-      for option in good.options.where( "options.order_in_good > #{ order_in_good }" ).all
-        option.good.variants.update_all( "option_value_#{ option.order_in_good - 1 } = option_value_#{ option.order_in_good }" )
-        option.good.variants.update_all( "option_value_#{ option.order_in_good } = NULL" )
+      # If there are any higher-positioned options in the good ...
+      if good.options.where( "options.order_in_good > #{ order_in_good }" ).any?
+        # Shift their values lower.
+        for option in good.options.where( "options.order_in_good > #{ order_in_good }" ).all
+          option.good.variants.update_all( "option_value_#{ option.order_in_good - 1 } = option_value_#{ option.order_in_good }" )
+          option.good.variants.update_all( "option_value_#{ option.order_in_good } = NULL" )
+        end
+      # If this is the highest-positioned option in the good ...
+      else
+        # Nullify all its values.
+        good.variants.update_all( "option_value_#{ order_in_good } = NULL" )
       end
     end
   end
