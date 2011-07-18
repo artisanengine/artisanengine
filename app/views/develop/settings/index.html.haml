@@ -1,4 +1,40 @@
-= content_for( :heading ) { "Settings for Frame: #{ frame.name }" }
+= content_for( :heading ) { "Settings for Frame: #{ frame.name } (#{frame.domain})" }
+
+%h2 Available Settings:
+%table
+	%tbody
+		%tr
+			%td.setting_name Password Protected
+			%td 
+				Set to "Yes" to enforce artisan-only access for the entire front-end.
+				%br
+				%span.default Default: nil
+		%tr
+			%td.setting_name E-Mail Sender
+			%td 
+				Address that site E-Mails should be sent from. 
+				%br
+				%span.default Default: noreply@#{ frame.domain }
+		%tr
+			%td.setting_name Google Analytics
+			%td 
+				Google Analytics account ID to use for tracking. 
+				%br
+				%span.default Default: None
+		%tr
+			%td.setting_name PayPal WPS E-Mail
+			%td 
+				E-Mail address to send PayPal WPS payments to. 
+				%br 
+				%span.default Default: seller_1310784529_biz@artisanengine.com
+		%tr
+			%td.setting_name PayPal IPN URL
+			%td 
+				URL to receive PayPal Instant Payment Notifications. 
+				%br
+				%span.default Default: http://#{ frame.domain }/ipns
+
+%h2 Current Settings
 
 %nav.heading_links
 	= link_to 'Add a Setting', new_develop_frame_setting_path( frame ), class: 'add'

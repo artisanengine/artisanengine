@@ -6,13 +6,6 @@ module Visit
     include FramesHelper            # Helpers for managing the current frame.
     include OrdersHelper            # Helpers for managing the current order.
     
-    before_filter :authenticate_artisan!, if: :current_frame_is_protected
-    
-    # ------------------------------------------------------------------
-    private
-    
-    def current_frame_is_protected
-      current_frame.protected?
-    end
+    before_filter :authenticate_artisan!, if: :password_protected_frame?
   end
 end

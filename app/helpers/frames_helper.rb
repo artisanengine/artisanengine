@@ -1,9 +1,19 @@
-# Logic that determines which artisan's site a user is on based on their request.
+# Logic related to the current "frame," which encapsulates an artisan's
+# site.
 module FramesHelper
   
   # Retrieve the cached frame or set a new one.
   def current_frame
     @current_frame ||= set_frame
+  end
+  
+  # Retrieve the current frame's Google Analytics account credentials.
+  def google_analytics_account
+    @google_analytics_account ||= Setting.get_or_set( current_frame, 'Google Analytics' )
+  end
+  
+  def password_protected_frame?
+    @password_protected ||= Setting.get_or_set( current_frame, 'Password Protected' )
   end
   
   # ------------------------------------------------------------------

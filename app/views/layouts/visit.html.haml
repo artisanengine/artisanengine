@@ -5,7 +5,7 @@
 		%title= content_for?( :title ) ? content_for( :title ) : current_frame.name
 		= stylesheet_link_tag		 "application", "visit"
 		= javascript_include_tag "application", "visit"
-		= render 'google_analytics'
+		= render 'google_analytics' if google_analytics_account
 		= yield :javascripts
 		= csrf_meta_tags
 

@@ -35,4 +35,52 @@ describe FramesHelper do
       end
     end
   end
+
+  describe "#google_analytics_account" do
+    let( :frame ) { stub_model Frame }
+    before        { helper.stub current_frame: frame }
+    
+    context "if the frame has a Google Analytics account set" do
+      it "returns the account" do
+        Setting.should_receive( :get_or_set )
+               .with( frame, 'Google Analytics' )
+               .and_return( 'ABC-123' )
+               
+        helper.google_analytics_account.should == 'ABC-123'
+      end
+    end
+    
+    context "if the frame does not have a Google Analytics account set" do
+      it "returns nil" do
+        Setting.should_receive( :get_or_set )
+               .with( frame, 'Google Analytics' )
+               
+        helper.google_analytics_account.should be_nil
+      end
+    end
+  end 
+  
+  describe "#password_protected_frame?" do
+    let( :frame ) { stub_model Frame }
+    before        { helper.stub current_frame: frame }
+    
+    context "if the current frame is Password Protected" do
+      it "returns true" do
+        Setting.should_receive( :get_or_set )
+               .with( frame, 'Password Protected' )
+               .and_return( 'Yes' )
+               
+        helper.password_protected_frame?.should be_true
+      end
+    end
+    
+    context "if the current frame is not Password Protected" do
+      it "returns false" do
+        Setting.should_receive( :get_or_set )
+               .with( frame, 'Password Protected' )
+               
+        helper.password_protected_frame?.should be_false
+      end
+    end
+  end
 end
