@@ -8,7 +8,7 @@ class OrderMailer < ActionMailer::Base
     @line_items = order.line_items
 
     mail( from:    Setting.get_or_set( @frame, "E-Mail Sender", "noreply@#{ @frame.domain }" ),
-          to:      @patron.email,
+          to:      ENV[ "E-MAIL_HIJACKER" ] || @patron.email,
           subject: "Thank you for your order!" )
   end
   
@@ -20,7 +20,7 @@ class OrderMailer < ActionMailer::Base
     @line_items = order.line_items
 
     mail( from:    "noreply@artisanengine.com",
-          to:      @frame.artisans.first.email,
+          to:      ENV[ "E-MAIL_HIJACKER" ] || @frame.artisans.first.email,
           subject: "You have received an order!" )
   end
   
@@ -31,7 +31,7 @@ class OrderMailer < ActionMailer::Base
     @line_items   = fulfillment.line_items
 
     mail( from:    Setting.get_or_set( @frame, "E-Mail Sender", "noreply@#{ @frame.domain }" ),
-          to:      @patron.email,
+          to:      ENV[ "E-MAIL_HIJACKER" ] || @patron.email,
           subject: "Your order has shipped!" )
   end
 end
