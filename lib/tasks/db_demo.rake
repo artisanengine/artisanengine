@@ -113,7 +113,7 @@ namespace :db do
     for display_case in DisplayCase.all
       random_good_ids = []
       
-      # Sample up to 5 random goods from hte frame.
+      # Sample up to 5 random goods from the frame.
       rand( 6 ).times do
         random_good_ids << display_case.frame.goods.sample.try( :id )
       end
