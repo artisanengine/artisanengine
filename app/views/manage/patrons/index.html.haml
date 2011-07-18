@@ -9,7 +9,7 @@
 	%tbody
 		- for patron in patrons
 			%tr[ patron ]
-				%td= "#{ patron.last_name }, #{ patron.first_name }"
+				%td= patron.first_name and patron.last_name ? "#{ patron.last_name }, #{ patron.first_name }" : nil
 				%td= patron.email
 				%td.links
 					= link_to 'Details', manage_patron_path( patron )

@@ -45,6 +45,8 @@ ArtisanEngine::Application.routes.draw do
     resources :goods, only: [ :show ]
     resources :display_cases, path: 'collections'
     
+    post '/subscribe' => 'patrons#subscribe'
+    
     get '/order'     => 'orders#new',    as: 'new_order'
     get '/checkout'  => 'orders#edit',   as: 'checkout'
     put '/checkout'  => 'orders#update', as: 'checkout'

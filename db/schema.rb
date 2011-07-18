@@ -184,8 +184,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   create_table "patrons", :force => true do |t|
     t.integer  "frame_id",                      :null => false
-    t.string   "first_name",                    :null => false
-    t.string   "last_name",                     :null => false
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email",                         :null => false
     t.boolean  "subscribed", :default => false
     t.datetime "created_at"

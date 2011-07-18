@@ -270,8 +270,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     
     create_table :patrons do |t|
       t.integer   :frame_id,        null: false
-      t.string    :first_name,      null: false
-      t.string    :last_name,       null: false
+      t.string    :first_name
+      t.string    :last_name
       t.string    :email,           null: false
       t.boolean   :subscribed,      default: false
 
