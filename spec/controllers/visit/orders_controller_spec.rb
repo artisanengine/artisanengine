@@ -95,4 +95,13 @@ describe Visit::OrdersController do
       end
     end
   end
+
+  describe "GET /paypal" do
+    it "redirects to the new order path if the current order is not pending" do
+      order.stub pending?: false
+      
+      get 'paypal'
+      response.should redirect_to new_order_path
+    end
+  end
 end

@@ -41,6 +41,11 @@ module Visit
       @type         = params[ :type ]
     end
     
+    # GET /paypal
+    def paypal
+      redirect_to new_order_path unless order.pending?
+    end
+    
     # ------------------------------------------------------------------
     private
     
