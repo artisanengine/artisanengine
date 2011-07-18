@@ -14,11 +14,11 @@
 			#top_wrapper.container
 				%nav#primary
 					= link_to 'Home', root_path
-					= link_to 'Shop', display_case_path( DisplayCase.first )
+					= link_to 'Shop', display_case_path( current_frame.featured_case )
 					= link_to 'News', blog_path
 		
 		#wrapper.container		
 			%header
-				%a#logo{ href: root_path, title: current_frame.name }= current_frame.name
-			
+				= link_to current_frame.name, root_path, id: 'logo'
+							
 			= content_for?( :main ) ? yield( :main ) : yield

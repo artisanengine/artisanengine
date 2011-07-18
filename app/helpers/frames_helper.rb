@@ -12,6 +12,7 @@ module FramesHelper
     @google_analytics_account ||= Setting.get_or_set( current_frame, 'Google Analytics' )
   end
   
+  # Retrieve the current frame's Password Protected status.
   def password_protected_frame?
     @password_protected ||= Setting.get_or_set( current_frame, 'Password Protected' )
   end
