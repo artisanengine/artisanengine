@@ -17,7 +17,7 @@ feature "Redirect to PayPal", %q{
     checkout js: true
   end
 
-  scenario "I am auto-redirected to PayPal if JavaScript is enabled", js: true do
+  scenario "I am auto-redirected to PayPal if JavaScript is enabled", js: true, remote: true do
     # Then I should be redirected to PayPal.
     sleep 1 and page.current_url.should =~ /paypal/
   end
