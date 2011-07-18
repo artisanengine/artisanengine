@@ -62,6 +62,10 @@ group :test do
 	gem 'spork',							  '0.9.0rc8'      # DRb server for Faster tests.
 end
 
+group :development do
+  gem 'heroku_san',           '1.2.2'
+end
+
 group :development, :test do
   gem 'sqlite3',              '1.3.3'         # Use SQLite DB in testing and development.
 end
