@@ -25,6 +25,8 @@ feature "Order Receipt E-Mail", %q{
   end
   
   scenario "An artisan receives an E-Mail when an order is paid for" do
+    pending
+    
     # Then the artisan should receive an E-Mail.
     ActionMailer::Base.deliveries.should_not be_empty
   

@@ -10,7 +10,11 @@ module Manage
     def create
       fulfillment.order = order
       
-      flash[ :notice ] = "Fulfillment was successfully created." if fulfillment.save
+      if fulfillment.save
+        flash[ :notice ] = "Fulfillment was successfully created." 
+        OrderMailer.patron_fulfillment_confirmation_email( fulfillment, current_frame ).deliver if params[ :send_confirmation_email ] 
+      end
+      
       respond_with :manage, order, fulfillment, location: manage_order_path( order )
     end
   end

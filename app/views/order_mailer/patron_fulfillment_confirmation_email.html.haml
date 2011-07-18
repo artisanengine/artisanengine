@@ -5,7 +5,7 @@
 	%body
 		%p Dear #{ @patron.first_name },
 		
-		%p We have received payment for the following items:
+		%p The following items from your order have shipped via #{ @fulfillment.shipping_method }:
 		
 		%table
 			%tbody
@@ -19,7 +19,8 @@
 								%br
 								= line_item.options
 		
-		%p You will receive a confirmation when your items ship.
+		- unless @fulfillment.tracking.blank?
+			%p Your tracking number for these items is: #{ @fulfillment.tracking }
 		
 		%p
 			With thanks,

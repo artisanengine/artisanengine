@@ -20,4 +20,8 @@
 					%td= item.quantity
 	
 	= f.inputs :shipping_method, :cost, :tracking
+	
+	= label_tag 'send_confirmation_email', 'Send Confirmation to Patron'
+	= check_box_tag 'send_confirmation_email', '1', true
+	
 	= f.submit 'Fulfill'

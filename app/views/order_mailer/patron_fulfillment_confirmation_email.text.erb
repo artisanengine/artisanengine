@@ -1,0 +1,15 @@
+Dear <%= @order.patron.first_name %>,
+		
+The following items from your order have shipped via <%= @fulfillment.shipping_method %>:
+
+<% for line_item in @line_items %>
+	<%= line_item.quantity.to_s + "x " + line_item.name %>
+	<%= line_item.options unless line_item.options.empty? %>
+<% end %>
+
+<% unless @fulfillment.tracking.blank? %>
+	Your tracking number for these items is: <%= @fulfillment.tracking %>
+<% end %>
+		
+With thanks,
+<%= @frame.name %>
