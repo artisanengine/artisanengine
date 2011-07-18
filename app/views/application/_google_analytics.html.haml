@@ -1,6 +1,6 @@
 :javascript
 	var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', '#{ Setting.get_or_set( current_frame, 'Google Analytics' ) }']);
+	  _gaq.push(['_setAccount', '#{ Setting.get_or_set( current_frame, 'Google Analytics', 'NO-ACCOUNT' ) }']);
 	  _gaq.push(['_trackPageview']);
 
 	  (function() {
