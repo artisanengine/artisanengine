@@ -10,17 +10,17 @@ class Frame < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
   
-  has_many :settings
-  has_many :artisans
-  has_many :patrons
-  has_many :pages
-  has_many :users
-  has_many :images
-  has_many :tags
-  has_many :goods
-  has_one  :blog
-  has_many :display_cases
-  has_many :orders
+  has_many :settings,      dependent: :destroy
+  has_many :artisans,      dependent: :destroy
+  has_many :patrons,       dependent: :destroy
+  has_many :pages,         dependent: :destroy
+  has_many :images,        dependent: :destroy
+  has_many :tags,          dependent: :destroy
+  has_many :goods,         dependent: :destroy
+  has_one  :blog,          dependent: :destroy
+  has_many :display_cases, dependent: :destroy
+  has_many :orders,        dependent: :destroy
+  
   has_one  :featured_case, class_name: 'DisplayCase', conditions: [ 'display_cases.name = ?', 'Featured' ]
   
   # ------------------------------------------------------------------
