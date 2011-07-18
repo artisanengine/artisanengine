@@ -2,10 +2,26 @@ require 'spec_helper'
 
 describe FramesHelper do  
   describe "#current_frame" do
-    context "if a frame matching the requested domain is found" do
-      let( :requested_frame ) { stub Frame }
-      let( :forced_frame )    { stub Frame }
+    let( :requested_frame ) { stub Frame }
+    let( :forced_frame )    { stub Frame }
+    
+    context "if the requested domain is artisanengine" do
+      before { controller.stub_chain( :request, :domain ).and_return( 'artisanengine.com' ) }
       
+      context "and there is a subdomain" do
+        before { controller.stub_chain( :request, :subdomain ).and_return( 'emmysorganics' ) }
+        
+        it "returns the frame matching the subdomain + .com" do
+          Frame.should_receive( :find_by_domain )
+               .with( 'emmysorganics.com' )
+               .and_return( requested_frame )
+          
+          helper.current_frame.should == requested_frame
+        end
+      end
+    end
+    
+    context "if a frame matching the requested domain is found" do
       it "returns the frame matching the requested domain" do
         Frame.should_receive( :find_by_domain )
              .with( 'test.host' )
