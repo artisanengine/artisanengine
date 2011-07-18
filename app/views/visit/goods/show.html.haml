@@ -13,9 +13,16 @@
 	
 	#purchase	
 		= form_for new_line_item do |f|
-			#options
-				= f.select :variant_id, options_from_collection_for_select( good.variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
+		
+			- if good.variants.count == 1 and good.variants.first.values_to_s.blank?
+				= hidden_field_tag "line_item[variant_id]", good.variants.first.id
+			- else
+				#options
+					= f.select :variant_id, options_from_collection_for_select( good.variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
 			#price
+				- if good.variants.count == 1 and good.variants.first.values_to_s.blank?
+					= good.variants.first.price.format
+					
 			#complete
 				= f.submit 'Add to Order'
 	#images

@@ -14,7 +14,7 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
     visit good_page_for 'Bag of Tricks'
   end
   
-  scenario "A visit can select a variant using the variant drop-down" do
+  scenario "A visitor can select a variant using the variant drop-down" do
     # Then I should see a variant drop down.
     page.should have_selector 'select.main_variant_selector' do
       page.should have_selector 'option', text: 'Small / Blue / Cloth'
@@ -63,5 +63,39 @@ feature 'Select a Variant Using Option Drop-Downs', %q{
     
     # Then I should see $50.00.
     page.should have_selector '#price', text: '$50.00'
+    
+    # And when I click Add to Order,
+    click_button 'Add to Order'
+    
+    # Then I should see a line item from the variant.
+    within '.line_item' do
+      page.should have_content 'Bag of Tricks'
+      page.should have_content '$50.00'
+      page.should have_content 'Large / Red / Cloth'
+    end
+  end
+  
+  scenario "A visitor does not see select lists for a good with only the Default option" do
+    # Given there is a good with only the default option,
+    good = Good.generate name: 'Plain Vanilla'
+    good.variants.first.update_attributes price: "$50.00"
+    
+    # When I visit the page for the good,
+    visit good_page_for 'Plain Vanilla'
+    
+    # Then I should not see any select lists,
+    page.should have_no_selector 'select'
+    
+    # And I should see the variant's price.
+    page.should have_selector '#price', text: '$50.00'
+    
+    # And when I click Add to Order,
+    click_button 'Add to Order'
+    
+    # Then I should see a line item with the good's name and price.
+    within '.line_item' do
+      page.should have_content 'Plain Vanilla'
+      page.should have_content '$50.00'
+    end
   end
 end

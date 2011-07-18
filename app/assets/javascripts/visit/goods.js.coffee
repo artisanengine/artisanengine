@@ -20,9 +20,11 @@ ArtisanEngine.buildOptionSelects = (options) ->
 		
 		if currentVariant
 			$( '#price' ).html( currentVariant.price )
-			$( '#variant' ).val( currentVariant.id )
+			$( '.main_variant_selector' ).val( currentVariant.id )
+			$( 'input[type=submit]' ).removeAttr( 'disabled' )
 		else
 			$( '#price' ).html( 'Not available.' )
+			$( 'input[type=submit]' ).attr( 'disabled', 'disabled' )
 	)
 	
 	# Initialize original data.

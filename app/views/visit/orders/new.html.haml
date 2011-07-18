@@ -11,7 +11,12 @@
 			%tbody
 				- for line_item in order.line_items
 					%tr[ line_item ]
-						%td= line_item.name
+						%td
+							= line_item.name
+							- unless line_item.options.blank?
+								%br
+								= line_item.options
+								
 						%td= text_field_tag "line_item[#{ line_item.id }]", line_item.quantity
 						%td= ( line_item.price * line_item.quantity ).format
 			%tbody
