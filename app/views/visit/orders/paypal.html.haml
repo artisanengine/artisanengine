@@ -1,3 +1,9 @@
+= content_for :javascripts do
+	:coffeescript
+		$ ->
+			$( '#loading' ).show()
+			$( 'form' ).hide().submit()
+
 = form_tag ActiveMerchant::Billing::Integrations::Paypal.service_url do
 	= hidden_field_tag :cmd, 						'_cart'
 	= hidden_field_tag :upload, 				'1'
@@ -27,3 +33,7 @@
 		= hidden_field_tag :"quantity_#{ index + 1 }", 	item.quantity
 			
 	= submit_tag 'Continue to PayPal'
+
+#loading{ :style => 'display:none; text-align: center;' }
+	%h3 You are being redirected to PayPal's secure server to complete your payment.
+	= image_tag 'loading.gif'

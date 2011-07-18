@@ -37,12 +37,12 @@ def checkout( options = {} )
   
   visit order_page
   click_link 'Checkout'
-  fill_in_valid_checkout_information( email: email )
+  fill_in_valid_checkout_information( options )
   click_button 'Pay with PayPal'
 end
 
 def fill_in_valid_checkout_information( options = {} )
-  email = options[ :email ] || 'billy.thekid@varmints.net'
+  email = options[ :as ] || 'billy.thekid@varmints.net'
   
   fill_in 'E-Mail',      with: email
   
@@ -53,6 +53,11 @@ def fill_in_valid_checkout_information( options = {} )
   fill_in 'City',        with: 'San Francisco'
   fill_in 'Postal Code', with: '92531'
   
-  select  'United States',  from: 'Country'
-  fill_in 'State/Province', with: 'CA'
+  select  'United States', from: 'Country'
+  
+  if options[ :js ]
+    select 'California', from: 'State/Province'
+  else
+    fill_in 'State/Province', with: 'CA'
+  end
 end
