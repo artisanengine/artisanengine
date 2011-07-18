@@ -53,10 +53,10 @@ module Visit
             create_failed_order_transaction( order, params )
             order.fail!
           end
-        rescue => e
-          logger.error "An error occurred while handling a PayPal IPN. Please investigate."
-          create_failed_order_transaction( order, params )
-          order.fail!
+        #rescue => e
+        #  logger.error "An error occurred while handling a PayPal IPN. Please investigate."
+        #  create_failed_order_transaction( order, params )
+        #  order.fail!
         end
       else
         logger.error "Could not verify PayPal's IPN. Please investigate."

@@ -10,6 +10,9 @@ feature "Order Confirmation E-Mail", %q{
     # Clear any existing deliveries.
     ActionMailer::Base.deliveries.clear
     
+    # Given there is a frame with an artisan,
+    use_frame( 'ae.test' ).artisans << Artisan.spawn( email: 'varamyr@sixskins.com' )
+    
     # Given there are three goods,
     Good.generate name: 'Bandana'
     Good.generate name: 'Saddle'

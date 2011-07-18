@@ -11,6 +11,7 @@ class Frame < ActiveRecord::Base
   # Associations
   
   has_many :settings
+  has_many :artisans
   has_many :patrons
   has_many :pages
   has_many :users

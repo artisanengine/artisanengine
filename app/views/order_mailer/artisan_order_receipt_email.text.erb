@@ -1,0 +1,13 @@
+Dear <%= @artisan.first_name %>,
+		
+You have received payment for the following items:
+
+<% for line_item in @line_items %>
+	<%= line_item.quantity.to_s + "x " + line_item.name %>
+	<%= line_item.options unless line_item.options.empty? %>
+<% end %>
+		
+You can view and manage this order's details at <%= manage_order_url( @order, host: @frame.domain ) %>.
+		
+Love,
+ArtisanEngine

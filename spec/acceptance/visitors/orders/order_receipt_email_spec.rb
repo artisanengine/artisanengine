@@ -10,6 +10,9 @@ feature "Order Receipt E-Mail", %q{
     # Clear any existing deliveries.
     ActionMailer::Base.deliveries.clear
     
+    # And the test frame has an artisan,
+    use_frame( 'ae.test' ).artisans << Artisan.spawn( email: 'varamyr@sixskins.com' )
+    
     # Given there are three goods,
     Good.generate name: 'Bandana'
     Good.generate name: 'Saddle'
@@ -28,17 +31,18 @@ feature "Order Receipt E-Mail", %q{
     # Then the artisan should receive an E-Mail.
     ActionMailer::Base.deliveries.should_not be_empty
   
-    email = ActionMailer::Base.deliveries.last
+    email = ActionMailer::Base.deliveries[1]
     
     email.from.should    include 'noreply@artisanengine.com'
-    email.to.should      include 'whatevernotsureyet'
+    email.to.should      include 'varamyr@sixskins.com'
     email.subject.should == 'You have received an order!'
     
-    email.encoded.should =~ /You have received payment for the following items/
+    email.encoded.should =~ /You have received a paid order for the following items/
     email.encoded.should =~ /Bandana/
     email.encoded.should =~ /Saddle/
     email.encoded.should =~ /Six Shooter/
     email.encoded.should =~ /You can view and manage this order's details/
+    email.encoded.should =~ /ae.test\/manage\/orders/
     email.encoded.should =~ /ArtisanEngine/
   end
 end

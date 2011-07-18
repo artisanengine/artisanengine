@@ -1,0 +1,29 @@
+%html
+	%head
+		%meta{ 'http-equiv' => 'Content-Type', content: 'text/html; charset=UTF-8' }
+		
+	%body
+		%p Dear #{ @artisan.first_name },
+		
+		%p You have received a paid order for the following items:
+		
+		%table
+			%tbody
+				- for line_item in @line_items
+					%tr.line_item
+						%td.quantity
+							= line_item.quantity.to_s + "x"
+						%td.description
+							= line_item.name
+							- unless line_item.options.blank?
+								%br
+								= line_item.options
+		
+		%p 
+			You can view and manage this order's details 
+			= link_to 'here.', manage_order_url( @order, host: @frame.domain )
+		
+		%p
+			Love,
+			%br
+			ArtisanEngine

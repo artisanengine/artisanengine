@@ -16,10 +16,11 @@ class OrderMailer < ActionMailer::Base
     @frame      = frame
     @order      = order
     @patron     = order.patron
+    @artisan    = frame.artisans.first
     @line_items = order.line_items
 
     mail( from:    "noreply@artisanengine.com",
-          to:      "frame.artisan.email",
+          to:      @frame.artisans.first.email,
           subject: "You have received an order!" )
   end
   
