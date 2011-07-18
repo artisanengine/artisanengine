@@ -1,6 +1,6 @@
 module Develop
   class SessionsController < Devise::SessionsController
-    layout 'develop'
+    layout 'authenticate'
     
     def after_sign_in_path_for( resource_or_scope )
       develop_path

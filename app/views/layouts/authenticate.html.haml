@@ -1,0 +1,15 @@
+!!!
+
+%html
+	%head
+		%title Sign In
+		= stylesheet_link_tag "application", "manage"
+		= csrf_meta_tags
+
+	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
+		#wrapper.container
+			= yield
+			
+			%footer
+				= render 'notifications' unless flash.empty?
+				= render 'session_info'
