@@ -28,7 +28,7 @@ ArtisanEngine.buildOptionSelects = (options) ->
 	)
 	
 	# Initialize original data.
-	$( '#price' ).html( variants[0].price )
+	$( '#price' ).html( variants[0].price ) if variants[0]
 	
 	# Hide original select.
 	$( '.main_variant_selector' ).hide()
