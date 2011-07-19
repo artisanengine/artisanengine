@@ -4,7 +4,7 @@ module Visit
     
     expose( :display_cases ) { current_frame.display_cases }
     expose( :display_case )
-    expose( :goods )         { Good.joins( :collects ).where( "collects.display_case_id = ?", display_case.id ).order( "collects.display_order ASC" ).all }
+    expose( :goods )         { display_case.goods_in_display_order }
     
     # ------------------------------------------------------------------
     private

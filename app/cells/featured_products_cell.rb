@@ -8,7 +8,7 @@ class FeaturedProductsCell < Cell::Rails
     frame = state[ :frame ]
     limit = state[ :limit ] || 1
     
-    @goods = frame.featured_case.goods.limit( limit )
+    @goods = frame.featured_case.goods_in_display_order.limit( limit )
     render
   end
 

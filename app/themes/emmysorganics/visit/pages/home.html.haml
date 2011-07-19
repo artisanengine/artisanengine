@@ -60,7 +60,7 @@
 			.block_content
 				= render_cell :featured_products, :display, frame: current_frame
 			.block_bottom
-				= link_to 'More Info'
+				= link_to 'More Info', current_frame.featured_case.goods_in_display_order.first
 		
 		#networking
 			%p.placeholder Networking Links

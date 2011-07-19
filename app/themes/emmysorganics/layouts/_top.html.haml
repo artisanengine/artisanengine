@@ -9,7 +9,7 @@
 		%p#bag_text
 			%span#view_bag View Shopping Bag
 			%br
-			= link_to '(0) Items', '#', id: 'bag_count'
+			= link_to "(#{ current_order.line_items.count }) #{ pluralize( current_order.line_items.count, 'Item' ).gsub(/^\d+\s/, "") }", new_order_path, id: 'bag_count'
 
 #top_navigation
 	%nav#top
