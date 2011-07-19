@@ -29,9 +29,23 @@ body.display_case
 				select
 					width: 100%
 					float: right
-				
+				#quantity
+					select
+						width: 50%
+						+leader( 0.5 )
+					label
+						color: lighten( $default-text-color, 25% )
+						+adjust-font-size-to( 11px )
+						width: 50%
+						padding-right: 2px
+						+box-sizing( border-box )
+						float: left
+						text-align: right
+						+leader( 0.5 )
+					
 				input[type=submit]
 					float: right
+					clear: both
 					background: $emmys-purple
 					color: $emmys-white
 					border: none
