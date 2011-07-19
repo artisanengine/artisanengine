@@ -25,8 +25,22 @@ class Post < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Scopes
   
-  scope :by_year,            lambda { |year| { conditions: { created_at: Date.new( year.to_i, 1, 1 )..Date.new( year.to_i + 1, 1, 1 ) } } } 
-  scope :tagged_with,        lambda { |tag| joins( :tags ).where( "tags.name = ?", tag.name ) }
+  scope :by_year,            lambda { |year| 
+                               year = Date.new( year.to_i )
+                               where created_at: year.beginning_of_year..year.beginning_of_year.next_year 
+                             }
+                             
+  scope :by_month,           lambda { |year, month| 
+                               month = Date.new( year.to_i, month.to_i )
+                               where created_at: month.beginning_of_month..month.beginning_of_month.next_month 
+                              }
+  
+  scope :by_day,             lambda { |year, month, day| 
+                               day = Date.new( year.to_i, month.to_i, day.to_i )
+                               where created_at: day.beginning_of_day..day.end_of_day
+                             }
+  
+  scope :tagged_with,        lambda { |tag_name| joins( :tags ).where( "tags.name = ?", tag_name ) }
   scope :descending_by_date, lambda { order( "posts.created_at DESC" ) }
   
   # ------------------------------------------------------------------

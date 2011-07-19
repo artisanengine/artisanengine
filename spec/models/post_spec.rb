@@ -52,15 +52,12 @@ describe Post do
   
   context "scopes: " do
     describe "::tagged_with: " do
-      it "returns all posts tagged with the given tag objects" do
+      it "returns all posts tagged with the given tag names" do
         post1 = Post.generate tag_names: "man, bear, pig"
         post2 = Post.generate tag_names: "dog, bear"
-        
-        man   = Tag.find_by_name( 'man' )
-        bear  = Tag.find_by_name( 'bear' )
-        
-        Post.tagged_with( man ).count.should  == 1
-        Post.tagged_with( bear ).count.should == 2
+
+        Post.tagged_with( 'man' ).count.should  == 1
+        Post.tagged_with( 'bear' ).count.should == 2
       end
     end
     
@@ -72,6 +69,26 @@ describe Post do
         Post.generate created_at: Date.new( 2011, 1, 1 )
         
         Post.by_year( 2010 ).count.should == 2
+      end
+    end
+    
+    describe "::by_month" do
+      it "returns all posts created in the given month" do
+        Post.generate created_at: Date.new( 2010, 1, 1 )
+        Post.generate created_at: Date.new( 2010, 1, 31 )
+        Post.generate created_at: Date.new( 2010, 2, 1 )
+        Post.generate created_at: Date.new( 2010, 2, 28 )
+        
+        Post.by_month( 2010, 2 ).count.should == 2
+      end
+    end
+    
+    describe "::by_day" do
+      it "returns all posts created on the given day" do
+        Post.generate created_at: Date.new( 2010, 1, 1 )
+        Post.generate created_at: Date.new( 2010, 1, 2 )
+        
+        Post.by_day( 2010, 1, 2 ).count.should == 1
       end
     end
     

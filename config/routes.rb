@@ -37,10 +37,10 @@ ArtisanEngine::Application.routes.draw do
     resources :pages, only: [ :show ]
     
     resource  :blog, only: [ :show ] do
-      get '/year/:year' => 'posts#index', as: 'by_year'
-      get '/:tag_id'    => 'posts#index', as: 'by_tag'
-      resources :posts, only: [ :show ]
+      resources :posts, only: [ :index ]
+      get '/:year(/:month(/:day))' => 'posts#index', as: 'by_date'
     end
+    get '/blog/:year/:month/:day/:id' => 'posts#show',  as: 'blog_post'
     
     resources :goods, only: [ :show ]
     resources :display_cases, path: 'collections'

@@ -2,8 +2,8 @@
 	%h3.sort-heading View by Topic
 	%ul#tags
 		- for tag in tags
-			%li= link_to tag.name, "/blog/#{ tag.id }"
+			%li= link_to tag.name, blog_posts_path( tagged_with: tag.name )
 			
 	%h3.sort-heading View by Date
 	%ul#dates
-		%li= link_to '2011', '/blog/year/2011'
+		%li= link_to '2011', '/blog/2011'
