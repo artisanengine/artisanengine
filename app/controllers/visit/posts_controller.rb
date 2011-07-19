@@ -2,9 +2,6 @@
 # Exposing "tag" here instead of "requested_tag" 
 # breaks any method with the word "tag" in it.
 
-# TODO: Possibly refactor this using has_scope and change URLs to query
-# strings.
-
 module Visit
   class PostsController < Visit::VisitController
     layout :blog_or_visit
@@ -23,9 +20,7 @@ module Visit
     end
     
     def load_posts!
-      if params[ :year ] and params[ :month ] and params[ :day ]
-        posts = blog.posts.by_day( params[ :year ], params[ :month ], params[ :day ] )
-      elsif params[ :year ] and params[ :month ]
+      if params[ :year ] and params[ :month ]
         posts = blog.posts.by_month( params[ :year ], params[ :month ] )
       elsif params[ :year ]
         posts = blog.posts.by_year( params[ :year ] )

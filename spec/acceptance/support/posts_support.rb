@@ -12,6 +12,6 @@ end
 
 def visit_post( title )
   post = Post.find_by_title( title )
-  visit "/blog/#{ post.created_at.strftime( "%Y" ) }/#{ post.created_at.strftime( "%m" ) }/#{ post.created_at.strftime( "%d" ) }/#{ post.id }"
+  visit "/blog/#{ post.created_at.strftime( "%Y" ) }/#{ post.created_at.strftime( "%m" ) }/#{ post.id }"
 end
   

@@ -58,21 +58,6 @@ feature 'Filter Posts', %q{
     page.should have_no_content 'June Post'
   end
   
-  scenario "A visitor can filter posts by day" do
-    # Given there is a post from January 1st, 2010 and a post from January 2nd, 2010.
-    Post.generate title: '1st Post', created_at: Date.new( 2010, 1, 1 ), blog: @ae_blog
-    Post.generate title: '2st Post', created_at: Date.new( 2010, 1, 2 ), blog: @ae_blog
-    
-    # And I am on the archive page for January 1st, 2010,
-    visit '/blog/2010/01/01'
-    
-    # Then I should see the post from the 1st,
-    page.should have_content '1st Post'
-    
-    # And I should not see the post from the 2nd.
-    page.should have_no_content '2nd Post'
-  end
-  
   scenario "A visitor can filter posts by tag" do
     # Given there is a post tagged Awesome and a post tagged Mediocre,
     Post.generate title: 'Awesome Post',  tag_names: 'Awesome',  blog: @ae_blog

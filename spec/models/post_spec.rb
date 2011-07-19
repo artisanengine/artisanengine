@@ -83,15 +83,6 @@ describe Post do
       end
     end
     
-    describe "::by_day" do
-      it "returns all posts created on the given day" do
-        Post.generate created_at: Date.new( 2010, 1, 1 )
-        Post.generate created_at: Date.new( 2010, 1, 2 )
-        
-        Post.by_day( 2010, 1, 2 ).count.should == 1
-      end
-    end
-    
     describe "::descending_by_date: " do
       it "returns posts in descending order of the date they were created" do
         early  = Post.generate created_at: Date.new( 2009, 12, 31 )

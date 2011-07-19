@@ -34,12 +34,7 @@ class Post < ActiveRecord::Base
                                month = Date.new( year.to_i, month.to_i )
                                where created_at: month.beginning_of_month..month.beginning_of_month.next_month 
                               }
-  
-  scope :by_day,             lambda { |year, month, day| 
-                               day = Date.new( year.to_i, month.to_i, day.to_i )
-                               where created_at: day.beginning_of_day..day.end_of_day
-                             }
-  
+    
   scope :tagged_with,        lambda { |tag_name| joins( :tags ).where( "tags.name = ?", tag_name ) }
   scope :descending_by_date, lambda { order( "posts.created_at DESC" ) }
   

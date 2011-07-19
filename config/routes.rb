@@ -38,9 +38,9 @@ ArtisanEngine::Application.routes.draw do
     
     resource  :blog, only: [ :show ] do
       resources :posts, only: [ :index ]
-      get '/:year(/:month(/:day))' => 'posts#index', as: 'by_date'
+      get '/:year(/:month)' => 'posts#index', as: 'by_date'
     end
-    get '/blog/:year/:month/:day/:id' => 'posts#show',  as: 'blog_post'
+    get '/blog/:year/:month/:id' => 'posts#show',  as: 'blog_post'
     
     resources :goods, only: [ :show ]
     resources :display_cases, path: 'collections'
