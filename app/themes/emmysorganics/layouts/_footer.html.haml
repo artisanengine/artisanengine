@@ -2,12 +2,13 @@
 	#footer_signup
 		%h3#signup Get News & Discounts
 	
-		= form_tag '#', class: 'formtastic' do |f|
+		= form_tag subscribe_path, class: 'formtastic' do |f|
 			%p#enter_email enter your email address
-			= text_field_tag 'email'
+			= text_field_tag :email
 			%br
 			= submit_tag 'sign up!'
 			= link_to 'Privacy policy', '#', id: 'privacy'
+			#subscribe_notice= flash[ :subscribe_notice ]
 	
 	%nav.footer#about
 		%h3 about us
