@@ -11,4 +11,4 @@
 		%p.title= post.title
 		%p.snippet
 			= truncate( strip_tags( post.html_content ), length: 150, separator: ' ' )
-			= link_to 'Read More', '#'
+			= link_to 'Read More', path_for_post( post )
