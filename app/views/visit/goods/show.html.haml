@@ -1,9 +1,4 @@
-= content_for( :title ) 		 { good.name }
-= content_for( :body_class ) { 'individual_good' }
-
-= content_for :javascripts do
-	:coffeescript
-		$ -> ArtisanEngine.buildOptionSelects( '#{ options }' )
+= render 'good_head'
 
 %section#good
 	%h1= good.name
@@ -15,9 +10,4 @@
 		= render 'purchase'
 		
 	#images
-		.featured
-			= link_to display_image( good.images.first, '470x470#' ), url_for_image( good.images.first )
-		
-		.additional
-			- for image in good.images.drop( 1 )
-				= link_to display_image( image, '130x85#' ), image.image.remote_url
+		= render 'images', featured_size: '470x470#', additional_size: '130x85#'

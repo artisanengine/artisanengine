@@ -1,0 +1,6 @@
+= content_for( :title ) 		 { good.name }
+= content_for( :body_class ) { 'individual_good' }
+
+= content_for :javascripts do
+	:coffeescript
+		$ -> ArtisanEngine.buildOptionSelects( '#{ options }' )
