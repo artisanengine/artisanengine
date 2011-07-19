@@ -22,6 +22,13 @@ class DisplayCase < ActiveRecord::Base
   validates_presence_of :name, :frame
   
   # ------------------------------------------------------------------
+  # Methods
+  
+  def goods_in_display_order
+    goods.order( "collects.display_order ASC" )
+  end
+  
+  # ------------------------------------------------------------------
   private
   
   def ensure_not_featured_case

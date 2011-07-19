@@ -37,4 +37,20 @@ describe DisplayCase do
       end
     end
   end
+  
+  context "::goods_in_display_order" do
+    it "returns all its goods in their proper display order" do
+      display_case = DisplayCase.generate
+      
+      good_1 = Good.generate
+      good_2 = Good.generate
+      
+      display_case.goods << good_1
+      display_case.goods << good_2
+      
+      display_case.collects.last.update_attributes display_order_position: :first
+      
+      display_case.goods_in_display_order.should == [ good_2, good_1 ]
+    end
+  end
 end
