@@ -1,35 +1,41 @@
-%h1 Your Order
+= content_for( :title )			 { "Your Order" }
+= content_for( :body_class ) { "new_order" }
 
-- if order.line_items.any?
-	= form_tag quantities_line_items_path do
-		%table
-			%thead
-				%tr
-					%th Name
-					%th Quantity
-					%th Total Price
-			%tbody
-				- for line_item in order.line_items
-					%tr[ line_item ]
-						%td
-							= line_item.name
-							- unless line_item.options.blank?
-								%br
-								= line_item.options
+#order_wrapper
+	%h1 Your Order
+
+	- if order.line_items.any?
+		= form_tag quantities_line_items_path do
+			%table
+				%thead
+					%tr
+						%th
+						%th
+						%th Quantity
+						%th Total Price
+				%tbody
+					- for line_item in order.line_items
+						%tr[ line_item ]
+							%td.image= display_image( line_item.variant.good.images.first, '50x50#' )
+							%td.name
+								= line_item.name
+								- unless line_item.options.blank?
+									%br
+									%span.options= line_item.options
 								
-						%td= text_field_tag "line_item[#{ line_item.id }]", line_item.quantity
-						%td= ( line_item.price * line_item.quantity ).format
-			%tbody
-				%tr
-					%td
-					%td= submit_tag 'Update'
-					%td.total
-						Total
-						%br
-						= order.line_total.format
-			%tbody
-				%tr
-					%td{ colspan: 2 }
-					%td= link_to 'Checkout', checkout_path
-- else
-	%p Your order is empty.
+							%td.quantity= text_field_tag "line_item[#{ line_item.id }]", line_item.quantity
+							%td.unit_price= ( line_item.price * line_item.quantity ).format
+				%tbody
+					%tr
+						%td{ colspan: 2 }
+						%td= submit_tag 'Update'
+						%td.total
+							Total
+							%br
+							= order.line_total.format
+				%tbody
+					%tr
+						%td{ colspan: 3 }
+						%td= link_to 'Checkout', checkout_path
+	- else
+		%p Your order is empty.

@@ -49,7 +49,7 @@ feature "Checkout an Order", %q{
     end
     
     # And I click Pay with PayPal,
-    click_button 'Pay with PayPal'
+    click_button 'Pay Securely with PayPal'
     
     # Then there should be one pending order,
     Order.count.should == 1
@@ -74,7 +74,7 @@ feature "Checkout an Order", %q{
     check 'Send me news and special offers from Test Frame'
     
     # And I click Pay with PayPal,
-    click_button 'Pay with PayPal'
+    click_button 'Pay Securely with PayPal'
     
     # Then I should see an error,
     page.should have_selector '.error'
@@ -104,7 +104,7 @@ feature "Checkout an Order", %q{
     end
     
     # And I click Pay with PayPal,
-    click_button 'Pay with PayPal'
+    click_button 'Pay Securely with PayPal'
     
     # Then there should be 1 address.
     Address.count.should == 1

@@ -38,7 +38,7 @@ def checkout( options = {} )
   visit order_page
   click_link 'Checkout'
   fill_in_valid_checkout_information( options )
-  click_button 'Pay with PayPal'
+  click_button 'Pay Securely with PayPal'
 end
 
 def fill_in_valid_checkout_information( options = {} )

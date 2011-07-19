@@ -26,17 +26,20 @@
 			)
 
 = semantic_form_for order, url: checkout_path do |f|
-	= f.inputs do
-		= f.input :email
-		= f.input :subscribed, as: :boolean, label: "Send me news and special offers from #{ current_frame.name }"
+	= f.inputs id: "email" do
+		= f.input :email, required: true
+		= f.input :subscribed, as: :boolean, label: "Send me news and special offers from #{ current_frame.name }.", input_html: { checked: "checked" }
 	
 	#shipping_address
+		%h2 Shipping Address
 		= f.inputs :first_name, :last_name, :address_1, :address_2, :country, :city, :province, :postal_code, for: [ :shipping_address, new_shipping_address ]
 		
 		= check_box_tag :shipping_is_billing, '1', !@billing_errors
 		= label_tag 	  :shipping_is_billing, 'My billing address is the same as my shipping address.'
 	
 	#billing_address
+		%h2 Billing Address
 		= f.inputs :first_name, :last_name, :address_1, :address_2, :country, :city, :province, :postal_code, for: [ :billing_address, new_billing_address ]
 	
-	= f.submit 'Pay with PayPal'
+	#complete
+		= f.submit 'Pay Securely with PayPal'

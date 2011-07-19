@@ -1,0 +1,75 @@
+#order_wrapper
+	+column( 24, true )
+	h1
+		+column( 24, true )
+		+rhythm( 0.5, 0, 0, 0.5 )
+	form
+		+column( 24, true )
+		
+		table
+			width: 100%
+			tbody
+				tr:nth-child( odd )
+					background-color: darken( white, 2% )
+				tr:nth-child( even )
+					background-color: darken( white, 5% )
+				td
+					padding: 0.5em
+					
+			td.name
+				width: 80%
+				font-weight: bold
+				.options
+					font-weight: normal
+					color: lighten( $default-text-color, 10% )
+					
+			td.quantity
+				width: 10%
+				input
+					width: 50%
+			td.unit_price
+				width: 10%
+
+form.order
+	+column( 24, true )
+	
+	h2
+		+trailer( 0.5 )
+	
+	fieldset#email
+		+column( 12, true )
+		padding-right: span( 12 ) + 8px
+		+rhythm( 1, 1, 1, 1 )
+		
+		
+		border: 1px solid $emmys-gray
+		
+		input[type=text]
+			width: span( 7 )
+			+trailer( 0.5 )
+		label
+			padding: 0 1em
+		#order_email_input label
+			+adjust-font-size-to( 13px )
+			font-weight: bold
+	
+	#shipping_address, #billing_address
+		+column( 12 )
+		+trailer( 1 )
+		li
+			+column( 12, true )
+			label
+				+column( 3 )
+			input, select
+				+column( 9, true )
+				+box-sizing( border-box )
+				width: span( 9 )
+				+trailer( 0.5 )
+	#billing_address
+		+column( 12, true )
+		
+	#complete
+		clear: both
+		text-align: center
+		height: 2em
+		+trailer( 1 )
