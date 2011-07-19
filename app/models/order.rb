@@ -90,8 +90,8 @@ class Order < ActiveRecord::Base
   
   # Used by the LineItemsController, initialize and return a new line item in the order 
   # using a variant ID.
-  def line_item_from( variant_id = nil )
-    variant_id ? initialize_line_item_with_variant( variant_id ) : line_items.build
+  def line_item_from( variant_id = nil, options = {} )
+    variant_id ? initialize_line_item_with_variant( variant_id, options ) : line_items.build
   end
   
   # Return the order total before any adjustments have been added or subtracted.
@@ -177,11 +177,13 @@ class Order < ActiveRecord::Base
   
   # Check if a line item already exists with the given variant ID. If so, just return
   # that line item with an incremented quantity. Otherwise, initialize a new one.
-  def initialize_line_item_with_variant( variant_id )
+  def initialize_line_item_with_variant( variant_id, options = {} )
+    init_quantity = options[ :quantity ] || 1
+    
     duplicate_line_item           = line_items.where( variant_id: variant_id ).first
-    duplicate_line_item.quantity += 1 and return duplicate_line_item if duplicate_line_item
+    duplicate_line_item.quantity += init_quantity and return duplicate_line_item if duplicate_line_item
 
-    line_items.build variant_id: variant_id
+    line_items.build variant_id: variant_id, quantity: init_quantity
   end
   
   # Find or create a patron based on their E-Mail, and associate any order addresses

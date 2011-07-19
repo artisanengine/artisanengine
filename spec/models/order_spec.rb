@@ -114,6 +114,13 @@ describe Order do
             new_line_item.order.should    == order
             new_line_item.variant.should  == variant
           end
+          
+          context "if a quantity was given" do
+            it "returns a populated new line item using the variant and quantity" do
+              new_line_item = order.line_item_from( variant.id, quantity: 5 )
+              new_line_item.quantity.should == 5
+            end
+          end
         end
 
         context "if a duplicate line item exists in the order" do
@@ -124,6 +131,17 @@ describe Order do
 
             new_line_item.should          == duplicate_line_item
             new_line_item.quantity.should == 2
+          end
+          
+          context "if a quantity was given" do
+            it "returns the existing line item with its quantiy incremented by the given quantity" do
+              duplicate_line_item = LineItem.generate order: order, variant: variant
+
+              new_line_item = order.line_item_from( variant.id, quantity: 10 )
+
+              new_line_item.should          == duplicate_line_item
+              new_line_item.quantity.should == 11
+            end
           end
         end
       end
