@@ -26,6 +26,13 @@ class Good < ActiveRecord::Base
   validates_presence_of :name, :frame
   
   # ------------------------------------------------------------------
+  # Methods
+  
+  def has_variation?
+    true if options.count > 1 or variants.count > 1
+  end
+  
+  # ------------------------------------------------------------------
   private
   
   def create_first_option_and_variant
