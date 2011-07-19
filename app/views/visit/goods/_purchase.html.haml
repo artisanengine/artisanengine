@@ -1,3 +1,5 @@
+- quantity_select ||= false
+
 = form_for new_line_item do |f|
 
 	- if good.has_variation?
@@ -5,6 +7,10 @@
 			= f.select :variant_id, options_from_collection_for_select( good.variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
 	- else
 		= hidden_field_tag "line_item[variant_id]", good.variants.first.id
+	
+	- if quantity_select
+		#quantity
+			= f.select :quantity, options_for_select( (1..10).to_a )
 		
 	#price
 		- unless good.has_variation?

@@ -8,3 +8,5 @@
 		%div[ good ]
 			.image= link_to display_image( good.images.first, '182x182#' ), good
 			%p.description= link_to good.name, good
+			.quick_purchase
+				= render 'visit/goods/purchase', good: good, new_line_item: LineItem.new, quantity_select: true

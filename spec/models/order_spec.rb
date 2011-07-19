@@ -137,7 +137,7 @@ describe Order do
             it "returns the existing line item with its quantiy incremented by the given quantity" do
               duplicate_line_item = LineItem.generate order: order, variant: variant
 
-              new_line_item = order.line_item_from( variant.id, quantity: 10 )
+              new_line_item = order.line_item_from( variant.id, quantity: "10" )
 
               new_line_item.should          == duplicate_line_item
               new_line_item.quantity.should == 11

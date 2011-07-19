@@ -178,7 +178,8 @@ class Order < ActiveRecord::Base
   # Check if a line item already exists with the given variant ID. If so, just return
   # that line item with an incremented quantity. Otherwise, initialize a new one.
   def initialize_line_item_with_variant( variant_id, options = {} )
-    init_quantity = options[ :quantity ] || 1
+    init_quantity = options[ :quantity ].to_i
+    init_quantity = 1 if init_quantity == 0
     
     duplicate_line_item           = line_items.where( variant_id: variant_id ).first
     duplicate_line_item.quantity += init_quantity and return duplicate_line_item if duplicate_line_item

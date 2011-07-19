@@ -1,2 +1,4 @@
 #sidebar
-	Goods Sidebar
+	- for display_case in current_frame.display_cases
+		%div[ display_case ]
+			= link_to display_case.name, display_case

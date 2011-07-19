@@ -3,7 +3,7 @@ module Visit
     respond_to :html
     
     expose( :order )     { current_order }
-    expose( :line_item ) { order.line_item_from( params[ :line_item ][ :variant_id ] ) }
+    expose( :line_item ) { order.line_item_from( params[ :line_item ][ :variant_id ], quantity: params[ :line_item ][ :quantity ].to_i ) }
     
     def create
       line_item.save
