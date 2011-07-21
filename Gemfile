@@ -5,7 +5,7 @@ source 'http://rubygems.org'
 
 # Edge Rails and Sprockets.
 gem 'rails',                  git: 'git://github.com/rails/rails.git', branch: '3-1-stable'
-gem 'sprockets',              git: 'git://github.com/sstephenson/sprockets.git'
+gem 'sprockets',              '2.0.0.beta.10'
 
 gem 'thin',                   '1.2.11'        # Run Thin to match Heroku.
 
