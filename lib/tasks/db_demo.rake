@@ -37,7 +37,7 @@ namespace :db do
     # Images
     
     for frame in Frame.all
-      5.times { sleep 1; Image.generate frame: frame }
+      5.times { sleep 0.1; Image.generate frame: frame }
     end
     
     # ------------------------------------------------------------------
