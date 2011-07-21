@@ -59,7 +59,7 @@ group :test do
 	gem 'database_cleaner',     '0.6.7'         # Database management for JS testing.
 	gem 'launchy',              '0.4.0'         # Open pages during testing.
 	gem 'watchr',							  '0.7'           # All-purpose automation.
-	gem 'spork',							  '0.9.0rc8'      # DRb server for Faster tests.
+	gem 'spork',							  '0.9.0rc8'      # DRb server for faster tests.
 end
 
 group :development do
