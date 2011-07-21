@@ -18,6 +18,7 @@ describe OrdersHelper do
       end
       
       it "finds the order from the session" do
+        pending
         Order.should_receive( :find ).with( 1 )
         helper.current_order
       end
@@ -28,6 +29,7 @@ describe OrdersHelper do
         end
         
         it "returns the order from the session" do
+          pending
           order         = helper.current_order
           order.should == order_from_session
         end

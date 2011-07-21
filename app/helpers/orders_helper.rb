@@ -2,7 +2,7 @@ module OrdersHelper
   def current_order
     if session[ :order_id ]
       begin
-        order = Order.find( session[ :order_id ] )
+        order = current_frame.orders.find( session[ :order_id ] )
         
         # Don't bother returning an order if it isn't new or pending,
         # since a visitor can't edit it at that point anyway.
