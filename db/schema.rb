@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
     t.integer  "order_id",                      :null => false
     t.integer  "fulfillment_id"
     t.integer  "variant_id"
+    t.string   "name"
+    t.string   "options"
     t.integer  "quantity",       :default => 1, :null => false
     t.integer  "price_in_cents", :default => 0, :null => false
     t.string   "currency"

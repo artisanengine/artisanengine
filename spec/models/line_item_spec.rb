@@ -12,7 +12,7 @@ describe LineItem do
       new_line_item.variant = nil
       new_line_item.should_not be_valid
     end
-    
+   
     it "is not valid without an order" do
       new_line_item.order = nil
       new_line_item.should_not be_valid
@@ -21,9 +21,13 @@ describe LineItem do
   
   context "callbacks: " do
     describe "before creating: " do
-      it "captures its variant's price" do
+      it "captures its variant's price, options, and name" do
         new_line_item.save
-        new_line_item.price.should == new_line_item.variant.price
+        variant = new_line_item.variant
+        
+        new_line_item.name.should    == variant.name
+        new_line_item.options.should == variant.values_to_s( false )
+        new_line_item.price.should   == variant.price
       end
     end
     

@@ -195,6 +195,8 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.integer :order_id,          null: false
       t.integer :fulfillment_id
       t.integer :variant_id
+      t.string  :name
+      t.string  :options
       t.integer :quantity,          null: false, default: 1
       t.integer :price_in_cents,    null: false, default: 0
       t.string  :currency
