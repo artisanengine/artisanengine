@@ -1,6 +1,6 @@
 module Manage
   class OrdersController < Manage::ManageController
-    expose( :orders )             { current_frame.orders.except_new }
+    expose( :orders )             { current_frame.orders.except_new.order( "orders.id_in_frame DESC" ) }
     expose( :order )              { orders.find_by_id_in_frame( params[ :id ] ) }
     
     expose( :patron )             { order.patron }
