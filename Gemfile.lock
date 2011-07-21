@@ -185,6 +185,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.1.4)
+    newrelic_rpm (3.1.0)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
     pg (0.11.0)
@@ -283,6 +284,7 @@ DEPENDENCIES
   kaminari (= 0.12.4)
   launchy (= 0.4.0)
   money (= 3.7.1)
+  newrelic_rpm (= 3.1.0)
   pg (= 0.11.0)
   rails!
   rake (= 0.8.7)
