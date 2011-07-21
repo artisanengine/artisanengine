@@ -14,9 +14,6 @@
 	
 	#goods_wrapper
 		+column( 24, true )
-		
-		img
-			+single-box-shadow
 	
 		#sidebar
 			+column( 4 )
@@ -41,7 +38,22 @@
 	#good
 		+leader( 1 )
 		+column( 14 )
-	
+		
+		.featured
+			+column( 14, true )
+			text-align: center
+		
+		#additional_images
+			+column( 14, true )
+			+trailer( 1 )
+			
+			.additional_image
+				+column( 14/3 )
+				&:last-child
+					+column( 14/3, true )
+				text-align: center
+				
+			
 	#good_right
 		+leader( 4 )
 		+column( 6, true )

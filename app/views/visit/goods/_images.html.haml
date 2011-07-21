@@ -4,6 +4,7 @@
 .featured
 	= link_to display_image( good_images.first, featured_size ), url_for_image( good_images.first )
 
-.additional
+#additional_images
 	- for image in good_images.drop( 1 )
-		= link_to display_image( image, additional_size ), url_for_image( image )
+		.additional_image
+			= link_to display_image( image, additional_size ), url_for_image( image )
