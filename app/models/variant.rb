@@ -85,7 +85,7 @@ class Variant < ActiveRecord::Base
   end
   
   def ensure_not_last_variant
-    return false if good.variants.count == 1
+    errors.add :base, "Can't delete a good's last variant." and return false if good.variants.count == 1
   end
   
 end

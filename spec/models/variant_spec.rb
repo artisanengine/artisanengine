@@ -47,7 +47,9 @@ describe Variant do
       it "cannot be destroyed if it is its good's only variant" do
         good    = Good.generate
         variant = good.variants.first
+        
         variant.destroy.should be_false
+        variant.errors.full_messages.should include "Can't delete a good's last variant."
       end
     end
   end
