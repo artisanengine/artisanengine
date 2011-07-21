@@ -171,7 +171,7 @@ describe Order do
         line_item_3 = LineItem.generate order: order, price: 1
         line_item_3.update_attributes price: 1
 
-        order.line_total.should == 321
+        order.unadjusted_total.should == 321
       end
     end
         

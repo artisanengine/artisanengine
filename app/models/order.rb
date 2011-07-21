@@ -94,8 +94,9 @@ class Order < ActiveRecord::Base
     variant_id ? initialize_line_item_with_variant( variant_id, options ) : line_items.build
   end
   
-  # Return the order total before any adjustments have been added or subtracted.
-  def line_total
+  # Return the order total before any adjustments have been calculated for
+  # itself or its line items.
+  def unadjusted_total
     total = Money.new( 0, 'USD' )
     
     for line_item in line_items
@@ -108,7 +109,7 @@ class Order < ActiveRecord::Base
   # Return the final order total after line item prices have been calculated
   # and adjustments have been made.
   def adjusted_total
-    total = line_total
+    total = unadjusted_total
     
     for adjustment in adjustments
       total += adjustment.amount
@@ -117,7 +118,7 @@ class Order < ActiveRecord::Base
     total
   end
   
-  # Determine what proportion of an orders line items are fulfilled.
+  # Determine what proportion of an order's line items are fulfilled.
   def fulfillment_status
     return "Not Fulfilled"       if line_items.fulfilled.count == 0
     return "Fulfilled"           if line_items.fulfilled.count == line_items.count
