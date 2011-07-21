@@ -4,10 +4,10 @@ class Order < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
   
-  has_many   :line_items
-  has_many   :fulfillments, through: :line_items, uniq: true
-  has_many   :order_transactions
-  has_many   :adjustments, as: :adjustable
+  has_many   :line_items,                                           dependent: :destroy
+  has_many   :fulfillments,       through: :line_items, uniq: true, dependent: :destroy
+  has_many   :order_transactions,                                   dependent: :destroy
+  has_many   :adjustments,        as:      :adjustable,             dependent: :destroy
   
   belongs_to :frame
   belongs_to :patron

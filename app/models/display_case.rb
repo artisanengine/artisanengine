@@ -13,7 +13,7 @@ class DisplayCase < ActiveRecord::Base
   # Associations
   
   belongs_to :frame
-  has_many   :collects, dependent: :destroy
+  has_many   :collects,                     dependent: :destroy
   has_many   :goods,    through: :collects
   
   # ------------------------------------------------------------------

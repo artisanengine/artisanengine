@@ -5,7 +5,7 @@ class Blog < ActiveRecord::Base
   # Associations
   
   belongs_to :frame
-  has_many   :posts
+  has_many   :posts, dependent: :destroy
   
   # ------------------------------------------------------------------
   # Validations
