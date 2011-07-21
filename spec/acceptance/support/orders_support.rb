@@ -22,13 +22,19 @@ def add_to_order( good_name )
 end
 
 def simulate_ipn( options = {} )
+  shipping = options[ :shipping ] || '6.23'
+  tax      = options[ :tax ]      || '9.12'
+  
+  gross          = options[ :gross ] || Order.last.adjusted_total
+  adjusted_gross = gross + tax.to_money + shipping.to_money
+  
   page.driver.post '/ipns', txn_id:         options[ :ref ]      || 'TESTTRANS',
                             invoice:        options[ :order ]    || Order.last.id,
                             payment_status: options[ :status ]   || 'Completed',
                             mc_fee:         options[ :fee ]      || '2.28',
-                            mc_gross:       options[ :gross ]    || Order.last.adjusted_total,
-                            mc_shipping:    options[ :shipping ] || '6.23',
-                            tax:            options[ :tax ]      || '9.12',
+                            mc_gross:       adjusted_gross,
+                            mc_shipping:    shipping,
+                            tax:            tax,
                             test:           options[ :test_ipn ] || '1'
 end
 
