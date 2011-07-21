@@ -77,7 +77,3 @@ end
 group :staging, :production do
   gem 'pg',                   '0.11.0'        # Use Postgres DB in production to match Heroku.
 end
-
-group :production do
-  gem 'newrelic_rpm',         '3.1.0'
-end
