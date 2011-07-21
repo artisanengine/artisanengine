@@ -13,9 +13,12 @@
 
 	#patron
 		%h2 Patron
-		= link_to "#{ patron.first_name } #{ patron.last_name }", manage_patron_path( patron )
-		%br
-		= patron.email
+		- if patron
+			= link_to "#{ patron.first_name } #{ patron.last_name }", manage_patron_path( patron )
+			%br
+			= patron.email
+		- else
+			%p This order's patron has been removed from the manifest.
 
 	#shipping
 		%h2 Shipping Address
