@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   has_many   :line_items
   has_many   :fulfillments, through: :line_items, uniq: true
   has_many   :order_transactions
-  has_many   :adjustments
+  has_many   :adjustments, as: :adjustable
   
   belongs_to :frame
   belongs_to :patron

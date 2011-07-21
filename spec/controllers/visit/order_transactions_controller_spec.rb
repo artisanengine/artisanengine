@@ -17,7 +17,7 @@ describe Visit::OrderTransactionsController do
       notification.stub :acknowledge
       notification.stub :invoice
       notification.stub :complete?
-      notification.stub :gross
+      notification.stub gross: 100
       notification.stub :transaction_id
     end
     
@@ -53,25 +53,25 @@ describe Visit::OrderTransactionsController do
         it "creates a successful OrderTransaction with the details" do
           OrderTransaction.should_receive( :create! ).with( order:     order, 
                                                             success:   true, 
-                                                            amount:    order.total,
+                                                            amount:    notification.gross,
                                                             reference: nil,
                                                             action:    "purchase",
-                                                            params:    { "mc_shipping"=>"12", "tax"=>"12" },
+                                                            params:    { "mc_shipping"=>"12", "tax"=>"12", "mc_fee"=>"2" },
                                                             payment_service: 'PayPal WPS' )
-          post :ipns, mc_shipping: "12", tax: "12"
+          post :ipns, mc_shipping: "12", tax: "12", mc_fee: "2"
         end
         
         it "creates Adjustments for PayPal's shipping, tax, and fee" do
-          Adjustment.should_receive( :create! ).with( message: "PayPal-Calculated Shipping", amount: "12", order: order )
-          Adjustment.should_receive( :create! ).with( message: "PayPal-Calculated Tax", amount: "12", order: order )
-          Adjustment.should_receive( :create! ).with( message: "PayPal Transaction Fee", amount: "-1", order: order )
+          Adjustment.should_receive( :create! ).with( message: "PayPal-Calculated Shipping", amount: "12", adjustable: order )
+          Adjustment.should_receive( :create! ).with( message: "PayPal-Calculated Tax", amount: "12", adjustable: order )
+          Adjustment.should_receive( :create! ).with( message: "PayPal Transaction Fee", amount: "-1", adjustable: order )
           
           post :ipns, mc_shipping: "12", tax: "12", mc_fee: "1"
         end
         
         it "purchases the order" do
           order.should_receive( :purchase! )
-          post :ipns, mc_shipping: "12", tax: "12"
+          post :ipns, mc_shipping: "12", tax: "12", mc_fee: "2"
         end
         
         context "if the order is purchased successfully" do
@@ -84,7 +84,7 @@ describe Visit::OrderTransactionsController do
             OrderMailer.should_receive( :patron_order_confirmation_email ).with( order, @frame )
             OrderMailer.should_receive( :artisan_order_receipt_email ).with( order, @frame )
             
-            post :ipns, mc_shipping: "12", tax: "12"
+            post :ipns, mc_shipping: "12", tax: "12", mc_fee: "2"
           end
         end
       end
@@ -93,7 +93,7 @@ describe Visit::OrderTransactionsController do
         before { notification.stub complete?: false }
         
         it "creates a failed OrderTransaction with the details" do
-          OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {}, payment_service: 'PayPal WPS' )
+          OrderTransaction.should_receive( :create! ).with( order: order, amount: notification.gross, success: false, params: {}, payment_service: 'PayPal WPS' )
           post :ipns
         end
         
@@ -106,7 +106,7 @@ describe Visit::OrderTransactionsController do
     
     context "if the IPN is not succesfully acknowledged" do
       it "creates a failed OrderTransaction with the details" do
-        OrderTransaction.should_receive( :create! ).with( order: order, success: false, params: {}, payment_service: 'PayPal WPS' )
+        OrderTransaction.should_receive( :create! ).with( order: order, amount: notification.gross, success: false, params: {}, payment_service: 'PayPal WPS' )
         post :ipns
       end
       

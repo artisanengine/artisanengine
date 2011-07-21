@@ -228,16 +228,15 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     # Adjustments
     
     create_table :adjustments do |t|
-      t.integer   :order_id,        null: false
-      t.integer   :line_item_id
-      t.integer   :amount_in_cents, null: false, default: 0
-      t.string    :currency
-      t.string    :message,         null: false
+      t.references :adjustable,      null: false, polymorphic: true
+      t.string     :type
+      t.integer    :amount_in_cents, null: false, default: 0
+      t.string     :currency
+      t.decimal    :basis,           precision: 8, scale: 2
+      t.string     :message
       
       t.timestamps
     end
-    
-    add_index :adjustments, [ :id, :order_id ]
     
     # ------------------------------------------------------------------
     # Order Fulfillments

@@ -181,8 +181,8 @@ describe Order do
         line_item_1 = LineItem.generate order: order, quantity: 3
         line_item_1.update_attributes price: 100
         
-        order.adjustments << Adjustment.spawn( amount: 100, order: order )
-        order.adjustments << Adjustment.spawn( amount: -50, order: order )
+        order.adjustments << Adjustment.spawn( amount: 100, adjustable: order )
+        order.adjustments << Adjustment.spawn( amount: -50, adjustable: order )
         
         order.total.should == 350
       end

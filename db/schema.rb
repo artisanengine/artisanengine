@@ -36,16 +36,16 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   add_index "addresses", ["id", "patron_id"], :name => "index_addresses_on_id_and_patron_id"
 
   create_table "adjustments", :force => true do |t|
-    t.integer  "order_id",                       :null => false
-    t.integer  "line_item_id"
-    t.integer  "amount_in_cents", :default => 0, :null => false
+    t.integer  "adjustable_id",                                                :null => false
+    t.string   "adjustable_type",                                              :null => false
+    t.string   "type"
+    t.integer  "amount_in_cents",                               :default => 0, :null => false
     t.string   "currency"
-    t.string   "message",                        :null => false
+    t.decimal  "basis",           :precision => 8, :scale => 2
+    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "adjustments", ["id", "order_id"], :name => "index_adjustments_on_id_and_order_id"
 
   create_table "artisans", :force => true do |t|
     t.integer "frame_id",                                          :null => false

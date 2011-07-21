@@ -30,19 +30,21 @@ module Visit
             
             unless params[ :mc_shipping ].to_money.zero?
               Adjustment.create! message: "PayPal-Calculated Shipping", 
-                                      amount: params[ :mc_shipping ],
-                                      order:  order
+                                amount: params[ :mc_shipping ],
+                                      adjustable:  order
             end
             
             unless params[ :tax ].to_money.zero?
               Adjustment.create! message: "PayPal-Calculated Tax", 
                                       amount: params[ :tax ],
-                                      order:  order
+                                      adjustable:  order
             end
             
-            Adjustment.create! message: "PayPal Transaction Fee", 
-                                    amount: "-#{ params[ :mc_fee ] }",
-                                    order:  order
+            unless params[ :mc_fee ].to_money.zero?
+              Adjustment.create! message: "PayPal Transaction Fee", 
+                                      amount: "-#{ params[ :mc_fee ] }",
+                                      adjustable:  order
+            end
             
             if order.purchase!                                            # Order in!
               OrderMailer.patron_order_confirmation_email( order, current_frame ).deliver
@@ -50,17 +52,17 @@ module Visit
             end
           else
             logger.error "PayPal transaction was not completed. Please investigate."
-            create_failed_order_transaction( order, params )
+            create_failed_order_transaction( order, ipn, params )
             order.fail!
           end
         #rescue => e
         #  logger.error "An error occurred while handling a PayPal IPN. Please investigate."
-        #  create_failed_order_transaction( order, params )
+        #  create_failed_order_transaction( order, ipn, params )
         #  order.fail!
         end
       else
         logger.error "Could not verify PayPal's IPN. Please investigate."
-        create_failed_order_transaction( order, params )
+        create_failed_order_transaction( order, ipn, params )
         order.fail!
       end
                                  
@@ -70,8 +72,8 @@ module Visit
     private
     
     # Log a failed IPN.
-    def create_failed_order_transaction( order, params )
-      OrderTransaction.create! order: order, success: false, params: params, payment_service: 'PayPal WPS'
+    def create_failed_order_transaction( order, ipn, params )
+      OrderTransaction.create! order: order, amount: ipn.gross, success: false, params: params, payment_service: 'PayPal WPS'
     end
     
     # Get the total of the IPN before tax and shipping to check against

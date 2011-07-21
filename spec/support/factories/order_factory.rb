@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------
+# Orders
+
 Factory.define :order do |o|
   o.frame { Frame.find_or_create_by_domain( 'ae.test', name: 'Test Frame' ) }
 end
@@ -24,15 +27,22 @@ Factory.define :failed_order, parent: :pending_order do |o|
   o.after_create { |o| o.fail! }
 end
 
+# ------------------------------------------------------------------
+# Line Items
+
 Factory.define :line_item do |l|
   l.association :order
   l.association :variant
 end
 
+# ------------------------------------------------------------------
+# Transactions
+
 Factory.define :order_transaction do |o|
   o.association :order
   o.success     true
 end
+
 
 Factory.define :paypal_transaction, parent: :order_transaction do |o|
   o.reference         "TESTTRANS"
@@ -41,18 +51,25 @@ Factory.define :paypal_transaction, parent: :order_transaction do |o|
   o.payment_service   "PayPal WPS"
   
   o.after_create do |o|
-    o.order.adjustments << Adjustment.spawn( order: o.order, message: "PayPal-Calculated Tax",      amount: 3.5 )
-    o.order.adjustments << Adjustment.spawn( order: o.order, message: "PayPal-Calculated Shipping", amount: 5 )
-    o.order.adjustments << Adjustment.spawn( order: o.order, message: "PayPal Transaction Fee",     amount: -1.26 )
+    o.order.adjustments << Adjustment.spawn( adjustable: o.order, message: "PayPal-Calculated Tax",      amount: 3.5 )
+    o.order.adjustments << Adjustment.spawn( adjustable: o.order, message: "PayPal-Calculated Shipping", amount: 5 )
+    o.order.adjustments << Adjustment.spawn( adjustable: o.order, message: "PayPal Transaction Fee",     amount: -1.26 )
     
     o.update_attributes amount: o.order.total
   end
 end
 
+# ------------------------------------------------------------------
+# Adjustments
+
 Factory.define :adjustment do |a|
-  a.association       :order
+  a.adjustable        { Factory :order }
   a.message           "Test Message"
+  a.amount            { rand( 10 ) + 1 }
 end
+
+# ------------------------------------------------------------------
+# Fulfillments
 
 Factory.define :fulfillment do |f|
   f.association       :order
