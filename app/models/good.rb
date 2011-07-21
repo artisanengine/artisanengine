@@ -13,8 +13,8 @@ class Good < ActiveRecord::Base
   # Associations
   
   belongs_to :frame
-  has_many   :options
-  has_many   :variants
+  has_many   :options,         dependent: :destroy
+  has_many   :variants,        dependent: :destroy
   has_many   :image_attachers, as: :imageable, dependent: :destroy
   has_many   :images,          through: :image_attachers
   has_many   :collects,        dependent: :destroy

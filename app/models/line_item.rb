@@ -5,9 +5,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :variant
   belongs_to :order
   belongs_to :fulfillment
-  
-  delegate   :name, to: :variant
-  
+
   # ------------------------------------------------------------------
   # Validations
   
@@ -36,6 +34,7 @@ class LineItem < ActiveRecord::Base
   # ------------------------------------------------------------------                    
   private
   
+  # Capture variant attributes in case the good/variant gets deleted in the future.
   def capture_variant_attributes
     self.price   = variant.price
     self.options = variant.values_to_s( false )
