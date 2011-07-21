@@ -46,7 +46,7 @@ describe Visit::OrderTransactionsController do
          
       context "and the notification has Completed status with a total matching the order total" do
         before do 
-          notification.stub complete?: true, gross: "36"
+          notification.stub complete?: true, gross: "60" # tax and shipping are included.
           order.stub unadjusted_total: "36".to_money
         end
         

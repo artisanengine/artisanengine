@@ -19,8 +19,8 @@ module Visit
       
       if Rails.env.test? or ipn.acknowledge                           # Verify authenticity with PayPal.
         begin
-          if ipn.complete? and order.unadjusted_total == ipn.gross.to_money # Verify the amount is correct.
-            OrderTransaction.create! order:           order,          # Log the transaction details.
+          if ipn.complete? and order.unadjusted_total == base_total( ipn )  # Verify the amount is correct.
+            OrderTransaction.create! order:           order,                # Log the transaction details.
                                      success:         true,
                                      amount:          ipn.gross,
                                      reference:       ipn.transaction_id,
