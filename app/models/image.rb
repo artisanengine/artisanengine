@@ -24,6 +24,11 @@ class Image < ActiveRecord::Base
   
   validates_size_of     :image,
                           maximum: 2.megabytes
+
+  # ------------------------------------------------------------------
+  # Scopes
+  
+  scope :in_display_orer, lambda {}
   
   # ------------------------------------------------------------------
   private

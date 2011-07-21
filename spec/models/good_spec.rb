@@ -71,5 +71,23 @@ describe Good do
         end
       end
     end
+
+    describe "#images_in_display_order" do
+      it "returns the images in their proper display order" do
+        good = Good.generate
+
+        image_1 = Image.generate
+        image_2 = Image.generate
+        image_3 = Image.generate
+
+        good.images << image_1
+        good.images << image_2
+        good.images << image_3
+
+        image_3.image_attachers.first.update_attributes display_order_position: :first
+
+        good.images_in_display_order.should == [ image_3, image_1, image_2 ]
+      end
+    end
   end
 end

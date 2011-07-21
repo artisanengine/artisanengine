@@ -32,6 +32,12 @@ class Good < ActiveRecord::Base
     true if options.count > 1 or variants.count > 1
   end
   
+  def images_in_display_order
+    Image.joins( :image_attachers )
+         .where( "image_attachers.imageable_type = 'Good' AND image_attachers.imageable_id = ?", id )
+         .order( "image_attachers.display_order ASC" )
+  end
+  
   # ------------------------------------------------------------------
   private
   
