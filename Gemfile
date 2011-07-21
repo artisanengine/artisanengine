@@ -3,7 +3,10 @@ source 'http://rubygems.org'
 # ------------------------------------------------------------------
 # Environment-Independent Gems
 
-gem 'rails',                  '3.1.0.rc4'     # Update this when 3.1.0 comes out.
+# Edge Rails and Sprockets.
+gem 'rails',                  git: 'git://github.com/rails/rails.git', branch: '3-1-stable'
+gem 'sprockets',              git: 'git://github.com/sstephenson/sprockets.git'
+
 gem 'thin',                   '1.2.11'        # Run Thin to match Heroku.
 
 # Utilities.
@@ -35,10 +38,11 @@ gem 'haml',									  '3.1.2'         # HTML haiku.
 gem 'coffee-filter',          '0.1.1'         # Use CoffeeScript with HAML.
 gem 'compass',                git: 'https://github.com/chriseppstein/compass.git', branch: 'rails31'
 
-# Asset pipeline enhancements.
-gem 'sass-rails',             '3.1.0.rc.4'    # Enable SASS templates.
+# Asset pipeline.
+gem 'sass-rails',             '~> 3.1.0.rc'   # Enable SASS templates.
 gem 'coffee-script',          '2.2.0'         # Enable CoffeeScript.
 gem 'uglifier',               '1.0.0'         # Default asset compressor.
+
 gem 'jquery-rails',           '1.0.11'        # Serve JQuery through the asset pipeline.
 
 # Demo data.
