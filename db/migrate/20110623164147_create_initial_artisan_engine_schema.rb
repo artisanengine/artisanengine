@@ -103,7 +103,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :posts, [ :cached_slug, :blog_id ]
+    add_index :posts, [ :cached_slug, :blog_id, :created_at ]
     
     # ------------------------------------------------------------------
     # Tags & Taggings
