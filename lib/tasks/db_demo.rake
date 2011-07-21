@@ -37,7 +37,7 @@ namespace :db do
     # Images
     
     for frame in Frame.all
-      5.times { sleep 0.1; Image.generate frame: frame }
+      5.times { sleep 1; Image.generate frame: frame }
     end
     
     # ------------------------------------------------------------------
@@ -126,9 +126,9 @@ namespace :db do
     # Orders
     
     for frame in Frame.all
-      3.times { frame.orders << Factory.build( :pending_order,   frame: frame ) }
-      3.times { frame.orders << Factory.build( :purchased_order, frame: frame ) }
-      3.times { frame.orders << Factory.build( :failed_order,    frame: frame ) }
+      3.times { Factory( :pending_order,   frame: frame ) }
+      3.times { Factory( :purchased_order, frame: frame ) }
+      3.times { Factory( :failed_order,    frame: frame ) }
     end
   end
 end
