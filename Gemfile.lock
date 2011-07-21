@@ -198,7 +198,6 @@ GEM
       rack
     rack-test (0.6.0)
       rack (>= 1.0)
-    rack-timeout (0.0.1)
     rake (0.8.7)
     rdoc (3.8)
     rest-client (1.6.3)
@@ -285,7 +284,6 @@ DEPENDENCIES
   launchy (= 0.4.0)
   money (= 3.7.1)
   pg (= 0.11.0)
-  rack-timeout (= 0.0.1)
   rails!
   rake (= 0.8.7)
   ranked-model!

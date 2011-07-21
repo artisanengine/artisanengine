@@ -66,15 +66,14 @@ group :test do
 	gem 'spork',							  '0.9.0rc8'      # DRb server for faster tests.
 end
 
+group :test, :development do
+  gem 'sqlite3',              '1.3.3'         # Use SQLite DB in testing and development.
+end
+
 group :development do
   gem 'heroku_san',           '1.2.2'
 end
 
-group :development, :test do
-  gem 'sqlite3',              '1.3.3'         # Use SQLite DB in testing and development.
-end
-
 group :staging, :production do
   gem 'pg',                   '0.11.0'        # Use Postgres DB in production to match Heroku.
-  gem 'rack-timeout',         '0.0.1'         # Abort requests before Heroku's 30-second limit is reached.
 end
