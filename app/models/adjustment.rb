@@ -1,4 +1,12 @@
 class Adjustment < ActiveRecord::Base
+  attr_accessible :adjustable, :basis, :message
+  
+  # ------------------------------------------------------------------
+  # Callbacks
+  
+  before_validation :capture_amount
+  before_validation :set_default_message, unless: :message
+  
   # ------------------------------------------------------------------
   # Associations
   
@@ -7,9 +15,8 @@ class Adjustment < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Validations
   
-  validates_presence_of :adjustable, :message
-  validate              :amount_is_not_0
-  
+  validates_presence_of :adjustable
+
   # ------------------------------------------------------------------
   # Money
 
@@ -18,11 +25,30 @@ class Adjustment < ActiveRecord::Base
                        constructor: lambda { |cents, currency| Money.new( cents || 0, currency || Money.default_currency ) },
                        converter:   lambda { |value| value.respond_to?( :to_money ) ? value.to_money : 0.to_money }
 
+
+  # ------------------------------------------------------------------
+  # Methods
+  
+  # This should be overridden by a subclass. It is the amount of the adjustment
+  # that is captured when the adjustment is added to an adjustable.
+  def amount_to_capture
+    raise NotImplementedError, "#amount_to_capture has not been defined for #{ self.class }."
+  end
+  
+  # This should be overridden by a subclass. It is the default message
+  # for this type of adjustment.
+  def default_message
+    "Adjustment"
+  end
   
   # ------------------------------------------------------------------
   private
+    
+  def capture_amount
+    self.amount = amount_to_capture
+  end
   
-  def amount_is_not_0
-    errors.add :amount, "cannot be 0" if amount.zero?
+  def set_default_message
+    self.message = default_message
   end
 end

@@ -28,22 +28,22 @@ module Visit
                                      params:          params,
                                      payment_service: 'PayPal WPS'
             
-            unless params[ :mc_shipping ].to_money.zero?
-              Adjustment.create! message: "PayPal-Calculated Shipping", 
-                                amount: params[ :mc_shipping ],
-                                      adjustable:  order
+            unless params[ :mc_shipping ].nil? or params[ :mc_shipping ].to_money.zero?
+              DollarAdjustment.create! message: "PayPal-Calculated Shipping", 
+                                       basis: params[ :mc_shipping ],
+                                       adjustable:  order
             end
             
-            unless params[ :tax ].to_money.zero?
-              Adjustment.create! message: "PayPal-Calculated Tax", 
-                                      amount: params[ :tax ],
-                                      adjustable:  order
+            unless params[ :tax ].nil? or params[ :tax ].to_money.zero?
+              DollarAdjustment.create! message: "PayPal-Calculated Tax", 
+                                       basis: params[ :tax ],
+                                       adjustable:  order
             end
             
-            unless params[ :mc_fee ].to_money.zero?
-              Adjustment.create! message: "PayPal Transaction Fee", 
-                                      amount: "-#{ params[ :mc_fee ] }",
-                                      adjustable:  order
+            unless params[ :mc_fee ].nil? or params[ :mc_fee ].to_money.zero?
+              DollarAdjustment.create! message: "PayPal Transaction Fee", 
+                                       basis: "-#{ params[ :mc_fee ] }",
+                                       adjustable:  order
             end
             
             if order.purchase!                                            # Order in!

@@ -1,26 +1,17 @@
 require 'spec_helper'
 
 describe Adjustment do
-  let( :new_adjustment ) { Adjustment.spawn }
+  let( :adjustment ) { Adjustment.new }
+
+  describe "#amount_to_capture" do
+    it "raises a NotImplemented error - this should be overridden by a subclass" do
+      expect { adjustment.amount_to_capture }.to raise_error( NotImplementedError )
+    end
+  end
   
-  context "validations: " do
-    it "is valid with valid attributes" do
-      new_adjustment.should be_valid
-    end
-    
-    it "is not valid without an adjustable" do
-      new_adjustment.adjustable = nil
-      new_adjustment.should_not be_valid
-    end
-    
-    it "is not valid without a message" do
-      new_adjustment.message = nil
-      new_adjustment.should_not be_valid
-    end
-    
-    it "is not valid with an amount of 0" do
-      new_adjustment.amount = 0
-      new_adjustment.should_not be_valid
+  describe "#default_message" do
+    it "returns a default message" do
+      adjustment.default_message.should == "Adjustment"
     end
   end
 end
