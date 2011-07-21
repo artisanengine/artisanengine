@@ -2,9 +2,9 @@
 	:coffeescript
 		$ ->
 			$( '#loading' ).show()
-			$( 'form' ).hide().submit()
+			$( '#paypal_form' ).hide().submit()
 
-= form_tag ActiveMerchant::Billing::Integrations::Paypal.service_url do
+= form_tag ActiveMerchant::Billing::Integrations::Paypal.service_url, id: 'paypal_form' do
 	= hidden_field_tag :cmd, 						'_cart'
 	= hidden_field_tag :upload, 				'1'
 	= hidden_field_tag :business, 			Setting.get_or_set( current_frame, 'PayPal WPS E-Mail', 'seller_1310784529_biz@artisanengine.com' )
