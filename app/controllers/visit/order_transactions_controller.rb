@@ -29,18 +29,18 @@ module Visit
                                      payment_service: 'PayPal WPS'
             
             unless params[ :mc_shipping ].to_money.zero?
-              OrderAdjustment.create! message: "PayPal-Calculated Shipping", 
+              Adjustment.create! message: "PayPal-Calculated Shipping", 
                                       amount: params[ :mc_shipping ],
                                       order:  order
             end
             
             unless params[ :tax ].to_money.zero?
-              OrderAdjustment.create! message: "PayPal-Calculated Tax", 
+              Adjustment.create! message: "PayPal-Calculated Tax", 
                                       amount: params[ :tax ],
                                       order:  order
             end
             
-            OrderAdjustment.create! message: "PayPal Transaction Fee", 
+            Adjustment.create! message: "PayPal Transaction Fee", 
                                     amount: "-#{ params[ :mc_fee ] }",
                                     order:  order
             

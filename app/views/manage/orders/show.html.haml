@@ -52,7 +52,7 @@
 					%td Line Total
 					%td= order.line_total.format
 
-				- for adjustment in order.order_adjustments
+				- for adjustment in order.adjustments
 					%tr[ adjustment ]
 						%td{ colspan: 2 }
 						%td.message= adjustment.message

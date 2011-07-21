@@ -61,10 +61,10 @@ describe Visit::OrderTransactionsController do
           post :ipns, mc_shipping: "12", tax: "12"
         end
         
-        it "creates OrderAdjustments for PayPal's shipping, tax, and fee" do
-          OrderAdjustment.should_receive( :create! ).with( message: "PayPal-Calculated Shipping", amount: "12", order: order )
-          OrderAdjustment.should_receive( :create! ).with( message: "PayPal-Calculated Tax", amount: "12", order: order )
-          OrderAdjustment.should_receive( :create! ).with( message: "PayPal Transaction Fee", amount: "-1", order: order )
+        it "creates Adjustments for PayPal's shipping, tax, and fee" do
+          Adjustment.should_receive( :create! ).with( message: "PayPal-Calculated Shipping", amount: "12", order: order )
+          Adjustment.should_receive( :create! ).with( message: "PayPal-Calculated Tax", amount: "12", order: order )
+          Adjustment.should_receive( :create! ).with( message: "PayPal Transaction Fee", amount: "-1", order: order )
           
           post :ipns, mc_shipping: "12", tax: "12", mc_fee: "1"
         end

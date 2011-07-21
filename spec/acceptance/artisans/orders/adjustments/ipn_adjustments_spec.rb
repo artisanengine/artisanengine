@@ -22,17 +22,17 @@ feature "Order Adjustments from IPNs", %q{
     visit order_details_page_for @order.id_in_frame
     
     # Then I should see shipping costs for $25.00,
-    within '.order_adjustment', text: 'PayPal-Calculated Shipping' do
+    within '.adjustment', text: 'PayPal-Calculated Shipping' do
       page.should have_content "$25.00"
     end
     
     # And I should see tax of $5.00.
-    within '.order_adjustment', text: 'PayPal-Calculated Tax' do
+    within '.adjustment', text: 'PayPal-Calculated Tax' do
       page.should have_content "$5.00"
     end
     
     # And I should see fee of $2.00.
-    within '.order_adjustment', text: 'PayPal Transaction Fee' do
+    within '.adjustment', text: 'PayPal Transaction Fee' do
       page.should have_content "$-2.00"
     end
   end

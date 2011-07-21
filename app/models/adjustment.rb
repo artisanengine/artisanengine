@@ -1,4 +1,4 @@
-class OrderAdjustment < ActiveRecord::Base
+class Adjustment < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
   

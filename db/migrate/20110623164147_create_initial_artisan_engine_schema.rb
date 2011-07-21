@@ -225,9 +225,9 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
     add_index :order_transactions, [ :id, :order_id ]
     
     # ------------------------------------------------------------------
-    # Order Adjustments
+    # Adjustments
     
-    create_table :order_adjustments do |t|
+    create_table :adjustments do |t|
       t.integer   :order_id,        null: false
       t.integer   :line_item_id
       t.integer   :amount_in_cents, null: false, default: 0
@@ -237,7 +237,7 @@ class CreateInitialArtisanEngineSchema < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :order_adjustments, [ :id, :order_id ]
+    add_index :adjustments, [ :id, :order_id ]
     
     # ------------------------------------------------------------------
     # Order Fulfillments

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe OrderAdjustment do
-  let( :new_adjustment ) { OrderAdjustment.spawn }
+describe Adjustment do
+  let( :new_adjustment ) { Adjustment.spawn }
   
   context "validations: " do
     it "is valid with valid attributes" do

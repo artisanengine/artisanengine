@@ -35,6 +35,18 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
 
   add_index "addresses", ["id", "patron_id"], :name => "index_addresses_on_id_and_patron_id"
 
+  create_table "adjustments", :force => true do |t|
+    t.integer  "order_id",                       :null => false
+    t.integer  "line_item_id"
+    t.integer  "amount_in_cents", :default => 0, :null => false
+    t.string   "currency"
+    t.string   "message",                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "adjustments", ["id", "order_id"], :name => "index_adjustments_on_id_and_order_id"
+
   create_table "artisans", :force => true do |t|
     t.integer "frame_id",                                          :null => false
     t.string  "first_name",                                        :null => false
@@ -140,18 +152,6 @@ ActiveRecord::Schema.define(:version => 20110623164147) do
   end
 
   add_index "options", ["id", "good_id"], :name => "index_options_on_id_and_good_id"
-
-  create_table "order_adjustments", :force => true do |t|
-    t.integer  "order_id",                       :null => false
-    t.integer  "line_item_id"
-    t.integer  "amount_in_cents", :default => 0, :null => false
-    t.string   "currency"
-    t.string   "message",                        :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "order_adjustments", ["id", "order_id"], :name => "index_order_adjustments_on_id_and_order_id"
 
   create_table "order_transactions", :force => true do |t|
     t.integer  "order_id",                           :null => false

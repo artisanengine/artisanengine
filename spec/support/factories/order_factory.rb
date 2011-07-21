@@ -41,15 +41,15 @@ Factory.define :paypal_transaction, parent: :order_transaction do |o|
   o.payment_service   "PayPal WPS"
   
   o.after_create do |o|
-    o.order.order_adjustments << OrderAdjustment.spawn( order: o.order, message: "PayPal-Calculated Tax",      amount: 3.5 )
-    o.order.order_adjustments << OrderAdjustment.spawn( order: o.order, message: "PayPal-Calculated Shipping", amount: 5 )
-    o.order.order_adjustments << OrderAdjustment.spawn( order: o.order, message: "PayPal Transaction Fee",     amount: -1.26 )
+    o.order.adjustments << Adjustment.spawn( order: o.order, message: "PayPal-Calculated Tax",      amount: 3.5 )
+    o.order.adjustments << Adjustment.spawn( order: o.order, message: "PayPal-Calculated Shipping", amount: 5 )
+    o.order.adjustments << Adjustment.spawn( order: o.order, message: "PayPal Transaction Fee",     amount: -1.26 )
     
     o.update_attributes amount: o.order.total
   end
 end
 
-Factory.define :order_adjustment do |a|
+Factory.define :adjustment do |a|
   a.association       :order
   a.message           "Test Message"
 end

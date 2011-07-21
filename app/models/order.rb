@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   has_many   :line_items
   has_many   :fulfillments, through: :line_items, uniq: true
   has_many   :order_transactions
-  has_many   :order_adjustments
+  has_many   :adjustments
   
   belongs_to :frame
   belongs_to :patron
@@ -109,7 +109,7 @@ class Order < ActiveRecord::Base
   def total
     total = line_total
     
-    for adjustment in order_adjustments
+    for adjustment in adjustments
       total += adjustment.amount
     end
     
