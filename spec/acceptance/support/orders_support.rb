@@ -26,7 +26,7 @@ def simulate_ipn( options = {} )
                             invoice:        options[ :order ]    || Order.last.id,
                             payment_status: options[ :status ]   || 'Completed',
                             mc_fee:         options[ :fee ]      || '2.28',
-                            mc_gross:       options[ :gross ]    || Order.last.total,
+                            mc_gross:       options[ :gross ]    || Order.last.adjusted_total,
                             mc_shipping:    options[ :shipping ] || '6.23',
                             tax:            options[ :tax ]      || '9.12',
                             test:           options[ :test_ipn ] || '1'

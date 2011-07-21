@@ -175,7 +175,7 @@ describe Order do
       end
     end
         
-    describe "#total" do
+    describe "#adjusted_total" do
       it "returns the line total plus any applicable adjustments" do
         order       = Order.generate
         line_item_1 = LineItem.generate order: order, quantity: 3
@@ -184,7 +184,7 @@ describe Order do
         order.adjustments << Adjustment.spawn( amount: 100, adjustable: order )
         order.adjustments << Adjustment.spawn( amount: -50, adjustable: order )
         
-        order.total.should == 350
+        order.adjusted_total.should == 350
       end
     end
   end

@@ -55,7 +55,7 @@ Factory.define :paypal_transaction, parent: :order_transaction do |o|
     o.order.adjustments << Adjustment.spawn( adjustable: o.order, message: "PayPal-Calculated Shipping", amount: 5 )
     o.order.adjustments << Adjustment.spawn( adjustable: o.order, message: "PayPal Transaction Fee",     amount: -1.26 )
     
-    o.update_attributes amount: o.order.total
+    o.update_attributes amount: o.order.adjusted_total
   end
 end
 

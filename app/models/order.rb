@@ -105,8 +105,9 @@ class Order < ActiveRecord::Base
     total
   end
   
-  # Return the final order total after adjustments have been made.
-  def total
+  # Return the final order total after line item prices have been calculated
+  # and adjustments have been made.
+  def adjusted_total
     total = line_total
     
     for adjustment in adjustments

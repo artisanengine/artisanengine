@@ -16,7 +16,7 @@ feature "Receive PayPal IPNs", %q{
   
   scenario "The application can properly process a valid IPN" do
     # When my site receives a valid IPN,
-    simulate_ipn tax: 0, shipping: 0, gross: @order.total
+    simulate_ipn tax: 0, shipping: 0, gross: @order.adjusted_total
     
     # And I visit the manage orders page,
     visit '/manage/orders'
