@@ -1,5 +1,8 @@
+# Artisans are the administrators of frames. Each frame should have at least
+# one.
 class Artisan < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :frame_id
+  attr_accessible :first_name, :last_name, :email, :password, 
+                  :password_confirmation, :frame_id
 
   # ------------------------------------------------------------------
   # Associations

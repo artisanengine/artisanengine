@@ -1,3 +1,5 @@
+# A fulfillment represents a delivery that an artisan makes to a patron
+# after the patron has completed an order.
 class Fulfillment < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
@@ -22,7 +24,8 @@ class Fulfillment < ActiveRecord::Base
   # ------------------------------------------------------------------
   private
   
+  # Add an error if the fulfillment is not associated with any line items.
   def at_least_one_line_item
-    errors.add( :base, "must fulfill at least one line item." ) unless line_items.any?
+    errors.add :base, "must fulfill at least one line item." unless line_items.any?
   end
 end

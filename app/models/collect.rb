@@ -1,3 +1,5 @@
+# Collects are a join model that connects goods with display cases. They
+# can be sorted into a display order for display/organization purposes.
 class Collect < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
