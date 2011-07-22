@@ -29,7 +29,7 @@ class Image < ActiveRecord::Base
     "#{ frame.domain }" +
     "/images/" + 
     "#{ Time.now.strftime( "%m_%d_%Y" ) }" +
-    "_#{ ActiveSupport::SecureRandom.urlsafe_base64( 5 ) }_" +
+    "_#{ SecureRandom.urlsafe_base64( 5 ) }_" +
     "#{ image_name }"
   end
   

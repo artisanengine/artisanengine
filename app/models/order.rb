@@ -1,27 +1,29 @@
+# An order represents a real-world order. It can be adjusted with Adjustments.
+# It also contains logic for creating addresses and patrons based on the
+# information given to it during the checkout process, and a state machine
+# for firing events based on its status.
 class Order < ActiveRecord::Base
   attr_accessor :email, :subscribed
   
   # ------------------------------------------------------------------
   # Associations
   
-  has_many   :line_items,                                           dependent: :destroy
-  has_many   :fulfillments,       through: :line_items, uniq: true, dependent: :destroy
-  has_many   :order_transactions,                                   dependent: :destroy
-  has_many   :adjustments,        as:      :adjustable,             dependent: :destroy
-  
   belongs_to :frame
   belongs_to :patron
+  belongs_to :shipping_address, class_name: 'Address'
+  belongs_to :billing_address,  class_name: 'Address'
   
-  belongs_to                    :shipping_address, class_name: 'Address'
-  validates_associated          :shipping_address
-  
-  belongs_to                    :billing_address, class_name: 'Address'
-  validates_associated          :billing_address
+  has_many   :adjustments,        as:      :adjustable,             dependent: :destroy
+  has_many   :fulfillments,       through: :line_items, uniq: true, dependent: :destroy
+  has_many   :line_items,                                           dependent: :destroy
+  has_many   :order_transactions,                                   dependent: :destroy
   
   # ------------------------------------------------------------------
   # Validations
   
   validates_presence_of :frame
+  validates_associated  :shipping_address
+  validates_associated  :billing_address
   
   # ------------------------------------------------------------------
   # Scopes
@@ -31,8 +33,11 @@ class Order < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Overrides
   
+  # Orders are meant to be accessed primarily via their id_in_frame. 
+  # However, new orders don't have one yet, so they use their regular
+  # ID.
   def to_param
-    id_in_frame ? id_in_frame.to_s : id.to_s
+    new? ? id.to_s : id_in_frame.to_s
   end
   
   # ------------------------------------------------------------------

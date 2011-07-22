@@ -1,3 +1,5 @@
+# ImageAttachers are a join model that connects images with other
+# models. They can be put in a display order for sorting/organizing.
 class ImageAttacher < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Positioning
