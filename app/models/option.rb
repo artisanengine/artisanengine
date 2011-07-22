@@ -107,6 +107,6 @@ class Option < ActiveRecord::Base
 
   # Updates the option's parent good's variants' appropriate column with its default value.
   def update_good_variants_with_default_value
-    associated_variants.update_all [ "option_value_#{ order_in_good } = ?", default_value ]
+    associated_variants.update_all [ "#{ variant_column } = ?", default_value ]
   end
 end

@@ -49,7 +49,7 @@ class Variant < ActiveRecord::Base
   # options the parent good has.
   def required_number_of_options
     return nil unless good
-    good.options.count
+    @required_number_of_options ||= good.options.count
   end
   
   # Create a slash-separated string of option values ( "Small / Red / Cloth" ), with
