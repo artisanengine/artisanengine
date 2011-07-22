@@ -2,7 +2,9 @@
 # through an image attacher.
 class Image < ActiveRecord::Base
   attr_accessible :image
-  image_accessor  :image { storage_path :storage_filename }
+  image_accessor  :image do
+    storage_path :storage_filename
+  end
   
   # ------------------------------------------------------------------
   # Associations
@@ -27,7 +29,7 @@ class Image < ActiveRecord::Base
     "#{ frame.domain }" +
     "/images/" + 
     "#{ Time.now.strftime( "%m_%d_%Y" ) }" +
-    "_#{ ActiveSupport::SecureRandom.urlsafe_base64( 5 ) }" +
+    "_#{ ActiveSupport::SecureRandom.urlsafe_base64( 5 ) }_" +
     "#{ image_name }"
   end
   
