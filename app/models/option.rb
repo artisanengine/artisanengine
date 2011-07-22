@@ -27,7 +27,7 @@ class Option < ActiveRecord::Base
   # Validations
   
   validates_presence_of :good, :name, :default_value
-  validate              :good_has_less_than_5_options
+  validate              :parent_good_has_less_than_5_options
 
   # ------------------------------------------------------------------
   # Scopes
@@ -58,8 +58,9 @@ class Option < ActiveRecord::Base
   private
   
   # Add an error if the option's good has 5 options.
-  def good_has_less_than_5_options
-    errors.add :good, "cannot have more than 5 options" if good and good.options.count == 5
+  def parent_good_has_less_than_5_options
+    parent_good = good
+    errors.add :good, "cannot have more than 5 options" if parent_good and parent_good.options.count == 5
   end
   
   # Return false if this is the the good's only option.
