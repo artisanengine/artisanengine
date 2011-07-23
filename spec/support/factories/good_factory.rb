@@ -9,7 +9,7 @@ Factory.define :good_with_size_and_color, parent: :good do |g|
     g.options.first.update_attributes( name: 'Size', default_value: 'Small' )
     
     # Add second option.
-    g.options << Option.spawn( name: 'Color', default_value: 'Blue' )
+    Option.generate( good: g, name: 'Color', default_value: 'Blue' )
     
     g.save
   end
@@ -17,26 +17,26 @@ end
 
 Factory.define :good_with_5_options, parent: :good do |g|
   g.after_create do |g|
-    4.times { g.options << Option.spawn }
+    4.times { Option.generate good: g }
   end
 end
 
 Factory.define :good_with_3_variants, parent: :good do |g|
   g.after_create do |g|
-    g.variants << Variant.spawn
-    g.variants << Variant.spawn
+    Variant.generate good: g
+    Variant.generate good: g
   end
 end
 
 Factory.define :good_with_three_options_and_variants, parent: :good do |g|
   g.after_create do |g|
-    g.options.first.update_attributes( name: 'Size', default_value: 'Small' )
-    g.variants.first.update_attributes( option_value_1: 'Small' )
+    g.options.first.update_attributes!( name: 'Size', default_value: 'Small' )
+    g.variants.first.update_attributes!( option_value_1: 'Small' )
     
-    g.options << Option.spawn( name: 'Color',    default_value: 'Blue' )
-    g.options << Option.spawn( name: 'Material', default_value: 'Cloth' )
+    Option.generate( good: g, name: 'Color',    default_value: 'Blue' )
+    Option.generate( good: g, name: 'Material', default_value: 'Cloth' )
     
-    g.variants << Variant.spawn( option_value_1: 'Medium', option_value_2: 'Blue', option_value_3: 'Cloth' )
-    g.variants << Variant.spawn( option_value_1: 'Large',  option_value_2: 'Red',  option_value_3: 'Cloth' )
+    Variant.generate( good: g, option_value_1: 'Medium', option_value_2: 'Blue', option_value_3: 'Cloth' )
+    Variant.generate( good: g, option_value_1: 'Large',  option_value_2: 'Red',  option_value_3: 'Cloth' )
   end
 end
