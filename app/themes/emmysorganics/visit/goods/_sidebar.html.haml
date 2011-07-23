@@ -1,4 +1,8 @@
 #sidebar
 	- for display_case in current_frame.display_cases
-		%div[ display_case ]
-			= link_to display_case.name, display_case
+		- if request.path == url_for( display_case )
+			.current[ display_case ]
+				= link_to display_case.name, display_case
+		- else
+			%div[ display_case ]
+				= link_to display_case.name, display_case
