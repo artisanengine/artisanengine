@@ -1,7 +1,7 @@
-= content_for( :main ) do
+= content_for :main do
 	%h2 Products
 	#goods_wrapper
-		= render 'visit/goods/sidebar'
+		= render 'layouts/goods/sidebar'
 		= yield
 
 = render template: 'layouts/visit'

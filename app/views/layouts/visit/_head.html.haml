@@ -1,10 +1,9 @@
 - frame_stylesheet ||= "visit"
-- frame_js				 ||= "visit"
 
 %head
 	%title= content_for?( :title ) ? content_for( :title ) : current_frame.name
 	= stylesheet_link_tag		 "application", frame_stylesheet
-	= javascript_include_tag "application", frame_js
+	= javascript_include_tag "application", "visit"
 	= render 'google_analytics' if google_analytics_account
 	= yield :javascripts
 	= csrf_meta_tags
