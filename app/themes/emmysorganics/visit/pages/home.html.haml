@@ -5,14 +5,14 @@
 	%section#feature
 		= image_tag 'almond_sale.jpg'
 	
-	%section#featured_products
-		#featured_products_top
+	%section.featured_goods
+		#featured_goods_top
 			%h2 Products
 			.links
-				= link_to 'Shop Online'
-				= link_to 'Buy Wholesale'	
+				= link_to 'Shop Online', current_frame.featured_case
+				= link_to 'Buy Wholesale', '#'
 		
-		= render_cell :featured_products, :display, frame: current_frame, limit: 5
+		= render_cell :featured_goods, :display, frame: current_frame, limit: 5
 
 	#left.blocks
 		#connect.block
@@ -41,7 +41,8 @@
 		#blog.block
 			%h2 emmy's blog
 			.block_content
-				= render_cell :recent_posts, :display, frame: current_frame
+				%section.recent_posts
+					= render_cell :recent_posts, :display, frame: current_frame
 			.block_bottom
 				= link_to 'View all posts', blog_path
 
@@ -59,7 +60,7 @@
 		#product.block
 			%h2 Featured Product
 			.block_content
-				= render_cell :featured_products, :display, frame: current_frame
+				= render_cell :featured_goods, :display, frame: current_frame
 			.block_bottom
 				= link_to 'More Info', current_frame.featured_case.goods_in_display_order.first
 		

@@ -1,5 +1,6 @@
-class FeaturedProductsCell < Cell::Rails
+class FeaturedGoodsCell < Cell::Rails
   helper  :images
+  helper  :frames
   
   include FramesHelper
   include ArtisanEngine::Theming

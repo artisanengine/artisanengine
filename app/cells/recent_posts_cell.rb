@@ -1,5 +1,6 @@
 class RecentPostsCell < Cell::Rails
   helper :posts
+  helper :frames
   
   include FramesHelper
   include ArtisanEngine::Theming

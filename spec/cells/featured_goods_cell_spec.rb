@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FeaturedProductsCell do
+describe FeaturedGoodsCell do
   context "display: " do
     let( :frame )        { Frame.generate domain: 'test.host' }
     let( :display_case ) { frame.display_cases.first } # Auto-generated on frame creation.
