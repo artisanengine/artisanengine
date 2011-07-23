@@ -132,7 +132,7 @@ feature "Checkout an Order", %q{
       
       # When I select Canada,
       select 'Canada', from: 'Country'
-      sleep 0.2
+      sleep 0.5
       
       # Then I should see a select list of provinces.
       within 'select#order_shipping_address_province' do
@@ -141,7 +141,7 @@ feature "Checkout an Order", %q{
       
       # When I select Madagascar,
       select 'Madagascar', from: 'Country'
-      sleep 0.2
+      sleep 0.5
       
       # Then I should not see a select list.
       page.should have_no_selector 'select#order_shipping_address_province', visible: true
@@ -159,7 +159,7 @@ feature "Checkout an Order", %q{
       
       # When I select Canada,
       select 'Canada', from: 'Country'
-      sleep 0.2
+      sleep 0.5
       
       # Then I should see a select list of provinces.
       within 'select#order_billing_address_province' do
@@ -168,7 +168,7 @@ feature "Checkout an Order", %q{
       
       # When I select Madagascar,
       select 'Madagascar', from: 'Country'
-      sleep 0.2
+      sleep 0.5
       
       # Then I should not see a select list.
       page.should have_no_selector 'select#order_billing_address_province', visible: true

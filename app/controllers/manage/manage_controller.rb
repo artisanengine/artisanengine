@@ -1,10 +1,11 @@
 module Manage
   class ManageController < ApplicationController
-    layout        :none_for_ajax_requests   # Don't use layouts for AJAX requests.
-    
-    before_filter :authenticate_artisan!    # Authenticate all actions.
-    
     include FramesHelper                    # Helpers for managing the current frame.
+    layout  :none_for_ajax_requests         # Don't use layouts for AJAX requests.
+    
+    # Must be logged in as an artisan or engineer to access ManageController
+    # actions.
+    before_filter :authenticate_artisan!, unless: :current_engineer
     
     def interface
     end

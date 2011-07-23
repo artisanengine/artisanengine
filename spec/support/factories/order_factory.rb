@@ -51,9 +51,9 @@ Factory.define :paypal_transaction, parent: :order_transaction do |o|
   o.payment_service   "PayPal WPS"
   
   o.after_create do |o|
-    o.order.adjustments << DollarAdjustment.spawn( adjustable: o.order, message: "PayPal-Calculated Tax",      basis: 3.5 )
-    o.order.adjustments << DollarAdjustment.spawn( adjustable: o.order, message: "PayPal-Calculated Shipping", basis: 5 )
-    o.order.adjustments << DollarAdjustment.spawn( adjustable: o.order, message: "PayPal Transaction Fee",     basis: -1.26 )
+    DollarAdjustment.generate( adjustable: o.order, message: "PayPal-Calculated Tax",      basis: 3.5 )
+    DollarAdjustment.generate( adjustable: o.order, message: "PayPal-Calculated Shipping", basis: 5 )
+    DollarAdjustment.generate( adjustable: o.order, message: "PayPal Transaction Fee",     basis: -1.26 )
     
     o.update_attributes amount: o.order.adjusted_total
   end
@@ -75,6 +75,9 @@ Factory.define :fulfillment do |f|
   f.shipping_method   'UPS 3-Day Select'
   
   f.after_build do |f|
-    f.line_items << LineItem.spawn( order: f.order ) unless f.line_item_ids.any?
+    unless f.line_item_ids.any?
+      line_item = LineItem.generate( order: f.order )
+      f.line_items << line_item
+    end
   end
 end
