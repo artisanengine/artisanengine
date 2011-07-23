@@ -1,7 +1,8 @@
+# Images represent an image file which can be associated with a model
+# through an image attacher.
 class Image < ActiveRecord::Base
   attr_accessible :image
-  
-  image_accessor :image do
+  image_accessor  :image do
     storage_path :storage_filename
   end
   
@@ -14,30 +15,21 @@ class Image < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Validations
   
+  validates_format_of   :image_name, with: /^[\w-]+\.[a-zA-Z]{3,4}$/
   validates_presence_of :image, :frame
-  
-  validates_format_of   :image_name, 
-                          with: /^[\w-]+\.[a-zA-Z]{3,4}$/
-  
-  validates_property    :format, of: :image, 
-                          in: [ :jpg, :png, :gif ]
-  
-  validates_size_of     :image,
-                          maximum: 2.megabytes
-
-  # ------------------------------------------------------------------
-  # Scopes
-  
-  scope :in_display_orer, lambda {}
+  validates_property    :format, of: :image, in: [ :jpg, :png, :gif ]
+  validates_size_of     :image, maximum: 2.megabytes
   
   # ------------------------------------------------------------------
   private
   
-  # Store files under the frame domain with a unique timestamp.
+  # Store files under the frame domain with a month/day/year timestamp
+  # and a URL-safe random token.
   def storage_filename
     "#{ frame.domain }" +
     "/images/" + 
-    "#{ Time.now.strftime( "%m_%d_%Y" ) }_#{ Time.now.to_i.to_s }_" +
+    "#{ Time.now.strftime( "%m_%d_%Y" ) }" +
+    "_#{ SecureRandom.urlsafe_base64( 5 ) }_" +
     "#{ image_name }"
   end
   

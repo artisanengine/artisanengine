@@ -1,3 +1,6 @@
+# A patron is a user that has performed some meaningful interaction with
+# the artisan, such as purchasing an item or signing up for the mailing
+# list.
 class Patron < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations

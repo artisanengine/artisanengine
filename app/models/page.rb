@@ -1,3 +1,4 @@
+# A page is a basic container for static information.
 class Page < ActiveRecord::Base
   attr_accessible :title, :content
   

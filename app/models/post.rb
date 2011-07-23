@@ -1,3 +1,6 @@
+# Another fairly basic container, similar to a page. Its differences are
+# that it must belong to a blog and it can have tags for organizational
+# purposes.
 class Post < ActiveRecord::Base
   attr_accessible :title, :content, :tag_names
   attr_accessor   :tag_names

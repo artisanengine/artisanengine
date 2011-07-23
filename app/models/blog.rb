@@ -1,3 +1,4 @@
+# Each frame has a blog. It basically functions as a wrapper for posts.
 class Blog < ActiveRecord::Base
   attr_accessible :name
   

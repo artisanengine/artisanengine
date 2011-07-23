@@ -3,6 +3,6 @@
 %h1= post.title
 %p.date= post.created_at.strftime( "%A, %B %d, %Y" )
 
-.content= post.html_content.html_safe
+.content= sanitize post.html_content
 
 = render 'disqus'

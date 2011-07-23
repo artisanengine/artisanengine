@@ -1,3 +1,6 @@
+# A variant is a variation of a good. A user cannot purchase a good directly -
+# they always purchase a variant, so variants contain all the necessary
+# purchase information such as a price, shipping costs, weight, etc.
 class Variant < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Callbacks
@@ -49,7 +52,7 @@ class Variant < ActiveRecord::Base
   # options the parent good has.
   def required_number_of_options
     return nil unless good
-    good.options.count
+    @required_number_of_options ||= good.options.count
   end
   
   # Create a slash-separated string of option values ( "Small / Red / Cloth" ), with

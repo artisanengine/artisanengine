@@ -1,3 +1,5 @@
+# A tag is a keyword that can be assigned to a model in order to create
+# arbitrary organizational structures.
 class Tag < ActiveRecord::Base
   attr_accessible :name
   

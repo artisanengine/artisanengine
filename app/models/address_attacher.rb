@@ -1,3 +1,5 @@
+# AddressAttachers are a join model that associates addresses with
+# any other type of model.
 class AddressAttacher < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations

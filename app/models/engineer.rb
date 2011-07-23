@@ -1,3 +1,4 @@
+# Engineers have full administrative privileges for the whole application.
 class Engineer < ActiveRecord::Base
   attr_accessible :email, :password
 

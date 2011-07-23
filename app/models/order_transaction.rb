@@ -1,3 +1,6 @@
+# OrderTransactions represent a payment received for an order (successful or
+# not). It contains information such as the parameters sent by the payment
+# service and the amount of the attempted transaction.
 class OrderTransaction < ActiveRecord::Base
   serialize :params
   

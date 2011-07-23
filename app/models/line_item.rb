@@ -1,10 +1,12 @@
+# Line items represent a single item in an order. They can be fulfilled
+# with Fulfillments and adjusted with Adjustments. 
 class LineItem < ActiveRecord::Base
   # ------------------------------------------------------------------
-  # Associations & Delegations
+  # Associations
   
-  belongs_to :variant
-  belongs_to :order
   belongs_to :fulfillment
+  belongs_to :order
+  belongs_to :variant
 
   # ------------------------------------------------------------------
   # Validations
@@ -34,13 +36,15 @@ class LineItem < ActiveRecord::Base
   # ------------------------------------------------------------------                    
   private
   
-  # Capture variant attributes in case the good/variant gets deleted in the future.
+  # Capture the variant attributes used to create this line item
+  # in case the variant gets deleted in the future.
   def capture_variant_attributes
     self.price   = variant.price
     self.options = variant.values_to_s( false )
     self.name    = variant.name
   end
   
+  # Destroy the line item if it is saved with a quantity of 0.
   def destroy_if_quantity_is_0
     destroy if quantity == 0
   end

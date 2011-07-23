@@ -1,3 +1,5 @@
+# Display are collections of goods. Each frame has a "featured" case which has
+# some special behavior - it cannot be deleted or edited.
 class DisplayCase < ActiveRecord::Base
   attr_accessible :name, :good_id, :display_case_id
   

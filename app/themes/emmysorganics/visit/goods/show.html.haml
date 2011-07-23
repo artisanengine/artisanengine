@@ -7,7 +7,7 @@
 		= render 'images', featured_size: '550x350>', additional_size: '176x100>'
 	
 	#information
-		.description= good.html_description.html_safe
+		.description= sanitize good.html_description
 
 #good_right
 	%h3 Purchase This

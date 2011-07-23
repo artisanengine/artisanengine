@@ -1,3 +1,5 @@
+# A setting is a basic Key/Value pair assigned to a frame which can
+# be used in source code to set configuration variables.
 class Setting < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
