@@ -1,5 +1,6 @@
 .good
-	.image= display_image( good.images_in_display_order.first, '166x166#' )
+	.image
+		.image_container= link_to display_image( good.images_in_display_order.first, '166x166>' ), good
 	%p.name= link_to good.name, good
 
 	.links

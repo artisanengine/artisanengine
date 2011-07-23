@@ -5,7 +5,12 @@
 	
 	- for good in goods
 		%div[ good ]
-			.image= link_to display_image( good.images_in_display_order.first, '182x182>' ), good
-			%p.description= link_to good.name, good
+			.image
+				.image_container= link_to display_image( good.images_in_display_order.first, '182x182>' ), good
+			
+			.description
+				= link_to good.name, good
+				%p= truncate( strip_tags( good.html_description ), length: 150, separator: ' ' )
+			
 			.quick_purchase
 				= render 'visit/goods/purchase', good: good, new_line_item: LineItem.new, quantity_select: true
