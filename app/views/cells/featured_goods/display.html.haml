@@ -1,5 +1,2 @@
-%section.featured_goods
-	- for good in @goods
-		.good
-			.image= display_image( good.images_in_display_order.first, '166x166#' )
-			%p.name= link_to good.name, good
+- for good in @goods
+	= render 'featured_good', good: good
