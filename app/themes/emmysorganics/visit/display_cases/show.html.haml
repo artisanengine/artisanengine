@@ -6,7 +6,7 @@
 	
 	- for good in goods
 		%div[ good ]
-			.image= link_to display_image( good.images.first, '182x182#' ), good
+			.image= link_to display_image( good.images_in_display_order.first, '182x182>' ), good
 			%p.description= link_to good.name, good
 			.quick_purchase
 				= render 'visit/goods/purchase', good: good, new_line_item: LineItem.new, quantity_select: true
