@@ -2,7 +2,10 @@ require 'spec_helper'
 include ActiveMerchant::Billing::Integrations
 
 describe Visit::OrderTransactionsController do
-  before { @frame = Frame.generate domain: 'test.host' }
+  before do 
+    controller.stub :engineer_signed_in?
+    @frame = Frame.generate domain: 'test.host'
+  end
   
   describe "#ipns" do
     let( :notification ) { mock 'PaypalNotification' }
