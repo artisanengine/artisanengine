@@ -1,3 +1,5 @@
+# A tagging joins a tag with another model to create arbitrary organizational
+# structures.
 class Tagging < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations

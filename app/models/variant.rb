@@ -1,3 +1,6 @@
+# A variant is a variation of a good. A user cannot purchase a good directly -
+# they always purchase a variant, so variants contain all the necessary
+# purchase information such as a price, shipping costs, weight, etc.
 class Variant < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Callbacks
