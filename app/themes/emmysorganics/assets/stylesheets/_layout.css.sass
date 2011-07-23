@@ -78,10 +78,37 @@ header
 		
 		text-align: right
 		
-		a
+		li.dropdown
+			display: inline
 			padding-right: 2em
 			&:last-child
 				padding-right: 1.5em
+
+// ------------------------------------------------------------------
+// Dropdowns
+
+.dropdown
+	position: relative
+	
+	ul
+		background: $emmys-purple
+		
+		position: absolute
+		text-align: left
+		left: -9999px				// Hide when unneeded.
+		padding: 5px 25px
+		width: auto
+		
+		li
+			+adjust-leading-to( 1.5 )
+		
+		li a
+			white-space: nowrap
+	
+	&:hover ul
+		left: -25px
+	
+	
 
 // ------------------------------------------------------------------
 // Footer

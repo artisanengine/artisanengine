@@ -13,7 +13,16 @@
 
 #top_navigation
 	%nav#top
-		= link_to 'about us', '#'
-		= link_to 'products', current_frame.featured_case
-		= link_to 'educate', '#'
-		= link_to 'sustainability', '#'
+		%ul#dropdowns
+			%li.dropdown
+				= link_to 'about us', '#'
+				= render 'layouts/visit/links/about_links'
+			%li.dropdown		
+				= link_to 'products', current_frame.featured_case
+				= render 'layouts/visit/links/products_links'
+			%li.dropdown
+				= link_to 'educate', '#'
+				= render 'layouts/visit/links/educate_links'
+			%li.dropdown
+				= link_to 'sustainability', '#'
+				= render 'layouts/visit/links/sustainability_links'

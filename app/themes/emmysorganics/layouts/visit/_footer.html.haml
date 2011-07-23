@@ -12,43 +12,16 @@
 	
 	%nav.footer#about
 		%h3 about us
-		%ul
-			%li= link_to 'our story', '#'
-			%li= link_to 'meet the owners', '#'
-			%li= link_to 'press', '#'
-			%li= link_to 'media', '#'
-			%li= link_to 'faqs', '#'
-			%li= link_to 'community', '#'
-			%li= link_to 'contact us', '#'
+		= render 'layouts/visit/links/about_links'
 		
 	%nav.footer#products
 		%h3 products
-		%ul
-			%li= link_to 'macaroons', '#'
-			%li= link_to 'granola', '#'
-			%li= link_to 'chocolate sauce', '#'
-			%li= link_to 'super-fudge', '#'
-			%li= link_to 'ingredients', '#'
-			%li= link_to 'pies & cake', '#'
-			%li= link_to 'almond milk', '#'
-			%li= link_to 'apparel', '#'
-			%li= link_to 'gift card', '#'
-			%li= link_to 'monthly specials', '#'
+		= render 'layouts/visit/links/products_links'
 		
 	%nav.footer#educate
 		%h3 educate
-		%ul
-			%li= link_to 'our ingredients', '#'
-			%li= link_to 'non-GMO', '#'
-			%li= link_to 'why raw?', '#'
-			%li= link_to 'go gluten-free', '#'
-			%li= link_to 'vegan', '#'
-			%li= link_to 'recipes', '#'
+		= render 'layouts/visit/links/educate_links'
 		
 	%nav.footer#sustainability
 		%h3 sustainability
-		%ul
-			%li= link_to 'our packaging', '#'
-			%li= link_to 'our practices', '#'
-			%li= link_to '1% for the planet', '#'
-			%li= link_to 'green tips', '#'
+		= render 'layouts/visit/links/sustainability_links'
