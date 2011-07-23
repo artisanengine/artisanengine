@@ -22,4 +22,15 @@ feature 'Password-Protect a Frame', %q{
     # Then I should be required to sign in.
     page.current_path.should == new_artisan_session_path
   end
+  
+  scenario "Engineers bypass password-protected frame authentication" do
+    # If I am signed in as an engineer,
+    sign_in_as_engineer
+    
+    # When I visit the home page,
+    visit '/'
+    
+    # Then I should be on the home page.
+    current_path.should == '/'
+  end
 end

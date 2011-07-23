@@ -5,7 +5,7 @@ module Manage
     
     # Must be logged in as an artisan or engineer to access ManageController
     # actions.
-    before_filter :authenticate_artisan!, unless: :current_engineer
+    before_filter :authenticate_artisan!, unless: :engineer_signed_in?
     
     def interface
     end
