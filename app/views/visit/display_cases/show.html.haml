@@ -1,5 +1,4 @@
-= content_for( :title ) 		 { display_case.name }
-= content_for( :body_class ) { 'display_case' }
+= render 'display_case_head'
 
 %section#goods
 	%h1= display_case.name

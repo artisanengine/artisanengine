@@ -1,0 +1,28 @@
+#top
+	#logo
+		= link_to image_tag( 'emmys_logo.jpg', alt: "Emmy's Organics Logo" ), root_path
+
+	#bag
+		#bag_image
+			= image_tag 'shopping_bag.jpg', alt: 'Shopping Bag'
+
+		%p#bag_text
+			%span#view_bag View Shopping Bag
+			%br
+			= link_to "(#{ current_order.line_items.count }) #{ pluralize( current_order.line_items.count, 'Item' ).gsub(/^\d+\s/, "") }", new_order_path, id: 'bag_count'
+
+#top_navigation
+	%nav#top
+		%ul#dropdowns
+			%li.dropdown
+				= link_to 'about us', '#'
+				= render 'layouts/visit/links/about_links'
+			%li.dropdown		
+				= link_to 'products', current_frame.featured_case
+				= render 'layouts/visit/links/products_links'
+			%li.dropdown
+				= link_to 'educate', '#'
+				= render 'layouts/visit/links/educate_links'
+			%li.dropdown
+				= link_to 'sustainability', '#'
+				= render 'layouts/visit/links/sustainability_links'

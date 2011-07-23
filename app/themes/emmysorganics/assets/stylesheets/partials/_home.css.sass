@@ -5,6 +5,9 @@
 	
 	background: $emmys-gray
 
+// ------------------------------------------------------------------
+// Feature Scroller
+
 #feature
 	+column( 23, true )
 	+leader( 0.5 )
@@ -20,7 +23,10 @@
 		display: block
 		margin: 5px auto 0
 
-#featured_products
+// ------------------------------------------------------------------
+// Featured Goods
+
+section.featured_goods
 	+prepend( 0.5 )
 	+column( 22, true )
 	+append( 0.5 )
@@ -33,7 +39,7 @@
 	a
 		+accent
 	
-	#featured_products_top
+	#featured_goods_top
 		+column( 22, true )
 		+trailer( 1 )
 		
@@ -60,13 +66,18 @@
 		
 		p.name
 			height: 30px
+		
+		.image	
+			width: 166px
+			height: 166px
+			text-align: center
 			
 		.links
 			height: 13px
 	
 			img
 				padding-top: 2px
-		
+
 			a
 				color: $emmys-green
 				+adjust-font-size-to( 11.5px )
@@ -111,6 +122,9 @@
 		a
 			+accent-link
 
+// ------------------------------------------------------------------
+// Connect Block
+
 #connect.block
 	.block_content
 		height: 135px
@@ -151,36 +165,46 @@
 			+leader( 0.5 )
 			+box-sizing( border-box )
 			padding-right: 0.75em
+
+// ------------------------------------------------------------------
+// Blog Block
 		
 #blog.block
 	.block_content
 		height: 300px
 		p
 			+trailer( 0.25 )
-			
-	#sam_image
-		float: right
-		padding: 10px
-		p
-			color: $emmys-purple
-			.name
-				font-weight: bold
-		img
-			+single-box-shadow
+	
+	section.recent_posts		
+		#sam_image
+			float: right
+			padding: 10px
+			p
+				color: $emmys-purple
+				.name
+					font-weight: bold
+			img
+				+single-box-shadow
 
-	.post
-		padding: 10px 0 0 10px
-		p.date
-			color: $emmys-green
-		p.title
-			font-weight: bold
-		a
-			+accent-link
+		.post
+			padding: 10px 0 0 10px
+			p.date
+				color: $emmys-green
+			p.title
+				font-weight: bold
+			a
+				+accent-link
+
+// ------------------------------------------------------------------
+// Find-a-Store Block
 
 #find-a-store
 	img
 		display: block
 		margin: 0 auto 1em
+
+// ------------------------------------------------------------------
+// Press Block
 
 #press.block
 	.block_content
@@ -190,19 +214,26 @@
 			text-align: center
 			color: darken( $emmys-gray, 30% )
 
+// ------------------------------------------------------------------
+// Featured Good Block
+
 #product.block
 	.block_content
 		height: 166px
-
+				
 		.links
 			display: none
-		img
+		
+		.image
 			float: right
-			height: 155px
-			padding: 5px 5px 0 0
+			width: 166px
+			height: 166px
+			text-align: center
+			padding-right: 5px
+			
 		p.name
 			float: left
-			width: 130px
+			width: 120px
 			padding-top: 60px
 			text-align: center
 			a

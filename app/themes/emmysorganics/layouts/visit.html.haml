@@ -1,18 +1,12 @@
 !!!
 
 %html
-	%head
-		%title= content_for?( :title ) ? content_for( :title ) : current_frame.name
-		= stylesheet_link_tag		 "application", "emmys"
-		= javascript_include_tag "application", "visit"
-		= render 'google_analytics' if google_analytics_account
-		= yield :javascripts
-		= csrf_meta_tags
+	= render 'layouts/visit/head', frame_stylesheet: 'emmys'
 	
 	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
-		= render 'layouts/header'
+		= render 'layouts/visit/header'
 		
 		#wrapper.container
-			= render 'layouts/top'
+			= render 'layouts/visit/top'
 			= content_for?( :main ) ? yield( :main ) : yield
-			= render 'layouts/footer'
+			= render 'layouts/visit/footer'

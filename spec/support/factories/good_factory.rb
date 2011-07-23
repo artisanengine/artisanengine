@@ -1,6 +1,7 @@
 Factory.define :good do |g|
   g.frame       { Frame.find_or_create_by_domain( 'ae.test', name: 'Test Frame' ) }
   g.name        { Faker::Address.country + " " + Faker::Internet.domain_word.capitalize }
+  g.description { two_paragraphs }
 end
 
 Factory.define :good_with_size_and_color, parent: :good do |g|
@@ -39,4 +40,10 @@ Factory.define :good_with_three_options_and_variants, parent: :good do |g|
     Variant.generate( good: g, option_value_1: 'Medium', option_value_2: 'Blue', option_value_3: 'Cloth' )
     Variant.generate( good: g, option_value_1: 'Large',  option_value_2: 'Red',  option_value_3: 'Cloth' )
   end
+end
+
+def two_paragraphs
+  %Q{#{ Faker::Lorem.paragraph }
+
+#{ Faker::Lorem.paragraph } }
 end

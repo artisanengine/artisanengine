@@ -1,7 +1,1 @@
-- for post in @posts
-	.post
-		%p.date= post.created_at.strftime( "%A, %B %d, %Y" )
-		%p.title= post.title
-		%p.snippet
-			= truncate( strip_tags( post.html_content ), length: 150, separator: ' ' )
-			= link_to 'Read More', '#'
+= render 'recent_posts'
