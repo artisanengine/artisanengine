@@ -4,7 +4,7 @@
 	%h1= good.name
 	
 	#information
-		.description= good.html_description.html_safe
+		.description= sanitize good.html_description
 	
 	#purchase	
 		= render 'purchase'
