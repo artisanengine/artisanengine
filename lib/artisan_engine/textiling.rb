@@ -4,7 +4,7 @@ module ArtisanEngine
     # Transform Textile into HTML.
     def self.textile( content )
       return "" if content.blank?
-      RedCloth.new( content, [ :filter_html ] ).to_html
+      RedCloth.new( content ).to_html
     end
     
   end
