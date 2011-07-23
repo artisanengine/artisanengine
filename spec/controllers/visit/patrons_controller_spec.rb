@@ -4,6 +4,8 @@ describe Visit::PatronsController do
   let( :patron ) { stub_model Patron }
   
   before do
+    controller.stub :engineer_signed_in?
+    
     Frame.generate domain: 'test.host'
     Patron.stub find_or_initialize_by_email: patron
     request.env[ "HTTP_REFERER" ] = "back"

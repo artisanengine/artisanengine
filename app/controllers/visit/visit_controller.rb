@@ -8,6 +8,7 @@ module Visit
     
     before_filter :authenticate_artisan!, if: :need_to_authenticate?
     
+    # ------------------------------------------------------------------
     private
     
     def need_to_authenticate?
