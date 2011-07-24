@@ -52,7 +52,12 @@
 				&:last-child
 					+column( 14/3, true )
 				text-align: center
-				
+		
+		#information
+			+column( 14, true )
+			.description
+				+adjust-font-size-to( 13px )
+				+adjust-leading-to( 1.1 )
 			
 	#good_right
 		+leader( 4 )
@@ -79,14 +84,39 @@
 		
 			text-align: center
 		
-			#options
+			input[type=submit]
+				background: $emmys-purple
+				color: $emmys-white
+				+adjust-font-size-to( 14px )
+				+adjust-leading-to( 1 )
+				border: 0
+				padding: 0.5em
+				+trailer( 0.5 )
+				+border-radius( 5px )
+				cursor: pointer
+		
+			#options, #quantity
+				+column( 6, true )
 				+leader( 1 )
 
 				label
-					display: block
-					width: 100%
+					+column( 2 )
+					text-align: right
+					font-weight: 400
 				select
+					+column( 3.5, true )
+					+append( 0.5 )
 					+trailer( 0.5 )
-			#price
-				+trailer( 1 )
+			
+			#quantity
+				+leader( 0.5 )
+				+trailer( 0.5 )
 				
+			#price
+				+column( 6, true )
+				+leader( 0.5 )
+				+trailer( 1 )
+				+adjust-font-size-to( 14px )
+				font-weight: bold
+				&:before
+					content: "Price: "

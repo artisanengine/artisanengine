@@ -116,45 +116,54 @@ header
 // Footer
 
 footer
-	background: $emmys-purple
-	color: lighten( $emmys-purple, 50% )
 	+column( 24, true )
-	+rhythm( 0, 1, 1, 1 )
 	
-	+border-bottom-radius( 10px )
+	#footer_top
+		+column( 24, true )
+		background: $emmys-gray
+		height: 3em
+		+leader( 0.5 )
 	
-	h3
-		+adjust-font-size-to( 18px )
-		+adjust-leading-to( 1 )
-	
-	#footer_signup
-		+column( 8 )
-		+box-sizing( border-box )
+	#footer_main
+		+column( 24, true )
+		+border-bottom-radius( 10px )
+		+rhythm( 0, 1, 1, 1 )
+		background: $emmys-purple
+		color: lighten( $emmys-purple, 50% )
 		
-		padding-left: 1em
-		color: darken( $emmys-white, 10% )
-		
-		a
-			color: darken( $emmys-white, 10% )
-		input
-			border: 0
-		input[type=text]
+		h3
 			+adjust-font-size-to( 16px )
-			+rhythm( 0, 0.25, 0.25, 0 )
-		input[type=submit]
-			background-color: $button-bg
-			color: $emmys-white
-			
-			margin: 0.5em 0.5em 0 0
-			padding: 0.3em
-			
-			+adjust-font-size-to( 14px )
+			+adjust-leading-to( 1 )
+	
+		#footer_signup
+			+column( 8 )
+			+box-sizing( border-box )
 		
-			cursor: pointer
-		#subscribe_notice
-			+leader( 0.5 )
+			padding-left: 1em
+			color: darken( $emmys-white, 10% )
+		
+			a
+				color: darken( $emmys-white, 10% )
+			input
+				border: 0
+			input[type=text]
+				+adjust-font-size-to( 16px )
+				+rhythm( 0, 0.25, 0.25, 0 )
+				width: 95%
+			input[type=submit]
+				background-color: $button-bg
+				color: $emmys-white
 			
-	nav
-		+column( 4 )
-		&:last-child
-			+column( 4, true )
+				margin: 0.5em 0.5em 0 0
+				padding: 0.3em
+			
+				+adjust-font-size-to( 14px )
+		
+				cursor: pointer
+			#subscribe_notice
+				+leader( 0.5 )
+			
+		nav
+			+column( 4 )
+			&:last-child
+				+column( 4, true )
