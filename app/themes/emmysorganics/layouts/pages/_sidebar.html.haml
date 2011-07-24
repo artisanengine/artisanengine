@@ -1,0 +1,9 @@
+#sidebar
+	- for page in current_frame.pages
+		- if request.path == url_for( page )
+			.current[ page ]
+				= link_to page.title, page
+		
+		- else
+			%div[ page ]
+				= link_to page.title, page

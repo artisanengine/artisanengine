@@ -1,0 +1,32 @@
+#pages_wrapper
+	+column( 24, true )
+
+	#sidebar
+		+column( 4 )
+		min-height: 500px
+
+		+box-sizing( border-box )
+		border-right: 1px solid darken( $emmys-gray, 10% )
+	
+		.page
+			background: $emmys-gray
+			border-bottom: 1px solid darken( $emmys-gray, 10% )
+			padding: 10px
+		
+			a
+				+adjust-font-size-to( 12px )
+				+adjust-leading-to( 1 )
+				font-weight: bold
+		
+				color: $emmys-purple
+				text-decoration: none
+				
+		.page.current
+			background: $emmys-white
+	
+	h1
+		+column( 20, true )
+		+leader( 0.5 )
+		+trailer( 0.5 )
+	#page_content
+		+column( 20, true )
