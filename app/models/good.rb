@@ -34,7 +34,9 @@ class Good < ActiveRecord::Base
   # Returns true if the item has more than one option or more than one
   # variant.
   def has_variation?
-    true if options.count > 1 or variants.count > 1
+    return true if options.count > 1 or variants.count > 1
+    return true if options.first.name != "Type"
+    return true if variants.first.option_value_1 != "Default"
   end
   
   # Retrieves all a good's images in their proper display order.
