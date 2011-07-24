@@ -24,7 +24,7 @@ namespace :db do
     Artisan.generate email: 'haus@hausleather.dev',    password: 'password', frame: hausleather
     Artisan.generate email: 'peggy@peggyskemp.dev',    password: 'password', frame: peggyskemp
     Artisan.generate email: 'ian@emmysorganics.dev',   password: 'password', frame: emmysorganics
-    Artisan.generate email: 'reade@zodiacleather.dev', password: 'password', frame: zodiacleather
+    Artisan.generate email: 'demo@zodiacleather.dev',  password: 'password', frame: zodiacleather
     
     # ------------------------------------------------------------------
     # Pages
