@@ -1,7 +1,7 @@
 !!!
 
 %html
-	= render 'layouts/visit/head', frame_stylesheet: 'emmys'
+	= render 'layouts/visit/head', frame_stylesheet: 'emmys', frame_js: 'emmys'
 	
 	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
 		= render 'layouts/visit/header'

@@ -11,22 +11,52 @@
 #feature
 	+column( 23, true )
 	+leader( 0.5 )
-	+trailer( 1 )
+	+trailer( 2 )
 	height: 290px
+	position: relative
 	
 	background: $emmys-white
 	+single-box-shadow
 	
-	img
-		width: 900px
-		height: 280px
-		display: block
-		margin: 5px auto 0
+	#window
+		height: 290px
+		width: 910px
+		overflow: scroll
+		position: relative
+		
+		#reel
+			position: absolute
+			top: 0
+			left: 0
+			
+			img
+				float: left
+				height: 290px
+				width: 910px
+
+	#paging
+		+prepend( 0.5 )
+		+column( 22.5, true )
+		padding-top: 0.25em
+	
+		a
+			color: white
+			text-decoration: none
+			+adjust-font-size-to( 14px )
+			+adjust-leading-to( 1 )
+			background: darken( $emmys-gray, 25% )
+			+border-bottom-radius( 5px )
+			padding: 0.25em 0.5em
+		
+			&.active
+				background: $emmys-purple
 
 // ------------------------------------------------------------------
 // Featured Goods
 
 section.featured_goods
+	z-index: 10
+	
 	+prepend( 0.5 )
 	+column( 22, true )
 	+append( 0.5 )
