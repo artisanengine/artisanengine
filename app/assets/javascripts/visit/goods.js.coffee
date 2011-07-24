@@ -40,7 +40,7 @@ ArtisanEngine.buildVariantsArray = () ->
 	$( '.main_variant_selector option' ).each( () ->
 		# Retrieve option values into an array and trim them of whitespace.
 		option_values = $( this ).text().replace( /-{2}.+/, '' )						# Trim price.
-		option_values = option_values.split( "/" )
+		option_values = option_values.split( " / " )
 		option_values = $.map( option_values, (value) -> $.trim( value ) )
 		
 		# Retrieve trimmed price.
