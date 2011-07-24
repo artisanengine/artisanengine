@@ -1,4 +1,5 @@
 - quantity_select ||= false
+- button_text 		||= 'Add to Order'
 
 = form_for new_line_item do |f|
 
@@ -18,4 +19,4 @@
 			= good.variants.first.price.format
 			
 	#complete
-		= f.submit 'Add to Order'
+		= f.submit button_text

@@ -67,13 +67,15 @@ ArtisanEngine.buildOptionSelect = (option, variants) ->
 	
 	# Build a select list from the values.
 	optionLabel		= "<label for='" + name.toLowerCase() + "'>" + name + "</label>"
+	
 	optionSelect  = "<select id='" + name.toLowerCase() + "' class='variant_selector'>"
 	optionSelect += "<option>" + value + "</option>" for value in _.uniq( values )
 	optionSelect += "</select>"
 	
+	optionDiv			= "<div class='option'>" + optionLabel + optionSelect + "</div>"
+	
 	# Add the select list to the DOM.
-	$('#options').append( optionLabel )
-	$('#options').append( optionSelect )
+	$('#options').append( optionDiv )
 
 # Get current values from the option selects.
 ArtisanEngine.getCurrentValues = () ->
