@@ -1,5 +1,7 @@
 %footer
-	#footer_top
+	- unless request.path == root_path
+		#footer_top
+	
 	#footer_main
 		#footer_signup
 			%h3#signup Get News & Discounts
