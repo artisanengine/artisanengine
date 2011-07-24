@@ -45,7 +45,7 @@ ArtisanEngine.slideshow = () ->
 
 	# When hovering over an image:
 	$( "#reel a" ).hover( 
-		() -> clearInterval( window.play)
+		() -> clearInterval( window.play )
 		() -> rotateSwitch()
 	)
 
