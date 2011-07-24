@@ -1,5 +1,6 @@
 .container
 	+container
+	overflow: visible
 
 nav
 	a
@@ -77,42 +78,42 @@ header
 		+border-top-radius( 10px )
 		
 		text-align: right
-		
-		li.dropdown
-			display: inline
-			padding-right: 2em
-			&:last-child
-				padding-right: 1.5em
 
 // ------------------------------------------------------------------
 // Dropdowns
 
-.dropdown
-	position: relative
-	z-index: 20
+#dropdowns
+	+column( 11, true )
+	height: 1em
+	text-align: left
 	
-	ul
-		+border-bottom-radius( 10px )
+	.dropdown
+		+column( 11/4 )
+		+box-sizing( border-box )
+		&:first-child
+			padding-left: 0.5em
+		&:last-child
+			+column( 11/4, true )
+			
+		position: relative
 		
-		position: absolute
-		text-align: left
-		left: -9999px				// Hide when unneeded.
-		padding: 0.5em 0
-		width: auto
-		
-		li
+		ul
 			background: $emmys-purple
-			padding: 0 0.5em
-			+adjust-leading-to( 1.5 )
-		
-		li a
-			white-space: nowrap
+			position: absolute
+			left: 0
+			z-index: 20
+			display: none
+			padding-top: 0.5em
+			+border-bottom-radius( 10px )
+			
+			a
+				+adjust-leading-to( 1.2 )
+				white-space: nowrap
+				padding: 0 0.5em
 	
-	&:hover ul
-		left: -25px
+	.dropdown:hover ul
+		display: inherit
 	
-	
-
 // ------------------------------------------------------------------
 // Footer
 
