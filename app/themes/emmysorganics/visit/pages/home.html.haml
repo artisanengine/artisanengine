@@ -1,10 +1,24 @@
 = content_for( :body_class ) { 'page' }
 = content_for( :body_id )		 { 'home' }
 
+= content_for :javascripts do
+	:coffeescript
+		$ -> ArtisanEngine.slideshow()
+
 #home_wrapper
 	%section#feature
-		= image_tag 'almond_sale.jpg'
-	
+		#window
+			#reel
+				= link_to image_tag( 'almond_sale.jpg' ), '#'
+				= link_to image_tag( 'almond_sale.jpg' ), '#'
+				= link_to image_tag( 'almond_sale.jpg' ), '#'
+				= link_to image_tag( 'almond_sale.jpg' ), '#'
+		#paging
+			= link_to '1', '#', rel: 1
+			= link_to '2', '#', rel: 2
+			= link_to '3', '#', rel: 3
+			= link_to '4', '#', rel: 4
+			
 	%section.featured_goods
 		#featured_goods_top
 			%h2 Products
@@ -65,4 +79,8 @@
 				= link_to 'More Info', current_frame.featured_case.goods_in_display_order.first
 		
 		#networking
-			%p.placeholder Networking Links
+			= link_to image_tag( 'icons/networking/rss_32.png' ), '#'
+			= link_to image_tag( 'icons/networking/facebook_32.png' ), '#'
+			= link_to image_tag( 'icons/networking/twitter_32.png' ), '#'
+			= link_to image_tag( 'icons/networking/email_32.png' ), '#'
+			= link_to image_tag( 'icons/networking/google_32.png' ), '#'
