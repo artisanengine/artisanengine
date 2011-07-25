@@ -14,3 +14,4 @@
 					%td.title= link_to page.title, page
 					%td.links
 						= link_to 'Edit', edit_manage_page_path( page )
+						= link_to 'Delete', [ :manage, page ], method: :delete, confirm: "Are you sure you want to delete Page: #{ page.title }?"

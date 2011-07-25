@@ -16,6 +16,11 @@ module Manage
       respond_with :manage, page, location: manage_pages_path
     end
     
+    def destroy
+      flash[ :notice ] = "Page: #{ page.title } was successfully deleted." if page.destroy
+      respond_with :manage, page, location: manage_pages_path
+    end
+    
     # ------------------------------------------------------------------
     # Non-RESTful Actions
     
