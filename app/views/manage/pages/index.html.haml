@@ -11,6 +11,6 @@
 		%tbody
 			- for page in pages
 				%tr[ page ]
-					%td.title= page.title
+					%td.title= link_to page.title, page
 					%td.links
 						= link_to 'Edit', edit_manage_page_path( page )
