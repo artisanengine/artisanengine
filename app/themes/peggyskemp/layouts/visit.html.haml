@@ -1,0 +1,11 @@
+!!!
+
+%html
+	= render 'layouts/visit/head', frame_stylesheet: 'peggyskemp', frame_js: 'peggyskemp'
+	
+	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
+		#wrapper.container
+			= render 'layouts/visit/header'
+			= render 'layouts/visit/navigation'
+			= content_for?( :main ) ? yield( :main ) : yield
+			= render 'layouts/visit/footer'
