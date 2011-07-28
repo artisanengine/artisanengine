@@ -61,7 +61,7 @@ feature 'Add a Cropping to an Image', %q{
     end
   end
   
-  scenario "An artisan can edit a cropping", focus: true, js: true, js_driver: :selenium do
+  scenario "An artisan can edit a cropping", js: true, js_driver: :selenium do
     # When I click the 'Add a Primary Cropping'
     click_link 'Add a Primary Cropping'
     

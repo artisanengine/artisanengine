@@ -50,7 +50,6 @@ class Image < ActiveRecord::Base
   
   # Saves the primary_cropping or secondary_cropping based on the crop_priority.
   def save_crop_values
-    puts "Crop Priority is #{ crop_priority }"
     crop_values = [ crop_x, crop_y, crop_w, crop_h ]
     
     case crop_priority

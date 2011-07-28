@@ -1,12 +1,24 @@
 = content_for( :heading ) { "Edit/Crop Image: #{ image.image_name }" }
 
-- if image.primary_cropping.blank?
-	= link_to 'Add a Primary Cropping', manage_image_cropping_path( image, 'primary' )
-- else
-	.primary_cropping= display_image( image )
-	= link_to 'Edit Primary Cropping', manage_image_cropping_path( image, 'primary' )
+#edit_image_wrapper
+	.base_image
+		%h2 Original Image
+		= display_image( image, '400x400>' )
 
-- if image.secondary_cropping.blank?
-	= link_to 'Add a Secondary Cropping', manage_image_cropping_path( image, 'secondary' )
-- else
-	.secondary_cropping= display_image( image )
+	.primary_cropping
+		%h2 Primary Cropping
+		- if image.primary_cropping.blank?
+			= link_to 'Add a Primary Cropping', manage_image_cropping_path( image, 'primary' ), class: 'add'
+		- else
+			= display_image( image, '200x200>', cropping: :primary )
+			%br
+			= link_to 'Edit Primary Cropping', manage_image_cropping_path( image, 'primary' )
+
+	.secondary_cropping
+		%h2 Secondary Cropping
+		- if image.secondary_cropping.blank?
+			= link_to 'Add a Secondary Cropping', manage_image_cropping_path( image, 'secondary' ), class: 'add'
+		- else
+			= display_image( image, '200x200>', cropping: :secondary )
+			%br
+			= link_to 'Edit Secondary Cropping', manage_image_cropping_path( image, 'primary' )

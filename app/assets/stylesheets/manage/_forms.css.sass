@@ -224,3 +224,19 @@ table#unfulfilled_items
 
 #crop_wrapper
 	+column( 24, true )
+
+#edit_image_wrapper
+	+column( 24, true )
+	text-align: center
+	
+	.base_image
+		+column( 24, true )
+		h2
+			+leader( 0 )
+	.primary_cropping
+		+prepend( 4 )
+		+column( 8 )
+	.secondary_cropping
+		+column( 8, true )
+		+append( 4 )
+		+trailer( 2 )

@@ -14,7 +14,7 @@
 				$( '#crop_h' ).val( Math.round( coords.h * ratio ) )
 
 			image.Jcrop({
-				setSelect: [ #{ image.crop_x || 0 }, #{ image.crop_y || 0 }, #{ image.crop_w || 200 }, #{ image.crop_h || 200 } ]
+				setSelect: [ 0, 0, 200, 200 ]
 				onChange:  window.update_crop
 				onSelect:  window.update_crop
 			})
@@ -30,8 +30,8 @@
 	= link_to 'Crop (1:1)', 					 '#', class: 'fullscreen_crop'
 	= link_to 'Crop (16:9)', 					 '#', class: 'widescreen_crop'
 
-	= semantic_form_for [ :manage, image ] do |f|
-		= f.input :crop_priority, as: :hidden
+	= form_for [ :manage, image ] do |f|
+		= f.hidden_field :crop_priority
 		- for attribute in [ :crop_x, :crop_y, :crop_w, :crop_h ]
-			= f.input attribute, input_html: { id: attribute }
+			= f.hidden_field attribute, id: attribute
 		= f.submit 'Add Cropping'
