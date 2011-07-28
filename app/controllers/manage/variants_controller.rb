@@ -9,7 +9,7 @@ module Manage
     expose( :variant )
     
     def create
-      flash[ :notice ] = "Variant was successfully created." if variant.save
+      flash[ :notice ] = "Variant was successfully created." if variant.save and !request.xhr?
       respond_with :manage, good, variant, location: edit_manage_good_path( good )
     end
     
@@ -19,7 +19,7 @@ module Manage
     end  
     
     def destroy
-      flash[ :notice ] = "Variant was successfully destroyed." if variant.destroy
+      flash[ :notice ] = "Variant was successfully destroyed." if variant.destroy and !request.xhr?
       respond_with :manage, good, variant, location: edit_manage_good_path( good )
     end
   end
