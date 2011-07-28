@@ -5,6 +5,9 @@
 	%title= content_for?( :title ) ? content_for( :title ) : current_frame.name
 	= stylesheet_link_tag		 "application", frame_stylesheet
 	
+	/[if lt IE8]
+		= stylesheet_link_tag "ie"
+	
 	= javascript_include_tag "application", "visit"
 	= javascript_include_tag frame_js if frame_js
 	
