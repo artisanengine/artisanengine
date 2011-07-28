@@ -14,9 +14,9 @@ module ImagesHelper
   end
   
   def cropped_image( image, size = '200x200>', options = {} )
-    cropping = options[ :cropping ]
+    cropping = options.delete( :cropping )
     
-    return placeholder_image( size, options ) unless cropping == :primary or cropping == :secondary
+    return display_image( image, size, options ) unless ( cropping == :primary and image.primary_cropping ) or ( cropping == :secondary and image.secondary_cropping )
     
     if cropping == :primary
       image_tag image.image.process( :crop,

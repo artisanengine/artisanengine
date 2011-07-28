@@ -43,7 +43,7 @@ ArtisanEngine.addInsertLinks = () ->
 	
 	$( '#colorbox .image' ).each( (index) ->
 		# Get the image's original URL from the data-original attribute of the image.
-		image_source = $( this ).children( 'a' ).children( 'img' ).attr( 'data-original' )
+		image_source = $( this ).children( '.image_container' ).children( 'a' ).children( 'img' ).attr( 'data-original' )
 
 		# Create a dynamic Insert link using the URL.
 		insert_link = '<a class="insert_link" href="' + image_source + '">Insert</a>'
