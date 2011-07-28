@@ -8,6 +8,7 @@
 @import compass/css3/box-sizing
 @import compass/css3/border-radius
 @import compass/css3/inline-block
+@import compass/css3/box
 
 @import manage/colors
 @import manage/typography
@@ -74,13 +75,18 @@ li#image_image_input
 	.image
 		+float( left )
 		width: 220px
+		height: 220px
 		margin-right: (70px/3)
 		&:nth-child( 4n+4 )
 			margin-right: 0
+		
+		.image_container
+			height: 200px
 			
 	.links
 		+adjust-leading-to( 1.5 )
 		text-align: center
+		height: 20px
 		
 	input[type=submit]
 		float: none

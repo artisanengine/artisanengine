@@ -1,5 +1,5 @@
 module ImagesHelper
-  def display_image( image, size = '200x200#', options = {} )
+  def display_image( image, size = '200x200>', options = {} )
     cropping = options[ :cropping ]
     
     return placeholder_image( size, options )    if image.nil?
@@ -13,7 +13,7 @@ module ImagesHelper
     image.image.remote_url
   end
   
-  def cropped_image( image, size = '200x200#', options = {} )
+  def cropped_image( image, size = '200x200>', options = {} )
     cropping = options[ :cropping ]
     
     return placeholder_image( size, options ) unless cropping == :primary or cropping == :secondary
@@ -35,9 +35,9 @@ module ImagesHelper
   	end
   end
   
-  def placeholder_image( size = '200x200#', options = {} )
+  def placeholder_image( size = '200x200>', options = {} )
     width  = size.split( 'x' )[0]
-    height = size.split( 'x' )[1].gsub( '#', '' )
+    height = size.split( 'x' )[1].gsub( /[#>]/, '' )
     
     options[ :alt ]   ||= 'Placeholder Image'
     options[ :title ] ||= 'Placeholder Image'
