@@ -24,6 +24,7 @@ module Manage
       respond_with :manage, image
     end
     
+    # ------------------------------------------------------------------
     # Non-RESTful Actions
     def crop
     end
