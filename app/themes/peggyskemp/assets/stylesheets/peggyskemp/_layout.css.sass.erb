@@ -1,0 +1,97 @@
+#wrapper.container
+	+container
+
+// ------------------------------------------------------------------
+// Header
+
+header
+	+column( 26, true )
+	+leader( 0.5 )
+	position: relative
+	text-align: center
+	
+	.order_note
+		position: absolute
+		top: 30px
+		right: 30px
+		color: $light
+
+		a, a:visited
+			color: $light
+			text-decoration: underline
+
+// ------------------------------------------------------------------
+// Top Navigation Links
+
+nav#top
+	+column( 26, true )
+	height: 92px
+	position: relative
+
+	a
+		position: absolute
+	
+		&#hives_link
+			top: 35px
+			left: 197px
+
+		&#tentacles_link
+			top: 18px
+			left: 292px
+			@include rotate( -22deg )
+		
+		&#anatomical_link
+			top: 23px
+			left: 408px
+			@include rotate( -21deg )
+	
+		&#gems_link
+			font-size: 0.8em
+			top: 19px
+			left: 639px
+			@include rotate( -5deg )
+		
+		&#side-projects_link
+			font-size: 0.9em
+			letter-spacing: 0.1em
+			top: 13px
+			left: 703px
+			@include rotate( -1deg )
+	
+		&#neurologica_link
+			font-size: 0.8em
+			left: 511px
+			top: 16px
+			@include rotate( 25deg )
+	
+		&#past-work-gallery_link
+			font-size: 0.75em
+			left: 629px
+			top: 19px
+			@include rotate( -5deg )
+
+// ------------------------------------------------------------------
+// Footer
+
+footer
+	+prepend( 1 )
+	+column( 24, true )
+	+append( 1 )
+	
+	height: 76px
+	
+	.bank
+		+column( 8 )
+		&:last-child
+			+column( 8, true )
+			
+		text-align: center
+	
+	#bank_1 .links
+		padding: 10px 0 0 50px
+		
+	#bank_2 .links
+		padding-top: 27px
+		
+	#bank_3 .links
+		padding: 5px 43px 0 0

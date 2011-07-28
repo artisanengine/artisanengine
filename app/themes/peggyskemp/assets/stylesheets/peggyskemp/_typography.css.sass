@@ -1,0 +1,55 @@
+// ------------------------------------------------------------------
+// Defaults
+
+$base-font-size: 	 14px
+$base-line-height: 16px
+
+$default-font-family: Helvetica, sans-serif
+$header-font-family:  Helvetica, Arial, sans-serif
+$accent-font-family:  Arial, sans-serif
+
+// ------------------------------------------------------------------
+// Embedded Fonts
+
+@include font-face( "Capitol Skyline", font-files( "fonts/capitol-skyline-webfont.woff", woff, "fonts/capitol-skyline-webfont.ttf", truetype ), "fonts/capitol-skyline-webfont.eot" )
+
+// ------------------------------------------------------------------
+// Base Styling
+
++establish-baseline
+
+body
+	font-family: $default-font-family
+	color: 			 $default-text-color
+
+	h1, h2, h3, h4, h5
+		+adjust-leading-to( 1 )
+
+	h1, h2, h3, h4, h5
+		font-weight: bold
+
+	h1
+		+adjust-font-size-to( 24px )
+	h2
+		+adjust-font-size-to( 18px )
+	h3
+		+adjust-font-size-to( 16px )
+	h4
+		+adjust-font-size-to( 14px )
+
+	p
+		+trailer( 1 )
+	
+	a
+		text-decoration: none
+		
+		color: $default-link-color
+		&:hover
+			color: $default-link-hover
+			
+// ------------------------------------------------------------------
+// Specific Styling
+
+nav#top, footer
+	font-family: "Capitol Skyline"
+	+adjust-font-size-to( 34px )

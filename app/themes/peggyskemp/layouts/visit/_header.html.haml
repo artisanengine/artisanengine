@@ -1,0 +1,6 @@
+%header
+	#logo
+		= link_to image_tag( 'layout/ps_logo_downcase.png' ), root_path
+		.order_note 
+			You have #{ pluralize( current_order.line_items.count, 'item' ) } in 
+			= link_to( 'your order', '/order' ) + '.'

@@ -1,3 +1,7 @@
+$blueprint-grid-columns: 26
+$blueprint-grid-width: 	 30px
+$blueprint-grid-margin:  10px
+
 @import blueprint/grid
 @import compass/typography
 @import compass/css3/box-shadow
@@ -5,9 +9,24 @@
 @import compass/css3/border-radius
 @import compass/css3/inline-block
 @import compass/css3/box
+@import compass/css3/font-face
+@import compass/css3/transform
 
-@import colors
-@import typography
-@import layout
+@import peggyskemp/colors
+@import peggyskemp/typography
+@import peggyskemp/layout
 
-@import partials/**/*
+@import peggyskemp/partials/**/*
+
+// ------------------------------------------------------------------
+// Asset Paths - Integrate into respective stylesheets when you
+// figure out how.
+
+nav#top
+	background: url( '<%= asset_path "layout/header.jpg" %>' ) no-repeat scroll center top transparent
+
+footer
+	background: url( '<%= asset_path "layout/footer.jpg" %>' ) no-repeat scroll center top transparent
+
+#home
+	background: url( '<%= asset_path "layout/frames/side_project.jpg" %>' ) center top no-repeat

@@ -1,0 +1,5 @@
+%nav#top
+	- for collection in %w( hives tentacles anatomical neurologica side-projects )
+		= link_to collection.gsub( '-', ' ' ), "/collections/#{ collection }/", :id => "#{ collection }_link"
+	
+	= link_to 'past work', '/collections/past-work-gallery', :id => 'past-work-gallery_link'

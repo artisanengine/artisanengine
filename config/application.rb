@@ -46,7 +46,6 @@ module ArtisanEngine
       config.assets.paths << "#{ Rails.root }/app/themes/#{ theme }/assets/javascripts"
     end
     
-    
     # Insert Dragonfly middleware.
     config.middleware.insert 0, 'Dragonfly::Middleware', :images
   
