@@ -23,5 +23,9 @@ module Manage
       flash[ :notice ] = "Image: #{ image.image_name } was successfully destroyed." if image.destroy
       respond_with :manage, image
     end
+    
+    # Non-RESTful Actions
+    def crop
+    end
   end
 end

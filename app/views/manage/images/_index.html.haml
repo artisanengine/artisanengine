@@ -4,7 +4,7 @@
 %section#images
 	- for image in images
 		%div[ image ]
-			= display_image( image, '220x200#', :'data-original' => image.image.remote_url )
+			= link_to display_image( image, '220x200#', :'data-original' => image.image.remote_url ), edit_manage_image_path( image )
 			
 			.links
 				= image.image_name + " | "

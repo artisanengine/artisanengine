@@ -20,7 +20,9 @@ ArtisanEngine::Application.routes.draw do
     resources :display_cases do
       resources :collects
     end
-    resources :images
+    resources :images do
+      get 'cropping/:priority' => 'images#crop', as: 'cropping'
+    end
     resources :pages
     post      'page/preview' => 'pages#preview', as: 'preview_page'
     resource  :blog do
