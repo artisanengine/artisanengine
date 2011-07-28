@@ -3,10 +3,7 @@ source 'http://rubygems.org'
 # ------------------------------------------------------------------
 # Environment-Independent Gems
 
-# Edge Rails and Sprockets.
-gem 'rails',                  git: 'git://github.com/rails/rails.git', branch: '3-1-stable'
-gem 'sprockets',              git: 'git://github.com/sstephenson/sprockets.git'
-
+gem 'rails',                  '3.1.0.rc5'
 gem 'thin',                   '1.2.11'        # Run Thin to match Heroku.
 
 # Utilities.
