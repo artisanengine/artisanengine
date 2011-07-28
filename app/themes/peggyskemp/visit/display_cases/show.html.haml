@@ -1,11 +1,22 @@
 = content_for( :body_id ) { display_case.name.parameterize }
 
+= content_for( :javascripts ) do
+	:coffeescript
+		$ -> $( '.ad-gallery' ).adGallery({
+			effect: 'fade'
+		})
+			
 %section#goods
 	.display_case_header{ id: display_case.name.parameterize + "_header" }
 		%h1= display_case.name.downcase
 	
 	.display_case
-		- for good in goods
-			%div[ good ]
-				.image= link_to display_image( good.images_in_display_order.first, '182x182#' ), good
-				%p.description= link_to good.name, good
+		.ad-gallery
+			.ad-image-wrapper
+			.ad-controls
+			.ad-nav
+				.ad-thumbs
+					%ul.ad-thumb-list
+						- for good in goods
+							%li
+								= link_to display_image( good.images_in_display_order.first, '100x100#', longdesc: good_path( good ) ), good.images_in_display_order.first.image.remote_url
