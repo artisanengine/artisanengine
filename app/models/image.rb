@@ -1,10 +1,20 @@
 # Images represent an image file which can be associated with a model
 # through an image attacher.
 class Image < ActiveRecord::Base
-  attr_accessible :image
+  attr_accessor   :crop_x, :crop_y, :crop_w, :crop_h, :crop_priority
+  attr_accessible :image, :crop_x, :crop_y, :crop_w, :crop_h, :crop_priority
+  
+  serialize :primary_cropping
+  serialize :secondary_cropping
+  
   image_accessor  :image do
     storage_path :storage_filename
   end
+  
+  # ------------------------------------------------------------------
+  # Callbacks
+  
+  before_save :save_crop_values, if: :cropping?
   
   # ------------------------------------------------------------------
   # Associations
@@ -19,7 +29,7 @@ class Image < ActiveRecord::Base
   validates_presence_of :image, :frame
   validates_property    :format, of: :image, in: [ :jpg, :png, :gif ]
   validates_size_of     :image, maximum: 2.megabytes
-  
+    
   # ------------------------------------------------------------------
   private
   
@@ -33,4 +43,23 @@ class Image < ActiveRecord::Base
     "#{ image_name }"
   end
   
+  # True if all the crop values and the crop priority are set.
+  def cropping?
+    !crop_x.blank? and !crop_y.blank? and !crop_w.blank? and !crop_h.blank?
+  end
+  
+  # Saves the primary_cropping or secondary_cropping based on the crop_priority.
+  def save_crop_values
+    puts "Crop Priority is #{ crop_priority }"
+    crop_values = [ crop_x, crop_y, crop_w, crop_h ]
+    
+    case crop_priority
+    when 'primary'
+      self.primary_cropping = crop_values
+    when 'secondary'
+      self.secondary_cropping = crop_values
+    else
+      errors.add :base, "Cannot crop without setting a crop priority." and return false
+    end
+  end
 end

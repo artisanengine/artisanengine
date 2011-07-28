@@ -1,3 +1,12 @@
 = content_for( :heading ) { "Edit/Crop Image: #{ image.image_name }" }
 
-= link_to 'Add a Primary Cropping', manage_image_cropping_path( image, 'primary' )
+- if image.primary_cropping.blank?
+	= link_to 'Add a Primary Cropping', manage_image_cropping_path( image, 'primary' )
+- else
+	.primary_cropping= display_image( image )
+	= link_to 'Edit Primary Cropping', manage_image_cropping_path( image, 'primary' )
+
+- if image.secondary_cropping.blank?
+	= link_to 'Add a Secondary Cropping', manage_image_cropping_path( image, 'secondary' )
+- else
+	.secondary_cropping= display_image( image )

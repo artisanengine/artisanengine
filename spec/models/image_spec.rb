@@ -28,4 +28,40 @@ describe Image do
       new_image.should_not be_valid
     end
   end
+  
+  describe "before saving: " do
+    context "if all its crop values are set" do
+      before do 
+        new_image.crop_x = 5
+        new_image.crop_y = 10
+        new_image.crop_w = 15
+        new_image.crop_h = 20
+      end
+      
+      context "if the crop_priority attribute is 'primary'" do
+        before { new_image.crop_priority = 'primary' }
+        
+        it "sets its primary cropping as an array" do
+          new_image.save
+          Image.last.primary_cropping.should == [ 5, 10, 15, 20 ]
+        end
+      end
+      
+      context "if the crop_priority attribute is 'secondary'" do
+        before { new_image.crop_priority = 'secondary' }
+        
+        it "sets its secondary cropping as an array" do
+          new_image.save
+          Image.last.secondary_cropping.should == [ 5, 10, 15, 20 ]
+        end
+      end
+      
+      context "if the crop_priority attribute is not set to 'primary' or 'secondary'" do
+        it "invalidates the image" do
+          new_image.save.should be_false
+          new_image.errors.count.should == 1
+        end
+      end
+    end
+  end        
 end

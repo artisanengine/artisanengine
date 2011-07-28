@@ -19,6 +19,12 @@ module Manage
       respond_with :manage, image, location: manage_images_path
     end
     
+    def update
+      flash[ :notice ] = "Image: #{ image.image_name } was successfully updated." if image.update_attributes( params[ :image ] )
+      puts image.errors.full_messages
+      respond_with :manage, image, location: edit_manage_image_path( image )
+    end
+    
     def destroy
       flash[ :notice ] = "Image: #{ image.image_name } was successfully destroyed." if image.destroy
       respond_with :manage, image
@@ -26,7 +32,17 @@ module Manage
     
     # ------------------------------------------------------------------
     # Non-RESTful Actions
+    
     def crop
+      ratio = image.image.width / image.image.thumb( '650x' ).width
+      
+      if params[ :priority ] == "primary"
+        image.crop_priority = 'primary'
+      end
+      
+      if params[ :priority ] == "secondary"
+        image.crop_priority = 'secondary'
+      end
     end
   end
 end

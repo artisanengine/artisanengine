@@ -1,1 +1,37 @@
 = content_for( :heading ) { "Add a Primary Cropping to Image: #{ image.image_name }" }
+
+= content_for :javascripts do
+	:coffeescript
+		$ ->
+			image = $( '.croppable img' )
+
+			window.update_crop = (coords) ->
+				ratio = #{ image.image.width } / #{ image.image.thumb( '650x' ).width }
+				
+				$( '#crop_x' ).val( Math.round( coords.x * ratio ) )
+				$( '#crop_y' ).val( Math.round( coords.y * ratio ) )
+				$( '#crop_w' ).val( Math.round( coords.w * ratio ) )
+				$( '#crop_h' ).val( Math.round( coords.h * ratio ) )
+
+			image.Jcrop({
+				setSelect: [ #{ image.crop_x || 0 }, #{ image.crop_y || 0 }, #{ image.crop_w || 200 }, #{ image.crop_h || 200 } ]
+				onChange:  window.update_crop
+				onSelect:  window.update_crop
+			})
+			
+			$( '.basic_crop' ).click( () -> image.Jcrop({ aspectRatio: 0 }); return false )
+			$( '.fullscreen_crop' ).click( () -> image.Jcrop({ aspectRatio: 1 }); return false )
+			$( '.widescreen_crop' ).click( () -> image.Jcrop({ aspectRatio: 16/9 }); return false )
+
+#crop_wrapper
+	.original.croppable= display_image( image, '650x' )
+
+	= link_to 'Crop (No Proportions)', '#', class: 'basic_crop'
+	= link_to 'Crop (1:1)', 					 '#', class: 'fullscreen_crop'
+	= link_to 'Crop (16:9)', 					 '#', class: 'widescreen_crop'
+
+	= semantic_form_for [ :manage, image ] do |f|
+		= f.input :crop_priority, as: :hidden
+		- for attribute in [ :crop_x, :crop_y, :crop_w, :crop_h ]
+			= f.input attribute, input_html: { id: attribute }
+		= f.submit 'Add Cropping'
