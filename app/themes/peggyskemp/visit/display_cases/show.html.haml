@@ -1,10 +1,8 @@
-= content_for( :body_id ) { display_case.name.parameterize }
+= render 'display_case_head'
 
-= content_for( :javascripts ) do
+= content_for :javascripts do
 	:coffeescript
-		$ -> $( '.ad-gallery' ).adGallery({
-			effect: 'fade'
-		})
+		$ -> $( '.ad-gallery' ).adGallery({ effect: 'fade' })
 			
 %section#goods
 	.display_case_header{ id: display_case.name.parameterize + "_header" }
@@ -19,4 +17,4 @@
 					%ul.ad-thumb-list
 						- for good in goods
 							%li
-								= link_to display_image( good.images_in_display_order.first, '100x100#', longdesc: good_path( good ) ), good.images_in_display_order.first.try( :image ).try( :remote_url )
+								= link_to display_image( good.images_in_display_order.first, '100x100#', longdesc: good_path( good ) ), url_for_image( good.images_in_display_order.first )
