@@ -8,4 +8,4 @@
 #additional_images
 	- for image in good_images.drop( 1 )
 		.additional_image
-			= link_to display_image( image, additional_size ), url_for_image( image )
+			= link_to display_image( image, additional_size, cropping: cropping ), url_for_image( image )
