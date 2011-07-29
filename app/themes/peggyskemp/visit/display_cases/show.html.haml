@@ -11,10 +11,10 @@
 	.display_case
 		.ad-gallery
 			.ad-image-wrapper
-			.ad-controls
+			~#.ad-controls
 			.ad-nav
 				.ad-thumbs
 					%ul.ad-thumb-list
 						- for good in goods
 							%li
-								= link_to display_image( good.images_in_display_order.first, '100x100#', longdesc: good_path( good ) ), url_for_image( good.images_in_display_order.first )
+								= link_to display_image( good.images_in_display_order.first, '100x100#', alt: good.name, longdesc: good_path( good ) ), url_for_image( good.images_in_display_order.first )
