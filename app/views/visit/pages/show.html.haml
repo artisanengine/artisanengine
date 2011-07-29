@@ -1,4 +1,5 @@
 = content_for( :body_class ) { 'page' }
+= content_for( :body_id )		 { page.title.parameterize }
 
 %h1= page.title
 #page_content= sanitize page.html_content

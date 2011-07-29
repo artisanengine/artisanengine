@@ -5,6 +5,11 @@ module Visit
     
     expose( :pages ) { current_frame.pages }
     expose( :page )
+    
+    def show
+      page_specific_view = "visit/pages/#{ page.title.parameterize }"
+      render page_specific_view if template_exists? page_specific_view
+    end
 
     # ------------------------------------------------------------------
     # Non-RESTful Actions
