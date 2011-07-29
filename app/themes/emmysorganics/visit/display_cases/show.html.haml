@@ -6,7 +6,7 @@
 	- for good in goods
 		%div[ good ]
 			.image
-				.image_container= link_to display_image( good.images_in_display_order.first, '182x182>' ), good
+				.image_container= link_to display_image( good.images_in_display_order.first, '182x182>', cropping: :primary ), good
 			
 			.description
 				= link_to good.name, good

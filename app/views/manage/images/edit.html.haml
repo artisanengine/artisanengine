@@ -7,6 +7,7 @@
 
 	.primary_cropping
 		%h2 Primary Cropping
+		%p If present, the primary cropping is displayed as the default image for whatever it is attached to.
 		- if image.primary_cropping.blank?
 			= link_to 'Add a Primary Cropping', manage_image_cropping_path( image, 'primary' ), class: 'add'
 		- else
@@ -16,6 +17,7 @@
 
 	.secondary_cropping
 		%h2 Secondary Cropping
+		%p The secondary cropping is not displayed anywhere by default, but you can use it to add alternate versions of the image to blog posts or pages.
 		- if image.secondary_cropping.blank?
 			= link_to 'Add a Secondary Cropping', manage_image_cropping_path( image, 'secondary' ), class: 'add'
 		- else

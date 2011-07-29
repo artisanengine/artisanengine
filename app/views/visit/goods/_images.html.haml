@@ -1,6 +1,6 @@
 - featured_size 	||= '470x470#'
 - additional_size ||= '130x85#'
-- cropping				||= nil
+- cropping				||= :primary
 
 .featured
 	= link_to display_image( good_images.first, featured_size, cropping: cropping ), url_for_image( good_images.first )
