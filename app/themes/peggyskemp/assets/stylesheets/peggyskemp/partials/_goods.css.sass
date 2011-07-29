@@ -1,0 +1,44 @@
+// ------------------------------------------------------------------
+// Individual Good Pages
+
+.individual_good 
+	#good
+		+column( 26, true )
+		
+		#good_left
+			+column( 13 )
+			
+			h1, #information, #purchase
+				+column( 13 )
+				
+			h1
+				color: $accent-header
+				+trailer( 0.5 )
+				
+			#information
+				+adjust-leading-to( 1.2 )
+				
+			#purchase
+				#options
+					+trailer( 1 )
+					.option
+						+trailer( 0.5 )
+					.option label
+						+inline-block
+						width: 3em
+						padding-right: 1.5em
+						
+				#price
+					+trailer( 0.5 )
+					+adjust-font-size-to( 16px )
+					
+		#good_right
+			+column( 13, true )
+			
+			.featured
+				text-align: center
+			
+			.additional_image
+				+column( 13/3 )
+				&:nth-child( 3n + 3 )
+					+column( 13/3, true )

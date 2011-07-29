@@ -21,6 +21,22 @@ $blueprint-grid-margin:  10px
 @import peggyskemp/partials/**/*
 
 // ------------------------------------------------------------------
+// Submit Buttons
+
+input[type=submit], #checkout
+	background: $light
+	border: 1px solid #666666
+	color: black
+	cursor: pointer
+	padding: 1px
+	
+	&:hover
+		background: lighten( $light, 5% )
+
+#checkout	
+	padding: 5px
+
+// ------------------------------------------------------------------
 // Asset Paths - Integrate into respective stylesheets when you
 // figure out how.
 

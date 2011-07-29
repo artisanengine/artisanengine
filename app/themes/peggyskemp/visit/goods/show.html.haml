@@ -1,0 +1,14 @@
+= render 'good_head'
+
+%section#good
+	#good_left
+		%h1= good.name
+		
+		#information
+			.description= sanitize good.html_description
+		#purchase
+			= render 'purchase'
+			
+	#good_right
+		#images
+			= render 'images', featured_size: '510x510>', additional_size: '163x163#'
