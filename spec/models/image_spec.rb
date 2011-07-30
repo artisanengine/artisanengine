@@ -28,8 +28,8 @@ describe Image do
       new_image.should_not be_valid
     end
   end
-  
-  describe "before saving: " do
+    
+  context "before saving: " do
     context "if all its crop values are set" do
       before do 
         new_image.crop_x = 5
