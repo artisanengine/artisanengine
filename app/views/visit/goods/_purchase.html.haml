@@ -1,22 +1,27 @@
-- quantity_select ||= false
-- button_text 		||= 'Add to Order'
+- quantity_select 	||= false
+- button_text 			||= 'Add to Order'
+- availability_text ||= 'This item is currently unavailable.'
 
-= form_for new_line_item do |f|
+- if good.available?
+	= form_for new_line_item do |f|
 
-	- if good.has_variation?
-		#options
-			= f.select :variant_id, options_from_collection_for_select( good.variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
-	- else
-		= hidden_field_tag "line_item[variant_id]", good.variants.first.id
+		- if good.has_variation?
+			#options
+				= f.select :variant_id, options_from_collection_for_select( good.variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
+		- else
+			= hidden_field_tag "line_item[variant_id]", good.variants.first.id
 	
-	- if quantity_select
-		#quantity
-			= f.label	 :quantity
-			= f.select :quantity, options_for_select( (1..10).to_a )
+		- if quantity_select
+			#quantity
+				= f.label	 :quantity
+				= f.select :quantity, options_for_select( (1..10).to_a )
 		
-	#price
-		- unless good.has_variation?
-			= good.variants.first.price.format
+		#price
+			- unless good.has_variation?
+				= good.variants.first.price.format
 			
-	#complete
-		= f.submit button_text
+		#complete
+			= f.submit button_text
+
+- else
+	%p#unavailable= availability_text

@@ -1,7 +1,7 @@
 # A good is an item sold by an artisan. It can have variations (variants) 
 # the potential properties of which are determined by its options.
 class Good < ActiveRecord::Base
-  attr_accessible :name, :description
+  attr_accessible :name, :description, :available
   
   has_friendly_id :name, use_slug: true, scope: :frame
   
