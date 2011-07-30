@@ -5,8 +5,10 @@
 		= render 'form'
 		
 	= render 'images'
-	= render 'options'
-	= render 'variants'
+	
+	- if good.available?
+		= render 'options'
+		= render 'variants'
 	
 	#danger_zone
 		= button_to 'Delete This Good', manage_good_path( good ), method: :delete, confirm: "Are you sure you want to delete #{ good.name }?", class: 'delete'
