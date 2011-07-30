@@ -36,24 +36,35 @@
 		top: 102px
 		left: 450px
 		font-size: 2.3em
+	
+	h2
+		+trailer( 1 )
 
 	ul
 		list-style-type: none
+		
+	tr
+		height: 120px
+		
+		.retailer
+			+adjust-leading-to( 1.2 )
+			vertical-align: top
+			padding-bottom: 15px
+			width: 170px
 
-	.retailer
-		padding-bottom: 15px
-
-		.name
-			font-weight: bold
-		.phone
-			color: #A09FAD
+			.name
+				font-weight: bold
+			.phone
+				color: #A09FAD
+			.link
+				+adjust-font-size-to( 11px )
 
 	p.page_footer
 		font-family: "Capitol Skyline"
 		font-size: 23px
 		position: relative
 		top: 520px
-		right: 344px
+		right: 393px
 
 	#page_content
 		top: 227px
@@ -63,8 +74,9 @@
 	height: 834px
 
 	h1
-		top: 104px
-		left: 462px
+		top: 103px
+		left: 471px
+		font-size: 2.2em
 
 	p
 		margin-bottom: 5px
@@ -80,7 +92,7 @@
 
 	#page_content
 		top: 270px
-		left: 115px
+		left: 135px
 
 #about
 	height: 708px
@@ -96,7 +108,7 @@
 
 		#first
 			top: 270px
-			left: 120px
+			left: 150px
 			width: 740px
 
 		#interview
@@ -104,20 +116,20 @@
 			font-size: 30px
 			text-align: center
 			top: 450px
-			left: 325px
+			left: 345px
 
 		#more_info
 			font-family: "Capitol Skyline"
 			font-size: 30px
-			left: 225px
-			top: 625px
+			left: 270px
+			top: 639px
 
 #contact
 	height: 600px
 
 	h1
-		top: 44px
-		left: 439px
+		top: 38px
+		left: 450px
 		@include rotate( 2deg )
 
 	#page_content
@@ -125,10 +137,7 @@
 		font-size: 24px
 		text-align: center
 		top: 250px
-		left: 25px
-
-		p
-			margin: 0
+		left: 35px
 
 		#address
 			font-size: 30px
@@ -139,14 +148,14 @@
 		font-size: 13px
 
 	h1
-		top: 67px
-		left: 445px
+		top: 63px
+		left: 455px
 
 	h2
 		font-family: "Capitol Skyline"
 		text-align: center
 		font-size: 30px
-		margin-left: -50capx
+		margin-left: -38px
 		color: black
 		font-weight: normal
 
@@ -156,14 +165,14 @@
 		#philosophy
 			width: 590px
 			margin: 0 auto
-			padding: 26px 0 0 37px
+			padding: 26px 0 0 100px
 
 		#shipping	
 			width: 540px
 			margin: 0 auto
 			position: absolute
 			top: 506px
-			left: 225px
+			left: 260px
 
 #more
 	height: 1198px
