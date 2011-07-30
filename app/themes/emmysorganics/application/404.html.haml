@@ -1,0 +1,14 @@
+!!!
+
+%html
+	%title 404: Not Found
+
+	%body{ class: '404' }
+		#wrapper.container{ style: 'width: 960px; margin: 0 auto; text-align: center; margin-top: 2em;' }
+			= link_to image_tag( 'emmys_logo.jpg', alt: "Emmy's Organics Logo" ), root_path
+			
+			%p Sorry, the page you requested could not be found.
+			%p 
+				Click 
+				= link_to 'here', root_path 
+				to return to the home page.

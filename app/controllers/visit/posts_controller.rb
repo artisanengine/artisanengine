@@ -4,7 +4,11 @@
 
 module Visit
   class PostsController < Visit::VisitController
+    include PostsHelper
+    
     layout :blog_or_visit
+    
+    before_filter :ensure_best_url, only: :show
 
     expose( :blog )          { current_frame.blog }
     expose( :posts )         { load_posts! }
@@ -33,6 +37,11 @@ module Visit
       end
       
       posts.descending_by_date
+    end
+    
+    # Ensure page is accessed from the best Friendly ID.
+    def ensure_best_url
+      redirect_to path_for_post( post ), status: 301 unless post.friendly_id_status.best?
     end
   end
 end
