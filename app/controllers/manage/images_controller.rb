@@ -9,7 +9,7 @@ module Manage
     end
     
     def create
-      flash[ :notice ] = "Image: #{ image.image_name } was successfully created." if image.save
+      flash[ :notice ] = "Image: #{ image.name_or_filename } was successfully created." if image.save
       
       if parent
         ImageAttacher.create! image: image, imageable: parent
@@ -20,13 +20,13 @@ module Manage
     end
     
     def update
-      flash[ :notice ] = "Image: #{ image.image_name } was successfully updated." if image.update_attributes( params[ :image ] )
+      flash[ :notice ] = "Image: #{ image.name_or_filename } was successfully updated." if image.update_attributes( params[ :image ] )
       puts image.errors.full_messages
       respond_with :manage, image, location: edit_manage_image_path( image )
     end
     
     def destroy
-      flash[ :notice ] = "Image: #{ image.image_name } was successfully destroyed." if image.destroy
+      flash[ :notice ] = "Image: #{ image.name_or_filename } was successfully destroyed." if image.destroy
       respond_with :manage, image
     end
     

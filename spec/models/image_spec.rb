@@ -28,6 +28,26 @@ describe Image do
       new_image.should_not be_valid
     end
   end
+ 
+  context "methods: " do
+    describe "#name_or_filename" do
+      context "if the image has a name" do
+        let( :image ) { Image.generate name: 'Romeo' }
+        
+        it "returns the name" do
+          image.name_or_filename.should == 'Romeo'
+        end
+      end
+      
+      context "if the image has no name" do
+        let( :image ) { Image.generate name: "" }
+        
+        it "returns the image filename" do
+          image.name_or_filename.should == image.image_name
+        end
+      end
+    end
+  end
     
   context "before saving: " do
     context "if all its crop values are set" do

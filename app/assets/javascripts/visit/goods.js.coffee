@@ -1,9 +1,10 @@
 $ ->
 	$( '#good #images a' ).colorbox({
 		rel:				'gallery'
-		width: 			'80%'
-		height: 		'80%'
 		transition: 'fade' 
+		maxWidth:		'100%'
+		maxHeight:	'100%'
+		title:			() -> $( this ).children( 'img' ).attr( 'title' )
 	})
 
 ArtisanEngine.buildOptionSelects = (options) ->

@@ -6,7 +6,7 @@
 			image = $( '.croppable img' )
 
 			window.update_crop = (coords) ->
-				ratio = #{ image.image.width } / #{ image.image.thumb( '650x' ).width }
+				ratio = #{ image.image.width } / #{ image.image.thumb( '650x650>' ).width }
 				
 				$( '#crop_x' ).val( Math.round( coords.x * ratio ) )
 				$( '#crop_y' ).val( Math.round( coords.y * ratio ) )
@@ -15,6 +15,7 @@
 
 			image.Jcrop({
 				setSelect: [ 0, 0, 200, 200 ]
+				aspectRatio: 1
 				onChange:  window.update_crop
 				onSelect:  window.update_crop
 			})
@@ -24,14 +25,18 @@
 			$( '.widescreen_crop' ).click( () -> image.Jcrop({ aspectRatio: 16/9 }); return false )
 
 #crop_wrapper
-	.original.croppable= display_image( image, '650x' )
+	.original.croppable= display_image( image, '650x650>' )
+	
+	#crop_options
+		%h2 Crop Options
+		= link_to 'Crop (No Proportions)', '#', class: 'basic_crop'
+		%br
+		= link_to 'Crop (1:1)', 					 '#', class: 'fullscreen_crop'
+		%br
+		= link_to 'Crop (16:9)', 					 '#', class: 'widescreen_crop'
 
-	= link_to 'Crop (No Proportions)', '#', class: 'basic_crop'
-	= link_to 'Crop (1:1)', 					 '#', class: 'fullscreen_crop'
-	= link_to 'Crop (16:9)', 					 '#', class: 'widescreen_crop'
-
-	= form_for [ :manage, image ] do |f|
-		= f.hidden_field :crop_priority
-		- for attribute in [ :crop_x, :crop_y, :crop_w, :crop_h ]
-			= f.hidden_field attribute, id: attribute
-		= f.submit 'Add Cropping'
+		= form_for [ :manage, image ] do |f|
+			= f.hidden_field :crop_priority
+			- for attribute in [ :crop_x, :crop_y, :crop_w, :crop_h ]
+				= f.hidden_field attribute, id: attribute
+			= f.submit 'Add Cropping'

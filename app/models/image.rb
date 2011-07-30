@@ -2,7 +2,7 @@
 # through an image attacher.
 class Image < ActiveRecord::Base
   attr_accessor   :crop_x, :crop_y, :crop_w, :crop_h, :crop_priority
-  attr_accessible :image, :crop_x, :crop_y, :crop_w, :crop_h, :crop_priority
+  attr_accessible :image, :name, :crop_x, :crop_y, :crop_w, :crop_h, :crop_priority
   
   serialize :primary_cropping
   serialize :secondary_cropping
@@ -29,6 +29,15 @@ class Image < ActiveRecord::Base
   validates_presence_of :image, :frame
   validates_property    :format, of: :image, in: [ :jpg, :png, :gif ]
   validates_size_of     :image, maximum: 2.megabytes
+  
+  # ------------------------------------------------------------------
+  # Methods
+  
+  # Returns the custom name if it exists, otherwise returns the image's
+  # filename.
+  def name_or_filename
+    name.blank? ? image_name : name
+  end
     
   # ------------------------------------------------------------------
   private

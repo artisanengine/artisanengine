@@ -1,6 +1,10 @@
 module ImagesHelper
   def display_image( image, size = '200x200>', options = {} )
+    # Extract options.
     cropping = options[ :cropping ]
+    
+    # Set default options.
+    options[ :title ] ||= image.try :name
     
     return placeholder_image( size, options )    if image.nil?
     return cropped_image( image, size, options ) if cropping

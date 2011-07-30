@@ -117,16 +117,32 @@ form.fulfillment, form.frame, form.setting, #manage_option form.option
 		margin-top: 20px
 		
 		.inner
+			+column( 14, true )
 			text-align: center
 			padding: 5px
 			border: 1px solid darken( $bg-color, 10% )
 			+border-radius( 10px )
+			+box-sizing( border-box )
 
 			form
+				+column( 14, true )
 				margin-top: 5px
-				input[type=submit]
-					float: none
-		
+
+				#form_left
+					+column( 10 )
+					label
+						+column( 3 )
+						text-align: left
+					input[type=file]
+						+trailer( 0.5 )
+					input[type=text], input[type=file]
+						+column( 7, true )
+						
+				#form_right
+					+column( 4, true )
+					input[type=submit]
+						float: none
+						+leader( 1 )
 		p
 			+accent
 			
@@ -224,6 +240,22 @@ table#unfulfilled_items
 
 #crop_wrapper
 	+column( 24, true )
+	
+	.original
+		+column( 17 )
+	#crop_options
+		+column( 7, true )
+		a
+			+adjust-font-size-to( 14px )
+			+adjust-leading-to( 1.2 )
+		h2
+			text-align: center
+			+leader( 0 )
+		form
+			text-align: center
+			input[type=submit]
+				+leader( 1 )
+				float: none
 
 #edit_image_wrapper
 	+column( 24, true )
@@ -233,6 +265,16 @@ table#unfulfilled_items
 		+column( 24, true )
 		h2
 			+leader( 0 )
+			
+	form
+		label
+			width: 8%
+			text-align: left
+			margin-top: 2px
+		input[type=text]
+			width: 92%
+	
+	
 	.primary_cropping
 		+prepend( 4 )
 		+column( 8 )

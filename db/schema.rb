@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730160547) do
+ActiveRecord::Schema.define(:version => 20110730174104) do
 
   create_table "address_attachers", :force => true do |t|
     t.integer "address_id",       :null => false
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20110730160547) do
     t.datetime "updated_at"
     t.string   "primary_cropping"
     t.string   "secondary_cropping"
+    t.string   "name"
   end
 
   add_index "images", ["id", "frame_id"], :name => "index_images_on_id_and_frame_id"

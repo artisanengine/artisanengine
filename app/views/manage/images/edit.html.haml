@@ -1,9 +1,13 @@
-= content_for( :heading ) { "Edit/Crop Image: #{ image.image_name }" }
+= content_for( :heading ) { "Edit/Crop Image: #{ image.name_or_filename }" }
 
 #edit_image_wrapper
 	.base_image
 		%h2 Original Image
 		= display_image( image, '400x400>' )
+		
+		= semantic_form_for [ :manage, image ] do |f|
+			= f.inputs :name
+			= f.submit
 
 	.primary_cropping
 		%h2 Primary Cropping
