@@ -51,8 +51,9 @@ ArtisanEngine::Application.routes.draw do
     
     get '/order'     => 'orders#new',    as: 'new_order'
     get '/checkout'  => 'orders#edit',   as: 'checkout'
-    put '/checkout'  => 'orders#update', as: 'checkout'
-    
+    put '/checkout'  => 'orders#update',  as: 'checkout'
+    get '/order/confirm' => 'orders#confirm', as: 'confirm'
+    get '/order/cancel'  => 'orders#cancel',  as: 'cancel'
     get  '/paypal'   => 'orders#paypal',           as: 'paypal'
     post '/ipns'     => 'order_transactions#ipns', as: 'ipns'
     

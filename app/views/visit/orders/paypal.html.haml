@@ -12,7 +12,7 @@
 	
 	= hidden_field_tag :return, 			 	"http://#{ current_frame.domain }/order/confirm"
 	= hidden_field_tag :notify_url,  	 	Setting.get_or_set( current_frame, 'PayPal IPN URL', "http://#{ current_frame.domain }/ipns" )
-	= hidden_field_tag :cancel_return, 	"http://#{ current_frame.domain }/order/cancel"
+	= hidden_field_tag :cancel_return, 	"http://#{ current_frame.domain }/order"
 	
 	= hidden_field_tag :first_name, 		shipping_address.first_name
 	= hidden_field_tag :last_name, 			shipping_address.last_name
