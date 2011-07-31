@@ -87,24 +87,25 @@
 		
 		%br
 		
-		%table
-			%thead
-				%tr
-					%th Amount Received
-					%th Time
-					%th Payment Service
-					%th Transaction Type
-					%th Status
-			%tbody
-				- for transaction in order_transactions
-					%tr[ transaction ]
-						%td= transaction.amount.format
-						%td= transaction.created_at
-						%td= transaction.payment_service
-						%td= transaction.action
-						%td
-							%span.status{ class: transaction.success? ? "success" : "failed" }
-								= transaction.success ? "Success" : "Failed"
+		- if order_transactions.any?
+			%table
+				%thead
+					%tr
+						%th Amount Received
+						%th Time
+						%th Payment Service
+						%th Transaction Type
+						%th Status
+				%tbody
+					- for transaction in order_transactions
+						%tr[ transaction ]
+							%td= transaction.amount.format
+							%td= transaction.created_at
+							%td= transaction.payment_service
+							%td= transaction.action
+							%td
+								%span.status{ class: transaction.success? ? "success" : "failed" }
+									= transaction.success ? "Success" : "Failed"
 	
 	- if order.purchased?
 		#fulfillment
