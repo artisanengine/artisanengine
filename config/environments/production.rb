@@ -1,6 +1,16 @@
 ArtisanEngine::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # Configure ActionMailer for Heroku.
+  ActionMailer::Base.smtp_settings = {
+    address:        "smtp.sendgrid.net",
+    port:           "25",
+    authentication: :plain,
+    user_name:      ENV[ 'SENDGRID_USERNAME' ],
+    password:       ENV[ 'SENDGRID_PASSWORD' ],
+    domain:         ENV[ 'SENDGRID_DOMAIN' ]
+  }
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
