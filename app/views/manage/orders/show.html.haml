@@ -93,24 +93,25 @@
 							%span.status{ class: transaction.success? ? "success" : "failed" }
 								= transaction.success ? "Success" : "Failed"
 	
-	#fulfillment
-		%h2 Fulfillment
+	- if order.purchased?
+		#fulfillment
+			%h2 Fulfillment
 		
-		- unless order.fulfillment_status == "Fulfilled"
-			%nav.heading_links
-				= link_to 'Fulfill This Order', new_manage_order_fulfillment_path( order ), class: 'add'
+			- unless order.fulfillment_status == "Fulfilled"
+				%nav.heading_links
+					= link_to 'Fulfill This Order', new_manage_order_fulfillment_path( order ), class: 'add'
 		
-		%table
-			%thead
-				%tr
-					%th Date
-					%th Shipping Method
-					%th Tracking
-					%th Cost
-			%tbody
-				- for fulfillment in order.fulfillments
-					%tr[ fulfillment ]
-						%td= fulfillment.created_at
-						%td= fulfillment.shipping_method
-						%td= fulfillment.tracking
-						%td= fulfillment.cost.format
+			%table
+				%thead
+					%tr
+						%th Date
+						%th Shipping Method
+						%th Tracking
+						%th Cost
+				%tbody
+					- for fulfillment in order.fulfillments
+						%tr[ fulfillment ]
+							%td= fulfillment.created_at
+							%td= fulfillment.shipping_method
+							%td= fulfillment.tracking
+							%td= fulfillment.cost.format
