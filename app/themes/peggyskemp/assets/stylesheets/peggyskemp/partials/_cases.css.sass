@@ -7,19 +7,23 @@ section#goods
 	h1, h2
 		font-family: "Capitol Skyline"
 		font-weight: normal
-		position: absolute
+		text-align: center
 		
 	.display_case_header
 		position: relative
 	
 	.display_case
 		width: 630px
+		margin: 0 auto
+		+leader( 1 )
+		+trailer( 2 )
 	
 #hives
 	section#goods
 		height: 731px	
 			
 		h1
+			position: absolute
 			text-indent: -9999px
 		
 		.display_case
@@ -35,6 +39,7 @@ section#goods
 	
 	#tentacles_header
 		h1
+			position: absolute
 			font-size: 2.5em
 			top: -41px
 			left: 388px
@@ -52,6 +57,7 @@ section#goods
 
 	#anatomical_header, #neurologica_header
 		h1
+			position: absolute
 			font-size: 3.5em
 			top: -94px
 			left: 253px
@@ -68,6 +74,7 @@ section#goods
 
 	#past-work-gallery_header, #side-projects_header
 		h1
+			position: absolute
 			font-size: 3em
 
 			top: -70px

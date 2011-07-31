@@ -176,3 +176,30 @@
 
 #more
 	height: 1198px
+
+#past_work_galleries_custom_page
+	+column( 26, true )
+	+leader( 1 )
+	+trailer( 2 )
+	
+	h1
+		text-align: center
+		font-weight: normal
+		font-family: "Capitol Skyline"
+		+adjust-font-size-to( 36px )
+		
+	h2
+		text-align: center
+		font-weight: normal
+		font-family: "Capitol Skyline"
+		+adjust-font-size-to( 36px )
+	
+	.gallery
+		+column( 26/3 )
+		&:last-child
+			+column( 26/3, true )
+		
+		img
+			+opacity( 0.8 )
+			&:hover
+				+opacity( 1 )
