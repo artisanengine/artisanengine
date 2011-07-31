@@ -27,7 +27,7 @@
 		
 		%table
 			%tbody
-				- for good in ( current_frame.goods - display_case.goods )
+				- for good in ( current_frame.goods.order( "goods.name ASC" ) - display_case.goods )
 					%tr.good
 						%td= good.name
 						%td.links
