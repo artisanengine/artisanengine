@@ -7,9 +7,9 @@
 
 		- if good.has_variation?
 			#options
-				= f.select :variant_id, options_from_collection_for_select( good.variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
+				= f.select :variant_id, options_from_collection_for_select( good_variants, :id, :values_to_s ), {}, class: 'main_variant_selector'
 		- else
-			= hidden_field_tag "line_item[variant_id]", good.variants.first.id
+			= hidden_field_tag "line_item[variant_id]", good_variants.first.id
 	
 		- if quantity_select
 			#quantity
@@ -18,7 +18,7 @@
 		
 		#price
 			- unless good.has_variation?
-				= good.variants.first.price.format
+				= good_variants.first.price.format
 			
 		#complete
 			= f.submit button_text

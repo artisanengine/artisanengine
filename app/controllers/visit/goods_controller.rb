@@ -6,6 +6,7 @@ module Visit
     
     expose( :goods )         { current_frame.goods }
     expose( :good )
+    expose( :good_variants ) { good.variants.rank( :display_order ) }
     expose( :good_images )   { good.images_in_display_order.all }
     expose( :options )       { good.options.to_json }
     expose( :new_line_item ) { LineItem.new }
