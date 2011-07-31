@@ -203,8 +203,8 @@ class Order < ActiveRecord::Base
                                                   subscribed:  subscribed,
                                                   frame:       frame )
     
-    patron.addresses << billing_address
-    patron.addresses << shipping_address
+    patron.addresses << billing_address  unless patron.addresses.include? billing_address
+    patron.addresses << shipping_address unless patron.addresses.include? shipping_address
     save
   end
 end

@@ -236,6 +236,14 @@ describe Order do
             expect { order.checkout! }.not_to change( Patron, :count )
             order.patron.should == @existing_patron
           end
+          
+          it "does not associate its addresses with its patron if the patron already has the addresses" do
+            @existing_patron.addresses << order.shipping_address
+            @existing_patron.addresses << order.billing_address
+            
+            order.checkout!
+            order.patron.addresses.count.should == 2
+          end
         end
         
         context "if a patron does not exist with the order's E-Mail" do
