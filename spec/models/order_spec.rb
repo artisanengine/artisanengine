@@ -286,6 +286,15 @@ describe Order do
         order.should be_failed
       end
     end
+  
+    describe "#abandon!" do
+      let( :order ) { Factory :pending_order }
+      
+      it "sets the order's status to Abandoned" do
+        order.abandon!
+        order.should be_abandoned
+      end
+    end
   end
 
   describe "when setting a shipping address" do

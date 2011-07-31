@@ -67,6 +67,12 @@ class Order < ActiveRecord::Base
     
     state :purchased
     
+    event :abandon! do
+      transition :pending => :abandoned
+    end
+    
+    state :abandoned
+    
     event :fail! do
       transition all => :failed
     end
