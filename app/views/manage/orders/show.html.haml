@@ -19,7 +19,7 @@
 			= patron.email
 		- else
 			%p This order's patron has been removed from the manifest.
-
+	
 	#shipping
 		%h2 Shipping Address
 		= render shipping_address
@@ -27,6 +27,11 @@
 	#billing
 		%h2 Billing Address
 		= render billing_address
+
+	- unless order.note.blank?
+		#note
+			%h2 Note
+			= order.note
 
 	#line_items
 		%h2 Items & Adjustments

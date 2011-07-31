@@ -53,23 +53,38 @@ form.order
 			+adjust-font-size-to( 13px )
 			font-weight: bold
 	
-	#shipping_address, #billing_address
-		+column( 12 )
-		+trailer( 1 )
-		li
+	#addresses
+		+column( 24, true )
+		#shipping_address, #billing_address
+			+column( 12 )
+			+trailer( 1 )
+			li
+				+column( 12, true )
+				label
+					+column( 3 )
+				input, select
+					+column( 9, true )
+					+box-sizing( border-box )
+					width: span( 9 )
+					+trailer( 0.5 )
+		#billing_address
 			+column( 12, true )
-			label
-				+column( 3 )
-			input, select
-				+column( 9, true )
-				+box-sizing( border-box )
-				width: span( 9 )
-				+trailer( 0.5 )
-	#billing_address
-		+column( 12, true )
+	
+	fieldset#note
+		+column( 24, true )
+		border: 1px solid $emmys-gray
+		+box-sizing( border-box )
+		padding: 1em
+		+trailer( 1 )
+		
+		textarea
+			width: 100%
 		
 	#complete
 		clear: both
 		text-align: center
 		height: 2em
 		+trailer( 1 )
+		
+		input[type=submit]
+			+adjust-font-size-to( 16px )

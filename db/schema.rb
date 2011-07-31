@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730174104) do
+ActiveRecord::Schema.define(:version => 20110731035915) do
 
   create_table "address_attachers", :force => true do |t|
     t.integer "address_id",       :null => false
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20110730174104) do
     t.string   "status",              :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "note"
   end
 
   add_index "orders", ["id_in_frame"], :name => "index_orders_on_id_in_frame"
