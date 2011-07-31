@@ -52,4 +52,13 @@ ArtisanEngine::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Insert Rack::Cache and hook it up to Dalli for Memcached support.
+  $cache = Dalli::Client.new
+  
+  config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
+    verbose:     true,
+    metastore:   $cache,
+    entitystore: 'file:tmp/cache/entity'
+  }
 end

@@ -18,7 +18,6 @@ gem 'state_machine',          '1.0.1'         # Statefulness for models.
 gem 'carmen',                 '0.2.8'         # Countries and provinces.
 gem 'activemerchant',         '1.15.0'        # Payment gateways.
 gem 'rack-rewrite',           '1.0.2'         # URL redirects.
-gem 'rack-cache',             '1.0.2'         # Caching.
 
 # Positioning.
 gem 'acts_as_list',           '0.1.3'
@@ -75,6 +74,8 @@ end
 
 group :staging, :production do
   gem 'pg',                   '0.11.0'        # Use Postgres DB in production to match Heroku.
+  gem 'rack-cache',           '1.0.2'         # Caching.
+  gem 'dalli',                '1.0.5'         # Memcache client.        
 end
 
 group :production do

@@ -35,7 +35,7 @@ ArtisanEngine::Application.configure do
   # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -55,4 +55,13 @@ ArtisanEngine::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Insert Rack::Cache and hook it up to Dalli for Memcached support.
+  $cache = Dalli::Client.new
+  
+  config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
+    verbose:     true,
+    metastore:   $cache,
+    entitystore: 'file:tmp/cache/entity'
+  }
 end
