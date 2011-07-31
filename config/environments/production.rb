@@ -61,4 +61,7 @@ ArtisanEngine::Application.configure do
     metastore:   $cache,
     entitystore: 'file:tmp/cache/entity'
   }
+  
+  # Redirect all non-www addresses.
+  config.middleware.insert_before 'Rack::Cache', 'Rack::NoWWW'
 end
