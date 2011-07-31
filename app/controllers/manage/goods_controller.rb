@@ -2,7 +2,7 @@ module Manage
   class GoodsController < Manage::ManageController
     respond_to :html
     
-    expose( :goods )                { current_frame.goods }
+    expose( :goods )                { current_frame.goods.order( "goods.name ASC" ) }
     expose( :good )
     expose( :good_options )         { good.options.in_order }
     expose( :new_option )           { good_options.new }
