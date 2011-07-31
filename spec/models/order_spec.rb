@@ -276,6 +276,11 @@ describe Order do
         order.purchase!
         order.should be_purchased
       end
+      
+      it "sets the completed_at time", focus: true do
+        order.purchase!
+        order.completed_at.should_not be_nil
+      end
     end
     
     describe "#fail!" do

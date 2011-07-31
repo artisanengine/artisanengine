@@ -6,7 +6,8 @@
 			%th Order No.
 			%th Payment Status
 			%th Fulfillment Status
-			%th Placed On
+			%th Created
+			%th Completed
 			%td
 	%tbody
 		- for order in orders
@@ -17,5 +18,6 @@
 				%td
 					%span.status{ class: fulfillment_class( order ) }= order.fulfillment_status
 				%td.placed= order.created_at
+				%td.completed= order.completed_at
 				%td.links
 					= link_to 'Details', manage_order_path( order )

@@ -65,6 +65,8 @@ class Order < ActiveRecord::Base
       transition :pending => :purchased
     end
     
+    after_transition :pending => :purchased, :do => :set_completed_at_time
+    
     state :purchased
     
     event :abandon! do
@@ -212,5 +214,10 @@ class Order < ActiveRecord::Base
     patron.addresses << billing_address  unless patron.addresses.include? billing_address
     patron.addresses << shipping_address unless patron.addresses.include? shipping_address
     save
+  end
+  
+  # Set the completed at time to the current time.
+  def set_completed_at_time
+    self.update_attributes completed_at: Time.now
   end
 end

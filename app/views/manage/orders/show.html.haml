@@ -73,7 +73,20 @@
 
 	#activity
 		%h2 Activity
-	
+		%table
+			%tbody
+				%tr
+					%td 
+						%strong Created
+					%td= order.created_at
+				- if order.completed_at
+					%tr
+						%td 
+							%strong Completed
+						%td= order.completed_at
+		
+		%br
+		
 		%table
 			%thead
 				%tr
