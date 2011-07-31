@@ -104,6 +104,12 @@ describe Visit::OrderTransactionsController do
           order.should_receive( :fail! )
           post :ipns
         end
+        
+        it "does not fail the order if the order has already been purchased" do
+          order.stub purchased?: true
+          order.should_not_receive( :fail! )
+          post :ipns
+        end
       end
     end
     
@@ -115,6 +121,12 @@ describe Visit::OrderTransactionsController do
       
       it "fails the order" do
         order.should_receive( :fail! )
+        post :ipns
+      end
+      
+      it "does not fail the order if the order has already been purchased" do
+        order.stub purchased?: true
+        order.should_not_receive( :fail! )
         post :ipns
       end
     end

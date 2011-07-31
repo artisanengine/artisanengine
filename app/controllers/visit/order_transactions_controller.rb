@@ -53,17 +53,17 @@ module Visit
           else
             logger.error "PayPal transaction was not completed. Please investigate."
             create_failed_order_transaction( order, ipn, params )
-            order.fail!
+            order.fail! unless order.purchased?
           end
         rescue => e
           logger.error "An error occurred while handling a PayPal IPN. Please investigate."
           create_failed_order_transaction( order, ipn, params )
-          order.fail!
+          order.fail! unless order.purchased?
         end
       else
         logger.error "Could not verify PayPal's IPN. Please investigate."
         create_failed_order_transaction( order, ipn, params )
-        order.fail!
+        order.fail! unless order.purchased?
       end
                                  
       render nothing: true
