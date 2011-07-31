@@ -49,6 +49,13 @@ module ArtisanEngine
     # Insert Dragonfly middleware.
     config.middleware.insert 0, 'Dragonfly::Middleware', :images
   
+    # Insert Rack::Cache.
+    config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
+      verbose:     true,
+      metastore:   URI.encode( "file:#{ Rails.root }/tmp/dragonfly/cache/meta" ),
+      entitystore: URI.encode( "file:#{ Rails.root }/tmp/dragonfly/cache/body" )
+    }
+  
     # Configure generators.
     config.generators do |g|
       g.template_engine :haml

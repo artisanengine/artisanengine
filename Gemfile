@@ -18,6 +18,7 @@ gem 'state_machine',          '1.0.1'         # Statefulness for models.
 gem 'carmen',                 '0.2.8'         # Countries and provinces.
 gem 'activemerchant',         '1.15.0'        # Payment gateways.
 gem 'rack-rewrite',           '1.0.2'         # URL redirects.
+gem 'rack-cache',             '1.0.2'         # Caching.
 
 # Positioning.
 gem 'acts_as_list',           '0.1.3'
