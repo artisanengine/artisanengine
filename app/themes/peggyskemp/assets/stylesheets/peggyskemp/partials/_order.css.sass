@@ -30,6 +30,30 @@
 			td.unit_price
 				width: 10%
 
+#order_summary
+	+column( 12, true )
+	
+	+leader( 1 )
+	+box-sizing( border-box )
+	padding: 1em
+	border: 1px solid $light
+
+	p.summary
+		font-weight: bold
+
+	table
+		.image
+			width: 10%
+		.name
+			width: 70%
+			padding-left: 0.5em
+			.item_name
+				font-weight: bold
+		.quantity
+			width: 10%
+		.unit_price
+			width: 10%
+
 form.order
 	+column( 26, true )
 	
@@ -85,3 +109,6 @@ form.order
 		text-align: center
 		height: 2em
 		+trailer( 1 )
+		
+		input[type=submit]
+			+adjust-font-size-to( 16px )

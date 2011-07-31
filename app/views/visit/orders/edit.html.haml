@@ -25,6 +25,27 @@
 				})
 			)
 
+#order_summary
+	%p.summary You are ordering:
+	%table
+		%tbody
+			- for line_item in order.line_items
+				%tr[ line_item ]
+					%td.image= display_image( line_item.variant.good.images.first, '50x50#' )
+					%td.name
+						%span.item_name= line_item.name
+						- unless line_item.options.blank?
+							%br
+							%span.options= line_item.options
+					%td.quantity= line_item.quantity.to_s + "x"
+					%td.unit_price= ( line_item.price * line_item.quantity ).format
+			%tr
+				%td{ colspan: 3 }
+				%td
+					%strong Total:
+					%br
+					= order.adjusted_total.format
+
 = semantic_form_for order, url: checkout_path do |f|
 	= f.inputs id: "email" do
 		= f.input :email, required: true
