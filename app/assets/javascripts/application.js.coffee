@@ -4,5 +4,6 @@
 #= require jquery_ujs
 #= require underscore
 #= require jquery/jquery.colorbox
+#= require jquery/jquery.tools.min
 
 window.ArtisanEngine = {}
