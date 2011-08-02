@@ -23,6 +23,20 @@
 					}) 
 				})
 
+			$( '#variants' ).delegate( 'a.edit', 'click', () ->
+				$.fn.colorbox({
+					href: $(this).attr('href')
+					open: true
+					onComplete: () ->
+						$( 'form.variant' ).submit( () ->
+							$.rails.handleRemote $( this )
+							$.fn.colorbox.close()
+							return false
+						)
+				})
+				return false
+			)
+
 #variants
 	%h2 Variants
 	%table#all_variants
@@ -31,6 +45,7 @@
 				%th
 				- for option in good_options
 					%th= label_tag "variant_option_value_#{ option.order_in_good }", option.name
+				%th= label_tag "variant_weight", 'Weight (lbs.)'
 				%th= label_tag "variant_price", 'Price'
 				%th
 	
@@ -43,6 +58,6 @@
 				= form_for [ :manage, good, new_variant ], remote: true do |f|
 					- for option in good_options
 						%td.option= f.text_field :"option_value_#{ option.order_in_good }", placeholder: "Option #{ option.order_in_good }"
+					%td.weight= f.text_field :weight, placeholder: 'Weight (Optional)'
 					%td.price= f.text_field :price
-			
 					%td= f.submit 'Add Variant'

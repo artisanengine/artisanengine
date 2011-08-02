@@ -1,0 +1,13 @@
+:plain
+	var variant_row = $( '#variants tr#variant_' + #{ variant.id } );
+	var row_color = variant_row.css( 'background-color' );
+	
+	variant_row.hide();
+	variant_row.replaceWith( "#{ escape_javascript( render variant ) }" );
+		
+	var new_row = $( '#variants tr#variant_' + #{ variant.id } );
+	var new_row_color = new_row.css( 'background-color' );
+		
+	new_row.css( 'background-color', '#E6FFE6' );
+	new_row.animate({ backgroundColor: new_row_color }, 1000 );
+	
