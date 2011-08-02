@@ -1,0 +1,53 @@
+<div class="share_buttons">
+	<table>
+		<tbody>
+			<tr>
+				<td class="twitter_share">
+					<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
+					
+					<%= content_for :tail_javascripts do %>
+						<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+					<% end %>
+				</td>
+			</tr>
+		
+			<tr>
+				<td class="google_share">
+					<!-- Place this tag where you want the +1 button to render -->
+					<g:plusone size="medium"></g:plusone>
+					
+					<%= content_for :tail_javascripts do %>
+						<!--  Place this tag after the last plusone tag -->
+						<script type="text/javascript">
+						  (function() {
+						    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						    po.src = 'https://apis.google.com/js/plusone.js';
+						    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						  })();
+						</script>
+					<% end %>
+				</td>
+			</tr>
+				
+			<tr>
+				<td class="facebook_share">
+					<div id="fb-root"></div><fb:like href="<%= request.url %>" send="true" layout="button_count" width="300" show_faces="false" font=""></fb:like>
+					
+					<%= content_for :tail_javascripts do %>
+						<script>
+						  window.fbAsyncInit = function() {
+						    FB.init({xfbml: true});
+						  };
+						  (function() {
+						    var e = document.createElement('script'); e.async = true;
+						    e.src = document.location.protocol +
+						      '//connect.facebook.net/en_US/all.js';
+						    document.getElementById('fb-root').appendChild(e);
+						  }());
+						</script>
+					<% end %>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
