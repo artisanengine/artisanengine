@@ -1,8 +1,11 @@
 - frame_stylesheet ||= "visit"
 - frame_js				 ||= nil
+- favicon					 ||= nil
 
 %head
 	%title= content_for?( :title ) ? content_for( :title ) : current_frame.name
+	= favicon_link_tag favicon if favicon
+	
 	= stylesheet_link_tag		 "application", frame_stylesheet
 	
 	/[if lt IE8]
