@@ -1,6 +1,6 @@
 !!!
 
-%html
+%html{ lang: "en", :"xmlns:og" => "http://ogp.me/ns#", :"xmlns:fb" => "http://www.facebook.com/2008/fbml" }
 	= render 'layouts/visit/head', favicon: 'psjfavicon.ico', frame_stylesheet: 'peggyskemp', frame_js: 'peggyskemp'
 	
 	%body{ class: content_for( :body_class ), id: content_for( :body_id ) }
@@ -10,3 +10,5 @@
 			= content_for?( :main ) ? yield( :main ) : yield
 			= render 'layouts/visit/navigation' unless request.fullpath == root_path
 			= render 'layouts/visit/footer'
+	
+		= render 'layouts/visit/tail'

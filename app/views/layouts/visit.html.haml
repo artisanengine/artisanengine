@@ -16,3 +16,5 @@
 				= link_to current_frame.name, root_path, id: 'logo'
 							
 			= content_for?( :main ) ? yield( :main ) : yield
+	
+		= render 'layouts/visit/tail'
