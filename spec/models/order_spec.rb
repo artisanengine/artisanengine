@@ -277,7 +277,7 @@ describe Order do
         order.should be_purchased
       end
       
-      it "sets the completed_at time", focus: true do
+      it "sets the completed_at time" do
         order.purchase!
         order.completed_at.should_not be_nil
       end
