@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110731051555) do
+ActiveRecord::Schema.define(:version => 20110802200953) do
 
   create_table "address_attachers", :force => true do |t|
     t.integer "address_id",       :null => false
@@ -261,15 +261,16 @@ ActiveRecord::Schema.define(:version => 20110731051555) do
   add_index "tags", ["cached_slug", "frame_id"], :name => "index_tags_on_cached_slug_and_frame_id"
 
   create_table "variants", :force => true do |t|
-    t.integer "good_id",                       :null => false
-    t.integer "display_order",                 :null => false
-    t.integer "price_in_cents", :default => 0, :null => false
+    t.integer "good_id",                                                     :null => false
+    t.integer "display_order",                                               :null => false
+    t.integer "price_in_cents",                               :default => 0, :null => false
     t.string  "currency"
     t.string  "option_value_1"
     t.string  "option_value_2"
     t.string  "option_value_3"
     t.string  "option_value_4"
     t.string  "option_value_5"
+    t.decimal "weight",         :precision => 8, :scale => 2
   end
 
   add_index "variants", ["id", "good_id"], :name => "index_variants_on_id_and_good_id"

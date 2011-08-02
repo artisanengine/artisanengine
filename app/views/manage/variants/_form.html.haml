@@ -3,4 +3,5 @@
 		- for option in good_options
 			= f.input :"option_value_#{ option.order_in_good }", label: option.name
 		= f.input :price
+		= f.input :weight
 	= f.submit
