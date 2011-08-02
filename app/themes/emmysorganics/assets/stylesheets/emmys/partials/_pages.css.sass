@@ -30,3 +30,27 @@
 		+trailer( 0.5 )
 	#page_content
 		+column( 20, true )
+
+
+//
+// Ingredients
+
+#our-ingredients
+	.ingredient
+		+column( 10 )		
+		text-align: center
+		&:nth-child(even)
+			+column( 10, true )
+		&:hover
+			cursor: pointer
+	
+		p
+			+trailer( 0 )
+	
+	.ingredient_popup
+		display: none
+		padding: 1em
+		width: 200px
+		background-color: white
+		+single-box-shadow
+		cursor: pointer
