@@ -7,6 +7,8 @@ class LineItem < ActiveRecord::Base
   belongs_to :fulfillment
   belongs_to :order
   belongs_to :variant
+  
+  delegate   :weight, to: :variant, allow_nil: true
 
   # ------------------------------------------------------------------
   # Validations

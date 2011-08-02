@@ -31,6 +31,7 @@
 		= hidden_field_tag :"amount_#{ index + 1 }", 		item.price
 		= hidden_field_tag :"item_name_#{ index + 1 }", item_name
 		= hidden_field_tag :"quantity_#{ index + 1 }", 	item.quantity
+		= hidden_field_tag :"weight_#{ index + 1 }", 		item.weight
 			
 	= submit_tag 'Continue to PayPal'
 
