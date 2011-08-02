@@ -9,7 +9,8 @@
 	%meta{ property: 'og:title', 		 	 content: good.name }
 	%meta{ property: 'og:type', 		 	 content: 'product' }
 	%meta{ property: 'og:url', 	 		 	 content: request.url }
-	%meta{ property: 'og:image', 		 	 content: url_for_image( good.images_in_display_order.first ) }
+	- for image in good.images_in_display_order
+		%meta{ property: 'og:image', 		 	 content: url_for_image( image ) }
 	%meta{ property: 'og:site_name', 	 content: current_frame.name }
-	%meta{ property: 'fb:admins', 	 	 content: 'readeharris' }
+	%meta{ property: 'fb:admins', 	 	 content: Setting.get_or_set( current_frame, 'Facebook Administrators', "readeharris" ) }
 	%meta{ property: 'og:description', content: truncate( strip_tags( good.html_description ), length: 150, separator: ' ' ) }
