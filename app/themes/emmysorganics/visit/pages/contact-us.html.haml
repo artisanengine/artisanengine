@@ -1,0 +1,30 @@
+#contact.custom_page
+	%h1 Connect with Emmy's
+	
+	#signup
+		#signup_image= image_tag 'signup.jpg'
+		#signup_text
+			%h3 Monthly Email List
+			%p Get news, discounts, and more!
+
+		= form_tag subscribe_path, class: 'formtastic' do
+			= text_field_tag :email
+			%br
+			= submit_tag 'Sign Up'
+			#subscribe_notice= flash[ :subscribe_notice ]
+			
+	#networks
+		.network
+			= image_tag 'emmys_rss.jpg'
+			%h3 Daily Updates
+			%p News, updates, photos, and more
+		
+		.network	
+			= image_tag 'emmys_twitter.jpg'
+			%h3 emmy's Twitter
+			%p follow our tweets for the sweets
+			
+		.network
+			= image_tag 'emmys_facebook.jpg'
+			%h3 emmy's Facebook
+			%p let's be friends... we'll give you discounts ;)

@@ -54,3 +54,81 @@
 		background-color: white
 		+single-box-shadow
 		cursor: pointer
+
+// Connect
+#contact
+	+column( 20, true )
+	
+	h1
+		+adjust-font-size-to( 24px )
+		+padding-trailer( 0.5 )
+		border-bottom: 2px dotted $emmys-gray
+	
+	#signup
+		+column( 12 )
+		
+		#signup_image
+			float: left
+			display: inline
+			width: 70px
+			img
+				padding: 10px 10px 0
+
+		#signup_text
+			float: left
+			padding-top: 13px
+			
+			h3
+				line-height: 1em
+				padding-top: 0.8em
+
+		form
+			+column( 12, true )
+	
+			input[type=text]
+				+adjust-font-size-to( 24px )
+				width: 275px
+				margin: 0 10px
+				border: 1px solid darken( $emmys-gray, 25% )
+	
+			input[type=submit]
+				background: $emmys-red
+				color: $emmys-white
+		
+				border: none
+				padding: 0.2em 0.3em
+				margin: 5px 10px
+		
+				text-transform: uppercase
+				font-weight: bold
+		
+				cursor: pointer
+		
+		#subscribe_notice
+			float: right
+			+leader( 0.5 )
+			+box-sizing( border-box )
+			padding-right: 0.75em
+	
+	#networks
+		+column( 8, true )
+		+box-sizing( border-box )
+		border-left: 1px solid $emmys-gray
+		
+		.network
+			+leader( 0.5 )
+			padding-left: 1em
+			border-bottom: 1px solid $emmys-gray
+			&:last-child
+				border-bottom: none
+			
+			img
+				float: left
+			h3
+				padding-left: 50px
+				+adjust-leading-to( 1 )
+				padding-top: 5px
+			p
+				padding-left: 50px
+				color: lighten( $default-text-color, 10% )
+			

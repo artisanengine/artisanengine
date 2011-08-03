@@ -19,6 +19,7 @@ gem 'carmen',                 '0.2.8'         # Countries and provinces.
 gem 'activemerchant',         '1.15.0'        # Payment gateways.
 gem 'rack-rewrite',           '1.0.2'         # URL redirects.
 gem 'rack-no-www',            '0.0.2'         # No www addresses.
+gem 'mail_form',              '1.3.0'         
 
 # Positioning.
 gem 'acts_as_list',           '0.1.3'
