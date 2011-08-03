@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110802200953) do
+ActiveRecord::Schema.define(:version => 20110802231231) do
 
   create_table "address_attachers", :force => true do |t|
     t.integer "address_id",       :null => false
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20110802200953) do
     t.string   "cached_slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "published_on"
   end
 
   add_index "posts", ["cached_slug", "blog_id"], :name => "index_posts_on_cached_slug_and_blog_id"

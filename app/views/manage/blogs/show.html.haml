@@ -13,9 +13,9 @@
 				%th
 			
 		%tbody
-			- for post in blog.posts.order( "created_at DESC" )
+			- for post in blog.posts.descending_by_date
 				%tr[ post ]
 					%td= link_to post.title, path_for_post( post )
-					%td= time_ago_in_words( post.created_at ) + " ago"
+					%td= post.published_on
 					%td= post.tag_names
 					%td.links= link_to 'Edit', polymorphic_url( [ :manage, :blog, post ], action: :edit )

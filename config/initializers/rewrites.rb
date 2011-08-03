@@ -13,5 +13,6 @@ Rails.application.config.middleware.insert_before( Rack::Lock, Rack::Rewrite ) d
   r301 '/half-heart-necklace-p47',                  '/goods/half-heart-necklace'
   r301 '/tentacles-d3',                             '/collections/tentacles'
   r301 '/silver-tentacle-ring-p28',                 '/goods/silver-tentacle-band'
-
+  r301 '/anatomical-lung-locket-p12',               '/goods/anatomical-lung-locket'
+  r301 '/rufous-rubbercup-ring-p39',                '/goods/rufous-rubbercup-ring'
 end

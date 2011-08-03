@@ -8,6 +8,15 @@
 	
 	form.footer, input[type=text], input[type=email], input[type=password], textarea, label
 		+column( 14, true )
+	#published_on_fields 
+		fieldset
+			+column( 14, true )
+			li
+				display: inline
+				label
+					float: none
+					&:after
+						content: " "
 
 // ------------------------------------------------------------------
 // Form Styles
@@ -273,7 +282,6 @@ table#unfulfilled_items
 			margin-top: 2px
 		input[type=text]
 			width: 92%
-	
 	
 	.primary_cropping
 		+prepend( 4 )
