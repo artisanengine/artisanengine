@@ -1,5 +1,8 @@
 = content_for( :heading ) { 'Manage Patrons' }
 
+%nav.heading_links
+	= link_to 'Export Subscribed Patrons', '/manage/patrons.csv', class: 'address_export'
+
 %table
 	%thead
 		%tr

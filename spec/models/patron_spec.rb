@@ -27,4 +27,15 @@ describe Patron do
       end
     end
   end
+  
+  context "scopes: " do
+    describe "::subscribed" do
+      it "returns patrons with subcribed status" do
+        unsubscribed_patron = Patron.generate subscribed: false
+        subscribed_patron   = Patron.generate subscribed: true
+        
+        Patron.subscribed.should == [ subscribed_patron ]
+      end
+    end
+  end
 end
