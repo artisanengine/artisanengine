@@ -2,7 +2,7 @@
 # that it must belong to a blog and it can have tags for organizational
 # purposes.
 class Post < ActiveRecord::Base
-  attr_accessible :title, :content, :tag_names
+  attr_accessible :title, :content, :tag_names, :published_on
   attr_accessor   :tag_names
   
   has_friendly_id :title, use_slug: true, scope: :blog
@@ -38,8 +38,9 @@ class Post < ActiveRecord::Base
                                where created_at: month.beginning_of_month..month.beginning_of_month.next_month 
                               }
     
+  scope :published,          lambda { where( [ "posts.published_on IS NOT NULL AND posts.published_on <= ?", Time.now ] ) }
   scope :tagged_with,        lambda { |tag_name| joins( :tags ).where( "tags.name = ?", tag_name ) }
-  scope :descending_by_date, lambda { order( "posts.created_at DESC" ) }
+  scope :descending_by_date, lambda { order( "posts.published_on DESC" ) }
   
   # ------------------------------------------------------------------
   # Accessors

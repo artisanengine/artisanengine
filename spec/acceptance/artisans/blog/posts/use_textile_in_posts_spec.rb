@@ -18,6 +18,7 @@ feature 'Use Textile in Posts', %q{
     # When I fill in some textile content,
     fill_in 'Title',   with: 'My Textiled Post'
     fill_in 'Content', with: 'A *bold* man.'
+    fill_in_valid_date
     
     # And I click Create Post,
     click_button 'Create Post'

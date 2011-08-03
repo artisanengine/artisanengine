@@ -25,15 +25,15 @@ module Visit
     
     def load_posts!
       if params[ :year ] and params[ :month ]
-        posts = blog.posts.by_month( params[ :year ], params[ :month ] )
+        posts = blog.posts.published.by_month( params[ :year ], params[ :month ] )
       elsif params[ :year ]
-        posts = blog.posts.by_year( params[ :year ] )
+        posts = blog.posts.published.by_year( params[ :year ] )
       else
         posts = blog.posts
       end
       
       if params[ :tagged_with ]
-        posts = posts.tagged_with( params[ :tagged_with ] )
+        posts = posts.published.tagged_with( params[ :tagged_with ] )
       end
       
       posts.descending_by_date

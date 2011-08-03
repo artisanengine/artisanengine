@@ -84,12 +84,22 @@ describe Post do
     end
     
     describe "::descending_by_date: " do
-      it "returns posts in descending order of the date they were created" do
-        early  = Post.generate created_at: Date.new( 2009, 12, 31 )
-        late   = Post.generate created_at: Date.new( 2011, 1, 1 )
-        middle = Post.generate created_at: Date.new( 2010, 12, 31 )
+      it "returns posts in descending order of the date they were published" do
+        early  = Post.generate published_on: Date.new( 2009, 12, 31 )
+        late   = Post.generate published_on: Date.new( 2011, 1, 1 )
+        middle = Post.generate published_on: Date.new( 2010, 12, 31 )
         
         Post.descending_by_date.should == [ late, middle, early ]
+      end
+    end
+    
+    describe "::published" do
+      it "only returns posts with a publishing date before now" do
+        not_published = Post.generate published_on: nil
+        published     = Post.generate published_on: Date.new( 2011 )
+        to_publish    = Post.generate published_on: Date.new( 2015 )
+        
+        Post.published.should == [ published ]
       end
     end
   end
