@@ -40,6 +40,7 @@ gem 'compass',                git: 'https://github.com/chriseppstein/compass.git
 
 # Asset pipeline.
 gem 'sass-rails',             '~> 3.1.0.rc'   # Enable SASS templates.
+gem 'sass',                   '3.1.5'         # Blueprint/Sass 3.1.6 incompatibility.
 gem 'coffee-script',          '2.2.0'         # Enable CoffeeScript.
 gem 'uglifier',               '1.0.0'         # Default asset compressor.
 
