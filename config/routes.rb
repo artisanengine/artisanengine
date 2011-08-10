@@ -48,6 +48,7 @@ ArtisanEngine::Application.routes.draw do
     resources :display_cases, path: 'collections'
     
     post '/subscribe' => 'patrons#subscribe'
+    post '/donations' => 'mail_forms#donations'
     
     get '/order'     => 'orders#new',    as: 'new_order'
     get '/checkout'  => 'orders#edit',   as: 'checkout'

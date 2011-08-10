@@ -190,6 +190,7 @@ GEM
       thor (~> 0.14.6)
     rake (0.8.7)
     rdoc (3.8)
+    recaptcha (0.3.1)
     rest-client (1.6.3)
       mime-types (>= 1.16)
     rspec (2.6.0)
@@ -288,6 +289,7 @@ DEPENDENCIES
   rails (= 3.1.0.rc5)
   rake (= 0.8.7)
   ranked-model!
+  recaptcha (= 0.3.1)
   rspec-cells (= 0.0.5)
   rspec-rails (= 2.6.1)
   sass-rails (~> 3.1.0.rc)
