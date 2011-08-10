@@ -1,5 +1,6 @@
 require File.expand_path( '../boot', __FILE__ )
 
+# require 'net/http'    # Hack for ReCAPTCHA.
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
@@ -13,7 +14,7 @@ module ArtisanEngine
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W( #{ Rails.root }/lib #{ Rails.root }/app/models/adjustments )
+    config.autoload_paths += %W( #{ Rails.root }/lib #{ Rails.root }/app/models/adjustments #{ Rails.root }/app/models/mail_forms )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

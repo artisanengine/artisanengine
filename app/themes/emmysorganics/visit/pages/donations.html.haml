@@ -1,0 +1,6 @@
+= render 'notifications'
+
+= semantic_form_for @donations_form || DonationsForm.new, url: '/donations' do |f|
+	= f.inputs :name, :email, :phone, :organization, :event_name, :event_date, :number_of_attendees, :product_for_donation, :event_description
+	= recaptcha_tags
+	= f.submit 'Send Donation Request'
