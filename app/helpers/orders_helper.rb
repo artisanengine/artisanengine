@@ -4,9 +4,9 @@ module OrdersHelper
       begin
         order = current_frame.orders.find( session[ :order_id ] )
         
-        # Don't bother returning an order if it isn't new or pending,
+        # Don't bother returning an order if it isn't new, pending, or abandoned,
         # since a visitor can't edit it at that point anyway.
-        return order if order and ( order.new? or order.pending? )
+        return order if order and ( order.new? or order.pending? or order.abandoned? )
       
       # In case the order has been cleared out but the ID is still in the
       # session, give them a new order.
