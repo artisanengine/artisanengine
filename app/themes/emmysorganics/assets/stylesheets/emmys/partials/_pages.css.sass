@@ -56,7 +56,7 @@
 		cursor: pointer
 
 // Connect
-#contact.custom_page
+#connect.custom_page
 	+column( 20, true )
 	
 	h1
@@ -131,4 +131,44 @@
 			p
 				padding-left: 50px
 				color: lighten( $default-text-color, 10% )
-			
+
+// Custom Pages
+
+.custom_page, .custom_page #notifications
+	+column( 20, true )
+
+.custom_page form
+	+column( 15, true )
+	+append( 9 )
+
+	ol li
+		+column( 15, true )
+		+trailer( 1 )
+		
+		label
+			+column( 4 )
+		input, textarea
+			+column( 11, true )
+			+box-sizing( border-box )
+	
+	.submit
+		text-align: center
+		input[type=submit]
+			+adjust-font-size-to( 18px )
+			+adjust-leading-to( 1 )
+			background: $emmys-purple
+			color: $emmys-white
+			cursor: pointer
+		
+	#recaptcha_area
+		margin: 0 auto
+
+#contact.custom_page
+	table, td
+		border: 1px solid $emmys-gray
+		padding: 1em
+	
+	table
+		h2
+			+adjust-font-size-to( 20px )
+			+adjust-leading-to( 1 )

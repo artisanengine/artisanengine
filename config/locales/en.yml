@@ -22,3 +22,9 @@ en:
       province: "State/Province"
       shipping_method: "Shipping Method"
       available: "This good is available for sale."
+  
+  mail_form:
+    attributes:
+      press_form:
+        publication_or_website: "Publication/Website"
+        your_deadline: "Your Deadline"

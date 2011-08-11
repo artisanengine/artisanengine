@@ -1,0 +1,27 @@
+#press-and-review.custom_page
+	%h1 Press and Review
+	
+	%p Write for a magazine, newspaper, or blog? We would love to speak with you about what we do and why we love to do it. Please fill out the form below, we receive these inquiries immediately and will respond as soon as possible (usually within 24 hours). If your deadline is urgent, call the number below.
+	
+	%p
+		%strong (607) 319-5113
+		%br
+		Mon-Fri 9am-5pm
+	
+	%hr
+	
+	= render 'notifications'
+
+	= semantic_form_for @press_form || PressForm.new, url: '/press' do |f|
+		= f.inputs do
+			= f.input :name
+			= f.input :email 
+			= f.input :title
+			= f.input :publication_or_website
+			= f.input :your_deadline
+			= f.input :phone
+			= f.input :comments, as: :text
+		= recaptcha_tags
+		
+		.submit
+			= f.submit 'Submit'

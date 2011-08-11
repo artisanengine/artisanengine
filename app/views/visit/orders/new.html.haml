@@ -3,6 +3,7 @@
 
 #order_wrapper
 	%h1 Your Order
+	%p.continue_shopping= link_to 'Continue Shopping', :back
 
 	- if order.line_items.any?
 		= form_tag quantities_line_items_path do

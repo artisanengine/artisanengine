@@ -49,6 +49,9 @@ ArtisanEngine::Application.routes.draw do
     
     post '/subscribe' => 'patrons#subscribe'
     post '/donations' => 'mail_forms#donations'
+    post '/press'     => 'mail_forms#press'
+    post '/wholesale' => 'mail_forms#wholesale'
+    post '/contact'   => 'mail_forms#contact'
     
     get '/order'     => 'orders#new',    as: 'new_order'
     get '/checkout'  => 'orders#edit',   as: 'checkout'

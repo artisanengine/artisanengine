@@ -1,6 +1,24 @@
-= render 'notifications'
+#donations.custom_page
+	%h1 Donation Requests
+	
+	%p 
+		We love contributing to community events and sharing our products. Please fill out the donation request form below and we'll get back to you as soon as possible.
+		%strong Please submit your requests 2-4 weeks prior to the date of your event.
 
-= semantic_form_for @donations_form || DonationsForm.new, url: '/donations' do |f|
-	= f.inputs :name, :email, :phone, :organization, :event_name, :event_date, :number_of_attendees, :product_for_donation, :event_description
-	= recaptcha_tags
-	= f.submit 'Send Donation Request'
+	= render 'notifications'
+
+	= semantic_form_for @donations_form || DonationsForm.new, url: '/donations' do |f|
+		= f.inputs do
+			= f.input :name
+			= f.input :email 
+			= f.input :phone
+			= f.input :organization 
+			= f.input :event_name
+			= f.input :event_date 
+			= f.input :number_of_attendees
+			= f.input :product_for_donation, as: :select, collection: current_frame.goods.order( "goods.name ASC" )
+			= f.input :event_description, as: :text
+		= recaptcha_tags
+		
+		.submit
+			= f.submit 'Send Donation Request'
