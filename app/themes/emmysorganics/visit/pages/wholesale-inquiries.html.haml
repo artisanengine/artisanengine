@@ -1,0 +1,27 @@
+#wholesale.custom_page
+	%h1 Wholesale Inquiries
+
+	%p Interested in carrying emmy's products in your store, restaurant, or cafe? Use the form below to make it happen! We will respond as soon as possible (usually within 24 hours). For a complete list of all the delicious products we make, download the catalog below.
+
+	= link_to 'Catalog Download (PDF)', '#'
+
+	%hr
+
+	= render 'notifications'
+
+	= semantic_form_for @wholesale_form || WholesaleForm.new, url: '/wholesale' do |f|
+		= f.inputs do
+			= f.input :name
+			= f.input :email 
+			= f.input :city
+			= f.input :state
+			= f.input :zip
+			= f.input :company
+			= f.input :phone
+			= f.input :business_status, as: :select, collection: WholesaleForm::BUSINESS_STATUSES, include_blank: false
+			= f.input :comments, as: :text
+		
+		= recaptcha_tags
+	
+		.submit
+			= f.submit 'Submit'

@@ -1,29 +1,65 @@
 #contact.custom_page
-	%h1 Connect with Emmy's
+	%h1 Contact Us
 	
-	#signup
-		#signup_image= image_tag 'signup.jpg'
-		#signup_text
-			%h3 Monthly Email List
-			%p Get news, discounts, and more!
+	%p Have a question, comment, or suggestion? Use the contact list below to get exactly what you need. For general feedback, please fill out the form at the bottom of this page. We will reply within 24 hours.
+	
+	%table
+		%tbody
+			%tr
+				%td
+					%h2 Customer Service
+					%p Monday-Friday, 9am-5pm EST
+				%td
+					%table
+						%tbody
+							%tr
+								%td Mailing Address
+								%td
+									Emmy's Kitchen
+									%br
+									202 Taughannock Blvd.
+									%br
+									Ithaca, NY 14850
+							%tr
+								%td Phone Number
+								%td (607) 319-5113
+							%tr
+								%td E-Mail
+								%td info@emmysorganics.com
+			%tr
+				%td
+					%h2 Wholesale Inquiries
+				%td
+					= link_to 'Inquire Online'
+			%tr
+				%td
+					%h2 Donations
+				%td
+					= link_to 'Fill Out the Request Form'
+			%tr
+				%td
+					%h2 Press & Review
+				%td
+					= link_to 'Inquire Online'
+	
+	%h2 General Feedback
+	
+	= render 'notifications'
 
-		= form_tag subscribe_path, class: 'formtastic' do
-			= text_field_tag :email
-			%br
-			= submit_tag 'Sign Up'
-		#subscribe_notice= flash[ :subscribe_notice ]
-	#networks
-		.network
-			= image_tag 'emmys_rss.jpg'
-			%h3 Daily Updates
-			%p News, updates, photos, and more
+	= semantic_form_for @contact_form || ContactForm.new, url: '/contact' do |f|
+		= f.inputs do
+			= f.input :name
+			= f.input :email 
+			= f.input :city
+			= f.input :state
+			= f.input :zip
+			= f.input :place_of_purchase
+			= f.input :emmys_product
+			= f.input :best_by_date
+			= f.input :comments, as: :text
 		
-		.network	
-			= image_tag 'emmys_twitter.jpg'
-			%h3 emmy's Twitter
-			%p follow our tweets for the sweets
-			
-		.network
-			= image_tag 'emmys_facebook.jpg'
-			%h3 emmy's Facebook
-			%p let's be friends... we'll give you discounts ;)
+		= recaptcha_tags
+	
+		.submit
+			= f.submit 'Submit'
+	

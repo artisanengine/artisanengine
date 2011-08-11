@@ -1,5 +1,6 @@
 ArtisanEngine::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  require 'net/http'    # Hack for ReCAPTCHA.
 
   # Set ActiveMerchant to test mode.
   ActiveMerchant::Billing::Base.mode = :test
