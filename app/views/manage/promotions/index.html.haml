@@ -17,3 +17,4 @@
 					%td.information= "#{ promotion.discount_amount } #{ promotion.discount_type.downcase } #{ promotion.discount_target.downcase }."
 					%td.links
 						= link_to 'Edit', edit_manage_promotion_path( promotion )
+						= link_to 'Delete', [ :manage, promotion ], method: :delete, confirm: "Are you sure you want to delete Promotion: #{ promotion.promotional_code }?"
