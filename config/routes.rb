@@ -33,6 +33,7 @@ ArtisanEngine::Application.routes.draw do
       resources :fulfillments
     end
     resources :patrons
+    resources :promotions
   end
   
   scope :module => :visit do
@@ -52,6 +53,8 @@ ArtisanEngine::Application.routes.draw do
     post '/press'     => 'mail_forms#press'
     post '/wholesale' => 'mail_forms#wholesale'
     post '/contact'   => 'mail_forms#contact'
+    
+    post '/apply_promotion' => 'promotions#apply', as: 'apply_promotion'
     
     get '/order'     => 'orders#new',    as: 'new_order'
     get '/checkout'  => 'orders#edit',   as: 'checkout'

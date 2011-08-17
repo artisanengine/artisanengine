@@ -1,7 +1,7 @@
 # Adjustments are applied to orders or line items to modify their price.
 # For instance, applying a discount or adding shipping costs.
 class Adjustment < ActiveRecord::Base
-  attr_accessible :adjustable, :basis, :message
+  attr_accessible :adjustable, :basis, :message, :promotion
   
   # ------------------------------------------------------------------
   # Callbacks

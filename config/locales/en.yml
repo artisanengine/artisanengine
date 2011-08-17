@@ -22,6 +22,10 @@ en:
       province: "State/Province"
       shipping_method: "Shipping Method"
       available: "This good is available for sale."
+      promotional_code: "Promotional Code"
+      discount_amount: "Discount Amount"
+      discount_target: "Discount Target"
+      discount_type: "Discount Type"
   
   mail_form:
     attributes:

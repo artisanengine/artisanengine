@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110802231231) do
+ActiveRecord::Schema.define(:version => 20110817181700) do
 
   create_table "address_attachers", :force => true do |t|
     t.integer "address_id",       :null => false
@@ -36,15 +36,16 @@ ActiveRecord::Schema.define(:version => 20110802231231) do
   add_index "addresses", ["id", "patron_id"], :name => "index_addresses_on_id_and_patron_id"
 
   create_table "adjustments", :force => true do |t|
-    t.integer  "adjustable_id",                                                :null => false
-    t.string   "adjustable_type",                                              :null => false
+    t.integer  "adjustable_id",                                                    :null => false
+    t.string   "adjustable_type",                                                  :null => false
     t.string   "type"
-    t.integer  "amount_in_cents",                               :default => 0, :null => false
+    t.integer  "amount_in_cents",                               :default => 0,     :null => false
     t.string   "currency"
     t.decimal  "basis",           :precision => 8, :scale => 2
     t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "promotion",                                     :default => false
   end
 
   create_table "artisans", :force => true do |t|
@@ -224,6 +225,16 @@ ActiveRecord::Schema.define(:version => 20110802231231) do
   end
 
   add_index "posts", ["cached_slug", "blog_id"], :name => "index_posts_on_cached_slug_and_blog_id"
+
+  create_table "promotions", :force => true do |t|
+    t.integer  "frame_id"
+    t.string   "promotional_code"
+    t.decimal  "discount_amount"
+    t.string   "discount_type"
+    t.string   "discount_target"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "settings", :force => true do |t|
     t.integer "frame_id", :null => false

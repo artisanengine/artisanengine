@@ -138,6 +138,32 @@ class Order < ActiveRecord::Base
     return "Partially Fulfilled" if line_items.fulfilled.count  < line_items.count and line_items.fulfilled.count != 0
   end
   
+  # Determine if an order has any promotions applied.
+  def has_promotion?
+    adjustments.where( promotion: true ).any?
+  end
+  
+  # Applies a promotion by creating an adjustment of the proper class on itself and flagging it
+  # as a promotion.
+  def apply_promotion( promotion )
+    unless has_promotion?
+      promotion.adjustment_class.create! adjustable: self, 
+                                         basis:      promotion.discount_amount, 
+                                         message:    "Promotional Code: #{ promotion.promotional_code }", 
+                                         promotion:  true
+    end
+  end
+  
+  # Returns all its promotions.
+  def promotions
+    adjustments.where( promotion: true )
+  end
+  
+  # Rebalances its promotions.
+  def rebalance_promotions
+    adjustments.where( promotion: true ).destroy_all
+  end
+  
   # ------------------------------------------------------------------
   # Address Management
   
