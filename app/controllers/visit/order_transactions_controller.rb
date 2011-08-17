@@ -79,7 +79,7 @@ module Visit
     # Get the total of the IPN before tax, shipping, and discount to check against
     # the order total.
     def base_total( ipn )
-      discount = params[ :discount_amount_cart ] || 0
+      discount = params[ :discount ] || 0
       
       ipn.gross.to_money - params[ :mc_shipping ].to_money - params[ :tax ].to_money - discount.to_money
     end
