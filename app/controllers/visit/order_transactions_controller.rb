@@ -81,7 +81,7 @@ module Visit
     def base_total( ipn )
       discount = params[ :discount ] || 0
       
-      ipn.gross.to_money - params[ :mc_shipping ].to_money - params[ :tax ].to_money - discount.to_money
+      ipn.gross.to_money - params[ :mc_shipping ].to_money - params[ :tax ].to_money + discount.to_money
     end
   end
 end
