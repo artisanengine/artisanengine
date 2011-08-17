@@ -1,6 +1,7 @@
 class Promotion < ActiveRecord::Base
-  DISCOUNT_TYPES   = { "Percent Off" => "PercentAdjustment" }
-  DISCOUNT_TARGETS = [ "Entire Order" ]
+  DISCOUNT_TYPE_SELECT  = [ "Percent Off" ]
+  DISCOUNT_TYPES        = { "Percent Off" => "PercentAdjustment" }
+  DISCOUNT_TARGETS      = [ "Entire Order" ]
   
   # ------------------------------------------------------------------
   # Associations
