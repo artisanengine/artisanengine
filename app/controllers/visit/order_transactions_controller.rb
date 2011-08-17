@@ -76,10 +76,12 @@ module Visit
       OrderTransaction.create! order: order, amount: ipn.gross, success: false, params: params, payment_service: 'PayPal WPS'
     end
     
-    # Get the total of the IPN before tax and shipping to check against
+    # Get the total of the IPN before tax, shipping, and discount to check against
     # the order total.
     def base_total( ipn )
-      ipn.gross.to_money - params[ :mc_shipping ].to_money - params[ :tax ].to_money
+      discount = params[ :discount_amount_cart ] || 0
+      
+      ipn.gross.to_money - params[ :mc_shipping ].to_money - params[ :tax ].to_money - discount.to_money
     end
   end
 end

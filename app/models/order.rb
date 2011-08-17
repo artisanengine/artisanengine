@@ -148,7 +148,7 @@ class Order < ActiveRecord::Base
   def apply_promotion( promotion )
     promotion.adjustment_class.create! adjustable: self, 
                                        basis:      promotion.discount_amount, 
-                                       message:    promotion.promotional_code, 
+                                       message:    "Promotional Code: #{ promotion.promotional_code }", 
                                        promotion:  true
   end
   
