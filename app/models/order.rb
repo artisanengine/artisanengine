@@ -146,10 +146,12 @@ class Order < ActiveRecord::Base
   # Applies a promotion by creating an adjustment of the proper class on itself and flagging it
   # as a promotion.
   def apply_promotion( promotion )
-    promotion.adjustment_class.create! adjustable: self, 
-                                       basis:      promotion.discount_amount, 
-                                       message:    "Promotional Code: #{ promotion.promotional_code }", 
-                                       promotion:  true
+    unless order.has_promotion?
+      promotion.adjustment_class.create! adjustable: self, 
+                                         basis:      promotion.discount_amount, 
+                                         message:    "Promotional Code: #{ promotion.promotional_code }", 
+                                         promotion:  true
+    end
   end
   
   # Returns all its promotions.
