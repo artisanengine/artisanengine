@@ -1,4 +1,4 @@
-= content_for :javascripts do
+= content_for :tail_javascripts do
 	:coffeescript
 		$ ->
 			$( '#loading' ).show()
@@ -32,7 +32,11 @@
 		= hidden_field_tag :"item_name_#{ index + 1 }", item_name
 		= hidden_field_tag :"quantity_#{ index + 1 }", 	item.quantity
 		- if item.weight and !item.weight.zero?
-			= hidden_field_tag :"weight_#{ index + 1 }", 		item.weight
+			= hidden_field_tag :"weight_#{ index + 1 }", 	item.weight
+	
+	- if order.has_promotion?
+		- for promotion in order.promotions
+			= hidden_field_tag :"discount_amount_cart", 	promotion.amount.abs
 			
 	= submit_tag 'Continue to PayPal'
 

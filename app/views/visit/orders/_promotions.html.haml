@@ -1,0 +1,5 @@
+- unless order.has_promotion?
+	= form_tag apply_promotion_path do
+		= label_tag :promotional_code, "Promotional Code"
+		= text_field_tag :promotional_code
+		= submit_tag 'Apply'

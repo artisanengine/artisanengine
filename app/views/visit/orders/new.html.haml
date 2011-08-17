@@ -35,8 +35,24 @@
 							%br
 							= order.unadjusted_total.format
 				%tbody
+					- for promotion in order.promotions
+						%tr
+							%td{ colspan: 2 }
+							%td= promotion.message
+							%td= promotion.amount.format
+				%tbody
+					%tr
+						%td{ colspan: 3 }
+						%td.adjusted_total
+							Adjusted Total
+							%br
+							= order.adjusted_total.format
+				%tbody
 					%tr
 						%td{ colspan: 3 }
 						%td= link_to 'Checkout', checkout_path, id: 'checkout'
+						
+		= render 'promotions'
+			
 	- else
 		%p Your order is empty.

@@ -1,0 +1,19 @@
+= content_for( :heading ) { 'Promotions' }
+
+%nav.heading_links
+	= link_to 'Add a Promotion', new_manage_promotion_path, class: 'add'
+
+%section#promotions
+	%table#promotions
+		%thead
+			%tr
+				%th Promotional Code
+				%th Information
+				%th
+		%tbody
+			- for promotion in promotions
+				%tr[ promotion ]
+					%td.name= promotion.promotional_code
+					%td.information= "#{ promotion.discount_amount } #{ promotion.discount_type.downcase } #{ promotion.discount_target.downcase }."
+					%td.links
+						= link_to 'Edit', edit_manage_promotion_path( promotion )

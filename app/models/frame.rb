@@ -22,6 +22,7 @@ class Frame < ActiveRecord::Base
   has_many :patrons,       dependent: :destroy
   has_many :settings,      dependent: :destroy
   has_many :tags,          dependent: :destroy
+  has_many :promotions,    dependent: :destroy
   
   has_one  :blog,          dependent: :destroy
   has_one  :featured_case, class_name: 'DisplayCase', 

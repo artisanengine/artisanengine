@@ -39,6 +39,14 @@
 							%span.options= line_item.options
 					%td.quantity= line_item.quantity.to_s + "x"
 					%td.unit_price= ( line_item.price * line_item.quantity ).format
+			- for promotion in order.promotions
+				%tr
+					%td{ colspan: 3 }
+					%td 
+						%p
+							%strong= "#{ promotion.message }"
+							%br
+							= "(#{ promotion.amount.format })"
 			%tr
 				%td{ colspan: 3 }
 				%td
