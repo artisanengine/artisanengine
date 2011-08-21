@@ -68,7 +68,8 @@ body.display_case
 					padding: 0.25em
 					cursor: pointer
 					+leader( 0.5 )
-		
+
+body.display_case, body.individual_good		
 	#sidebar
 		+column( 4 )
 		min-height: 500px
@@ -90,8 +91,25 @@ body.display_case
 				text-decoration: none
 		.display_case.current
 			background: $emmys-white
+			position: relative
+			border-right: 1px solid white
+			width: 151px
+			
+			#whitefix
+
 		.display_case a[href="/collections/monthly-specials"]
 			color: red
+		
+		#current_display_case_goods
+			+adjust-font-size-to( 10px )
+			+adjust-leading-to( 1 )
+			li
+				padding: 0 0.5em 0 1.5em
+				+rhythm( 0.5, 0, 0, 0.5 )
+				a
+					padding: 0
+					+adjust-leading-to( 1 )
+			
 
 #sidebar_extras
 	a
