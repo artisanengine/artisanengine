@@ -8,3 +8,28 @@
 		- else
 			%div[ display_case ]
 				= link_to display_case.name, display_case
+	
+	#sidebar_extras
+		#shopping_info_links
+			%h4 Shopping Info
+			= link_to 'Freshness'
+			%br
+			= link_to 'Return Policy'
+			%br
+			= link_to 'Privacy Policy'
+			
+		#sidebar_sign_up
+			%h4 Discounts & Specials
+			
+			= form_tag subscribe_path, class: 'formtastic' do
+				= text_field_tag :email
+				= submit_tag 'Sign Up'
+				#subscribe_notice= flash[ :subscribe_notice ]
+			
+		#sidebar_connect
+			%h4 Connect
+			= link_to image_tag( 'icons/networking/rss_16.png' ), '#'
+			= link_to image_tag( 'icons/networking/facebook_16.png' ), '#'
+			= link_to image_tag( 'icons/networking/twitter_16.png' ), '#'
+			= link_to image_tag( 'icons/networking/email_16.png' ), '#'
+			= link_to image_tag( 'icons/networking/google_16.png' ), '#'

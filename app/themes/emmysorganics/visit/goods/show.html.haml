@@ -1,8 +1,12 @@
 = render 'good_head'
 
 %section#good
-	%h1= good.name
-	#share= render 'share'
+	#good_top
+		%h1= good.name
+		#good_top_links
+			= link_to 'Share This Page'
+			= link_to "Connect with Emmy's"
+	
 	#images
 		= render 'images', featured_size: '550x350>', additional_size: '176x100>'
 	#information
@@ -12,3 +16,4 @@
 	%h3 Purchase This
 	#purchase
 		= render 'purchase', quantity_select: true, button_text: 'Add to Cart'
+	#share= render 'share_vertical'

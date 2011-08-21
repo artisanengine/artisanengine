@@ -38,6 +38,21 @@
 	#good
 		+leader( 1 )
 		+column( 14 )
+		padding-left: 0.5em
+		+box-sizing( border-box )
+		
+		#good_top
+			position: relative
+			#good_top_links
+				position: absolute
+				right: -240px
+				top: 0
+				
+				a
+					color: $emmys-green
+					+adjust-font-size-to( 12px )
+					&:first-child
+						padding-right: 1em
 		
 		.featured
 			+column( 14, true )
@@ -56,7 +71,7 @@
 		#information
 			+column( 14, true )
 			.description
-				+adjust-font-size-to( 13px )
+				+adjust-font-size-to( 14px )
 				+adjust-leading-to( 1.1 )
 				
 				h3
@@ -123,3 +138,6 @@
 				font-weight: bold
 				&:before
 					content: "Price: "
+		
+		#share
+			text-align: right

@@ -90,5 +90,34 @@ body.display_case
 				text-decoration: none
 		.display_case.current
 			background: $emmys-white
-		
-		
+		.display_case a[href="/collections/monthly-specials"]
+			color: red
+
+#sidebar_extras
+	a
+		color: $emmys-green
+		+adjust-font-size-to( 12px )
+		+adjust-leading-to( 1.2 )
+	div
+		+trailer( 1 )
+		&:first-child
+			+leader( 2 )
+			
+		h4
+			+adjust-font-size-to( 13px )
+	
+	#sidebar_sign_up
+		input[type=text]
+			width: 90%
+		input[type=submit]
+			background: darken( $emmys-gray, 25% )
+			color: $emmys-white
+			border: 0
+			margin-top: 0.1em
+			text-transform: uppercase
+			padding: 0.2em 0.5em
+			cursor: pointer
+		#subscribe_notice
+			+leader( 1 )
+			+adjust-font-size-to( 12px )
+			
