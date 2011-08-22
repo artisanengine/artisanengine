@@ -7,7 +7,7 @@
 				
 				%ul#current_display_case_goods
 					- for good in display_case.goods_in_display_order
-						%li= link_to good.name, good
+						%li= link_to good.name.gsub( /macaroons?/i, '' ), good
 		
 		- else
 			%div[ display_case ]
