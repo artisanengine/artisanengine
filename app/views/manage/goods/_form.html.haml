@@ -1,3 +1,7 @@
 = semantic_form_for [ :manage, good ] do |f|
-	= f.inputs :name, :description, :available
+	= f.inputs do 
+		= f.input :name
+		= f.input :short_description, input_html: { placeholder: "Optional" }
+		= f.input :description
+		= f.input :available
 	= f.submit
