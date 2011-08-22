@@ -8,10 +8,12 @@
 		%thead
 			%tr
 				%th Name
+				%th Short Description
 				%th
 		%tbody
 			- for good in goods
 				%tr[ good ]
 					%td.name= link_to good.name, good
+					%td.short_description= good.short_description
 					%td.links
 						= link_to 'Edit', edit_manage_good_path( good )
