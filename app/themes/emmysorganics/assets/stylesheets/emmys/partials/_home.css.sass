@@ -96,6 +96,7 @@ section.featured_goods
 		
 		p.name
 			height: 30px
+			+leader( 0.5 )
 		
 		.image	
 			width: 166px
@@ -214,7 +215,7 @@ section.featured_goods
 		
 #blog.block
 	.block_content
-		height: 300px
+		height: 356px
 		p
 			+trailer( 0.25 )
 	
@@ -261,8 +262,9 @@ section.featured_goods
 // Featured Good Block
 
 #product.block
-	.block_content
-		height: 166px
+	.block_content		
+		.good
+			+clearfix
 				
 		.links
 			display: none
@@ -283,6 +285,12 @@ section.featured_goods
 				text-decoration: none
 				color: $emmys-black
 				font-weight: bold
+		
+		p.short_description
+			clear: both
+			text-align: center
+			margin-top: 12.64em
+			+trailer( 0.5 )
 
 // ------------------------------------------------------------------
 // Networking Block

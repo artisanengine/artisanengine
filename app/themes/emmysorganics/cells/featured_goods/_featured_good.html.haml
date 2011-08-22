@@ -2,6 +2,7 @@
 	.image
 		.image_container= link_to display_image( good.images_in_display_order.first, '166x166>', cropping: :primary ), good
 	%p.name= link_to good.name, good
+	%p.short_description= good.short_description
 
 	.links
 		= link_to image_tag( 'plus.jpg' ), good
