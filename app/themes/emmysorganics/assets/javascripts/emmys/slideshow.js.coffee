@@ -29,7 +29,7 @@ ArtisanEngine.slideshow = () ->
 		window.active.addClass( 'active' )
 
 		# Slide slide.
-		$( "#reel" ).animate( { left: -reelPosition }, 500 )
+		$( "#reel" ).animate( { left: -reelPosition }, 750 )
 
 	setActive = () ->
 		window.active = $( '#paging a.active' ).next()
