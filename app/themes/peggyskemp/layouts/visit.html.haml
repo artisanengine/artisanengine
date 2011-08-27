@@ -8,6 +8,7 @@
 			= render 'layouts/visit/header'
 			= render 'layouts/visit/navigation' if request.fullpath == root_path
 			= content_for?( :main ) ? yield( :main ) : yield
+			#feature_banner{ style: 'text-align: center;' }= link_to image_tag( 'wgn_banner.jpg' ), 'http://www.wgntv.com/news/middaynews/middayfix/', target: "_blank"
 			= render 'layouts/visit/navigation' unless request.fullpath == root_path
 			= render 'layouts/visit/footer'
 	
