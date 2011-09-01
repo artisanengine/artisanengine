@@ -37,10 +37,10 @@
 
 #our-ingredients
 	.ingredient
-		+column( 10 )		
+		+column( 9 )		
 		text-align: center
 		&:nth-child(even)
-			+column( 10, true )
+			+column( 9, true )
 		&:hover
 			cursor: pointer
 	
@@ -147,6 +147,10 @@
 		
 		label
 			+column( 4 )
+			font-weight: bold
+			text-align: right
+			margin-top: 3px
+			
 		input, textarea
 			+column( 11, true )
 			+box-sizing( border-box )
@@ -170,5 +174,10 @@
 	
 	table
 		h2
-			+adjust-font-size-to( 20px )
-			+adjust-leading-to( 1 )
+			+leader( 0 )
+	
+	h2
+		+adjust-font-size-to( 20px )
+		+adjust-leading-to( 1 )
+		+leader( 0.5 )
+		+trailer( 0.5 )

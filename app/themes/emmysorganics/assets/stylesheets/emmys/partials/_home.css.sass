@@ -82,6 +82,8 @@ section.featured_goods
 			
 			a:first-child
 				padding-right: 1em
+			a
+				color: $emmys-green
 
 	.good
 		+column( 22/5 )
@@ -167,6 +169,7 @@ section.featured_goods
 		
 		#signup_text
 			+column( 23/3*(3/4), true )
+			+adjust-leading-to( 0.25 )
 			padding-top: 15px
 			font-weight: bold
 		
@@ -185,12 +188,13 @@ section.featured_goods
 				
 				border: none
 				padding: 0.2em 0.3em
-				margin: 2px 10px
+				margin: 5px 10px
 				
 				text-transform: uppercase
 				font-weight: bold
 				
 				cursor: pointer
+				
 		#subscribe_notice
 			+leader( 0.5 )
 			+box-sizing( border-box )
@@ -277,10 +281,11 @@ section.featured_goods
 			padding-right: 5px
 			
 		p.name
+			+box-sizing( border-box )
 			float: left
 			width: 120px
 			padding-top: 60px
-			text-align: center
+			padding-left: 2em
 			a
 				text-decoration: none
 				color: $emmys-black
@@ -288,8 +293,8 @@ section.featured_goods
 		
 		p.short_description
 			clear: both
-			text-align: center
 			margin-top: 12.64em
+			text-align: center
 			+trailer( 0.5 )
 
 // ------------------------------------------------------------------
