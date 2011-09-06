@@ -13,20 +13,21 @@ class Frame < ActiveRecord::Base
   # ------------------------------------------------------------------
   # Associations
   
-  has_many :artisans,      dependent: :destroy
-  has_many :display_cases, dependent: :destroy
-  has_many :goods,         dependent: :destroy
-  has_many :images,        dependent: :destroy
-  has_many :orders,        dependent: :destroy
-  has_many :pages,         dependent: :destroy
-  has_many :patrons,       dependent: :destroy
-  has_many :settings,      dependent: :destroy
-  has_many :tags,          dependent: :destroy
-  has_many :promotions,    dependent: :destroy
+  has_many :artisans,         dependent: :destroy
+  has_many :display_cases,    dependent: :destroy
+  has_many :goods,            dependent: :destroy
+  has_many :images,           dependent: :destroy
+  has_many :orders,           dependent: :destroy
+  has_many :pages,            dependent: :destroy
+  has_many :page_collections, dependent: :destroy
+  has_many :patrons,          dependent: :destroy
+  has_many :settings,         dependent: :destroy
+  has_many :tags,             dependent: :destroy
+  has_many :promotions,       dependent: :destroy
   
-  has_one  :blog,          dependent: :destroy
-  has_one  :featured_case, class_name: 'DisplayCase', 
-                           conditions: [ 'display_cases.name = ?', 'Featured' ]
+  has_one  :blog,             dependent: :destroy
+  has_one  :featured_case,    class_name: 'DisplayCase', 
+                              conditions: [ 'display_cases.name = ?', 'Featured' ]
   
   # ------------------------------------------------------------------
   # Validations

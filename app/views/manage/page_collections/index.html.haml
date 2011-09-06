@@ -1,0 +1,18 @@
+= content_for( :heading ) { 'Page Collections' }
+
+%nav.heading_links
+	= link_to 'Add a Page Collection', new_manage_page_collection_path, class: 'add'
+
+%section#page_collections
+	%table#page_collections
+		%thead
+			%tr
+				%th Name
+		%tbody
+			- for page_collection in page_collections
+				%tr[ page_collection ]
+					%td= page_collection.name
+				
+					%td.links
+						= link_to 'Edit', edit_manage_page_collection_path( page_collection )
+						= link_to 'Delete', [ :manage, page_collection ], method: :delete, confirm: "Are you sure you want to delete Display Case: #{ page_collection.name }?"
