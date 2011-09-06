@@ -39,6 +39,6 @@ feature 'Create a Page Collection', %q{
     page_should_have_error
     
     # And there should be no Page Collections.
-    PageCollection.count.should be 1 # ( Featured Case only. )
+    PageCollection.count.should be 0
   end
 end
