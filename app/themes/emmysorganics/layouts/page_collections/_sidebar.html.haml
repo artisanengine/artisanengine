@@ -1,0 +1,4 @@
+#sidebar
+	- for page in page_collection.pages_in_display_order
+		%div[ page ]
+			= link_to page.title, page

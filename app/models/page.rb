@@ -4,6 +4,9 @@ class Page < ActiveRecord::Base
   
   has_friendly_id :title, use_slug: true, scope: :frame
   
+  has_many :page_collects
+  has_many :page_collections, through: :page_collects
+  
   # ------------------------------------------------------------------
   # Callbacks
   

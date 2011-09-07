@@ -41,6 +41,7 @@ ArtisanEngine::Application.routes.draw do
   
   scope :module => :visit do
     resources :pages, only: [ :show ]
+    resources :page_collections, only: [ :show ]
     
     resource  :blog, only: [ :show ] do
       resources :posts, only: [ :index ]

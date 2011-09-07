@@ -1,9 +1,10 @@
 #sidebar
-	- for page in current_frame.pages
-		- if request.path == url_for( page )
-			.current[ page ]
-				= link_to page.title, page
+	- if defined?( page ) and page.page_collections.any?
+		- for current_page in page.page_collections.first.pages_in_display_order
+			- if request.path == url_for( current_page )
+				.current[ current_page ]
+					= link_to current_page.title, current_page
 		
-		- else
-			%div[ page ]
-				= link_to page.title, page
+			- else
+				%div[ current_page ]
+					= link_to current_page.title, current_page
