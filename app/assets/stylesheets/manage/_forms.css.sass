@@ -86,26 +86,27 @@ li.token-input-input-token-facebook
 // Centered Forms
 
 form.variant, form.display_case, form.page, form.post, form.good, form.image, 
-form.fulfillment, form.frame, form.setting, form.promotion, #manage_option form.option
+form.fulfillment, form.frame, form.setting, form.promotion, #manage_option form.option,
+form.page_collection
 	+centered-form
 
 // ------------------------------------------------------------------
 // Display Cases & Collects
 
-#display_case_goods
+#display_case_goods, #page_collection_pages
 	+prepend( 5 )
 	+column( 14, true )
 	+append( 5 )
 	
-	#uncollected_goods, #collected_goods
+	#uncollected_goods, #collected_goods, #uncollected_pages, #collected_pages
 		h2
 			text-align: center
 		input[type=submit]
 			float: none
 	
-	#uncollected_goods
+	#uncollected_goods, #uncollected_pages
 		+column( 7 )
-	#collected_goods
+	#collected_goods, #collected_pages
 		+column( 7, true )
 
 // ------------------------------------------------------------------

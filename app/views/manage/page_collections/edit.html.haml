@@ -1,3 +1,47 @@
 = content_for( :heading ) { 'Edit Page Collection: ' + page_collection.name }
 
+= content_for :javascripts do
+	:coffeescript
+		$ ->
+			$( '#collected_pages' ).sortable({ 
+				items: 		 '.page_collect'
+				handle: 	 '.handle'
+				tolerance: 'pointer' 
+				update: (event, ui) -> 
+					page_collect_id  = ui.item.attr( 'id' ).split( '_' )[2]
+					new_position = ui.item.prevAll( '.page_collect' ).length
+					
+					$.ajax({ 
+						type: 'put'
+						url:  '/manage/page_collections/#{ page_collection.id }/page_collects/' + page_collect_id
+						data: { "id": page_collect_id, "page_collect": { "display_order_position": new_position } }
+						dataType: 'json'
+					})
+				})
+
 = render 'form'
+
+#page_collection_pages
+	#uncollected_pages
+		%h2 Not In Collection
+		
+		%table
+			%tbody
+				- for page in ( current_frame.pages.order( "pages.title ASC" ) - page_collection.pages )
+					%tr.page
+						%td= page.title
+						%td.links
+							= form_for [ :manage, page_collection, new_page_collect ] do |f|
+								= f.hidden_field :page_id, value: page.id
+								= f.submit 'Add to Collection'
+
+	#collected_pages
+		%h2 In Collection
+		
+		%table
+			%tbody
+				- for page_collect in page_collection.page_collects.rank( :display_order )
+					%tr[ page_collect ]
+						%td.handle= image_tag 'icons/drag_handle.gif'
+						%td= page_collect.page.title
+						%td.links= button_to 'Remove from Collection', manage_page_collection_page_collect_path( page_collection, page_collect ), method: :delete, class: 'delete'

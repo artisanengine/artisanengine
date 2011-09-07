@@ -4,7 +4,7 @@ module Manage
     
     expose( :page_collections ) { current_frame.page_collections }
     expose( :page_collection )
-    #expose( :new_collect )   { Collect.new }
+    expose( :new_page_collect ) { PageCollect.new }
 
     def create
       flash[ :notice ] = "Page Collection: #{ page_collection.name } was successfully created." if page_collection.save
