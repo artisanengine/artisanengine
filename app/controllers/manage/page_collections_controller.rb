@@ -11,14 +11,14 @@ module Manage
       respond_with :manage, page_collection, location: manage_page_collections_path
     end
     
-    #def update
-    #  flash[ :notice ] = "Display Case: #{ display_case.name } was successfully updated." if display_case.update_attributes( params[ :display_case ] )
-    #  respond_with :manage, display_case, location: manage_display_cases_path
-    #end
+    def update
+      flash[ :notice ] = "Page Collection: #{ page_collection.name } was successfully updated." if page_collection.update_attributes( params[ :page_collection ] )
+      respond_with :manage, page_collection, location: manage_page_collections_path
+    end
     
-    #def destroy
-    #  flash[ :notice ] = "Display Case: #{ display_case.name } was successfully destroyed." if display_case.destroy      
-    #  respond_with :manage, display_case
-    #end
+    def destroy
+      flash[ :notice ] = "Page Collection: #{ page_collection.name } was successfully destroyed." if page_collection.destroy      
+      respond_with :manage, page_collection
+    end
   end
 end
