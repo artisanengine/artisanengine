@@ -1,7 +1,7 @@
 = content_for( :title ) { post.title }
 
 %h1= post.title
-%p.date= post.created_at.strftime( "%A, %B %d, %Y" )
+%p.date= post.published_on.strftime( "%A, %B %d, %Y" )
 
 .content= sanitize post.html_content
 

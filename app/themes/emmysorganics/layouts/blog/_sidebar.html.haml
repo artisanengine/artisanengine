@@ -17,3 +17,20 @@
 			enthusiast
 			%br
 			blogger
+
+	#sidebar_extras
+		#sidebar_sign_up
+			%h4 Discounts & Specials
+
+			= form_tag subscribe_path, class: 'formtastic' do
+				= text_field_tag :email
+				= submit_tag 'Sign Up'
+				#subscribe_notice= flash[ :subscribe_notice ]
+
+		#sidebar_connect
+			%h4 Connect
+			= link_to image_tag( 'icons/networking/rss_16.png' ), '/blog/posts.xml'
+			= link_to image_tag( 'icons/networking/facebook_16.png' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861'
+			= link_to image_tag( 'icons/networking/twitter_16.png' ), 'http://twitter.com/#!/emmysorganics'
+			= link_to image_tag( 'icons/networking/email_16.png' ), '/pages/connect'
+			~#= link_to image_tag( 'icons/networking/google_16.png' ), '#'

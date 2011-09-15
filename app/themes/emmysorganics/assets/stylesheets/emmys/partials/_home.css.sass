@@ -67,7 +67,7 @@ section.featured_goods
 	background: $emmys-white
 	
 	a
-		+accent
+		+accent-link
 	
 	#featured_goods_top
 		+column( 22, true )
@@ -83,7 +83,7 @@ section.featured_goods
 			a:first-child
 				padding-right: 1em
 			a
-				color: $emmys-green
+				+accent-link
 
 	.good
 		+column( 22/5 )
@@ -261,6 +261,10 @@ section.featured_goods
 			line-height: 150px
 			text-align: center
 			color: darken( $emmys-gray, 30% )
+		p
+			text-align: center
+			color: darken( $emmys-gray, 60% )
+			padding-top: 3.5em
 
 // ------------------------------------------------------------------
 // Featured Good Block
