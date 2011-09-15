@@ -11,9 +11,11 @@
 	.display_case
 		.ad-gallery
 			.ad-image-wrapper
+			.info
+				%p.purchase_info Click the image above for details and purchase information.
 			.ad-nav
 				.ad-thumbs
 					%ul.ad-thumb-list
 						- for good in goods
 							%li
-								= link_to display_image( good.images_in_display_order.first, '100x100#', title: good.name, alt: "", longdesc: good_path( good ) ), url_for_image( good.images_in_display_order.first )
+								= link_to display_image( good.images_in_display_order.first, '100x100#', title: good.name, alt: good.variants.first.price.format, longdesc: good_path( good ) ), url_for_image( good.images_in_display_order.first )
