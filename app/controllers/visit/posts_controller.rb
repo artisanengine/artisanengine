@@ -9,6 +9,8 @@ module Visit
     layout :blog_or_visit
     
     before_filter :ensure_best_url, only: :show
+    
+    respond_to :html, :xml
 
     expose( :blog )          { current_frame.blog }
     expose( :posts )         { load_posts! }
