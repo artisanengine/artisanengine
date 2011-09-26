@@ -2,5 +2,5 @@
 	%p.date= post.created_at.strftime( "%A, %B %d, %Y" )
 	%p.title= post.title
 	%p.snippet
-		= truncate( strip_tags( post.html_content ), length: 150, separator: ' ' )
+		= truncate( strip_tags( post.html_content ), length: 150, separator: ' ' ).html_safe
 		= link_to 'Read More', path_for_post( post )
