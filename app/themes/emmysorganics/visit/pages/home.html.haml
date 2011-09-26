@@ -80,8 +80,9 @@
 				= link_to 'More Info', current_frame.featured_case.goods_in_display_order.first
 		
 		#networking
-			= link_to image_tag( 'icons/networking/rss_32.png' ), '/blog/posts.xml'
-			= link_to image_tag( 'icons/networking/facebook_32.png' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861'
-			= link_to image_tag( 'icons/networking/twitter_32.png' ), 'http://twitter.com/#!/emmysorganics'
-			= link_to image_tag( 'icons/networking/email_32.png' ), '/pages/connect'
+			= link_to image_tag( 'icons/networking/rss_32.png' ), '/blog'
+			= link_to image_tag( 'icons/networking/facebook_32.png' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861', target: '_blank'
+			= link_to image_tag( 'icons/networking/twitter_32.png' ), 'http://twitter.com/#!/emmysorganics', target: '_blank'
+			= link_to image_tag( 'icons/networking/email_32.png' ), '/pages/connect', target: '_blank'
+			= link_to image_tag( 'icons/networking/youtube_32.png' ), 'http://www.youtube.com/user/EmmysOrganics', target: '_blank'
 			~#= link_to image_tag( 'icons/networking/google_32.png' ), '#'

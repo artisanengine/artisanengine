@@ -2,8 +2,6 @@
 	= render 'layouts/blog/tag_navigation'
 	= render 'layouts/blog/date_navigation'
 	
-	= link_to 'Pre-July 2011 Archive', 'http://emmysorganics.blogspot.com/'
-	
 	#author
 		= image_tag 'sam.jpg'
 
@@ -29,8 +27,9 @@
 
 		#sidebar_connect
 			%h4 Connect
-			= link_to image_tag( 'icons/networking/rss_16.png' ), '/blog/posts.xml'
-			= link_to image_tag( 'icons/networking/facebook_16.png' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861'
-			= link_to image_tag( 'icons/networking/twitter_16.png' ), 'http://twitter.com/#!/emmysorganics'
-			= link_to image_tag( 'icons/networking/email_16.png' ), '/pages/connect'
+			= link_to image_tag( 'icons/networking/rss_16.png' ), '/blog'
+			= link_to image_tag( 'icons/networking/facebook_16.png' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861', target: '_blank'
+			= link_to image_tag( 'icons/networking/twitter_16.png' ), 'http://twitter.com/#!/emmysorganics', target: '_blank'
+			= link_to image_tag( 'icons/networking/email_16.png' ), '/pages/connect', target: '_blank'
+			= link_to image_tag( 'icons/networking/youtube_16.png' ), 'http://www.youtube.com/user/EmmysOrganics', target: '_blank'
 			~#= link_to image_tag( 'icons/networking/google_16.png' ), '#'

@@ -17,8 +17,8 @@
 		#shopping_info_links
 			%h4 Shopping Info
 			= link_to 'Freshness', '/pages/freshness-storage'
-			%br
-			= link_to 'Return Policy', '/pages/return-policy'
+			~#%br
+			~#= link_to 'Return Policy', '/pages/return-policy'
 			%br
 			= link_to 'Privacy Policy', '/pages/privacy-policy'
 			
@@ -32,8 +32,9 @@
 			
 		#sidebar_connect
 			%h4 Connect
-			= link_to image_tag( 'icons/networking/rss_16.png' ), '/blog/posts.xml'
-			= link_to image_tag( 'icons/networking/facebook_16.png' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861'
-			= link_to image_tag( 'icons/networking/twitter_16.png' ), 'http://twitter.com/#!/emmysorganics'
-			= link_to image_tag( 'icons/networking/email_16.png' ), '/pages/connect'
+			= link_to image_tag( 'icons/networking/rss_16.png' ), '/blog'
+			= link_to image_tag( 'icons/networking/facebook_16.png' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861', target: '_blank'
+			= link_to image_tag( 'icons/networking/twitter_16.png' ), 'http://twitter.com/#!/emmysorganics', target: '_blank'
+			= link_to image_tag( 'icons/networking/email_16.png' ), '/pages/connect', target: '_blank'
+			= link_to image_tag( 'icons/networking/youtube_16.png' ), 'http://www.youtube.com/user/EmmysOrganics', target: '_blank'
 			~#= link_to image_tag( 'icons/networking/google_16.png' ), '#'

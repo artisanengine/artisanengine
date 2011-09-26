@@ -14,16 +14,16 @@
 		#subscribe_notice= flash[ :subscribe_notice ]
 	#networks
 		.network
-			= link_to image_tag( 'emmys_rss.jpg' ), '/blog/posts.xml'
+			= link_to image_tag( 'emmys_rss.jpg' ), '/blog'
 			%h3= link_to 'Daily Updates', '/blog/posts.xml'
 			%p News, updates, photos, and more
 		
 		.network	
-			= link_to image_tag( 'emmys_twitter.jpg' ), 'http://twitter.com/#!/emmysorganics'
+			= link_to image_tag( 'emmys_twitter.jpg' ), 'http://twitter.com/#!/emmysorganics', target: '_blank'
 			%h3= link_to "emmy's Twitter", 'http://twitter.com/#!/emmysorganics'
 			%p follow our tweets for the sweets
 			
 		.network
-			= link_to image_tag( 'emmys_facebook.jpg' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861'
+			= link_to image_tag( 'emmys_facebook.jpg' ), 'https://www.facebook.com/pages/Emmys-Organics/76885732861', target: '_blank'
 			%h3= link_to "emmy's Facebook", 'https://www.facebook.com/pages/Emmys-Organics/76885732861'
 			%p best fanpage ever!

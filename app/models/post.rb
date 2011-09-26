@@ -30,12 +30,12 @@ class Post < ActiveRecord::Base
   
   scope :by_year,            lambda { |year| 
                                year = Date.new( year.to_i )
-                               where created_at: year.beginning_of_year..year.beginning_of_year.next_year 
+                               where published_on: year.beginning_of_year..year.beginning_of_year.next_year 
                              }
                              
   scope :by_month,           lambda { |year, month| 
                                month = Date.new( year.to_i, month.to_i )
-                               where created_at: month.beginning_of_month..month.beginning_of_month.next_month 
+                               where published_on: month.beginning_of_month..month.beginning_of_month.next_month 
                               }
     
   scope :published,          lambda { where( [ "posts.published_on IS NOT NULL AND posts.published_on <= ?", Time.now ] ) }
