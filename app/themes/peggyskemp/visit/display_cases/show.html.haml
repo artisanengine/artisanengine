@@ -18,4 +18,4 @@
 					%ul.ad-thumb-list
 						- for good in goods
 							%li
-								= link_to display_image( good.images_in_display_order.first, '100x100#', title: good.name, alt: good.variants.first.price.format, longdesc: good_path( good ) ), url_for_image( good.images_in_display_order.first )
+								= link_to display_image( good.images_in_display_order.first, '100x100#', title: good.name, alt: (good.available? ? good.variants.first.price.format : "By custom order only" ), longdesc: good_path( good ) ), url_for_image( good.images_in_display_order.first )
