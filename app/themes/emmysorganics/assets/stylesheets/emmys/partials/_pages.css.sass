@@ -1,5 +1,6 @@
 #pages_wrapper, #page_collections_wrapper
 	+column( 24, true )
+	position: relative
 
 	#sidebar
 		+column( 4 )
@@ -181,3 +182,7 @@
 		+adjust-leading-to( 1 )
 		+leader( 0.5 )
 		+trailer( 0.5 )
+
+#sidebar.locator
+	position: absolute
+	left: 0
