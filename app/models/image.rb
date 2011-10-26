@@ -28,7 +28,7 @@ class Image < ActiveRecord::Base
   validates_format_of   :image_name, with: /^[\w-]+\.[a-zA-Z]{3,4}$/
   validates_presence_of :image, :frame
   validates_property    :format, of: :image, in: [ :jpg, :png, :gif ]
-  validates_size_of     :image, maximum: 2.megabytes
+  validates_size_of     :image, maximum: 1.megabyte
   
   # ------------------------------------------------------------------
   # Methods
