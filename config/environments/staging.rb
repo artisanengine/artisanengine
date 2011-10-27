@@ -1,6 +1,9 @@
 ArtisanEngine::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # Abort long-running requests on Heroku.
+  Rack::Timeout.timeout = 20 # seconds.
+
   # Configure ActionMailer for Heroku.
   ActionMailer::Base.smtp_settings = {
     address:        "smtp.sendgrid.net",

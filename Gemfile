@@ -79,7 +79,8 @@ end
 group :staging, :production do
   gem 'pg',                   '0.11.0'        # Use Postgres DB in production to match Heroku.
   gem 'rack-cache',           '1.0.2'         # Caching.
-  gem 'dalli',                '1.0.5'         # Memcache client.        
+  gem 'dalli',                '1.0.5'         # Memcache client.
+  gem 'rack-timeout',					'0.0.3'					# Abort long-running requests on Heroku.
 end
 
 group :production do
