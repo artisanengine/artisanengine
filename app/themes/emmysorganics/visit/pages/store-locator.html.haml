@@ -5,6 +5,6 @@
 #page_content= page.html_content.html_safe
 
 #sidebar.locator
-	- for location in %w( Connecticut D.C. Illinois Kansas Massachusetts Maryland Maine Montana North\ Carolina New\ Hampshire New\ Jersey New\ York New\ York\ City Ohio Oklahoma Pennsylvania Rhode\ Island Texas Virginia Vermont Wisconsin Online\ Retailers )
+	- for location in %w( Connecticut D.C. Florida Illinois Kansas Massachusetts Maryland Maine Montana North\ Carolina New\ Hampshire New\ Jersey New\ York New\ York\ City Ohio Oklahoma Pennsylvania Rhode\ Island Texas Virginia Vermont Wisconsin Online\ Retailers )
 		.page
 			= link_to location, "##{ location.parameterize }"
