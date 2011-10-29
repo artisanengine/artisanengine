@@ -1,5 +1,3 @@
 %nav#top
 	- for collection in %w( viscera tentacles anatomical neurologica side-projects )
 		= link_to collection.gsub( '-', ' ' ), "/collections/#{ collection }/", id: "#{ collection }_link"
-	
-	= link_to 'past work', '/pages/past-work-galleries', id: 'past-work-gallery_link'
