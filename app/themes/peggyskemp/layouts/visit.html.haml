@@ -8,7 +8,7 @@
 			= render 'layouts/visit/header'
 			= render 'layouts/visit/navigation' if request.fullpath == root_path
 			= content_for?( :main ) ? yield( :main ) : yield
+			#banner= image_tag 'wgn_banner.jpg' if request.fullpath == root_path
 			= render 'layouts/visit/navigation' unless request.fullpath == root_path
 			= render 'layouts/visit/footer'
-	
 		= render 'layouts/visit/tail'
