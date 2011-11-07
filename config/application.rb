@@ -5,12 +5,19 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require( :default, Rails.env ) if defined?( Bundler )
 
+# Skips all of the nasty and bloated old Compass Rails integration.
+# Only necessary until Compass 0.12 becomes stable.
+# https://gist.github.com/1184816
+module Compass
+  RAILS_LOADED = true
+end
+
 module ArtisanEngine
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W( #{ Rails.root }/lib #{ Rails.root }/app/models/adjustments #{ Rails.root }/app/models/mail_forms )
 
@@ -37,6 +44,12 @@ module ArtisanEngine
 
     # Enable the asset pipeline.
     config.assets.enabled = true
+    
+    # Add Compass styles to the asset pipeline.
+    # Only necessary until Compass 0.12 becomes stable.
+    # https://gist.github.com/1184816
+    config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
+    config.sass.load_paths << Compass::Frameworks['blueprint'].stylesheets_directory
     
     # Add theme asset paths.
     for theme in %w( emmysorganics peggyskemp )

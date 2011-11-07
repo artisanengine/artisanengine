@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 # ------------------------------------------------------------------
 # Environment-Independent Gems
 
-gem 'rails',                  '3.1.0.rc5'
+gem 'rails',                  '3.1.1'
 gem 'thin',                   '1.2.11'        # Run Thin to match Heroku.
 
 # Utilities.
@@ -37,10 +37,10 @@ gem 'cells',                  '3.6.2'         # Reusable mini-controllers.
 gem 'formtastic',						  '1.2.4'         # Better forms.
 gem 'haml',									  '3.1.2'         # HTML haiku.
 gem 'coffee-filter',          '0.1.1'         # Use CoffeeScript with HAML.
-gem 'compass',                git: 'https://github.com/chriseppstein/compass.git', branch: 'rails31'
+gem 'compass',                '0.11.5'
 
 # Asset pipeline.
-gem 'sass-rails',             '~> 3.1.0.rc'   # Enable SASS templates.
+gem 'sass-rails',             '~> 3.1.4' # This needs to be global to work on Heroku.
 gem 'sass',                   '3.1.5'         # Blueprint/Sass 3.1.6 incompatibility.
 gem 'coffee-script',          '2.2.0'         # Enable CoffeeScript.
 gem 'uglifier',               '1.0.0'         # Default asset compressor.
@@ -61,7 +61,7 @@ group :test do
 	# Integration testing.
 	gem 'rspec-cells',          '0.0.5'         # Integration testing for Cells.
 	gem 'capybara',						  '1.0.0'         # All-purpose integration testing.
-	gem 'capybara-webkit',      '1.0.0.beta4'   # Headless JS driver.
+	gem 'capybara-webkit'                       # Headless JS driver.
 	gem 'database_cleaner',     '0.6.7'         # Database management for JS testing.
 	gem 'launchy',              '0.4.0'         # Open pages during testing.
 	gem 'watchr',							  '0.7'           # All-purpose automation.
@@ -69,7 +69,7 @@ group :test do
 end
 
 group :test, :development do
-  gem 'sqlite3',              '1.3.3'         # Use SQLite DB in testing and development.
+  gem 'sqlite3',              '1.3.4'         # Use SQLite DB in testing and development.
 end
 
 group :development do
@@ -78,7 +78,7 @@ end
 
 group :staging, :production do
   gem 'pg',                   '0.11.0'        # Use Postgres DB in production to match Heroku.
-  gem 'rack-cache',           '1.0.2'         # Caching.
+  gem 'rack-cache',           '~> 1.1'        # Caching.
   gem 'dalli',                '1.0.5'         # Memcache client.
   gem 'rack-timeout',					'0.0.3'					# Abort long-running requests on Heroku.
 end

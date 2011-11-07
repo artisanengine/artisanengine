@@ -1,3 +1,3 @@
 %nav#top
-	- for collection in %w( viscera tentacles anatomical neurologica side-projects )
+	- for collection in %w( anatomical viscera tentacles bronze side-projects )
 		= link_to collection.gsub( '-', ' ' ), "/collections/#{ collection }/", id: "#{ collection }_link"
